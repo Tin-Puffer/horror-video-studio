@@ -10,8 +10,8 @@ Mọi kịch bản mới theo **`scripts/QUY_TAC_KICH_BAN.md`** (đã thống nh
 
 ## Dùng AI / máy khác
 - Viết kịch bản bằng AI khác: `python3 tools/make_brief.py` → gửi `build/brief.zip` (hoặc BRIEF_VIET_KICH_BAN.md + ảnh).
-- Máy khác: clone repo, cài Python/ffmpeg/piper/VieNeu (Dubber), tạo `config.local.json`, chép giọng clone
-  `~/Library/Application Support/dubber/voices/vieneu/giong-ke-chuyen-clone-e6b153/` sang máy mới.
+- Máy khác: clone repo, cài Python/ffmpeg/piper/VieNeu (Dubber), tạo `config.local.json`. Giọng clone có sẵn trong
+  `assets/voices/vieneu/` (chỉ voice.json + meta.json, không có bản ghi gốc) — worker tự đọc từ đó.
 
 ## Nguyên tắc
 - **Kịch bản JSON quyết định mọi cấu hình, vị trí, kích thước** (settings / characters / scenes / layers).

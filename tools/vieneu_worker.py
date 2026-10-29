@@ -6,7 +6,8 @@ Speaks JSON lines on stdin/stdout so the model (~1.6 GB) loads once per render:
   {"cmd": "clone", "audio": "/path", "name": "Tên", "start": 0.0}
   {"cmd": "list"}
 Each request gets one reply line: {"ok": true, ...} or {"ok": false, "error": "..."}.
-Cloned voices live in Dubber's voice library, so Dubber sees them too.
+Cloned voices live in Dubber's voice library, so Dubber sees them too; a clone that
+is not there is read from the project's assets/voices/vieneu/<id>/ (argv[2] = project root).
 """
 import json
 import sys
@@ -21,10 +22,17 @@ def main():
     sdk = None
     voices = {}
 
+    project_voices = Path(sys.argv[2]) / "assets/voices/vieneu" if len(sys.argv) > 2 else None
+
     def resolve(spec: str):
         if spec not in voices:
             kind, _, name = spec.partition(":")
-            voices[spec] = lib.load_voice_data(name) if kind == "clone" else name
+            if kind != "clone":
+                voices[spec] = name
+            elif lib.clone_exists(name) or project_voices is None:
+                voices[spec] = lib.load_voice_data(name)
+            else:  # shipped with the project (assets/voices/vieneu/<id>/voice.json)
+                voices[spec] = lib.load_voice_data(name, root=project_voices)
         return voices[spec]
 
     out = sys.stdout

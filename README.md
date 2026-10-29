@@ -34,8 +34,8 @@ Kịch bản mẫu dùng giọng clone `clone_ke_chuyen` (VieNeu-TTS). Cần cà
 {"voice": {"vieneu_python": "/đường/dẫn/python-có-vieneu", "dubber_root": "/đường/dẫn/Dubber", "preset": "clone_ke_chuyen"}}
 ```
 
-Giọng clone **không có trong repo**: chép thư mục giọng (`voices/vieneu/<id>/` trong dữ liệu người dùng của Dubber)
-từ máy cũ sang, hoặc tự clone giọng mới: `python3 tools/clone_voice.py <file> "<Tên>" --start <giây>`
+Giọng clone `clone_ke_chuyen` **có sẵn trong repo** (`assets/voices/vieneu/`, người nói đã đồng ý công khai);
+công cụ tự đọc từ đây nếu thư viện Dubber trên máy chưa có. Tự clone giọng mới: `python3 tools/clone_voice.py <file> "<Tên>" --start <giây>`
 (chỉ với giọng của bạn hoặc người đã đồng ý). Không có VieNeu thì đổi `settings.voice` sang một preset piper.
 
 ## Viết kịch bản

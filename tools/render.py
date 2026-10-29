@@ -219,7 +219,7 @@ def vieneu(req: dict, v: dict) -> dict:
     """Send one request to the VieNeu worker (started on first use, model loaded once)."""
     global _VIENEU
     if _VIENEU is None or _VIENEU.poll() is not None:
-        _VIENEU = subprocess.Popen([v["vieneu_python"], str(ROOT / "tools/vieneu_worker.py"), v["dubber_root"]],
+        _VIENEU = subprocess.Popen([v["vieneu_python"], str(ROOT / "tools/vieneu_worker.py"), v["dubber_root"], str(ROOT)],
                                    stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True, encoding="utf-8")
     _VIENEU.stdin.write(json.dumps(req, ensure_ascii=False) + "\n")
     _VIENEU.stdin.flush()
