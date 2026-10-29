@@ -6,7 +6,7 @@ __pycache__/
 
 # machine-specific settings and local voice models
 config.local.json
-voices/
+/voices/
 
 # original generated sheets (large) and voice test samples
 assets/source/
