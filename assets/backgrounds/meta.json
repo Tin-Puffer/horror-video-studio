@@ -1,0 +1,131 @@
+{
+ "style_prompt": "Background illustration for a horror animation, same hand-drawn crayon / colored-pencil texture and thick black outlines as the reference image, simple shapes, 16:9, flat side view like a 2D stage, empty scene with no people and no characters, dark night lighting in deep blue and gray tones with only faint cold moonlight, lots of empty floor space in the lower third, no text.",
+ "reference_images": [
+  "assets/backgrounds/bg2_hallway.png"
+ ],
+ "_coords": "Toạ độ là tỉ lệ khung hình 16:9 (x 0 trái→1 phải, y 0 trên→1 dưới). floor_y = đường chân nhân vật đứng ở tiền cảnh; char_h = chiều cao nhân vật khuyến nghị.",
+ "backgrounds": {
+  "bg1_bedroom": {
+   "desc": "Phòng ngủ ban đêm, KHÔNG có giường (dùng sprite G1–G3). Cửa phòng bên trái, cửa sổ ánh trăng giữa, tủ đầu giường + đồng hồ 03:00, nửa phải sàn trống.",
+   "tags": [
+    "phòng ngủ",
+    "đêm",
+    "trong nhà"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "bedroom_door": [
+     0.1,
+     0.55
+    ],
+    "bedroom_door_handle": [
+     0.145,
+     0.49
+    ],
+    "window": [
+     0.34,
+     0.35
+    ],
+    "clock": [
+     0.48,
+     0.53
+    ],
+    "bed_spot": [
+     0.7,
+     0.95
+    ]
+   }
+  },
+  "bg2_hallway": {
+   "desc": "Hành lang dài nằm ngang, sàn gỗ, 2 cửa đóng, ảnh gia đình mờ trên tường, hai đầu tối.",
+   "tags": [
+    "hành lang",
+    "đêm",
+    "trong nhà"
+   ],
+   "floor_y": 0.97,
+   "char_h": 0.46,
+   "hotspots": {
+    "door_left": [
+     0.34,
+     0.5
+    ],
+    "door_right": [
+     0.705,
+     0.5
+    ],
+    "family_photo": [
+     0.5,
+     0.36
+    ],
+    "far_end": [
+     0.86,
+     0.9
+    ]
+   }
+  },
+  "bg3_front_door": {
+   "desc": "Cửa chính nhìn từ trong nhà, ở giữa; lỗ mắt mèo (cao, quá tầm cậu bé), tay nắm bên trái cửa, tủ giày bên trái, móc áo bên phải, khe sáng vàng dưới cửa.",
+   "tags": [
+    "cửa chính",
+    "đêm",
+    "trong nhà",
+    "mắt mèo"
+   ],
+   "floor_y": 0.96,
+   "char_h": 0.46,
+   "hotspots": {
+    "door_handle": [
+     0.44,
+     0.478
+    ],
+    "peephole": [
+     0.5,
+     0.205
+    ],
+    "door_center": [
+     0.5,
+     0.45
+    ],
+    "door_bottom_y": [
+     0.5,
+     0.79
+    ],
+    "shoe_rack": [
+     0.23,
+     0.72
+    ],
+    "coat_hooks": [
+     0.73,
+     0.35
+    ]
+   }
+  },
+  "bg3b_peephole": {
+   "desc": "Góc nhìn qua mắt mèo: khung tròn giữa nền đen, hành lang chung cư bị bóp méo, đèn trần mờ.",
+   "tags": [
+    "mắt mèo",
+    "POV",
+    "hành lang chung cư"
+   ],
+   "floor_y": 0.66,
+   "char_h": 0.3,
+   "hotspots": {
+    "lens_circle": [
+     0.5,
+     0.5,
+     0.49
+    ],
+    "corridor_floor": [
+     0.6,
+     0.66
+    ],
+    "far_door": [
+     0.5,
+     0.5
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,214 @@
+#!/usr/bin/env python3
+"""Check a storyboard against the asset library and write the asset request list.
+
+  python3 tools/check_story.py scripts/<story>.json
+
+- every sprite / cycle / background / hotspot / anchor the story uses must exist,
+  or be listed in the story's "asset_requests"
+- writes build/<story>_requests.md: one ready-to-paste Gemini prompt per
+  missing asset (style prompt of the character + layout + poses), with the
+  reference images to attach
+- exit code 1 if something is missing and not requested
+
+asset_requests entries:
+  {"id": "boy_hoodie_sheet_L", "kind": "sheet", "character": "boy_hoodie",
+   "grid": [2, 3], "why": "cảnh 5, 9",
+   "sprites": [{"name": "L1_open_fridge", "pose": "<English pose>", "desc": "<VN>",
+                "tags": [...], "facing": "right", "anchors_needed": ["hand"]}, ...]}
+  {"id": "bg4_bathroom", "kind": "background", "scene": "<English scene>",
+   "desc": "<VN>", "tags": [...], "floor_y": 0.95, "char_h": 0.46,
+   "hotspots_needed": ["mirror", "sink"]}
+  {"id": "neighbor_base", "kind": "character_base", "character": "neighbor",
+   "name": "<VN>", "design": "<English full description>", "default_h": 0.5}
+  {"id": "knock_3", "kind": "sound", "sound_kind": "sfx" | "music", "desc": "<VN>",
+   "search": "<English keywords for Pixabay/Freesound>", "length": "~2s", "tags": [...], "volume": 1.0}
+"""
+from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+CHARS = ROOT / "assets/characters"
+BGS = ROOT / "assets/backgrounds"
+
+SHEET_LAYOUT = ("Character sheet, 16:9, pure plain white background, {n} poses arranged in a "
+                "{r}x{c} grid with wide empty space between poses, poses must not overlap or touch "
+                "each other or the image edges, same character size in every pose, no text, no labels, "
+                "no ground shadows, no background objects.")
+BASE_LAYOUT = ("A full-body character design, standing straight, front view, arms at the sides. "
+               "Hand-drawn crayon / colored-pencil texture, thick black outlines, simple shapes and minimal "
+               "flat colors, the same art style as the reference image. Pure plain white background, "
+               "centered, full body visible with space around, no text, no shadow on the ground, "
+               "never white clothing. 1:1.")
+
+
+def load_json(path: Path) -> dict:
+    return json.loads(path.read_text()) if path.exists() else {}
+
+
+def char_meta(char: str) -> dict:
+    return load_json(CHARS / char / "meta.json")
+
+
+def sprite_exists(ref: str) -> bool:
+    return (CHARS / f"{ref}.png").exists()
+
+
+SOUND_EXT = ("wav", "mp3", "ogg", "m4a", "flac", "aiff")
+
+
+def sound_exists(name: str) -> bool:
+    return any((ROOT / "assets/audio/sfx" / f"{name}.{e}").exists() for e in SOUND_EXT)
+
+
+def collect_sounds(story: dict) -> dict:
+    sounds = {}
+    for s in story["scenes"]:
+        for cue in s.get("sfx", []):
+            sounds.setdefault(cue["sound"], []).append(s["id"])
+    for m in story.get("music", []):
+        sounds.setdefault(m["sound"], []).append("nhạc nền")
+    return sounds
+
+
+def collect(story: dict):
+    """(sprites, cycles, backgrounds, hotspot uses, anchor uses) referenced by the story."""
+    sprites, cycles, bgs, hotspots, anchors = {}, {}, {}, [], []
+    for s in story["scenes"]:
+        sid = s["id"]
+        if s.get("bg") and s["bg"] != "black":
+            bgs.setdefault(s["bg"], []).append(sid)
+        for L in s.get("layers", []):
+            refs = []
+            if "sprite" in L:
+                refs.append(L["sprite"])
+            for f in L.get("frames", []):
+                refs.append(f if isinstance(f, str) else f["sprite"])
+            if "cycle" in L:
+                cycles.setdefault(L["cycle"], []).append(sid)
+            for r in refs:
+                sprites.setdefault(r, []).append(sid)
+            for key in ("pin", "clip_circle"):
+                at = L.get(key, {}).get("at") if key == "pin" else L.get(key)
+                if isinstance(at, str):
+                    hotspots.append((s["bg"], at, sid))
+            if L.get("pin"):
+                for r in refs:
+                    anchors.append((r, L["pin"]["point"], sid))
+    return sprites, cycles, bgs, hotspots, anchors
+
+
+def request_prompt(req: dict) -> tuple[str, list[str]]:
+    kind = req["kind"]
+    if kind == "sheet":
+        meta = char_meta(req["character"])
+        r, c = req.get("grid", [2, 3])
+        poses = "; ".join(f"{i + 1}) {sp['pose']}" for i, sp in enumerate(req["sprites"]))
+        prompt = (f"{meta.get('style_prompt', '')} {SHEET_LAYOUT.format(n=r * c, r=r, c=c)} "
+                  f"Poses (left to right, top to bottom): {poses}.")
+        return prompt, meta.get("reference_images", [])
+    if kind == "background":
+        bg = load_json(BGS / "meta.json")
+        return f"{bg.get('style_prompt', '')} {req['scene']}", bg.get("reference_images", [])
+    if kind == "sound":
+        return (f"Tìm trên pixabay.com/sound-effects hoặc freesound.org với từ khoá: \"{req['search']}\" "
+                f"(độ dài {req.get('length', 'tuỳ')}). Tải về dạng mp3/wav.", [])
+    if kind == "character_base":
+        refs = [m for m in (char_meta(d.name).get("reference_images", [])[:1]
+                            for d in CHARS.iterdir() if d.is_dir()) if m]
+        return f"{req['design']} {BASE_LAYOUT}", [refs[0][0]] if refs else []
+    raise ValueError(f"unknown request kind {kind}")
+
+
+def main():
+    path = Path(sys.argv[1])
+    story = json.loads(path.read_text())
+    requests = story.get("asset_requests", [])
+    requested_sprites = {f"{r['character']}/{sp['name']}" for r in requests if r["kind"] == "sheet"
+                         for sp in r["sprites"]}
+    requested_bgs = {r["id"] for r in requests if r["kind"] == "background"}
+    requested_chars = {r["character"] for r in requests if r["kind"] == "character_base"}
+    requested_sounds = {r["id"] for r in requests if r["kind"] == "sound"}
+
+    sprites, cycles, bgs, hotspots, anchors = collect(story)
+    errors, pending = [], []
+
+    for ref, scenes in sorted(sprites.items()):
+        if sprite_exists(ref):
+            continue
+        (pending if ref in requested_sprites else errors).append(f"sprite {ref} (cảnh {scenes})")
+    for ref, scenes in sorted(cycles.items()):
+        char, _, name = ref.partition("/")
+        if name not in char_meta(char).get("cycles", {}):
+            errors.append(f"cycle {ref} không có trong meta.json (cảnh {scenes})")
+    for bg, scenes in sorted(bgs.items()):
+        if (BGS / f"{bg}.png").exists():
+            continue
+        (pending if bg in requested_bgs else errors).append(f"background {bg} (cảnh {sorted(set(scenes))})")
+    bg_meta = load_json(BGS / "meta.json").get("backgrounds", {})
+    for bg, name, sid in hotspots:
+        if name not in bg_meta.get(bg, {}).get("hotspots", {}):
+            target = pending if bg in requested_bgs else errors
+            target.append(f"hotspot {bg}.{name} (cảnh {sid}) — cần đo sau khi có phông")
+    for ref, point, sid in anchors:
+        char, _, name = ref.partition("/")
+        if point not in char_meta(char).get("sprites", {}).get(name, {}).get("anchors", {}):
+            target = pending if ref in requested_sprites else errors
+            target.append(f"anchor {ref}.{point} (cảnh {sid}) — cần đo sau khi có sprite")
+    for char in {r.split("/")[0] for r in sprites}:
+        if not (CHARS / char).is_dir() and char not in requested_chars:
+            errors.append(f"nhân vật {char} chưa có và chưa được yêu cầu (character_base)")
+
+    sounds = collect_sounds(story)
+    for name, where in sorted(sounds.items()):
+        if not sound_exists(name):
+            (pending if name in requested_sounds else errors).append(f"âm thanh {name} ({where})")
+
+    used = [r for r in sprites if sprite_exists(r)]
+    print(f"{path.name}: {len(story['scenes'])} cảnh, dùng lại {len(used)} sprite + "
+          f"{sum(1 for b in bgs if (BGS / f'{b}.png').exists())} phông + "
+          f"{sum(1 for n in sounds if sound_exists(n))}/{len(sounds)} âm thanh có sẵn")
+
+    # request list for the user
+    open_reqs = []
+    for req in requests:
+        if req["kind"] == "sheet":
+            done = all(sprite_exists(f"{req['character']}/{sp['name']}") for sp in req["sprites"])
+        elif req["kind"] == "background":
+            done = (BGS / f"{req['id']}.png").exists()
+        elif req["kind"] == "sound":
+            done = sound_exists(req["id"])
+        else:
+            done = (CHARS / req["character"]).is_dir()
+        if not done:
+            open_reqs.append(req)
+    out = ROOT / "build" / f"{path.stem}_requests.md"
+    out.parent.mkdir(exist_ok=True)
+    md = [f"# Asset cần tạo cho `{path.name}`", "",
+          "Mỗi mục: đính kèm ảnh tham chiếu, dán prompt vào Gemini, gửi ảnh kết quả cho Claude kèm mã yêu cầu.", ""]
+    for req in open_reqs:
+        prompt, refs = request_prompt(req)
+        md += [f"## `{req['id']}` ({req['kind']})", "",
+               f"- Dùng cho: {req.get('why', '')}",
+               f"- Đính kèm: {', '.join(f'`{r}`' for r in refs) or '(không)'}"]
+        if req["kind"] == "sheet":
+            md += ["- Ô (trái→phải, trên→dưới): " + ", ".join(sp["name"] for sp in req["sprites"])]
+        if req["kind"] == "sound":
+            md += [f"- Âm thanh: {req.get('desc', '')}"]
+        md += ["", "```", prompt, "```", ""]
+    if not open_reqs:
+        md.append("Không còn asset nào cần tạo.")
+    out.write_text("\n".join(md))
+
+    for p in pending:
+        print("  chờ asset:", p)
+    for e in errors:
+        print("  LỖI:", e)
+    print(f"  {len(open_reqs)} yêu cầu asset đang mở -> {out.relative_to(ROOT)}")
+    sys.exit(1 if errors else 0)
+
+
+if __name__ == "__main__":
+    main()

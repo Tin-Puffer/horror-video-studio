@@ -1,0 +1,738 @@
+{
+ "name": "Khoa — cậu trai hoodie xanh",
+ "style_prompt": "Same character as the reference images: a boy with messy spiky black hair, dark moss-green hoodie with drawstrings and front pocket, dark charcoal-gray pants, white sneakers. Hand-drawn crayon / colored-pencil texture, thick black outlines, simple chibi proportions, dot eyes, minimal flat colors.",
+ "reference_images": [
+  "assets/source/boy_hoodie_base.png",
+  "assets/source/boy_hoodie_sheet_C.png"
+ ],
+ "default_h": 0.46,
+ "cycles": {
+  "walk": [
+   "H1_walk_contact_a",
+   "H2_walk_down_a",
+   "H3_walk_pass_a",
+   "H4_walk_contact_b",
+   "H5_walk_down_b",
+   "H6_walk_pass_b"
+  ],
+  "flashlight_walk": [
+   "I1_flashlight_walk_contact_a",
+   "I2_flashlight_walk_down_a",
+   "I3_flashlight_walk_pass_a",
+   "I4_flashlight_walk_contact_b",
+   "I5_flashlight_walk_down_b",
+   "I6_flashlight_walk_pass_b"
+  ],
+  "tiptoe": [
+   "J1_tiptoe_a",
+   "J2_tiptoe_together",
+   "J3_tiptoe_b",
+   "J2_tiptoe_together"
+  ],
+  "back_walk": [
+   "J4_back_walk_a",
+   "J5_back_walk_together",
+   "J6_back_walk_b",
+   "J5_back_walk_together"
+  ],
+  "run": [
+   "C4_run_step_a",
+   "C5_run_step_b",
+   "C6_run_step_c",
+   "C5_run_step_b"
+  ],
+  "talk": [
+   "D2_face_talk_small",
+   "D3_face_talk_open",
+   "D2_face_talk_small",
+   "D1_face_neutral"
+  ],
+  "blink": [
+   "D1_face_neutral",
+   "D1_face_neutral",
+   "D1_face_neutral",
+   "D1_face_neutral",
+   "D4_face_blink"
+  ]
+ },
+ "sprites": {
+  "00_idle_front_smile": {
+   "desc": "Đứng thẳng chính diện, mỉm cười nhẹ",
+   "tags": [
+    "đứng",
+    "chính diện",
+    "vui",
+    "bình thường"
+   ],
+   "facing": "front"
+  },
+  "A1_walk_sad": {
+   "desc": "Đi bộ, mặt buồn/lo",
+   "tags": [
+    "đi",
+    "buồn",
+    "lo"
+   ],
+   "facing": "right"
+  },
+  "A2_side_nervous_sweat": {
+   "desc": "Đứng nghiêng nhìn ngang, đổ mồ hôi",
+   "tags": [
+    "đứng",
+    "nghiêng",
+    "lo",
+    "nghe ngóng"
+   ],
+   "facing": "right"
+  },
+  "A3_call_out_hand_mouth": {
+   "desc": "Đưa tay lên miệng gọi to",
+   "tags": [
+    "gọi",
+    "nói",
+    "tay"
+   ],
+   "facing": "left"
+  },
+  "A4_walk_reach_out": {
+   "desc": "Bước tới, đưa tay ra ngang ngực",
+   "tags": [
+    "đi",
+    "với tay",
+    "chạm"
+   ],
+   "facing": "right",
+   "anchors": {
+    "hand": [
+     0.924,
+     0.465
+    ]
+   }
+  },
+  "A5_walk_scared_clutch": {
+   "desc": "Đi rụt rè, nắm tay trước ngực",
+   "tags": [
+    "đi",
+    "sợ",
+    "rụt rè"
+   ],
+   "facing": "left"
+  },
+  "A6_closeup_shock": {
+   "desc": "Cận mặt, mắt trợn, há miệng",
+   "tags": [
+    "cận mặt",
+    "sốc",
+    "jumpscare",
+    "sợ"
+   ],
+   "facing": "front"
+  },
+  "B1_stand_worried": {
+   "desc": "Đứng lo lắng, tay trước ngực",
+   "tags": [
+    "đứng",
+    "lo",
+    "chính diện"
+   ],
+   "facing": "front"
+  },
+  "B2_look_phone": {
+   "desc": "Đứng nhìn điện thoại",
+   "tags": [
+    "điện thoại",
+    "đứng",
+    "đọc tin"
+   ],
+   "facing": "front"
+  },
+  "B3_look_back_over_shoulder": {
+   "desc": "Quay lưng, ngoái nhìn qua vai",
+   "tags": [
+    "quay lưng",
+    "ngoái lại",
+    "bị theo dõi"
+   ],
+   "facing": "front"
+  },
+  "B4_shock_arms_up": {
+   "desc": "Giật mình giơ hai tay, ngã ngửa",
+   "tags": [
+    "sốc",
+    "ngã",
+    "giật mình"
+   ],
+   "facing": "right"
+  },
+  "B5_run_scared": {
+   "desc": "Chạy hoảng loạn (1 khung)",
+   "tags": [
+    "chạy",
+    "sợ"
+   ],
+   "facing": "right"
+  },
+  "B6_sit_fallen": {
+   "desc": "Ngã ngồi dưới đất",
+   "tags": [
+    "ngồi",
+    "ngã",
+    "kiệt sức"
+   ],
+   "facing": "right"
+  },
+  "C1_walk_step_a": {
+   "desc": "Đi (bộ cũ 3 khung) chân trước",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "C2_walk_step_b": {
+   "desc": "Đi (bộ cũ 3 khung) chân sau",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "C3_walk_step_pass": {
+   "desc": "Đi (bộ cũ 3 khung) chân lướt qua",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "C4_run_step_a": {
+   "desc": "Chạy hoảng, khung 1",
+   "tags": [
+    "chạy",
+    "chu kỳ",
+    "sợ"
+   ],
+   "facing": "right"
+  },
+  "C5_run_step_b": {
+   "desc": "Chạy hoảng, khung 2 (bay người)",
+   "tags": [
+    "chạy",
+    "chu kỳ",
+    "sợ"
+   ],
+   "facing": "right"
+  },
+  "C6_run_step_c": {
+   "desc": "Chạy hoảng, khung 3",
+   "tags": [
+    "chạy",
+    "chu kỳ",
+    "sợ"
+   ],
+   "facing": "right"
+  },
+  "D1_face_neutral": {
+   "desc": "Cận mặt, miệng ngậm",
+   "tags": [
+    "cận mặt",
+    "im",
+    "khẩu hình"
+   ],
+   "facing": "front"
+  },
+  "D2_face_talk_small": {
+   "desc": "Cận mặt, miệng hé",
+   "tags": [
+    "cận mặt",
+    "nói",
+    "khẩu hình"
+   ],
+   "facing": "front"
+  },
+  "D3_face_talk_open": {
+   "desc": "Cận mặt, miệng mở to",
+   "tags": [
+    "cận mặt",
+    "nói",
+    "khẩu hình"
+   ],
+   "facing": "front"
+  },
+  "D4_face_blink": {
+   "desc": "Cận mặt, nhắm mắt",
+   "tags": [
+    "cận mặt",
+    "chớp mắt",
+    "ngủ"
+   ],
+   "facing": "front"
+  },
+  "D5_face_whisper_scared": {
+   "desc": "Cận mặt, thì thầm sợ hãi, mồ hôi",
+   "tags": [
+    "cận mặt",
+    "thì thầm",
+    "sợ"
+   ],
+   "facing": "front"
+  },
+  "D6_face_crying": {
+   "desc": "Cận mặt, khóc",
+   "tags": [
+    "cận mặt",
+    "khóc",
+    "tuyệt vọng"
+   ],
+   "facing": "front"
+  },
+  "E1_back_walk_away": {
+   "desc": "Quay lưng bước đi (1 khung)",
+   "tags": [
+    "quay lưng",
+    "đi"
+   ],
+   "facing": "front"
+  },
+  "E2_back_stand": {
+   "desc": "Quay lưng đứng yên",
+   "tags": [
+    "quay lưng",
+    "đứng",
+    "nhìn bóng tối"
+   ],
+   "facing": "front"
+  },
+  "E3_crouch_hug_knees_shaking": {
+   "desc": "Ngồi ôm gối run rẩy (có vạch run)",
+   "tags": [
+    "ngồi",
+    "trốn",
+    "run",
+    "sợ"
+   ],
+   "facing": "front"
+  },
+  "E4_hide_peek_wall": {
+   "desc": "Nép tường nhìn trộm (có vạch tường dọc)",
+   "tags": [
+    "trốn",
+    "nhìn trộm",
+    "tường"
+   ],
+   "facing": "left"
+  },
+  "E5_cover_mouth_hold_breath": {
+   "desc": "Bịt miệng nín thở (nửa người)",
+   "tags": [
+    "bịt miệng",
+    "nín thở",
+    "sợ"
+   ],
+   "facing": "front"
+  },
+  "E6_crouch_cover_ears": {
+   "desc": "Ngồi bịt tai, nhắm mắt",
+   "tags": [
+    "ngồi",
+    "bịt tai",
+    "sợ"
+   ],
+   "facing": "front"
+  },
+  "F1_flashlight_forward": {
+   "desc": "Đứng soi đèn pin phía trước",
+   "tags": [
+    "đèn pin",
+    "đứng",
+    "bóng tối"
+   ],
+   "facing": "left"
+  },
+  "F2_flashlight_walk_down": {
+   "desc": "Đi soi đèn pin xuống đất (1 khung)",
+   "tags": [
+    "đèn pin",
+    "đi"
+   ],
+   "facing": "left"
+  },
+  "F3_phone_light_forward": {
+   "desc": "Soi đèn điện thoại phía trước",
+   "tags": [
+    "điện thoại",
+    "đèn",
+    "sợ"
+   ],
+   "facing": "left"
+  },
+  "F4_phone_call_scared": {
+   "desc": "Nghe điện thoại, sợ",
+   "tags": [
+    "điện thoại",
+    "nghe gọi",
+    "sợ"
+   ],
+   "facing": "front"
+  },
+  "F5_drop_phone_shock": {
+   "desc": "Đánh rơi điện thoại vì sốc",
+   "tags": [
+    "điện thoại",
+    "rơi",
+    "sốc"
+   ],
+   "facing": "left"
+  },
+  "F6_phone_show_screen": {
+   "desc": "Giơ màn hình điện thoại ra",
+   "tags": [
+    "điện thoại",
+    "tin nhắn",
+    "sợ"
+   ],
+   "facing": "left"
+  },
+  "G1_bed_sleeping": {
+   "desc": "Ngủ trên giường (sprite có giường)",
+   "tags": [
+    "giường",
+    "ngủ",
+    "đêm"
+   ],
+   "facing": "front"
+  },
+  "G2_bed_wake_startled": {
+   "desc": "Giật mình ngồi dậy trên giường",
+   "tags": [
+    "giường",
+    "tỉnh dậy",
+    "giật mình"
+   ],
+   "facing": "front"
+  },
+  "G3_bed_blanket_chin_scared": {
+   "desc": "Kéo chăn lên cằm, mặt tái",
+   "tags": [
+    "giường",
+    "chăn",
+    "sợ"
+   ],
+   "facing": "front"
+  },
+  "G4_rub_sleepy_eyes": {
+   "desc": "Đứng dụi mắt ngái ngủ",
+   "tags": [
+    "đứng",
+    "ngái ngủ"
+   ],
+   "facing": "front"
+  },
+  "G5_reach_door_handle": {
+   "desc": "Đưa tay ra ngang ngực (không với tới tay nắm cửa ở góc toàn thân)",
+   "tags": [
+    "với tay",
+    "cửa"
+   ],
+   "facing": "left",
+   "anchors": {
+    "hand": [
+     0.072,
+     0.546
+    ]
+   }
+  },
+  "G6_tiptoe_sneak": {
+   "desc": "Rón rén (1 khung)",
+   "tags": [
+    "rón rén",
+    "đi"
+   ],
+   "facing": "left"
+  },
+  "H1_walk_contact_a": {
+   "desc": "Đi thường, khung 1/6",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "H2_walk_down_a": {
+   "desc": "Đi thường, khung 2/6",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "H3_walk_pass_a": {
+   "desc": "Đi thường, khung 3/6",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "H4_walk_contact_b": {
+   "desc": "Đi thường, khung 4/6",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "H5_walk_down_b": {
+   "desc": "Đi thường, khung 5/6",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "H6_walk_pass_b": {
+   "desc": "Đi thường, khung 6/6",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "I1_flashlight_walk_contact_a": {
+   "desc": "Đi cầm đèn pin, khung 1/6",
+   "tags": [
+    "đi",
+    "đèn pin",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "I2_flashlight_walk_down_a": {
+   "desc": "Đi cầm đèn pin, khung 2/6",
+   "tags": [
+    "đi",
+    "đèn pin",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "I3_flashlight_walk_pass_a": {
+   "desc": "Đi cầm đèn pin, khung 3/6",
+   "tags": [
+    "đi",
+    "đèn pin",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "I4_flashlight_walk_contact_b": {
+   "desc": "Đi cầm đèn pin, khung 4/6",
+   "tags": [
+    "đi",
+    "đèn pin",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "I5_flashlight_walk_down_b": {
+   "desc": "Đi cầm đèn pin, khung 5/6",
+   "tags": [
+    "đi",
+    "đèn pin",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "I6_flashlight_walk_pass_b": {
+   "desc": "Đi cầm đèn pin, khung 6/6",
+   "tags": [
+    "đi",
+    "đèn pin",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "J1_tiptoe_a": {
+   "desc": "Rón rén, khung 1/3",
+   "tags": [
+    "rón rén",
+    "chu kỳ",
+    "sợ"
+   ],
+   "facing": "right"
+  },
+  "J2_tiptoe_together": {
+   "desc": "Rón rén, khung 2/3",
+   "tags": [
+    "rón rén",
+    "chu kỳ",
+    "sợ"
+   ],
+   "facing": "right"
+  },
+  "J3_tiptoe_b": {
+   "desc": "Rón rén, khung 3/3",
+   "tags": [
+    "rón rén",
+    "chu kỳ",
+    "sợ"
+   ],
+   "facing": "right"
+  },
+  "J4_back_walk_a": {
+   "desc": "Quay lưng bước đi, khung 1/3",
+   "tags": [
+    "quay lưng",
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "front"
+  },
+  "J5_back_walk_together": {
+   "desc": "Quay lưng bước đi, khung 2/3",
+   "tags": [
+    "quay lưng",
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "front"
+  },
+  "J6_back_walk_b": {
+   "desc": "Quay lưng bước đi, khung 3/3",
+   "tags": [
+    "quay lưng",
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "front"
+  },
+  "K1_reach_up_open": {
+   "desc": "Kiễng chân giơ tay lên cao, bàn tay mở",
+   "tags": [
+    "với tay",
+    "cửa",
+    "tay nắm cửa",
+    "kiễng chân"
+   ],
+   "facing": "right",
+   "anchors": {
+    "hand": [
+     0.696,
+     0.072
+    ]
+   }
+  },
+  "K2_reach_up_grip": {
+   "desc": "Kiễng chân giơ tay lên cao, nắm chặt (cầm tay nắm cửa)",
+   "tags": [
+    "với tay",
+    "cửa",
+    "tay nắm cửa",
+    "nắm"
+   ],
+   "facing": "right",
+   "anchors": {
+    "hand": [
+     0.628,
+     0.071
+    ]
+   }
+  },
+  "K3_pull_back_fear": {
+   "desc": "Rụt tay về ngực, ngả người ra sau sợ hãi",
+   "tags": [
+    "sợ",
+    "rụt tay",
+    "lùi"
+   ],
+   "facing": "right"
+  },
+  "K4_ear_listen": {
+   "desc": "Áp tai nghe ngóng, mắt mở to",
+   "tags": [
+    "nghe",
+    "áp tai",
+    "cửa",
+    "tường"
+   ],
+   "facing": "right"
+  },
+  "K5_peephole_look": {
+   "desc": "Kiễng chân áp mắt nhìn qua lỗ, tay áp cửa",
+   "tags": [
+    "mắt mèo",
+    "nhìn trộm",
+    "cửa"
+   ],
+   "facing": "right"
+  },
+  "K6_slide_down_door": {
+   "desc": "Tựa lưng vào cửa trượt xuống, kinh hãi",
+   "tags": [
+    "tựa cửa",
+    "ngồi",
+    "sợ"
+   ],
+   "facing": "right"
+  },
+  "L1_look_up_terrified": {
+   "desc": "Ngửa mặt nhìn lên trần, kinh hãi",
+   "tags": [
+    "nhìn lên",
+    "trần nhà",
+    "sợ",
+    "sốc"
+   ],
+   "facing": "front"
+  },
+  "L2_flashlight_point_far": {
+   "desc": "Đứng yên giơ đèn pin soi xa phía trước",
+   "tags": [
+    "đèn pin",
+    "soi xa",
+    "đứng",
+    "sợ"
+   ],
+   "facing": "right"
+  },
+  "L3_freeze_flashlight_off": {
+   "desc": "Đứng đơ người, đèn pin đã tắt hạ xuống",
+   "tags": [
+    "đơ người",
+    "đèn pin",
+    "sợ",
+    "run"
+   ],
+   "facing": "right"
+  },
+  "L4_back_against_door": {
+   "desc": "Đứng chính diện nhắm chặt mắt, tay xoè (dùng như áp lưng vào cửa)",
+   "tags": [
+    "tựa cửa",
+    "trốn",
+    "sợ",
+    "đứng"
+   ],
+   "facing": "front"
+  },
+  "L5_peek_from_blanket": {
+   "desc": "Ngồi trùm chăn kín người, chỉ lộ đôi mắt",
+   "tags": [
+    "chăn",
+    "trốn",
+    "ngồi",
+    "sợ"
+   ],
+   "facing": "front"
+  },
+  "L6_slow_turn_head": {
+   "desc": "Quay lưng, từ từ ngoái đầu qua vai (nhìn sang phải)",
+   "tags": [
+    "quay lưng",
+    "ngoái lại",
+    "sợ"
+   ],
+   "facing": "right"
+  }
+ }
+}

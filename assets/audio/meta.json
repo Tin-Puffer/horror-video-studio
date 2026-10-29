@@ -1,0 +1,138 @@
+{
+ "_note": "Âm thanh nằm ở assets/audio/sfx/<tên>.(wav|mp3|ogg|m4a|flac). volume = âm lượng mặc định (nhân với volume trong kịch bản). kind: sfx (tiếng động) hoặc music (nhạc nền lặp).",
+ "sounds": {
+  "footsteps_run": {
+   "desc": "Tiếng chạy gấp trên sàn gỗ",
+   "tags": [
+    "bước chân",
+    "chạy"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "whisper_eerie": {
+   "desc": "Tiếng thì thầm rợn người của phụ nữ (không rõ lời)",
+   "tags": [
+    "thì thầm",
+    "ma"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "drone_low": {
+   "desc": "Nhạc nền u ám trầm, lặp được",
+   "tags": [
+    "nhạc nền",
+    "u ám"
+   ],
+   "volume": 0.7,
+   "kind": "music"
+  },
+  "flicker_buzz": {
+   "desc": "Đèn chập chờn rè điện",
+   "tags": [
+    "đèn",
+    "chập chờn"
+   ],
+   "volume": 0.7,
+   "kind": "sfx"
+  },
+  "door_handle_rattle": {
+   "desc": "Tay nắm cửa bị vặn lạch cạch",
+   "tags": [
+    "tay nắm cửa",
+    "cửa"
+   ],
+   "volume": 0.9,
+   "kind": "sfx"
+  },
+  "flashlight_click": {
+   "desc": "Tiếng bật công tắc đèn pin",
+   "tags": [
+    "đèn pin"
+   ],
+   "volume": 0.9,
+   "kind": "sfx"
+  },
+  "clock_tick": {
+   "desc": "Đồng hồ tích tắc nhỏ, lặp được",
+   "tags": [
+    "đồng hồ",
+    "im lặng"
+   ],
+   "volume": 0.5,
+   "kind": "sfx"
+  },
+  "reverse_swell": {
+   "desc": "Tiếng rít tăng dần (riser) trước khi hù",
+   "tags": [
+    "căng thẳng",
+    "trước jumpscare"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "breath_close": {
+   "desc": "Hơi thở run rẩy sát tai",
+   "tags": [
+    "thở",
+    "sợ"
+   ],
+   "volume": 0.7,
+   "kind": "sfx"
+  },
+  "floor_creak": {
+   "desc": "Sàn gỗ kêu kẽo kẹt một tiếng",
+   "tags": [
+    "sàn gỗ",
+    "bước chân"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "footsteps_slow": {
+   "desc": "Bước chân chậm trên sàn gỗ, lặp được",
+   "tags": [
+    "bước chân",
+    "chậm"
+   ],
+   "volume": 0.7,
+   "kind": "sfx"
+  },
+  "ghost_stinger": {
+   "desc": "Tiếng hù jumpscare khi ma xuất hiện (đánh mạnh + rít)",
+   "tags": [
+    "jumpscare",
+    "ma xuất hiện"
+   ],
+   "volume": 1.0,
+   "kind": "sfx"
+  },
+  "heartbeat": {
+   "desc": "Tim đập căng thẳng, lặp được",
+   "tags": [
+    "tim đập",
+    "căng thẳng"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "knock_3": {
+   "desc": "Cốc… cốc… cốc — ba tiếng gõ cửa gỗ chậm rãi",
+   "tags": [
+    "gõ cửa"
+   ],
+   "volume": 1.0,
+   "kind": "sfx"
+  },
+  "door_slam": {
+   "desc": "Đóng sầm cửa gỗ",
+   "tags": [
+    "cửa",
+    "đóng sầm"
+   ],
+   "volume": 0.9,
+   "kind": "sfx"
+  }
+ }
+}

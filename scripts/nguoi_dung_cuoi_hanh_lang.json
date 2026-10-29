@@ -1,0 +1,1255 @@
+{
+ "title": "Người đứng cuối hành lang",
+ "output": "build/nguoi_dung_cuoi_hanh_lang.mp4",
+ "logline": "3 giờ sáng, Khoa ra bếp uống nước và thấy một người mặc áo của mẹ đứng cuối hành lang. Mỗi lần đèn pin chớp tắt, nó lại gần hơn. Cậu khoá mình trong phòng — nhưng thứ đó chưa bao giờ ở ngoài cửa.",
+ "settings": {
+  "video": {
+   "size": [
+    1920,
+    1080
+   ],
+   "fps": 24,
+   "crf": 20,
+   "preset": "medium"
+  },
+  "preview": {
+   "size": [
+    960,
+    540
+   ],
+   "fps": 12,
+   "preset": "veryfast"
+  },
+  "voice": {
+   "model": "ngochuyennew",
+   "length_scale": 1.1,
+   "sentence_silence": 0.35,
+   "sample_rate": 22050
+  },
+  "timing": {
+   "lead": 0.4,
+   "tail": 0.7,
+   "min_duration": 2.5,
+   "fade_in": 0.15,
+   "fade_out": 0
+  },
+  "fonts": {
+   "regular": "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+   "bold": "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
+  },
+  "look": {
+   "night_tint": [
+    0.8,
+    0.84,
+    0.98
+   ],
+   "glow_color": [
+    170,
+    200,
+    230
+   ],
+   "glow_strength": 0.55,
+   "glow_size": 9,
+   "vignette": {
+    "start": 0.65,
+    "spread": 0.75,
+    "power": 1.6,
+    "max_alpha": 200
+   },
+   "flash": {
+    "length": 0.25,
+    "max_alpha": 230
+   },
+   "bob_hz": 1.6,
+   "breathe_hz": 0.35
+  },
+  "subtitles": {
+   "enabled": true,
+   "size": 0.042,
+   "line_height": 0.055,
+   "bottom": 0.06,
+   "wrap": 48,
+   "color": [
+    240,
+    240,
+    240
+   ],
+   "stroke": [
+    0,
+    0,
+    0
+   ]
+  },
+  "title": {
+   "size": 0.06,
+   "color": [
+    225,
+    225,
+    230
+   ]
+  },
+  "phone": {
+   "clock": "03:00",
+   "call_label": "Cuộc gọi đến…",
+   "call_sub": "Di động",
+   "decline": "Từ chối",
+   "accept": "Trả lời",
+   "message_time": "Vừa xong",
+   "message_wrap": 15,
+   "glow_color": [
+    120,
+    160,
+    255,
+    90
+   ]
+  },
+  "layer": {
+   "x": 0.5,
+   "y": 0.95,
+   "h": 0.45,
+   "fps": 8,
+   "flip": null,
+   "tint": true,
+   "glow": false,
+   "face": null,
+   "breathe": 0
+  },
+  "audio": {
+   "sample_rate": 44100,
+   "narration_volume": 1.0,
+   "sfx_volume": 1.0,
+   "music_volume": 0.5,
+   "duck": 0.35,
+   "placeholder_beep": true,
+   "trim_silence": true,
+   "trim_threshold": 0.08,
+   "normalize_db": -18
+  }
+ },
+ "characters": {
+  "boy_hoodie": {
+   "h": 0.46,
+   "y": 0.96,
+   "tint": true,
+   "glow": false,
+   "breathe": 0.008
+  },
+  "ghost_mother": {
+   "tint": true,
+   "glow": true,
+   "breathe": 0.005
+  }
+ },
+ "music": [
+  {
+   "sound": "drone_low",
+   "from": 0,
+   "to": 12,
+   "volume": 0.8,
+   "fade_in": 2.0,
+   "fade_out": 0.3
+  },
+  {
+   "sound": "drone_low",
+   "from": 14,
+   "to": 16,
+   "volume": 0.6,
+   "fade_in": 3.0,
+   "fade_out": 0.1
+  }
+ ],
+ "asset_requests": [
+  {
+   "id": "boy_hoodie_sheet_L",
+   "kind": "sheet",
+   "character": "boy_hoodie",
+   "grid": [
+    2,
+    3
+   ],
+   "why": "cảnh 4, 8, 10, 14, 16",
+   "sprites": [
+    {
+     "name": "L1_look_up_terrified",
+     "pose": "standing, front view, head tilted far back looking straight UP at the ceiling, eyes wide with tiny pupils, mouth open in terror, arms stiff at his sides",
+     "desc": "Ngửa mặt nhìn lên trần, kinh hãi",
+     "tags": [
+      "nhìn lên",
+      "trần nhà",
+      "sợ",
+      "sốc"
+     ],
+     "facing": "front"
+    },
+    {
+     "name": "L2_flashlight_point_far",
+     "pose": "side view facing right, standing still, holding a flashlight raised at shoulder height pointing far ahead, a soft pale yellow beam, leaning back slightly, scared face",
+     "desc": "Đứng yên giơ đèn pin soi xa phía trước",
+     "tags": [
+      "đèn pin",
+      "soi xa",
+      "đứng",
+      "sợ"
+     ],
+     "facing": "right"
+    },
+    {
+     "name": "L3_freeze_flashlight_off",
+     "pose": "side view facing right, frozen stiff, holding a switched-off flashlight lowered by his leg, shoulders raised, eyes wide, trembling",
+     "desc": "Đứng đơ người, đèn pin đã tắt hạ xuống",
+     "tags": [
+      "đơ người",
+      "đèn pin",
+      "sợ",
+      "run"
+     ],
+     "facing": "right"
+    },
+    {
+     "name": "L4_back_against_door",
+     "pose": "front view, standing with his back pressed flat against an invisible door behind him, palms flat beside his hips, eyes squeezed shut, breathing hard",
+     "desc": "Đứng áp lưng vào cửa, nhắm chặt mắt",
+     "tags": [
+      "tựa cửa",
+      "trốn",
+      "sợ",
+      "đứng"
+     ],
+     "facing": "front"
+    },
+    {
+     "name": "L5_peek_from_blanket",
+     "pose": "sitting curled up on the floor completely wrapped in a dark blue blanket like a hood, only his eyes and messy hair peeking out, scared",
+     "desc": "Ngồi trùm chăn kín người, chỉ lộ đôi mắt",
+     "tags": [
+      "chăn",
+      "trốn",
+      "ngồi",
+      "sợ"
+     ],
+     "facing": "front"
+    },
+    {
+     "name": "L6_slow_turn_head",
+     "pose": "seen from behind, slowly turning his head over his left shoulder, one terrified eye visible, body stiff",
+     "desc": "Quay lưng, từ từ ngoái đầu qua vai trái",
+     "tags": [
+      "quay lưng",
+      "ngoái lại",
+      "sợ"
+     ],
+     "facing": "left"
+    }
+   ],
+   "light_beams": true
+  },
+  {
+   "id": "drone_low",
+   "kind": "sound",
+   "sound_kind": "music",
+   "desc": "Nhạc nền u ám trầm, lặp được",
+   "search": "dark ambient horror drone loop",
+   "length": "30s+ (lặp)",
+   "tags": [
+    "nhạc nền",
+    "u ám"
+   ],
+   "volume": 0.7
+  },
+  {
+   "id": "clock_tick",
+   "kind": "sound",
+   "desc": "Đồng hồ tích tắc nhỏ, lặp được",
+   "search": "clock ticking loop quiet",
+   "length": "5–10s",
+   "tags": [
+    "đồng hồ",
+    "im lặng"
+   ],
+   "volume": 0.5
+  },
+  {
+   "id": "floor_creak",
+   "kind": "sound",
+   "desc": "Sàn gỗ kêu kẽo kẹt một tiếng",
+   "search": "wooden floor creak single",
+   "length": "~1s",
+   "tags": [
+    "sàn gỗ",
+    "bước chân"
+   ],
+   "volume": 0.8
+  },
+  {
+   "id": "flashlight_click",
+   "kind": "sound",
+   "desc": "Tiếng bật công tắc đèn pin",
+   "search": "flashlight switch click",
+   "length": "<0.5s",
+   "tags": [
+    "đèn pin"
+   ],
+   "volume": 0.9
+  },
+  {
+   "id": "footsteps_slow",
+   "kind": "sound",
+   "desc": "Bước chân chậm trên sàn gỗ, lặp được",
+   "search": "slow footsteps wooden floor indoor",
+   "length": "5–10s",
+   "tags": [
+    "bước chân",
+    "chậm"
+   ],
+   "volume": 0.7
+  },
+  {
+   "id": "footsteps_run",
+   "kind": "sound",
+   "desc": "Tiếng chạy gấp trên sàn gỗ",
+   "search": "running footsteps wooden floor",
+   "length": "2–4s",
+   "tags": [
+    "bước chân",
+    "chạy"
+   ],
+   "volume": 0.8
+  },
+  {
+   "id": "heartbeat",
+   "kind": "sound",
+   "desc": "Tim đập căng thẳng, lặp được",
+   "search": "heartbeat tense loop",
+   "length": "4–8s",
+   "tags": [
+    "tim đập",
+    "căng thẳng"
+   ],
+   "volume": 0.8
+  },
+  {
+   "id": "reverse_swell",
+   "kind": "sound",
+   "desc": "Tiếng rít tăng dần (riser) trước khi hù",
+   "search": "horror reverse riser swell",
+   "length": "2–3s",
+   "tags": [
+    "căng thẳng",
+    "trước jumpscare"
+   ],
+   "volume": 0.8
+  },
+  {
+   "id": "flicker_buzz",
+   "kind": "sound",
+   "desc": "Đèn chập chờn rè điện",
+   "search": "light flicker electric buzz",
+   "length": "1–2s",
+   "tags": [
+    "đèn",
+    "chập chờn"
+   ],
+   "volume": 0.7
+  },
+  {
+   "id": "breath_close",
+   "kind": "sound",
+   "desc": "Hơi thở run rẩy sát tai",
+   "search": "scared heavy breathing close",
+   "length": "3–5s",
+   "tags": [
+    "thở",
+    "sợ"
+   ],
+   "volume": 0.7
+  },
+  {
+   "id": "door_slam",
+   "kind": "sound",
+   "desc": "Đóng sầm cửa gỗ",
+   "search": "door slam wooden",
+   "length": "~1s",
+   "tags": [
+    "cửa",
+    "đóng sầm"
+   ],
+   "volume": 0.9
+  },
+  {
+   "id": "knock_3",
+   "kind": "sound",
+   "desc": "Cốc… cốc… cốc — ba tiếng gõ cửa gỗ chậm rãi",
+   "search": "three slow knocks wooden door",
+   "length": "~2s",
+   "tags": [
+    "gõ cửa"
+   ],
+   "volume": 1.0
+  },
+  {
+   "id": "door_handle_rattle",
+   "kind": "sound",
+   "desc": "Tay nắm cửa bị vặn lạch cạch",
+   "search": "door handle rattling locked",
+   "length": "2–3s",
+   "tags": [
+    "tay nắm cửa",
+    "cửa"
+   ],
+   "volume": 0.9
+  },
+  {
+   "id": "whisper_eerie",
+   "kind": "sound",
+   "desc": "Tiếng thì thầm rợn người của phụ nữ (không rõ lời)",
+   "search": "creepy female whisper",
+   "length": "2–4s",
+   "tags": [
+    "thì thầm",
+    "ma"
+   ],
+   "volume": 0.8
+  },
+  {
+   "id": "ghost_stinger",
+   "kind": "sound",
+   "desc": "Tiếng hù jumpscare khi ma xuất hiện (đánh mạnh + rít)",
+   "search": "horror jump scare stinger hit",
+   "length": "1–2s",
+   "tags": [
+    "jumpscare",
+    "ma xuất hiện"
+   ],
+   "volume": 1.0
+  }
+ ],
+ "scenes": [
+  {
+   "id": 0,
+   "bg": "black",
+   "duration": 4.0,
+   "fade_in": 1.0,
+   "fade_out": 1.0,
+   "title_text": "NGƯỜI ĐỨNG CUỐI HÀNH LANG"
+  },
+  {
+   "id": 1,
+   "bg": "bg1_bedroom",
+   "fade_in": 1.5,
+   "text": "Đêm đó, tôi tỉnh dậy vì khát nước. Đồng hồ chỉ đúng ba giờ sáng.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.25,
+      "x": 0.7,
+      "y": 0.62
+     },
+     {
+      "p": 0.55,
+      "zoom": 1.25,
+      "x": 0.7,
+      "y": 0.62
+     },
+     {
+      "p": 1,
+      "zoom": 1.45,
+      "x": 0.55,
+      "y": 0.55,
+      "ease": "smooth"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "loop": true,
+     "length": 8,
+     "fade_out": 1.0
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/G1_bed_sleeping",
+     "x": 0.7,
+     "y": 0.95,
+     "h": 0.5,
+     "end": 0.5
+    },
+    {
+     "sprite": "boy_hoodie/G2_bed_wake_startled",
+     "x": 0.7,
+     "y": 0.95,
+     "h": 0.54,
+     "start": 0.5
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "bg": "bg1_bedroom",
+   "text": "Mẹ tôi đi công tác. Cả căn nhà chỉ còn mỗi mình tôi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.3,
+      "x": 0.62,
+      "y": 0.6
+     },
+     {
+      "p": 0.35,
+      "zoom": 1.3,
+      "x": 0.62,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.3,
+      "x": 0.25,
+      "y": 0.6,
+      "ease": "smooth"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "floor_creak",
+     "at": 0.45
+    },
+    {
+     "sound": "floor_creak",
+     "at": 0.8,
+     "volume": 0.7
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/G4_rub_sleepy_eyes",
+     "x": 0.62,
+     "y": "floor",
+     "end": 0.35
+    },
+    {
+     "cycle": "boy_hoodie/tiptoe",
+     "fps": 4,
+     "x": [
+      0.62,
+      0.18
+     ],
+     "y": "floor",
+     "face": "auto",
+     "breathe": 0,
+     "start": 0.35
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "bg": "bg2_hallway",
+   "text": "Hành lang tối om. Tôi bật đèn pin, rón rén đi về phía bếp.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.3,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.2,
+      "x": 0.55,
+      "y": 0.6,
+      "ease": "smooth"
+     }
+    ],
+    "handheld": 5
+   },
+   "sfx": [
+    {
+     "sound": "flashlight_click",
+     "at": 0.03
+    },
+    {
+     "sound": "footsteps_slow",
+     "at": 0.1,
+     "loop": true,
+     "length": 5,
+     "fade_out": 0.5
+    }
+   ],
+   "layers": [
+    {
+     "cycle": "boy_hoodie/flashlight_walk",
+     "fps": 8,
+     "x": [
+      0.12,
+      0.52
+     ],
+     "y": "floor",
+     "face": "auto",
+     "breathe": 0
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "bg": "bg2_hallway",
+   "text": "Và rồi tôi thấy nó. Ở cuối hành lang, có ai đó đang đứng quay lưng về phía tôi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.0,
+      "x": 0.5,
+      "y": 0.5
+     },
+     {
+      "p": 0.45,
+      "zoom": 1.0,
+      "x": 0.5,
+      "y": 0.5
+     },
+     {
+      "p": 1,
+      "zoom": 1.9,
+      "x": 0.86,
+      "y": 0.62,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "heartbeat",
+     "at": 0.25,
+     "loop": true,
+     "length": 6,
+     "fade_in": 1.0
+    },
+    {
+     "sound": "reverse_swell",
+     "at": 0.6
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "ghost_mother/GH9_back_stand",
+     "x": 0.88,
+     "y": 0.9,
+     "h": 0.38,
+     "breathe": 0
+    },
+    {
+     "sprite": "boy_hoodie/L2_flashlight_point_far",
+     "x": 0.3,
+     "y": "floor"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "bg": "bg2_hallway",
+   "flicker": 0.12,
+   "text": "Tóc dài. Áo len màu be. Giống hệt chiếc áo mẹ tôi hay mặc.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.9,
+      "x": 0.86,
+      "y": 0.62
+     },
+     {
+      "p": 1,
+      "zoom": 2.1,
+      "x": 0.87,
+      "y": 0.6,
+      "ease": "smooth"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "flicker_buzz",
+     "at": 0.15,
+     "volume": 0.6
+    },
+    {
+     "sound": "heartbeat",
+     "at": 0,
+     "loop": true,
+     "length": 6
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "ghost_mother/GH9_back_stand",
+     "x": 0.88,
+     "y": 0.9,
+     "h": 0.38,
+     "breathe": 0.004
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "bg": "bg2_hallway",
+   "text": "Mẹ… mẹ về rồi à? Tôi thì thầm.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.0
+     },
+     {
+      "p": 1,
+      "zoom": 1.08,
+      "ease": "smooth"
+     }
+    ],
+    "handheld": 4
+   },
+   "sfx": [
+    {
+     "sound": "breath_close",
+     "at": 0
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/D5_face_whisper_scared",
+     "x": 0.5,
+     "y": 1.02,
+     "h": 0.95
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "bg": "bg2_hallway",
+   "flicker": 0.45,
+   "text": "Đèn pin chớp tắt. Khi nó sáng lại… người đó đã quay mặt về phía tôi. Và đứng gần hơn.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.25,
+      "x": 0.7,
+      "y": 0.55
+     },
+     {
+      "p": 0.4,
+      "zoom": 1.25,
+      "x": 0.7,
+      "y": 0.55
+     },
+     {
+      "p": 0.45,
+      "zoom": 1.45,
+      "x": 0.72,
+      "y": 0.55,
+      "ease": "out"
+     },
+     {
+      "p": 1,
+      "zoom": 1.5,
+      "x": 0.72,
+      "y": 0.55
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "flicker_buzz",
+     "at": 0.3
+    },
+    {
+     "sound": "ghost_stinger",
+     "at": 0.42,
+     "volume": 0.6
+    }
+   ],
+   "flash": [
+    0.42
+   ],
+   "layers": [
+    {
+     "sprite": "ghost_mother/GH9_back_stand",
+     "x": 0.88,
+     "y": 0.9,
+     "h": 0.38,
+     "breathe": 0,
+     "end": 0.42
+    },
+    {
+     "sprite": "ghost_mother/GH1_stand_far_head_bowed",
+     "x": 0.74,
+     "y": 0.93,
+     "h": 0.52,
+     "glow": true,
+     "start": 0.42
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "bg": "bg2_hallway",
+   "text": "Nó bắt đầu bước tới. Chậm rãi. Từng bước một.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.5,
+      "y": 0.58
+     },
+     {
+      "p": 1,
+      "zoom": 1.35,
+      "x": 0.47,
+      "y": 0.58,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "footsteps_slow",
+     "at": 0.05,
+     "loop": true,
+     "length": 5,
+     "volume": 0.8
+    },
+    {
+     "sound": "heartbeat",
+     "at": 0,
+     "loop": true,
+     "length": 6,
+     "volume": 1.2
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/L3_freeze_flashlight_off",
+     "x": 0.25,
+     "y": "floor",
+     "jitter": 1.5
+    },
+    {
+     "cycle": "ghost_mother/walk",
+     "fps": 2,
+     "x": [
+      0.8,
+      0.6
+     ],
+     "y": 0.95,
+     "h": 0.62,
+     "face": "auto",
+     "glow": true,
+     "breathe": 0
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "bg": "bg2_hallway",
+   "text": "Tôi quay đầu bỏ chạy.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.25,
+      "x": 0.45,
+      "y": 0.58
+     },
+     {
+      "p": 1,
+      "zoom": 1.25,
+      "x": 0.2,
+      "y": 0.58,
+      "ease": "in"
+     }
+    ],
+    "handheld": 8
+   },
+   "sfx": [
+    {
+     "sound": "footsteps_run",
+     "at": 0
+    }
+   ],
+   "layers": [
+    {
+     "cycle": "boy_hoodie/run",
+     "fps": 10,
+     "x": [
+      0.42,
+      -0.05
+     ],
+     "y": 0.97,
+     "face": "auto",
+     "bob": 8,
+     "breathe": 0
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "bg": "bg1_bedroom",
+   "text": "Tôi đóng sầm cửa phòng, áp lưng vào cánh cửa.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.35,
+      "x": 0.25,
+      "y": 0.55
+     },
+     {
+      "p": 1,
+      "zoom": 1.25,
+      "x": 0.28,
+      "y": 0.56,
+      "ease": "out"
+     }
+    ],
+    "handheld": 5
+   },
+   "sfx": [
+    {
+     "sound": "door_slam",
+     "at": 0,
+     "volume": 1.6
+    }
+   ],
+   "shake": {
+    "amp": 10,
+    "from": 0,
+    "to": 0.12
+   },
+   "layers": [
+    {
+     "sprite": "boy_hoodie/L4_back_against_door",
+     "x": 0.2,
+     "y": "floor"
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "bg": "bg1_bedroom",
+   "text": "Cốc. Cốc. Cốc. Ngoài cửa, giọng mẹ tôi vang lên: Khoa ơi… mở cửa cho mẹ.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.25,
+      "x": 0.28,
+      "y": 0.56
+     },
+     {
+      "p": 1,
+      "zoom": 1.45,
+      "x": 0.22,
+      "y": 0.55,
+      "ease": "smooth"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "knock_3",
+     "at": 0.02
+    },
+    {
+     "sound": "heartbeat",
+     "at": 0.3,
+     "loop": true,
+     "length": 6
+    }
+   ],
+   "shake": {
+    "amp": 4,
+    "from": 0.02,
+    "to": 0.22
+   },
+   "layers": [
+    {
+     "sprite": "boy_hoodie/L4_back_against_door",
+     "x": 0.2,
+     "y": "floor",
+     "jitter": 1
+    }
+   ]
+  },
+  {
+   "id": 12,
+   "bg": "bg1_bedroom",
+   "text": "Tay nắm cửa bắt đầu xoay. Tôi trượt người xuống, dùng hết sức ghì chặt cánh cửa.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.2,
+      "y": 0.55
+     },
+     {
+      "p": 1,
+      "zoom": 1.6,
+      "x": 0.17,
+      "y": 0.55,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "door_handle_rattle",
+     "at": 0.05,
+     "loop": true,
+     "length": 4
+    },
+    {
+     "sound": "knock_3",
+     "at": 0.55,
+     "volume": 1.2
+    }
+   ],
+   "shake": {
+    "amp": 5,
+    "from": 0.05,
+    "to": 0.9
+   },
+   "layers": [
+    {
+     "sprite": "boy_hoodie/K6_slide_down_door",
+     "x": 0.2,
+     "y": "floor",
+     "jitter": 1.5
+    }
+   ]
+  },
+  {
+   "id": 13,
+   "bg": "bg1_bedroom",
+   "min_duration": 4.0,
+   "text": "Rồi… mọi thứ im bặt.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.0
+     },
+     {
+      "p": 1,
+      "zoom": 1.05
+     }
+    ]
+   },
+   "layers": [
+    {
+     "cycle": "boy_hoodie/blink",
+     "fps": 2,
+     "x": 0.5,
+     "y": 1.02,
+     "h": 0.95
+    }
+   ]
+  },
+  {
+   "id": 14,
+   "bg": "bg1_bedroom",
+   "text": "Tôi ngồi trùm chăn ở góc phòng rất lâu. Không dám thở mạnh.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.1,
+      "x": 0.6,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.3,
+      "x": 0.6,
+      "y": 0.65,
+      "ease": "smooth"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "loop": true,
+     "length": 8
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/L5_peek_from_blanket",
+     "x": 0.62,
+     "y": "floor",
+     "h": 0.36
+    }
+   ]
+  },
+  {
+   "id": 15,
+   "bg": "bg1_bedroom",
+   "text": "Rồi tôi nghe thấy tiếng thì thầm. Nhưng nó không phát ra từ ngoài cửa.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.3,
+      "x": 0.6,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.5,
+      "x": 0.6,
+      "y": 0.58,
+      "ease": "in"
+     }
+    ],
+    "handheld": 3
+   },
+   "sfx": [
+    {
+     "sound": "whisper_eerie",
+     "at": 0.15
+    },
+    {
+     "sound": "breath_close",
+     "at": 0.5,
+     "volume": 0.6
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/L6_slow_turn_head",
+     "x": 0.6,
+     "y": "floor"
+    }
+   ]
+  },
+  {
+   "id": 16,
+   "bg": "bg1_bedroom",
+   "text": "Mà là từ… ngay phía trên đầu tôi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.35,
+      "x": 0.55,
+      "y": 0.68
+     },
+     {
+      "p": 0.4,
+      "zoom": 1.35,
+      "x": 0.55,
+      "y": 0.68
+     },
+     {
+      "p": 1,
+      "zoom": 1.35,
+      "x": 0.55,
+      "y": 0.32,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "reverse_swell",
+     "at": 0.35
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/L1_look_up_terrified",
+     "x": 0.55,
+     "y": "floor"
+    }
+   ]
+  },
+  {
+   "id": 17,
+   "bg": "bg1_bedroom",
+   "duration": 2.2,
+   "fade_in": 0,
+   "bg_dim": 0.35,
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.0
+     },
+     {
+      "p": 0.25,
+      "zoom": 1.18,
+      "ease": "out"
+     },
+     {
+      "p": 1,
+      "zoom": 1.22
+     }
+    ]
+   },
+   "flash": [
+    0.03
+   ],
+   "shake": {
+    "amp": 16,
+    "from": 0.0,
+    "to": 0.5
+   },
+   "sfx": [
+    {
+     "sound": "ghost_stinger",
+     "at": 0.02,
+     "volume": 2.2
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "ghost_mother/GH12_upside_down_head",
+     "x": 0.5,
+     "y": [
+      0.1,
+      0.62
+     ],
+     "h": 0.62,
+     "ease": "out",
+     "end": 0.35,
+     "glow": true
+    },
+    {
+     "sprite": "ghost_mother/GH12_upside_down_head",
+     "x": 0.5,
+     "y": 0.62,
+     "h": 0.62,
+     "start": 0.35,
+     "glow": true,
+     "jitter": 2
+    }
+   ]
+  },
+  {
+   "id": 18,
+   "bg": "black",
+   "fade_in": 0,
+   "fade_out": 2.0,
+   "min_duration": 5.0,
+   "text": "Có những thứ… đã ở trong nhà từ trước khi bạn khoá cửa.",
+   "title_text": "Có những thứ… đã ở trong nhà từ trước khi bạn khoá cửa."
+  }
+ ]
+}

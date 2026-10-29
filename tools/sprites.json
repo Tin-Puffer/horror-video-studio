@@ -1,0 +1,266 @@
+{
+ "sheets": [
+  {
+   "source": "assets/source/boy_hoodie_base.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    1,
+    1
+   ],
+   "names": [
+    "00_idle_front_smile"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_A.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "A1_walk_sad",
+    "A2_side_nervous_sweat",
+    "A3_call_out_hand_mouth",
+    "A4_walk_reach_out",
+    "A5_walk_scared_clutch",
+    "A6_closeup_shock"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_B.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "B1_stand_worried",
+    "B2_look_phone",
+    "B3_look_back_over_shoulder",
+    "B4_shock_arms_up",
+    "B5_run_scared",
+    "B6_sit_fallen"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_C.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "C1_walk_step_a",
+    "C2_walk_step_b",
+    "C3_walk_step_pass",
+    "C4_run_step_a",
+    "C5_run_step_b",
+    "C6_run_step_c"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_D.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "D1_face_neutral",
+    "D2_face_talk_small",
+    "D3_face_talk_open",
+    "D4_face_blink",
+    "D5_face_whisper_scared",
+    "D6_face_crying"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_E.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "E1_back_walk_away",
+    "E2_back_stand",
+    "E3_crouch_hug_knees_shaking",
+    "E4_hide_peek_wall",
+    "E5_cover_mouth_hold_breath",
+    "E6_crouch_cover_ears"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_F.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "F1_flashlight_forward",
+    "F2_flashlight_walk_down",
+    "F3_phone_light_forward",
+    "F4_phone_call_scared",
+    "F5_drop_phone_shock",
+    "F6_phone_show_screen"
+   ],
+   "light_beams": true
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_G.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "G1_bed_sleeping",
+    "G2_bed_wake_startled",
+    "G3_bed_blanket_chin_scared",
+    "G4_rub_sleepy_eyes",
+    "G5_reach_door_handle",
+    "G6_tiptoe_sneak"
+   ]
+  },
+  {
+   "source": "assets/source/ghost_mother_base.png",
+   "out_dir": "assets/characters/ghost_mother",
+   "grid": [
+    1,
+    1
+   ],
+   "names": [
+    "GH0_stand_front"
+   ]
+  },
+  {
+   "source": "assets/source/ghost_mother_sheet_A.png",
+   "out_dir": "assets/characters/ghost_mother",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "GH1_stand_far_head_bowed",
+    "GH2_eye_closeup",
+    "GH3_peek_from_right_tilted",
+    "GH4_closeup_lunge_grin",
+    "GH5_long_arm_reach",
+    "GH6_crawl"
+   ],
+   "clear_white": [
+    "GH1_stand_far_head_bowed",
+    "GH3_peek_from_right_tilted",
+    "GH4_closeup_lunge_grin",
+    "GH5_long_arm_reach",
+    "GH6_crawl"
+   ]
+  },
+  {
+   "source": "assets/source/ghost_mother_sheet_B.png",
+   "out_dir": "assets/characters/ghost_mother",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "GH7_walk_step_a",
+    "GH8_walk_step_b",
+    "GH9_back_stand",
+    "GH10_hand_scratch",
+    "GH11_fake_smile_black_eyes",
+    "GH12_upside_down_head"
+   ],
+   "clear_white": [
+    "GH7_walk_step_a",
+    "GH8_walk_step_b",
+    "GH9_back_stand",
+    "GH12_upside_down_head"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_H.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "H1_walk_contact_a",
+    "H2_walk_down_a",
+    "H3_walk_pass_a",
+    "H4_walk_contact_b",
+    "H5_walk_down_b",
+    "H6_walk_pass_b"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_I.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "I1_flashlight_walk_contact_a",
+    "I2_flashlight_walk_down_a",
+    "I3_flashlight_walk_pass_a",
+    "I4_flashlight_walk_contact_b",
+    "I5_flashlight_walk_down_b",
+    "I6_flashlight_walk_pass_b"
+   ],
+   "light_beams": true
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_J.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "J1_tiptoe_a",
+    "J2_tiptoe_together",
+    "J3_tiptoe_b",
+    "J4_back_walk_a",
+    "J5_back_walk_together",
+    "J6_back_walk_b"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_K.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "K1_reach_up_open",
+    "K2_reach_up_grip",
+    "K3_pull_back_fear",
+    "K4_ear_listen",
+    "K5_peephole_look",
+    "K6_slide_down_door"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_L.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "L1_look_up_terrified",
+    "L2_flashlight_point_far",
+    "L3_freeze_flashlight_off",
+    "L4_back_against_door",
+    "L5_peek_from_blanket",
+    "L6_slow_turn_head"
+   ],
+   "light_beams": true
+  }
+ ]
+}

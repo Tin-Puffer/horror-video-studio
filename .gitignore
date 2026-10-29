@@ -1,0 +1,13 @@
+# outputs and caches
+build/
+__pycache__/
+*.pyc
+.DS_Store
+
+# machine-specific settings and local voice models
+config.local.json
+voices/
+
+# original generated sheets (large) and voice test samples
+assets/source/
+assets/audio/voice_samples/

@@ -1,0 +1,133 @@
+{
+ "name": "\"Mẹ\" — ma nữ tóc dài",
+ "style_prompt": "Same ghost woman as the reference images: unnaturally tall and thin, very pale gray-white skin, long straight black hair covering her face, faded beige cardigan, long dark gray dress, bare feet, arms slightly too long. Same hand-drawn crayon / colored-pencil style with thick black outlines. Never white clothing.",
+ "reference_images": [
+  "assets/source/ghost_mother_base.png",
+  "assets/source/ghost_mother_sheet_A.png"
+ ],
+ "default_h": 0.66,
+ "cycles": {
+  "walk": [
+   "GH7_walk_step_a",
+   "GH8_walk_step_b"
+  ]
+ },
+ "sprites": {
+  "GH0_stand_front": {
+   "desc": "Đứng chính diện, tóc che mặt, một mắt đen rỗng",
+   "tags": [
+    "đứng",
+    "chính diện"
+   ],
+   "facing": "front"
+  },
+  "GH1_stand_far_head_bowed": {
+   "desc": "Đứng xa, cúi đầu, tóc che kín mặt",
+   "tags": [
+    "đứng",
+    "xa",
+    "cúi đầu"
+   ],
+   "facing": "front"
+  },
+  "GH2_eye_closeup": {
+   "desc": "Cận một con mắt đỏ ngầu (khối vuông kín khung, dùng với clip_circle)",
+   "tags": [
+    "cận",
+    "mắt",
+    "jumpscare",
+    "mắt mèo"
+   ],
+   "facing": "front"
+  },
+  "GH3_peek_from_right_tilted": {
+   "desc": "Ló nửa người, nghiêng đầu bất thường",
+   "tags": [
+    "ló",
+    "nhìn trộm",
+    "cửa"
+   ],
+   "facing": "left"
+  },
+  "GH4_closeup_lunge_grin": {
+   "desc": "Cận mặt lao tới, cười toác (jumpscare)",
+   "tags": [
+    "cận mặt",
+    "jumpscare",
+    "cười"
+   ],
+   "facing": "front"
+  },
+  "GH5_long_arm_reach": {
+   "desc": "Vươn cánh tay dài bất thường",
+   "tags": [
+    "với tay",
+    "tay dài"
+   ],
+   "facing": "right",
+   "anchors": {
+    "hand": [
+     0.97,
+     0.35
+    ]
+   }
+  },
+  "GH6_crawl": {
+   "desc": "Bò bằng bốn chi",
+   "tags": [
+    "bò"
+   ],
+   "facing": "front"
+  },
+  "GH7_walk_step_a": {
+   "desc": "Bước đi chậm, khung 1/2",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "GH8_walk_step_b": {
+   "desc": "Bước đi chậm, khung 2/2",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "GH9_back_stand": {
+   "desc": "Quay lưng đứng",
+   "tags": [
+    "quay lưng",
+    "đứng"
+   ],
+   "facing": "front"
+  },
+  "GH10_hand_scratch": {
+   "desc": "Chỉ bàn tay cào (có vệt cào)",
+   "tags": [
+    "tay",
+    "cào cửa"
+   ],
+   "facing": "front"
+  },
+  "GH11_fake_smile_black_eyes": {
+   "desc": "Đứng cười hiền như người mẹ, mắt đen kịt",
+   "tags": [
+    "đứng",
+    "giả làm mẹ",
+    "cười"
+   ],
+   "facing": "front"
+  },
+  "GH12_upside_down_head": {
+   "desc": "Đầu treo ngược từ trên xuống",
+   "tags": [
+    "treo ngược",
+    "trần nhà",
+    "jumpscare"
+   ],
+   "facing": "front"
+  }
+ }
+}

@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Horror Video Studio</title>
+<style>
+:root {
+  --bg: #12141c; --panel: #1b1e29; --panel2: #232736; --line: #2f3446;
+  --text: #e6e7ee; --muted: #9aa0b4; --accent: #c94b5b; --accent2: #5b8def; --ok: #4fb37a; --warn: #e0a84a;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 13px/1.4 -apple-system, "Segoe UI", Arial, sans-serif; height: 100vh; display: grid; grid-template-rows: 44px 1fr 210px; overflow: hidden; }
+header { display: flex; align-items: center; gap: 8px; padding: 0 12px; background: var(--panel); border-bottom: 1px solid var(--line); }
+header h1 { font-size: 14px; margin: 0 12px 0 0; letter-spacing: .5px; color: var(--accent); }
+main { display: grid; grid-template-columns: 250px 1fr 380px; min-height: 0; }
+aside, section { min-height: 0; overflow: auto; }
+aside.left { background: var(--panel); border-right: 1px solid var(--line); }
+aside.right { background: var(--panel); border-left: 1px solid var(--line); padding: 10px; }
+footer { background: var(--panel); border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; min-height: 0; }
+footer > div { padding: 8px 12px; overflow: auto; min-height: 0; }
+footer > div + div { border-left: 1px solid var(--line); }
+button, select, input, textarea { font: inherit; color: var(--text); background: var(--panel2); border: 1px solid var(--line); border-radius: 6px; }
+button { padding: 5px 10px; cursor: pointer; }
+button:hover { border-color: var(--muted); }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button.blue { background: var(--accent2); border-color: var(--accent2); color: #fff; }
+button.small { padding: 2px 7px; font-size: 12px; }
+input, select { padding: 4px 6px; width: 100%; }
+textarea { width: 100%; padding: 6px; resize: vertical; }
+label { display: block; color: var(--muted); font-size: 11px; margin: 8px 0 3px; text-transform: uppercase; letter-spacing: .4px; }
+.row { display: flex; gap: 6px; align-items: center; }
+.row > * { flex: 1; }
+.row > button, .row > .fixed { flex: 0 0 auto; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+h3 { margin: 14px 0 6px; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; display: flex; justify-content: space-between; align-items: center; }
+.scene { padding: 8px 10px; border-bottom: 1px solid var(--line); cursor: pointer; }
+.scene:hover { background: var(--panel2); }
+.scene.sel { background: #2a2033; border-left: 3px solid var(--accent); }
+.scene .id { color: var(--accent); font-weight: 600; margin-right: 6px; }
+.scene .bg { color: var(--muted); font-size: 11px; }
+.scene .txt { color: var(--text); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.scene.missing .bg::after { content: " ⚠"; color: var(--warn); }
+.toolbar { display: flex; gap: 4px; padding: 8px; border-bottom: 1px solid var(--line); flex-wrap: wrap; position: sticky; top: 0; background: var(--panel); z-index: 1; }
+section.center { padding: 12px; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+#stage { position: relative; width: 100%; max-width: 960px; aspect-ratio: 16/9; background: #000; border-radius: 6px; overflow: hidden; cursor: crosshair; }
+#stage img { width: 100%; height: 100%; display: block; }
+#stage .marker { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border: 2px solid var(--accent2); border-radius: 50%; pointer-events: none; }
+#stage .marker.end { border-color: var(--warn); }
+#stage .busy { position: absolute; right: 8px; top: 8px; font-size: 11px; color: var(--muted); }
+.timeline { width: 100%; max-width: 960px; }
+.timeline input { width: 100%; }
+.hint { color: var(--muted); font-size: 12px; }
+.layer { background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; padding: 8px; margin-bottom: 8px; }
+.layer.sel { border-color: var(--accent2); }
+.layer .head { display: flex; gap: 8px; align-items: center; cursor: pointer; }
+.layer .head img { width: 34px; height: 46px; object-fit: contain; background: #0c0d12; border-radius: 4px; }
+.layer .head .name { flex: 1; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chk { display: flex; align-items: center; gap: 5px; color: var(--text); text-transform: none; font-size: 12px; }
+.chk input { width: auto; }
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: none; align-items: center; justify-content: center; z-index: 10; }
+.modal.open { display: flex; }
+.modal .box { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; width: min(1100px, 94vw); height: min(780px, 90vh); display: flex; flex-direction: column; }
+.modal .top { padding: 10px; display: flex; gap: 8px; border-bottom: 1px solid var(--line); }
+.modal .body { padding: 10px; overflow: auto; flex: 1; }
+.thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; }
+.thumb { background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; padding: 6px; cursor: pointer; text-align: center; }
+.thumb:hover { border-color: var(--accent2); }
+.thumb img { width: 100%; height: 120px; object-fit: contain; }
+.thumb.bgthumb img { height: 70px; object-fit: cover; border-radius: 4px; }
+.thumb .n { font-size: 11px; color: var(--warn); word-break: break-all; }
+.thumb .d { font-size: 11px; color: var(--muted); }
+.tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+.tabs button.on { background: var(--accent2); border-color: var(--accent2); color: #fff; }
+pre { margin: 0; white-space: pre-wrap; font: 12px/1.45 Menlo, monospace; color: #cfd3e0; }
+.codeblock { position: relative; background: #0d0f15; border: 1px solid var(--line); border-radius: 6px; padding: 8px; margin: 6px 0; }
+.codeblock button { position: absolute; right: 6px; top: 6px; }
+video { width: 100%; max-height: 160px; background: #000; border-radius: 6px; }
+.dirty::after { content: " •"; color: var(--warn); }
+.status { margin-left: auto; color: var(--muted); font-size: 12px; }
+.ok { color: var(--ok); } .bad { color: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <h1>HORROR VIDEO STUDIO</h1>
+  <select id="storySel" style="width:220px"></select>
+  <button id="saveBtn" class="primary" title="Ctrl+S">Lưu</button>
+  <button id="checkBtn">Kiểm tra kịch bản</button>
+  <button id="renderPrevBtn" class="blue">Xuất nháp</button>
+  <button id="renderSceneBtn" title="Chỉ dựng cảnh đang chọn (nháp)">Xuất cảnh này</button>
+  <button id="renderFullBtn" class="blue">Xuất Full HD</button>
+  <button id="libBtn">Thư viện asset</button>
+  <button id="rawBtn">JSON toàn bộ</button>
+  <span class="status" id="status"></span>
+</header>
+
+<main>
+  <aside class="left">
+    <div class="toolbar">
+      <button class="small" id="addScene">+ Cảnh</button>
+      <button class="small" id="dupScene">Nhân đôi</button>
+      <button class="small" id="upScene">↑</button>
+      <button class="small" id="downScene">↓</button>
+      <button class="small" id="delScene">Xoá</button>
+    </div>
+    <div id="sceneList"></div>
+  </aside>
+
+  <section class="center">
+    <div id="stage"><img id="frame" alt=""><span class="busy" id="busy"></span></div>
+    <div class="timeline">
+      <div class="row">
+        <button class="fixed" id="playBtn">▶ Phát thử</button>
+        <input type="range" id="pSlider" min="0" max="1000" value="300">
+        <span class="fixed hint" id="tLabel" style="width:110px;text-align:right"></span>
+      </div>
+      <div class="hint" style="margin-top:6px">
+        Bấm vào hình để đặt vị trí chân của lớp đang chọn. Lớp có <b>từ → đến</b>:
+        <label class="chk" style="display:inline-flex"><input type="radio" name="pmode" value="0" checked> đặt điểm đầu</label>
+        <label class="chk" style="display:inline-flex"><input type="radio" name="pmode" value="1"> điểm cuối</label>.
+        Lớp có <b>pin</b>: bấm để đặt điểm neo.
+      </div>
+    </div>
+  </section>
+
+  <aside class="right" id="props"></aside>
+</main>
+
+<footer>
+  <div><h3 style="margin-top:0">Kiểm tra / yêu cầu asset</h3><div id="checkOut" class="hint">Bấm "Kiểm tra kịch bản" để xem asset còn thiếu và prompt cần tạo.</div></div>
+  <div><h3 style="margin-top:0">Xuất video</h3><pre id="jobLog" class="hint"></pre><div id="videoBox"></div></div>
+</footer>
+
+<div class="modal" id="libModal"><div class="box">
+  <div class="top">
+    <div class="tabs" id="libTabs"></div>
+    <input id="libSearch" placeholder="Tìm theo tên, mô tả, tag… (vd: đi, sợ, cửa)" style="flex:1">
+    <button id="libRebuild" title="Quét lại kho sau khi thêm ảnh">Quét lại kho</button>
+    <button id="libClose">Đóng</button>
+  </div>
+  <div class="body"><div class="thumbs" id="libGrid"></div></div>
+</div></div>
+
+<div class="modal" id="rawModal"><div class="box">
+  <div class="top"><b style="flex:1;align-self:center" id="rawTitle">JSON</b><button id="rawApply" class="primary">Áp dụng</button><button id="rawClose">Đóng</button></div>
+  <div class="body"><textarea id="rawText" style="height:100%;min-height:600px;font:12px Menlo,monospace"></textarea></div>
+</div></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const st = { stories: [], name: null, story: null, sel: 0, layer: -1, p: 0.3, cat: null, dirty: false,
+             playing: false, libMode: null, libTab: null, rawTarget: null };
+
+async function api(path, opts = {}) {
+  const r = await fetch(path, opts);
+  if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.error || r.statusText); }
+  return r;
+}
+const post = (path, body) => api(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body ?? {}) });
+function status(msg, cls = "") { const s = $("#status"); s.textContent = msg; s.className = "status " + cls; }
+function setDirty(v = true) { st.dirty = v; $("#saveBtn").classList.toggle("dirty", v); }
+const scene = () => st.story.scenes[st.sel];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+// ------------------------------------------------------------ load
+async function init() {
+  st.cat = await (await api("/api/catalog")).json();
+  st.stories = await (await api("/api/stories")).json();
+  $("#storySel").innerHTML = st.stories.map(n => `<option>${n}</option>`).join("");
+  const want = new URLSearchParams(location.hash.slice(1)).get("story") || localStorageGet("story");
+  await loadStory(st.stories.includes(want) ? want : st.stories[0]);
+}
+function localStorageGet(k) { try { return localStorage.getItem("hvs." + k); } catch { return null; } }
+function localStorageSet(k, v) { try { localStorage.setItem("hvs." + k, v); } catch {} }
+
+async function loadStory(name) {
+  if (st.dirty && !confirm("Có thay đổi chưa lưu. Bỏ qua?")) { $("#storySel").value = st.name; return; }
+  st.name = name; $("#storySel").value = name; localStorageSet("story", name);
+  st.story = await (await api("/api/story?name=" + encodeURIComponent(name))).json();
+  const h = new URLSearchParams(location.hash.slice(1));
+  st.sel = Math.min(+(h.get("s") || 0), st.story.scenes.length - 1); st.layer = +(h.get("l") ?? -1); setDirty(false);
+  renderAll();
+}
+
+// ------------------------------------------------------------ scene list
+function spriteUrl(ref) { return "/files/assets/characters/" + ref + ".png"; }
+function spriteExists(ref) { const [c, n] = ref.split("/"); return !!st.cat.characters[c]?.sprites[n]; }
+function layerRef(L) {
+  if (L.sprite) return L.sprite;
+  if (L.cycle) { const [c, n] = L.cycle.split("/"); const f = st.cat.characters[c]?.cycles[n]; return f ? c + "/" + f[0] : null; }
+  if (L.frames) { const f = L.frames[0]; return typeof f === "string" ? f : f.sprite; }
+  return null;
+}
+function sceneMissing(s) {
+  if (s.bg !== "black" && !st.cat.backgrounds[s.bg]) return true;
+  return (s.layers || []).some(L => { const r = layerRef(L); return r && !spriteExists(r); });
+}
+function renderList() {
+  $("#sceneList").innerHTML = st.story.scenes.map((s, i) => `
+    <div class="scene ${i === st.sel ? "sel" : ""} ${sceneMissing(s) ? "missing" : ""}" data-i="${i}">
+      <div><span class="id">#${s.id}</span><span class="bg">${esc(s.bg)}${s.layers?.length ? " · " + s.layers.length + " lớp" : ""}</span></div>
+      <div class="txt">${esc(s.text || s.title_text || "(không lời)")}</div>
+    </div>`).join("");
+  document.querySelectorAll(".scene").forEach(el => el.onclick = () => { st.sel = +el.dataset.i; st.layer = -1; renderAll(); });
+}
+
+// ------------------------------------------------------------ property panel
+// value <-> "từ / đến" inputs for keys that accept a number or [from, to]
+function rangeField(obj, key, label, step = 0.01, allowFloor = false) {
+  const v = obj[key];
+  const a = Array.isArray(v) ? v[0] : (v ?? ""), b = Array.isArray(v) ? v[1] : "";
+  const id = "f" + Math.random().toString(36).slice(2);
+  setTimeout(() => {
+    const ia = document.getElementById(id + "a"), ib = document.getElementById(id + "b");
+    const upd = () => {
+      const pa = ia.value.trim(), pb = ib.value.trim();
+      const num = x => (allowFloor && x === "floor") ? "floor" : (x === "" ? null : +x);
+      if (pa === "" && pb === "") delete obj[key];
+      else if (pb === "") obj[key] = num(pa);
+      else obj[key] = [num(pa), num(pb)];
+      changed();
+    };
+    ia.onchange = upd; ib.onchange = upd;
+  });
+  return `<div><label>${label}</label><div class="row"><input id="${id}a" value="${a}" placeholder="${allowFloor ? "số hoặc floor" : "giá trị"}">
+          <span class="fixed hint">→</span><input id="${id}b" value="${b}" placeholder="đến (tuỳ chọn)"></div></div>`;
+}
+function field(obj, key, label, type = "number", extra = "") {
+  const id = "f" + Math.random().toString(36).slice(2);
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    el.onchange = () => {
+      if (type === "checkbox") { if (el.checked) obj[key] = true; else delete obj[key]; }
+      else if (el.value === "") delete obj[key];
+      else obj[key] = type === "number" ? +el.value : el.value;
+      changed();
+    };
+  });
+  if (type === "checkbox") return `<label class="chk"><input type="checkbox" id="${id}" ${obj[key] ? "checked" : ""}> ${label}</label>`;
+  return `<div><label>${label}</label><input id="${id}" type="${type}" ${extra} value="${esc(obj[key] ?? "")}"></div>`;
+}
+function select(obj, key, label, options, blank = true) {
+  const id = "f" + Math.random().toString(36).slice(2);
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    el.onchange = () => { if (el.value === "") delete obj[key]; else obj[key] = el.value; changed(true); };
+  });
+  return `<div><label>${label}</label><select id="${id}">${blank ? `<option value="">(mặc định)</option>` : ""}${options.map(o =>
+    `<option value="${esc(o[0])}" ${String(obj[key] ?? "") === String(o[0]) ? "selected" : ""}>${esc(o[1])}</option>`).join("")}</select></div>`;
+}
+
+function renderProps() {
+  const s = scene();
+  s.layers = s.layers || [];
+  const bgs = [["black", "black — màn đen"], ...Object.entries(st.cat.backgrounds).map(([k, v]) => [k, k + " — " + (v.desc || "").slice(0, 40)])];
+  const cam = s.camera || {}, sh = s.shake || {};
+  let h = `
+    <h3>Cảnh #${s.id} <span><button class="small" id="sceneRaw">JSON cảnh</button></span></h3>
+    ${select(s, "bg", "Phông nền", bgs, false)}
+    <label>Lời đọc (giọng đọc + phụ đề)</label><textarea id="sceneText" rows="3">${esc(s.text || "")}</textarea>
+    <div class="grid3">${field(s, "duration", "Dài cố định (s)", "number", 'step="0.1"')}${field(s, "min_duration", "Tối thiểu (s)", "number", 'step="0.1"')}${field(s, "bg_dim", "Làm tối phông", "number", 'step="0.05" min="0" max="1"')}</div>
+    ${field(s, "title_text", "Chữ giữa màn hình", "text")}
+    <h3>Camera (mốc chuyển động) <span><button class="small" id="addKey">+ Mốc tại thời điểm này</button></span></h3>
+    <div class="hint">Mỗi mốc: thời điểm p (0→1 của cảnh), zoom, tâm khung x/y. Lia trái/phải cần zoom &gt; 1. "Tốc độ" là kiểu chuyển động đi tới mốc đó.</div>
+    <div id="camBox"></div>
+    <h3>Âm thanh trong cảnh <span><button class="small" id="addSfx">+ Âm thanh</button></span></h3>
+    <div id="sfxBox"></div>
+    <h3>Hiệu ứng</h3>
+    <div class="grid3">${field(sh, "amp", "Rung (px)", "number", 'step="1"')}${field(sh, "from", "Rung từ (0-1)", "number", 'step="0.05"')}${field(sh, "to", "đến (0-1)", "number", 'step="0.05"')}</div>
+    <div class="grid3">
+      <div><label>Chớp trắng tại</label><input id="flashIn" value="${(s.flash || []).join(", ")}" placeholder="vd 0, 0.45"></div>
+      ${field(s, "flicker", "Đèn chập chờn", "number", 'step="0.05"')}
+      <div class="grid2">${field(s, "fade_in", "Mờ vào", "number", 'step="0.05"')}${field(s, "fade_out", "Mờ ra", "number", 'step="0.05"')}</div>
+    </div>
+    <h3>Lớp nhân vật / đạo cụ <span><button class="small" id="addLayer">+ Lớp</button> <button class="small" id="addPhone">+ Điện thoại</button></span></h3>
+    <div id="layers">${s.layers.map((L, i) => layerCard(L, i)).join("") || '<div class="hint">Chưa có lớp nào.</div>'}</div>`;
+  $("#props").innerHTML = h;
+
+  // camera: keyframes (older simple form is converted on first edit)
+  const camObj = s.camera || {};
+  if (!camObj.keys && (camObj.zoom !== undefined || camObj.focus)) {
+    const z = Array.isArray(camObj.zoom) ? camObj.zoom : [camObj.zoom ?? 1, camObj.zoom ?? 1];
+    const f = camObj.focus || [0.5, 0.5], f0 = Array.isArray(f[0]) ? f[0] : f, f1 = Array.isArray(f[0]) ? f[1] : f;
+    camObj.keys = [{ p: 0, zoom: z[0], x: f0[0], y: f0[1] }, { p: 1, zoom: z[1], x: f1[0], y: f1[1], ease: camObj.ease || "smooth" }];
+    delete camObj.zoom; delete camObj.focus; delete camObj.ease;
+  }
+  drawCamKeys(camObj);
+  drawSfx(s);
+
+  $("#sceneText").onchange = e => { if (e.target.value.trim()) s.text = e.target.value.trim(); else delete s.text; changed(); renderList(); };
+  $("#flashIn").onchange = e => { const v = e.target.value.split(",").map(x => x.trim()).filter(Boolean).map(Number); if (v.length) s.flash = v; else delete s.flash; changed(); };
+  // keep camera/shake attached only when they hold something
+  st._attach = () => {
+    if (Object.keys(camObj).length) s.camera = camObj; else delete s.camera;
+    if (sh.amp) s.shake = sh; else delete s.shake;
+  };
+  $("#sceneRaw").onclick = () => openRaw("scene");
+  $("#addLayer").onclick = () => { st.libMode = "newLayer"; openLib(); };
+  $("#addPhone").onclick = () => { s.layers.push({ ui: "message", name: "Mẹ", message: "Tin nhắn…", x: 0.5, y: 0.96, h: 0.9 }); st.layer = s.layers.length - 1; changed(true); };
+  s.layers.forEach((L, i) => bindLayer(L, i));
+}
+
+const EASES = [["smooth", "mượt"], ["linear", "đều"], ["in", "chậm → nhanh"], ["out", "nhanh → chậm"]];
+function drawCamKeys(camObj) {
+  const s = scene(); const keys = camObj.keys || [];
+  const num = (v, d) => v ?? d;
+  $("#camBox").innerHTML = (keys.length ? `<div class="grid3" style="grid-template-columns:52px 1fr 1fr 1fr 1.3fr 26px;gap:4px;margin-top:6px">
+      <span class="hint">p</span><span class="hint">zoom</span><span class="hint">x</span><span class="hint">y</span><span class="hint">tốc độ</span><span></span>
+      ${keys.map((k, i) => `<input data-k="${i}" data-f="p" value="${num(k.p, 0)}"><input data-k="${i}" data-f="zoom" value="${num(k.zoom, "")}" placeholder="giữ">
+        <input data-k="${i}" data-f="x" value="${num(k.x, "")}" placeholder="giữ"><input data-k="${i}" data-f="y" value="${num(k.y, "")}" placeholder="giữ">
+        <select data-k="${i}" data-f="ease">${EASES.map(e => `<option value="${e[0]}" ${(k.ease || "smooth") === e[0] ? "selected" : ""}>${e[1]}</option>`).join("")}</select>
+        <button class="small" data-del="${i}">✕</button>`).join("")}</div>` : '<div class="hint">Camera đứng yên (không zoom).</div>') +
+    `<div class="grid2" style="margin-top:6px"><div><label>Rung tay (handheld)</label><input id="handheld" value="${camObj.handheld ?? ""}" placeholder="vd 4"></div>
+     <div><label>&nbsp;</label><button id="camClear">Xoá camera</button></div></div>`;
+  const commit = () => { if ((camObj.keys && camObj.keys.length) || camObj.handheld) s.camera = camObj; else delete s.camera; changed(); };
+  $("#camBox").querySelectorAll("[data-k]").forEach(el => el.onchange = () => {
+    const k = camObj.keys[+el.dataset.k], f = el.dataset.f;
+    if (f === "ease") k.ease = el.value; else if (el.value.trim() === "") delete k[f]; else k[f] = +el.value;
+    camObj.keys.sort((a, b) => (a.p ?? 0) - (b.p ?? 0)); commit(); drawCamKeys(camObj);
+  });
+  $("#camBox").querySelectorAll("[data-del]").forEach(b => b.onclick = () => { camObj.keys.splice(+b.dataset.del, 1); if (!camObj.keys.length) delete camObj.keys; commit(); drawCamKeys(camObj); });
+  $("#handheld").onchange = e => { if (e.target.value.trim()) camObj.handheld = +e.target.value; else delete camObj.handheld; commit(); };
+  $("#camClear").onclick = () => { delete s.camera; changed(true); };
+  $("#addKey").onclick = () => {
+    camObj.keys = camObj.keys || [];
+    const p = +st.p.toFixed(2), prev = [...camObj.keys].reverse().find(k => (k.p ?? 0) <= p) || camObj.keys[0] || {};
+    camObj.keys.push({ p, zoom: prev.zoom ?? 1.2, x: prev.x ?? 0.5, y: prev.y ?? 0.5, ease: "smooth" });
+    camObj.keys.sort((a, b) => a.p - b.p); commit(); drawCamKeys(camObj);
+  };
+}
+function soundNames() {
+  const req = (st.story.asset_requests || []).filter(r => r.kind === "sound").map(r => r.id);
+  return [...new Set([...Object.keys(st.cat.sounds || {}), ...req])].sort();
+}
+function drawSfx(s) {
+  const cues = s.sfx || [];
+  const names = soundNames();
+  $("#sfxBox").innerHTML = `<datalist id="soundList">${names.map(n => `<option value="${n}">${esc(st.cat.sounds?.[n]?.desc || "(chưa có — đã yêu cầu)")}</option>`).join("")}</datalist>` +
+    (cues.length ? `<div class="grid3" style="grid-template-columns:1.6fr 52px 52px 40px 52px 26px 26px;gap:4px;margin-top:6px">
+      <span class="hint">âm thanh</span><span class="hint">lúc p</span><span class="hint">âm lượng</span><span class="hint">lặp</span><span class="hint">dài (s)</span><span></span><span></span>
+      ${cues.map((c, i) => `<input list="soundList" data-c="${i}" data-f="sound" value="${esc(c.sound)}" style="${st.cat.sounds?.[c.sound] ? "" : "border-color:var(--warn)"}">
+        <input data-c="${i}" data-f="at" value="${c.at ?? ""}"><input data-c="${i}" data-f="volume" value="${c.volume ?? ""}" placeholder="1">
+        <input type="checkbox" data-c="${i}" data-f="loop" ${c.loop ? "checked" : ""} style="width:auto">
+        <input data-c="${i}" data-f="length" value="${c.length ?? ""}" placeholder="hết">
+        <button class="small" data-play="${i}" title="Nghe thử">▶</button><button class="small" data-del="${i}">✕</button>`).join("")}</div>
+      <div class="hint" style="margin-top:4px">Viền vàng = âm thanh chưa có trong kho (dựng sẽ phát tiếng bíp giữ chỗ).</div>` : '<div class="hint">Chưa có âm thanh.</div>');
+  const commit = () => { if (cues.length) s.sfx = cues; else delete s.sfx; changed(); };
+  $("#sfxBox").querySelectorAll("[data-c]").forEach(el => el.onchange = () => {
+    const c = cues[+el.dataset.c], f = el.dataset.f;
+    if (f === "loop") { if (el.checked) c.loop = true; else delete c.loop; }
+    else if (f === "sound") c.sound = el.value.trim();
+    else if (el.value.trim() === "") delete c[f]; else c[f] = +el.value;
+    commit(); drawSfx(s);
+  });
+  $("#sfxBox").querySelectorAll("[data-del]").forEach(b => b.onclick = () => { cues.splice(+b.dataset.del, 1); commit(); drawSfx(s); });
+  $("#sfxBox").querySelectorAll("[data-play]").forEach(b => b.onclick = () => {
+    const snd = st.cat.sounds?.[cues[+b.dataset.play].sound];
+    if (!snd) return status("Âm thanh này chưa có trong kho.", "bad");
+    new Audio(snd.url).play();
+  });
+  $("#addSfx").onclick = () => { s.sfx = s.sfx || []; s.sfx.push({ sound: names[0] || "ten_am_thanh", at: +st.p.toFixed(2) }); changed(true); };
+}
+
+function layerCard(L, i) {
+  const ref = layerRef(L);
+  const title = L.ui ? `📱 Điện thoại (${L.ui})` : L.cycle ? `🔁 ${L.cycle}` : L.frames ? `🎞 ${L.frames.length} khung` : (L.sprite || "?");
+  const missing = ref && !spriteExists(ref);
+  const sel = i === st.layer;
+  return `<div class="layer ${sel ? "sel" : ""}" data-i="${i}">
+    <div class="head" data-i="${i}">
+      ${ref ? `<img src="${spriteUrl(ref)}" onerror="this.style.visibility='hidden'">` : ""}
+      <div class="name">${esc(title)}${missing ? ' <span class="bad">(chưa có)</span>' : ""}</div>
+      <button class="small" data-act="up">↑</button><button class="small" data-act="down">↓</button><button class="small" data-act="del">✕</button>
+    </div>
+    ${sel ? `<div class="lbody" id="lbody${i}"></div>` : ""}
+  </div>`;
+}
+
+function bindLayer(L, i) {
+  const card = document.querySelector(`.layer[data-i="${i}"]`);
+  card.querySelector(".head").onclick = e => {
+    const act = e.target.dataset.act, s = scene();
+    if (act === "del") { s.layers.splice(i, 1); st.layer = -1; return changed(true); }
+    if (act === "up" && i > 0) { [s.layers[i - 1], s.layers[i]] = [s.layers[i], s.layers[i - 1]]; st.layer = i - 1; return changed(true); }
+    if (act === "down" && i < s.layers.length - 1) { [s.layers[i + 1], s.layers[i]] = [s.layers[i], s.layers[i + 1]]; st.layer = i + 1; return changed(true); }
+    if (!act) { st.layer = st.layer === i ? -1 : i; renderProps(); drawMarkers(); }
+  };
+  if (i !== st.layer) return;
+  const box = document.getElementById("lbody" + i);
+  const ref = layerRef(L);
+  const char = ref ? ref.split("/")[0] : null;
+  const anchors = ref && st.cat.characters[char]?.sprites[ref.split("/")[1]]?.anchors || {};
+  const hotspots = Object.keys(st.cat.backgrounds[scene().bg]?.hotspots || {});
+  let h = "";
+  if (L.ui) {
+    h += select(L, "ui", "Loại", [["call", "Cuộc gọi đến"], ["message", "Tin nhắn"]], false) + field(L, "name", "Tên người gọi / gửi", "text") +
+         (L.ui === "message" ? field(L, "message", "Nội dung tin nhắn", "text") : "");
+  } else {
+    h += `<div class="row" style="margin-top:8px"><button id="pick${i}">Đổi dáng / chu kỳ…</button>
+          <button class="fixed" id="raw${i}">JSON lớp</button></div>`;
+    if (L.frames || L.cycle) h += field(L, "fps", "Khung hình / giây", "number", 'step="1"');
+  }
+  h += rangeField(L, "x", "Vị trí ngang x (0 trái → 1 phải)");
+  h += rangeField(L, "y", "Chân y (0 trên → 1 dưới, hoặc floor)", 0.01, true);
+  h += rangeField(L, "h", "Chiều cao h (tỉ lệ khung)");
+  h += `<div class="grid2">${field(L, "start", "Xuất hiện từ (0-1)", "number", 'step="0.05"')}${field(L, "end", "đến (0-1)", "number", 'step="0.05"')}</div>`;
+  if (!L.ui) {
+    h += `<div class="grid2">${select(L, "face", "Hướng nhìn", [["auto", "auto — theo hướng đi"], ["left", "trái"], ["right", "phải"]])}
+          ${select(L, "ease", "Chuyển động", [["smooth", "mượt"], ["in", "chậm → nhanh"], ["out", "nhanh → chậm"]])}</div>`;
+    h += `<div class="grid3">${field(L, "bob", "Nhún (px)", "number", 'step="1"')}${field(L, "jitter", "Run (px)", "number", 'step="1"')}${field(L, "breathe", "Thở", "number", 'step="0.002"')}</div>`;
+    h += `<div class="row" style="margin-top:8px">${field(L, "glow", "Viền sáng")}${field(L, "tint", "Tông đêm")}</div>`;
+    const pin = L.pin || {};
+    h += `<label>Neo (pin): điểm của sprite → điểm trên phông</label><div class="grid2">
+      <select id="pinPoint${i}"><option value="">(không neo)</option>${Object.keys(anchors).map(a => `<option ${pin.point === a ? "selected" : ""}>${a}</option>`).join("")}</select>
+      <select id="pinAt${i}"><option value="">(bấm vào hình)</option>${hotspots.map(hs => `<option ${pin.at === hs ? "selected" : ""}>${hs}</option>`).join("")}</select></div>`;
+  }
+  box.innerHTML = h;
+  if (!L.ui) {
+    document.getElementById("pick" + i).onclick = () => { st.libMode = "replace"; openLib(char); };
+    document.getElementById("raw" + i).onclick = () => openRaw("layer");
+    const pp = document.getElementById("pinPoint" + i), pa = document.getElementById("pinAt" + i);
+    if (pp) {
+      const upd = () => {
+        if (!pp.value) { delete L.pin; }
+        else { L.pin = L.pin || {}; L.pin.point = pp.value; if (pa.value) L.pin.at = pa.value; else if (!Array.isArray(L.pin.at)) L.pin.at = [0.5, 0.5]; }
+        changed();
+      };
+      pp.onchange = upd; pa.onchange = upd;
+    }
+  }
+}
+
+function changed(rerender = false) {
+  st._attach && st._attach();
+  setDirty(true);
+  if (rerender) renderProps();
+  renderList();
+  requestFrame();
+  drawMarkers();
+}
+
+// ------------------------------------------------------------ preview
+let frameTimer = null, frameSeq = 0;
+function requestFrame() { clearTimeout(frameTimer); frameTimer = setTimeout(fetchFrame, 120); }
+async function fetchFrame() {
+  const seq = ++frameSeq;
+  $("#busy").textContent = "đang dựng…";
+  try {
+    const r = await post("/api/frame", { story: st.story, index: st.sel, p: st.p });
+    if (seq !== frameSeq) return;
+    const dur = +r.headers.get("X-Duration");
+    const url = URL.createObjectURL(await r.blob());
+    const img = $("#frame"); const old = img.src; img.src = url; if (old.startsWith("blob:")) URL.revokeObjectURL(old);
+    st.dur = dur;
+    $("#tLabel").textContent = `${(st.p * dur).toFixed(1)}s / ${dur.toFixed(1)}s`;
+    $("#busy").textContent = "";
+  } catch (e) { $("#busy").textContent = "lỗi: " + e.message; }
+}
+$("#pSlider").oninput = e => { st.p = e.target.value / 1000; requestFrame(); };
+
+$("#playBtn").onclick = async () => {
+  if (st.playing) { st.playing = false; return; }
+  st.playing = true; $("#playBtn").textContent = "■ Dừng";
+  const t0 = performance.now(), p0 = st.p >= 0.99 ? 0 : st.p;
+  while (st.playing) {
+    const dur = st.dur || 4;
+    st.p = Math.min(1, p0 + (performance.now() - t0) / 1000 / dur);
+    $("#pSlider").value = st.p * 1000;
+    await fetchFrame();
+    if (st.p >= 1) break;
+  }
+  st.playing = false; $("#playBtn").textContent = "▶ Phát thử";
+};
+
+// click on stage = place selected layer
+$("#stage").onclick = e => {
+  const s = scene(), L = s.layers?.[st.layer];
+  if (!L) return status("Chọn một lớp ở bên phải trước khi bấm vào hình.", "bad");
+  const r = $("#stage").getBoundingClientRect();
+  const fx = +((e.clientX - r.left) / r.width).toFixed(3), fy = +((e.clientY - r.top) / r.height).toFixed(3);
+  if (L.pin) { L.pin.at = [fx, fy]; }
+  else {
+    const end = document.querySelector('input[name="pmode"]:checked').value === "1";
+    const set = (k, v) => { if (Array.isArray(L[k])) L[k][end ? 1 : 0] = v; else if (end) L[k] = [L[k] ?? v, v]; else L[k] = v; };
+    set("x", fx); set("y", fy);
+  }
+  changed(true);
+};
+function drawMarkers() {
+  document.querySelectorAll("#stage .marker").forEach(m => m.remove());
+  const L = scene()?.layers?.[st.layer]; if (!L) return;
+  const pts = [];
+  if (L.pin && Array.isArray(L.pin.at)) pts.push([L.pin.at[0], L.pin.at[1], ""]);
+  else if (L.pin && typeof L.pin.at === "string") { const hs = st.cat.backgrounds[scene().bg]?.hotspots?.[L.pin.at]; if (hs) pts.push([hs[0], hs[1], ""]); }
+  else {
+    const xs = Array.isArray(L.x) ? L.x : [L.x ?? 0.5], ys = Array.isArray(L.y) ? L.y : [L.y ?? 0.95];
+    const yv = v => v === "floor" ? (st.cat.backgrounds[scene().bg]?.floor_y ?? 0.95) : v;
+    pts.push([xs[0], yv(ys[0]), ""]);
+    if (xs.length > 1 || ys.length > 1) pts.push([xs[xs.length - 1], yv(ys[ys.length - 1]), "end"]);
+  }
+  for (const [x, y, cls] of pts) {
+    const m = document.createElement("div"); m.className = "marker " + cls;
+    m.style.left = x * 100 + "%"; m.style.top = y * 100 + "%"; $("#stage").appendChild(m);
+  }
+}
+
+// ------------------------------------------------------------ scene ops
+function nextId(after) {
+  const ids = st.story.scenes.map(s => +s.id);
+  let id = +(after + 0.1).toFixed(2);
+  while (ids.includes(id)) id = +(id + 0.01).toFixed(2);
+  return Number.isInteger(after) && !ids.includes(after + 1) ? after + 1 : id;
+}
+$("#addScene").onclick = () => { const s = scene(); st.story.scenes.splice(st.sel + 1, 0, { id: nextId(+s.id), bg: s.bg, text: "", layers: [] }); st.sel++; st.layer = -1; changed(true); };
+$("#dupScene").onclick = () => { const s = structuredClone(scene()); s.id = nextId(+scene().id); st.story.scenes.splice(st.sel + 1, 0, s); st.sel++; changed(true); };
+$("#delScene").onclick = () => { if (st.story.scenes.length < 2 || !confirm("Xoá cảnh #" + scene().id + "?")) return; st.story.scenes.splice(st.sel, 1); st.sel = Math.max(0, st.sel - 1); st.layer = -1; changed(true); };
+$("#upScene").onclick = () => { if (st.sel < 1) return; const a = st.story.scenes; [a[st.sel - 1], a[st.sel]] = [a[st.sel], a[st.sel - 1]]; st.sel--; changed(true); };
+$("#downScene").onclick = () => { const a = st.story.scenes; if (st.sel >= a.length - 1) return; [a[st.sel + 1], a[st.sel]] = [a[st.sel], a[st.sel + 1]]; st.sel++; changed(true); };
+
+// ------------------------------------------------------------ asset library
+function openLib(char) {
+  st.libTab = char || st.libTab || Object.keys(st.cat.characters)[0];
+  $("#libModal").classList.add("open"); $("#libSearch").value = ""; drawLib(); $("#libSearch").focus();
+}
+function drawLib() {
+  const tabs = [...Object.keys(st.cat.characters), "_bg", "_snd"];
+  $("#libTabs").innerHTML = tabs.map(t => `<button class="${t === st.libTab ? "on" : ""}" data-t="${t}">${t === "_bg" ? "Phông nền" : t === "_snd" ? "Âm thanh" : t}</button>`).join("");
+  document.querySelectorAll("#libTabs button").forEach(b => b.onclick = () => { st.libTab = b.dataset.t; drawLib(); });
+  const q = $("#libSearch").value.trim().toLowerCase();
+  const match = (...xs) => !q || xs.join(" ").toLowerCase().includes(q);
+  let h = "";
+  if (st.libTab === "_snd") {
+    for (const [k, v] of Object.entries(st.cat.sounds || {})) if (match(k, v.desc, (v.tags || []).join(" ")))
+      h += `<div class="thumb" data-snd="${k}"><div style="font-size:34px;height:60px;line-height:60px">🔊</div><div class="n">${k}</div><div class="d">${esc(v.desc)}</div></div>`;
+    if (!h) h = '<div class="hint">Kho chưa có âm thanh. Âm thanh cần tìm nằm trong mục "Kiểm tra kịch bản".</div>';
+  } else if (st.libTab === "_bg") {
+    for (const [k, v] of Object.entries(st.cat.backgrounds)) if (match(k, v.desc, (v.tags || []).join(" ")))
+      h += `<div class="thumb bgthumb" data-bg="${k}"><img src="/files/assets/backgrounds/${k}.png"><div class="n">${k}</div><div class="d">${esc(v.desc)}</div></div>`;
+  } else {
+    const c = st.cat.characters[st.libTab];
+    for (const [k, frames] of Object.entries(c.cycles)) if (match(k, "chu kỳ cycle", frames.join(" ")))
+      h += `<div class="thumb" data-cycle="${st.libTab}/${k}"><img src="${spriteUrl(st.libTab + "/" + frames[0])}"><div class="n">🔁 ${k}</div><div class="d">chu kỳ ${frames.length} khung</div></div>`;
+    for (const [k, v] of Object.entries(c.sprites)) if (match(k, v.desc, (v.tags || []).join(" ")))
+      h += `<div class="thumb" data-sprite="${st.libTab}/${k}" title="${esc((v.tags || []).join(", "))}"><img loading="lazy" src="${spriteUrl(st.libTab + "/" + k)}"><div class="n">${k}</div><div class="d">${esc(v.desc)} · ${v.facing}</div></div>`;
+  }
+  $("#libGrid").innerHTML = h || '<div class="hint">Không tìm thấy. Asset chưa có thì khai báo trong asset_requests (JSON toàn bộ) và bấm Kiểm tra kịch bản.</div>';
+  document.querySelectorAll("#libGrid .thumb").forEach(el => el.onclick = () => pickAsset(el.dataset));
+}
+function pickAsset(d) {
+  if (d.snd) {
+    new Audio(st.cat.sounds[d.snd].url).play();
+    if (!st.libMode) return;
+    const s = scene(); s.sfx = s.sfx || []; s.sfx.push({ sound: d.snd, at: +st.p.toFixed(2) }); closeLib(); return changed(true);
+  }
+  if (!st.libMode) return;
+  const s = scene();
+  if (d.bg) { s.bg = d.bg; closeLib(); return changed(true); }
+  let L;
+  if (st.libMode === "newLayer") {
+    L = { y: "floor", x: 0.5 }; s.layers = s.layers || []; s.layers.push(L); st.layer = s.layers.length - 1;
+  } else L = s.layers[st.layer];
+  delete L.sprite; delete L.frames; delete L.cycle;
+  if (d.cycle) { L.cycle = d.cycle; L.fps = L.fps || 8; L.face = L.face || "auto"; } else { L.sprite = d.sprite; delete L.fps; }
+  closeLib(); changed(true);
+}
+function closeLib() { $("#libModal").classList.remove("open"); st.libMode = null; }
+$("#libBtn").onclick = () => { st.libMode = null; openLib(); };
+$("#libClose").onclick = closeLib;
+$("#libSearch").oninput = drawLib;
+$("#libRebuild").onclick = async () => { status("Đang quét kho…"); await post("/api/catalog/rebuild"); st.cat = await (await api("/api/catalog")).json(); drawLib(); renderAll(); status("Đã quét lại kho.", "ok"); };
+
+// ------------------------------------------------------------ raw JSON
+function openRaw(target) {
+  st.rawTarget = target;
+  const obj = target === "story" ? st.story : target === "scene" ? scene() : scene().layers[st.layer];
+  $("#rawTitle").textContent = target === "story" ? "JSON toàn bộ kịch bản (settings, characters, asset_requests…)" : target === "scene" ? "JSON cảnh #" + scene().id : "JSON lớp";
+  $("#rawText").value = JSON.stringify(obj, null, 1);
+  $("#rawModal").classList.add("open");
+}
+$("#rawBtn").onclick = () => openRaw("story");
+$("#rawClose").onclick = () => $("#rawModal").classList.remove("open");
+$("#rawApply").onclick = () => {
+  let v; try { v = JSON.parse($("#rawText").value); } catch (e) { return alert("JSON lỗi: " + e.message); }
+  if (st.rawTarget === "story") { st.story = v; st.sel = Math.min(st.sel, v.scenes.length - 1); }
+  else if (st.rawTarget === "scene") st.story.scenes[st.sel] = v;
+  else scene().layers[st.layer] = v;
+  $("#rawModal").classList.remove("open"); changed(true);
+};
+
+// ------------------------------------------------------------ save / check / render
+async function save() {
+  await post("/api/story?name=" + encodeURIComponent(st.name), st.story);
+  setDirty(false); status("Đã lưu " + st.name + " (bản cũ sao lưu trong build/backups)", "ok");
+}
+$("#saveBtn").onclick = () => save().catch(e => status(e.message, "bad"));
+document.addEventListener("keydown", e => { if ((e.metaKey || e.ctrlKey) && e.key === "s") { e.preventDefault(); save(); } });
+$("#storySel").onchange = e => loadStory(e.target.value);
+window.onbeforeunload = e => { if (st.dirty) { e.preventDefault(); e.returnValue = ""; } };
+
+$("#checkBtn").onclick = async () => {
+  if (st.dirty) await save();
+  const r = await (await post("/api/check?name=" + encodeURIComponent(st.name))).json();
+  const blocks = [];
+  const md = esc(r.requests).replace(/```\n([\s\S]*?)```/g, (_, code) => { blocks.push(code); return `<div class="codeblock"><button class="small" data-b="${blocks.length - 1}">Sao chép prompt</button><pre>${code}</pre></div>`; });
+  $("#checkOut").innerHTML = `<pre class="${r.ok ? "ok" : "bad"}">${esc(r.log)}</pre><div style="margin-top:8px">${md.replace(/\n/g, "<br>")}</div>`;
+  document.querySelectorAll("#checkOut .codeblock button").forEach(b => b.onclick = () => {
+    navigator.clipboard.writeText(blocks[b.dataset.b].replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&quot;/g, '"'));
+    b.textContent = "Đã chép ✓";
+  });
+};
+
+async function startRender(query, label) {
+  if (st.dirty) await save();
+  const { job } = await (await post(`/api/render?name=${encodeURIComponent(st.name)}&${query}`)).json();
+  $("#videoBox").innerHTML = ""; $("#jobLog").textContent = label + "…";
+  const poll = async () => {
+    const j = await (await api("/api/job?id=" + job)).json();
+    $("#jobLog").textContent = j.log.slice(-6).join("\n");
+    if (!j.done) return setTimeout(poll, 1000);
+    status(j.ok ? "Xuất xong: " + j.output : "Xuất lỗi — xem log", j.ok ? "ok" : "bad");
+    if (j.ok && j.output) $("#videoBox").innerHTML = `<div class="hint">${j.output}</div><video controls src="/files/${j.output}?t=${Date.now()}"></video>`;
+  };
+  poll();
+}
+$("#renderPrevBtn").onclick = () => startRender("preview=1", "Đang xuất bản nháp");
+$("#renderFullBtn").onclick = () => startRender("preview=0", "Đang xuất Full HD (vài phút)");
+$("#renderSceneBtn").onclick = () => startRender(`preview=1&scenes=${scene().id}`, "Đang xuất cảnh #" + scene().id);
+
+function renderAll() { renderList(); renderProps(); requestFrame(); drawMarkers(); }
+init().then(() => { if (new URLSearchParams(location.hash.slice(1)).has("lib")) openLib(); })
+  .catch(e => status("Lỗi khởi động: " + e.message, "bad"));
+</script>
+</body>
+</html>
