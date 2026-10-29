@@ -8,6 +8,12 @@ Mọi kịch bản mới theo **`scripts/QUY_TAC_KICH_BAN.md`** (đã thống nh
 **`templates/kich_ban_mau.json`** (có sẵn mọi thiết lập đã chốt). `tools/check_story.py` tự cảnh báo vi phạm
 (dòng "quy tắc:") — phải xử lý hết trước khi giao.
 
+## Máy mới (làm đầu tiên)
+1. `python3 tools/doctor.py` — liệt kê thứ còn thiếu kèm cách sửa (Python libs, ffmpeg, font, config.local.json,
+   Dubber + VieNeu, đọc thử giọng kể). Cài/sửa từng mục, chạy lại tới khi "máy sẵn sàng".
+2. Dubber (chứa VieNeu-TTS) là dự án riêng của người dùng, không nằm trong repo này — hỏi người dùng nơi lấy.
+3. Kiểm tra: `python3 tools/check_story.py scripts/cuoc_goi_3h.json` rồi `python3 tools/render.py scripts/cuoc_goi_3h.json --preview --scenes 1-3`.
+
 ## Dùng AI / máy khác
 - Viết kịch bản bằng AI khác: `python3 tools/make_brief.py` → gửi `build/brief.zip` (hoặc BRIEF_VIET_KICH_BAN.md + ảnh).
 - Máy khác: clone repo, cài Python/ffmpeg/piper/VieNeu (Dubber), tạo `config.local.json`. Giọng clone có sẵn trong
