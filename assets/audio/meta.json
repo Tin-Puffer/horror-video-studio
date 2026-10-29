@@ -133,6 +133,68 @@
    ],
    "volume": 0.9,
    "kind": "sfx"
+  },
+  "phone_ring": {
+   "desc": "Chuông điện thoại di động đổ giữa đêm (nhạc chuông mặc định, lặp được)",
+   "tags": [
+    "điện thoại",
+    "chuông"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "phone_vibrate": {
+   "desc": "Điện thoại rung báo tin nhắn (2 lần)",
+   "tags": [
+    "điện thoại",
+    "rung",
+    "tin nhắn"
+   ],
+   "volume": 0.9,
+   "kind": "sfx"
+  },
+  "hangup_tone": {
+   "desc": "Tiếng tút tút khi đầu dây bên kia cúp máy",
+   "tags": [
+    "điện thoại",
+    "cúp máy"
+   ],
+   "volume": 0.7,
+   "kind": "sfx"
+  },
+  "door_scratch": {
+   "desc": "Móng tay cào chậm lên cửa gỗ từ phía bên ngoài, lặp được",
+   "tags": [
+    "cào cửa",
+    "ma"
+   ],
+   "volume": 0.9,
+   "kind": "sfx"
+  },
+  "door_bang": {
+   "desc": "Đập cửa gỗ dồn dập, hoảng loạn",
+   "tags": [
+    "đập cửa"
+   ],
+   "volume": 1.0,
+   "kind": "sfx"
+  },
+  "body_fall": {
+   "desc": "Người ngã ngửa xuống sàn gỗ",
+   "tags": [
+    "ngã"
+   ],
+   "volume": 1.0,
+   "kind": "sfx"
+  },
+  "phone_drop": {
+   "desc": "Điện thoại rơi xuống sàn gỗ",
+   "tags": [
+    "điện thoại",
+    "rơi"
+   ],
+   "volume": 0.9,
+   "kind": "sfx"
   }
  }
 }

@@ -1,0 +1,126 @@
+{
+ "_note": "Giọng mẫu có tên. Dùng trong kịch bản: settings.voice / scene.voice / {\"say\", \"voice\"} với \"preset\": \"<tên>\" rồi ghi đè thêm nếu cần. pitch = nửa cung (âm = trầm), length_scale > 1 = chậm hơn, noise_scale = độ biểu cảm, noise_w = độ lệch nhịp, reverb 0..1, lowpass Hz (thấp = mờ/thì thầm), volume dB.",
+ "presets": {
+  "goc": {
+   "desc": "Như bản demo hiện tại",
+   "model": "ngochuyennew",
+   "length_scale": 1.1,
+   "sentence_silence": 0.35
+  },
+  "ke_chuyen_tram": {
+   "desc": "Nữ kể chuyện chậm, trầm hơn, nghỉ dài, vang nhẹ",
+   "model": "ngochuyennew",
+   "length_scale": 1.25,
+   "noise_scale": 0.5,
+   "noise_w": 0.6,
+   "sentence_silence": 0.7,
+   "pitch": -1.5,
+   "reverb": 0.15
+  },
+  "thi_tham_u_am": {
+   "desc": "Nữ thì thầm u ám: chậm, trầm, mờ, vang",
+   "model": "ngochuyennew",
+   "length_scale": 1.3,
+   "noise_scale": 0.45,
+   "noise_w": 0.5,
+   "sentence_silence": 0.8,
+   "pitch": -2.5,
+   "lowpass": 4500,
+   "reverb": 0.3
+  },
+  "nam_tram": {
+   "desc": "Nam trầm kể chuyện (kinhphat)",
+   "model": "kinhphat",
+   "length_scale": 1.2,
+   "noise_scale": 0.55,
+   "noise_w": 0.6,
+   "sentence_silence": 0.65,
+   "pitch": -1,
+   "reverb": 0.15
+  },
+  "nam_tre": {
+   "desc": "Nam trẻ, tự nhiên — hợp ngôi thứ nhất của Khoa (adam1)",
+   "model": "adam1",
+   "length_scale": 1.15,
+   "noise_scale": 0.6,
+   "noise_w": 0.7,
+   "sentence_silence": 0.6,
+   "reverb": 0.1
+  },
+  "ma_me": {
+   "desc": "Giọng ma giả làm mẹ: rất chậm, trầm sâu, mờ, vang lớn",
+   "model": "ngochuyennew",
+   "length_scale": 1.5,
+   "noise_scale": 0.4,
+   "sentence_silence": 0.5,
+   "pitch": -5,
+   "lowpass": 3500,
+   "reverb": 0.55
+  },
+  "khoa_so_hai": {
+   "desc": "Thoại của Khoa khi sợ: nhanh, cao hơn chút, khô",
+   "model": "adam1",
+   "length_scale": 1.0,
+   "noise_scale": 0.75,
+   "noise_w": 0.9,
+   "sentence_silence": 0.3,
+   "pitch": 1.5
+  },
+  "vn_hai_dang": {
+   "desc": "VieNeu nam: Hải Đăng",
+   "engine": "vieneu",
+   "vieneu_voice": "preset:Hải Đăng"
+  },
+  "vn_quang_son": {
+   "desc": "VieNeu nam: Quang Sơn",
+   "engine": "vieneu",
+   "vieneu_voice": "preset:Quang Sơn"
+  },
+  "vn_ngoc_huyen": {
+   "desc": "VieNeu nữ: Ngọc Huyền",
+   "engine": "vieneu",
+   "vieneu_voice": "preset:Ngọc Huyền"
+  },
+  "vn_thien_minh": {
+   "desc": "VieNeu nam: Thiện Minh",
+   "engine": "vieneu",
+   "vieneu_voice": "preset:Thiện Minh"
+  },
+  "vn_ma_me": {
+   "desc": "Giọng ma dựa trên VieNeu Ngọc Huyền: chậm, trầm sâu, vang",
+   "engine": "vieneu",
+   "vieneu_voice": "preset:Ngọc Huyền",
+   "tempo": 0.8,
+   "pitch": -5,
+   "lowpass": 3500,
+   "reverb": 0.55
+  },
+  "vn_me_sau_cua": {
+   "desc": "Giọng 'mẹ' nghe qua cánh cửa: Ngọc Huyền, nghẹt, hơi vang (lúc ma còn giả làm mẹ)",
+   "engine": "vieneu",
+   "vieneu_voice": "preset:Ngọc Huyền",
+   "tempo": 0.95,
+   "lowpass": 2600,
+   "reverb": 0.2,
+   "volume": -2
+  },
+  "vn_giong_dien_thoai": {
+   "desc": "Giọng lạ qua điện thoại: Hải Đăng trầm, lọc tiếng như loa điện thoại",
+   "engine": "vieneu",
+   "vieneu_voice": "preset:Hải Đăng",
+   "tempo": 0.85,
+   "pitch": -3,
+   "highpass": 450,
+   "lowpass": 3200,
+   "reverb": 0.15
+  },
+  "clone_ke_chuyen": {
+   "desc": "Giọng clone kể chuyện — MẶC ĐỊNH (bản demo 18): nhanh 15%, nhẹ mọi dấu chấm",
+   "engine": "vieneu",
+   "vieneu_voice": "clone:giong-ke-chuyen-clone-e6b153",
+   "sample_rate": 44100,
+   "tempo": 1.15,
+   "soften_endings": "all"
+  }
+ }
+}

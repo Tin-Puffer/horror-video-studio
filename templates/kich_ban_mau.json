@@ -1,0 +1,312 @@
+{
+ "title": "Tên truyện",
+ "output": "build/ten_truyen.mp4",
+ "logline": "Tóm tắt 1–2 câu.",
+ "settings": {
+  "video": {
+   "size": [
+    1920,
+    1080
+   ],
+   "fps": 24,
+   "crf": 20,
+   "preset": "medium"
+  },
+  "preview": {
+   "size": [
+    960,
+    540
+   ],
+   "fps": 12,
+   "preset": "veryfast"
+  },
+  "voice": {
+   "sample_rate": 44100,
+   "preset": "clone_ke_chuyen",
+   "merge_pause_below": 0.45,
+   "trim_chunks": true,
+   "chunk_gap": 0.12,
+   "max_inner_pause": 0.35
+  },
+  "timing": {
+   "lead": 0.25,
+   "tail": 0.45,
+   "min_duration": 2.5,
+   "fade_in": 0.15,
+   "fade_out": 0
+  },
+  "fonts": {
+   "regular": "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+   "bold": "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
+  },
+  "look": {
+   "night_tint": [
+    0.8,
+    0.84,
+    0.98
+   ],
+   "glow_color": [
+    170,
+    200,
+    230
+   ],
+   "glow_strength": 0.55,
+   "glow_size": 9,
+   "vignette": {
+    "start": 0.65,
+    "spread": 0.75,
+    "power": 1.6,
+    "max_alpha": 200
+   },
+   "flash": {
+    "length": 0.25,
+    "max_alpha": 230
+   },
+   "bob_hz": 1.6,
+   "breathe_hz": 0.35
+  },
+  "subtitles": {
+   "enabled": true,
+   "size": 0.042,
+   "line_height": 0.055,
+   "bottom": 0.06,
+   "wrap": 48,
+   "color": [
+    240,
+    240,
+    240
+   ],
+   "stroke": [
+    0,
+    0,
+    0
+   ],
+   "split": "sentence",
+   "min_chars": 18
+  },
+  "title": {
+   "size": 0.06,
+   "color": [
+    225,
+    225,
+    230
+   ]
+  },
+  "phone": {
+   "clock": "03:00",
+   "call_label": "Cuộc gọi đến…",
+   "call_sub": "Di động",
+   "decline": "Từ chối",
+   "accept": "Trả lời",
+   "message_time": "Vừa xong",
+   "message_wrap": 15,
+   "glow_color": [
+    120,
+    160,
+    255,
+    90
+   ]
+  },
+  "layer": {
+   "x": 0.5,
+   "y": 0.95,
+   "h": 0.45,
+   "fps": 8,
+   "flip": null,
+   "tint": true,
+   "glow": false,
+   "face": null,
+   "breathe": 0
+  },
+  "audio": {
+   "sample_rate": 44100,
+   "narration_volume": 1.0,
+   "sfx_volume": 1.0,
+   "music_volume": 0.5,
+   "duck": 0.35,
+   "placeholder_beep": true,
+   "trim_silence": true,
+   "trim_threshold": 0.08,
+   "normalize_db": -18,
+   "limiter_ceiling_db": -2.0
+  }
+ },
+ "characters": {
+  "boy_hoodie": {
+   "h": 0.46,
+   "y": 0.96,
+   "tint": true,
+   "glow": false,
+   "breathe": 0.008
+  },
+  "ghost_mother": {
+   "tint": true,
+   "glow": true,
+   "breathe": 0.005
+  }
+ },
+ "voice_presets": {
+  "clone_ke_chuyen": {
+   "desc": "Giọng clone kể chuyện — MẶC ĐỊNH (bản demo 18): nhanh 15%, nhẹ mọi dấu chấm",
+   "engine": "vieneu",
+   "vieneu_voice": "clone:giong-ke-chuyen-clone-e6b153",
+   "sample_rate": 44100,
+   "tempo": 1.15,
+   "soften_endings": "all"
+  }
+ },
+ "music": [
+  {
+   "sound": "drone_low",
+   "from": 0,
+   "to": 3,
+   "volume": 0.7,
+   "fade_in": 2.5,
+   "fade_out": 0.05
+  }
+ ],
+ "asset_requests": [],
+ "scenes": [
+  {
+   "id": 0,
+   "bg": "black",
+   "duration": 3.5,
+   "fade_in": 1.0,
+   "fade_out": 1.0,
+   "title_text": "TÊN TRUYỆN",
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0.2,
+     "loop": true,
+     "length": 3,
+     "volume": 0.5,
+     "fade_in": 1
+    }
+   ]
+  },
+  {
+   "id": 1,
+   "bg": "bg1_bedroom",
+   "fade_in": 1.2,
+   "text": "Câu kể dài, liền mạch, có chi tiết miêu tả, đọc trong một hơi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.6,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.35,
+      "x": 0.55,
+      "y": 0.58,
+      "ease": "smooth"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "loop": true,
+     "length": 6
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/B1_stand_worried",
+     "x": 0.6,
+     "y": "floor"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "bg": "bg2_hallway",
+   "text": "Câu kể dẫn vào lời của nhân vật khác, và người kể tự thuật lại lời đó, ví dụ giọng ai đó thì thầm bảo tôi đừng quay đầu lại.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.3,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.2,
+      "x": 0.55,
+      "y": 0.6,
+      "ease": "smooth"
+     }
+    ],
+    "handheld": 5
+   },
+   "sfx": [
+    {
+     "sound": "footsteps_slow",
+     "at": 0.05,
+     "loop": true,
+     "length": 5,
+     "volume": 0.8
+    },
+    {
+     "sound": "whisper_eerie",
+     "at": 0.7,
+     "volume": 0.6
+    }
+   ],
+   "layers": [
+    {
+     "cycle": "boy_hoodie/flashlight_walk",
+     "fps": 8,
+     "x": [
+      0.15,
+      0.5
+     ],
+     "y": "floor",
+     "face": "auto",
+     "breathe": 0
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "bg": "bg1_bedroom",
+   "duration": 1.6,
+   "fade_in": 0,
+   "bg_dim": 0.4,
+   "flash": [
+    0.0
+   ],
+   "shake": {
+    "amp": 16,
+    "from": 0,
+    "to": 0.6
+   },
+   "sfx": [
+    {
+     "sound": "ghost_stinger",
+     "at": 0,
+     "volume": 2.2
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "ghost_mother/GH4_closeup_lunge_grin",
+     "x": 0.5,
+     "y": 1.05,
+     "h": [
+      0.7,
+      1.25
+     ],
+     "ease": "out",
+     "glow": true
+    }
+   ]
+  }
+ ]
+}

@@ -20,14 +20,16 @@
    "preset": "veryfast"
   },
   "voice": {
-   "model": "ngochuyennew",
-   "length_scale": 1.1,
-   "sentence_silence": 0.35,
-   "sample_rate": 22050
+   "sample_rate": 44100,
+   "preset": "clone_ke_chuyen",
+   "merge_pause_below": 0.45,
+   "trim_chunks": true,
+   "chunk_gap": 0.12,
+   "max_inner_pause": 0.35
   },
   "timing": {
-   "lead": 0.4,
-   "tail": 0.7,
+   "lead": 0.25,
+   "tail": 0.45,
    "min_duration": 2.5,
    "fade_in": 0.15,
    "fade_out": 0
@@ -77,7 +79,9 @@
     0,
     0,
     0
-   ]
+   ],
+   "split": "sentence",
+   "min_chars": 18
   },
   "title": {
    "size": 0.06,
@@ -112,6 +116,18 @@
    "glow": false,
    "face": null,
    "breathe": 0
+  },
+  "audio": {
+   "sample_rate": 44100,
+   "narration_volume": 1.0,
+   "sfx_volume": 1.0,
+   "music_volume": 0.5,
+   "duck": 0.35,
+   "placeholder_beep": true,
+   "trim_silence": true,
+   "trim_threshold": 0.08,
+   "normalize_db": -18,
+   "limiter_ceiling_db": -2.0
   }
  },
  "characters": {
@@ -128,6 +144,162 @@
    "breathe": 0.005
   }
  },
+ "music": [
+  {
+   "sound": "drone_low",
+   "from": 0,
+   "to": 14,
+   "volume": 0.7,
+   "fade_in": 2.5,
+   "fade_out": 0.05
+  },
+  {
+   "sound": "drone_low",
+   "from": 16,
+   "to": 23,
+   "volume": 0.85,
+   "fade_in": 0.5,
+   "fade_out": 0.05
+  },
+  {
+   "sound": "drone_low",
+   "from": 26,
+   "to": 28,
+   "volume": 0.6,
+   "fade_in": 2.0,
+   "fade_out": 0.05
+  }
+ ],
+ "asset_requests": [
+  {
+   "id": "phone_ring",
+   "kind": "sound",
+   "desc": "Chuông điện thoại di động đổ giữa đêm (nhạc chuông mặc định, lặp được)",
+   "search": "smartphone ringtone ringing",
+   "length": "6s",
+   "prompt": "Smartphone ringing with a default ringtone in a silent dark bedroom at night, seamless loop",
+   "tags": [
+    "điện thoại",
+    "chuông"
+   ],
+   "volume": 0.8
+  },
+  {
+   "id": "phone_vibrate",
+   "kind": "sound",
+   "desc": "Điện thoại rung báo tin nhắn (2 lần)",
+   "search": "phone vibrate notification",
+   "length": "1.5s",
+   "prompt": "Smartphone vibrating twice on a wooden surface, text message notification buzz",
+   "tags": [
+    "điện thoại",
+    "rung",
+    "tin nhắn"
+   ],
+   "volume": 0.9
+  },
+  {
+   "id": "hangup_tone",
+   "kind": "sound",
+   "desc": "Tiếng tút tút khi đầu dây bên kia cúp máy",
+   "search": "phone hang up busy tone",
+   "length": "2s",
+   "prompt": "Phone call disconnected, short beep beep beep busy tone heard through a phone speaker",
+   "tags": [
+    "điện thoại",
+    "cúp máy"
+   ],
+   "volume": 0.7
+  },
+  {
+   "id": "door_scratch",
+   "kind": "sound",
+   "desc": "Móng tay cào chậm lên cửa gỗ từ phía bên ngoài, lặp được",
+   "search": "fingernails scratching wooden door",
+   "length": "8s",
+   "prompt": "Slow creepy fingernails scratching down a wooden door from the other side, seamless loop",
+   "tags": [
+    "cào cửa",
+    "ma"
+   ],
+   "volume": 0.9
+  },
+  {
+   "id": "door_bang",
+   "kind": "sound",
+   "desc": "Đập cửa gỗ dồn dập, hoảng loạn",
+   "search": "loud banging on wooden door",
+   "length": "3s",
+   "prompt": "Violent rapid pounding on a wooden front door, fists hitting hard, indoor",
+   "tags": [
+    "đập cửa"
+   ],
+   "volume": 1.0
+  },
+  {
+   "id": "body_fall",
+   "kind": "sound",
+   "desc": "Người ngã ngửa xuống sàn gỗ",
+   "search": "body fall on wooden floor",
+   "length": "1.5s",
+   "prompt": "A child falling backwards onto a wooden floor, heavy thud",
+   "tags": [
+    "ngã"
+   ],
+   "volume": 1.0
+  },
+  {
+   "id": "phone_drop",
+   "kind": "sound",
+   "desc": "Điện thoại rơi xuống sàn gỗ",
+   "search": "phone drop on floor",
+   "length": "1s",
+   "prompt": "Smartphone dropped onto a wooden floor, plastic clatter and bounce",
+   "tags": [
+    "điện thoại",
+    "rơi"
+   ],
+   "volume": 0.9
+  }
+ ],
+ "voice_presets": {
+  "vn_giong_dien_thoai": {
+   "desc": "Giọng lạ qua điện thoại: Hải Đăng trầm, lọc tiếng như loa điện thoại",
+   "engine": "vieneu",
+   "vieneu_voice": "preset:Hải Đăng",
+   "tempo": 0.85,
+   "pitch": -3,
+   "highpass": 450,
+   "lowpass": 3200,
+   "reverb": 0.15
+  },
+  "vn_ma_me": {
+   "desc": "Giọng ma dựa trên VieNeu Ngọc Huyền: chậm, trầm sâu, vang",
+   "engine": "vieneu",
+   "vieneu_voice": "preset:Ngọc Huyền",
+   "tempo": 0.8,
+   "pitch": -5,
+   "lowpass": 3500,
+   "reverb": 0.55
+  },
+  "vn_me_sau_cua": {
+   "desc": "Giọng 'mẹ' nghe qua cánh cửa: Ngọc Huyền, nghẹt, hơi vang (lúc ma còn giả làm mẹ)",
+   "engine": "vieneu",
+   "vieneu_voice": "preset:Ngọc Huyền",
+   "tempo": 0.95,
+   "lowpass": 2600,
+   "reverb": 0.2,
+   "volume": -2
+  },
+  "clone_ke_chuyen": {
+   "desc": "Giọng clone kể chuyện — MẶC ĐỊNH (bản demo 18): nhanh 15%, nhẹ mọi dấu chấm",
+   "engine": "vieneu",
+   "vieneu_voice": "clone:giong-ke-chuyen-clone-e6b153",
+   "sample_rate": 44100,
+   "tempo": 1.15,
+   "soften_endings": "all"
+  }
+ },
  "scenes": [
   {
    "id": 0,
@@ -136,13 +308,23 @@
    "title_text": "CUỘC GỌI LÚC 3 GIỜ SÁNG",
    "fade_in": 1,
    "fade_out": 1,
-   "layers": []
+   "layers": [],
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0.2,
+     "loop": true,
+     "length": 3,
+     "volume": 0.5,
+     "fade_in": 1
+    }
+   ]
   },
   {
    "id": 1,
    "bg": "bg1_bedroom",
    "fade_in": 1.2,
-   "text": "Đêm đó, mẹ tôi về quê. Tôi ở nhà một mình.",
+   "text": "Đêm hôm đó, mẹ tôi có việc phải về quê gấp, để lại tôi một mình trong căn nhà vốn đã quá rộng cho hai mẹ con.",
    "camera": {
     "zoom": [
      1,
@@ -160,12 +342,21 @@
      "y": 0.95,
      "h": 0.5
     }
+   ],
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "loop": true,
+     "length": 6,
+     "fade_out": 0.5
+    }
    ]
   },
   {
    "id": 2,
    "bg": "bg1_bedroom",
-   "text": "Đúng ba giờ sáng, điện thoại của tôi bỗng reo lên.",
+   "text": "Tôi đang ngủ say thì chiếc điện thoại đặt cạnh gối bỗng đổ chuông inh ỏi, đúng lúc đồng hồ trên bàn nhảy sang ba giờ sáng.",
    "shake": {
     "amp": 5,
     "from": 0,
@@ -178,13 +369,22 @@
      "y": 0.95,
      "h": 0.54
     }
+   ],
+   "sfx": [
+    {
+     "sound": "phone_ring",
+     "at": 0.02,
+     "loop": true,
+     "length": 6,
+     "fade_out": 0.3
+    }
    ]
   },
   {
    "id": 3,
    "bg": "bg1_bedroom",
    "bg_dim": 0.35,
-   "text": "Người gọi… là số điện thoại của chính tôi.",
+   "text": "Tôi nheo mắt nhìn vào màn hình, và tim tôi như ngừng đập, vì người đang gọi đến lại chính là số điện thoại của tôi.",
    "camera": {
     "zoom": [
      1,
@@ -199,12 +399,32 @@
      "y": 0.96,
      "h": 0.9
     }
+   ],
+   "sfx": [
+    {
+     "sound": "phone_ring",
+     "at": 0,
+     "loop": true,
+     "length": 3,
+     "fade_out": 0.8
+    }
    ]
   },
   {
    "id": 4,
    "bg": "bg1_bedroom",
-   "text": "Tôi run run bấm nghe. Đầu dây bên kia, một giọng khàn đặc thì thầm: Ra mở cửa đi.",
+   "text": [
+    "Tay tôi run run bấm nghe. Đầu dây bên kia không có ai lên tiếng, chỉ có tiếng rè rè kéo dài, rồi một giọng khàn đặc thì thầm sát bên tai tôi:",
+    {
+     "pause": 0.5
+    },
+    {
+     "say": "Ra mở cửa đi.",
+     "voice": {
+      "preset": "vn_giong_dien_thoai"
+     }
+    }
+   ],
    "layers": [
     {
      "sprite": "boy_hoodie/F4_phone_call_scared",
@@ -219,13 +439,24 @@
      "h": 0.95,
      "start": 0.55
     }
+   ],
+   "sfx": [
+    {
+     "sound": "reverse_swell",
+     "at": 0.5
+    },
+    {
+     "sound": "breath_close",
+     "at": 0.6,
+     "volume": 0.6
+    }
    ]
   },
   {
    "id": 5,
    "bg": "bg1_bedroom",
    "min_duration": 3,
-   "text": "Rồi máy tắt.",
+   "text": "Cuộc gọi tắt ngấm. Tôi nằm im trong bóng tối, cố tự nhủ rằng đó chỉ là trò đùa của một kẻ rảnh rỗi nào đó.",
    "layers": [
     {
      "frames": [
@@ -241,16 +472,21 @@
      "y": 1.02,
      "h": 0.95
     }
+   ],
+   "sfx": [
+    {
+     "sound": "hangup_tone",
+     "at": 0.08
+    }
    ]
   },
   {
    "id": 6,
    "bg": "bg1_bedroom",
-   "text": "Cốc. Cốc. Cốc. Có tiếng ai đó gõ cửa.",
    "shake": {
     "amp": 3,
-    "from": 0,
-    "to": 0.5
+    "from": 0.06,
+    "to": 0.3
    },
    "layers": [
     {
@@ -259,12 +495,32 @@
      "y": 0.95,
      "h": 0.5
     }
-   ]
+   ],
+   "sfx": [
+    {
+     "sound": "knock_3",
+     "at": 0.06
+    },
+    {
+     "sound": "knock_3",
+     "at": 0.58,
+     "volume": 1.3
+    },
+    {
+     "sound": "heartbeat",
+     "at": 0.3,
+     "loop": true,
+     "length": 3.5,
+     "volume": 0.6,
+     "fade_in": 0.8
+    }
+   ],
+   "duration": 5.0
   },
   {
    "id": 7,
    "bg": "bg1_bedroom",
-   "text": "Tiếng gõ phát ra từ cửa chính. Tôi cầm đèn pin, rón rén bước ra ngoài.",
+   "text": "Tiếng gõ vọng lại từ phía cửa chính. Tôi với lấy chiếc đèn pin trên bàn, rồi rón rén bước ra khỏi phòng, cố không gây ra một tiếng động nào.",
    "layers": [
     {
      "sprite": "boy_hoodie/G4_rub_sleepy_eyes",
@@ -291,12 +547,27 @@
      "breathe": 0,
      "start": 0.35
     }
+   ],
+   "sfx": [
+    {
+     "sound": "flashlight_click",
+     "at": 0.3
+    },
+    {
+     "sound": "floor_creak",
+     "at": 0.5
+    },
+    {
+     "sound": "floor_creak",
+     "at": 0.78,
+     "volume": 0.7
+    }
    ]
   },
   {
    "id": 8,
    "bg": "bg2_hallway",
-   "text": "Hành lang tối om. Mỗi bước chân, sàn gỗ lại kêu kẽo kẹt.",
+   "text": "Hành lang tối om, chỉ có vệt sáng nhỏ từ chiếc đèn pin quét qua quét lại, và mỗi bước chân của tôi lại khiến sàn gỗ kêu lên kẽo kẹt.",
    "layers": [
     {
      "frames": [
@@ -316,12 +587,27 @@
      "face": "auto",
      "breathe": 0
     }
+   ],
+   "sfx": [
+    {
+     "sound": "footsteps_slow",
+     "at": 0.05,
+     "loop": true,
+     "length": 5,
+     "volume": 0.8,
+     "fade_out": 0.4
+    },
+    {
+     "sound": "floor_creak",
+     "at": 0.6,
+     "volume": 0.6
+    }
    ]
   },
   {
    "id": 9,
    "bg": "bg2_hallway",
-   "text": "Tiếng gõ cửa mỗi lúc một to hơn.",
+   "text": "Càng đến gần, tiếng gõ cửa càng lớn hơn, dồn dập hơn, như thể người đứng bên ngoài đang mất dần sự kiên nhẫn.",
    "camera": {
     "zoom": [
      1,
@@ -360,23 +646,58 @@
      ],
      "breathe": 0
     }
+   ],
+   "sfx": [
+    {
+     "sound": "knock_3",
+     "at": 0.15,
+     "volume": 1.4
+    },
+    {
+     "sound": "footsteps_slow",
+     "at": 0,
+     "loop": true,
+     "length": 3,
+     "volume": 0.7
+    }
    ]
   },
   {
    "id": 10,
    "bg": "bg3_front_door",
-   "text": "Rồi tiếng gõ dừng hẳn. Ngoài cửa, giọng mẹ tôi vang lên: Khoa ơi, mẹ đây. Mở cửa cho mẹ với.",
+   "text": [
+    "Rồi tiếng gõ đột ngột dừng hẳn. Giữa căn nhà im phăng phắc, tôi nghe thấy giọng mẹ vang lên từ phía bên kia cánh cửa:",
+    {
+     "pause": 0.4
+    },
+    {
+     "say": "Khoa ơi, mẹ đây. Mở cửa cho mẹ với con.",
+     "voice": {
+      "preset": "vn_me_sau_cua"
+     }
+    }
+   ],
    "layers": [
     {
      "sprite": "boy_hoodie/B1_stand_worried",
      "x": 0.74
+    }
+   ],
+   "sfx": [
+    {
+     "sound": "heartbeat",
+     "at": 0.1,
+     "loop": true,
+     "length": 8,
+     "volume": 0.5,
+     "fade_in": 1.5
     }
    ]
   },
   {
    "id": 11,
    "bg": "bg3_front_door",
-   "text": "Mẹ? Sao mẹ về giờ này? Tôi hỏi.",
+   "text": "Tôi buột miệng hỏi lại: mẹ ơi, sao mẹ lại về vào giờ này?",
    "layers": [
     {
      "sprite": "boy_hoodie/A3_call_out_hand_mouth",
@@ -387,7 +708,7 @@
   {
    "id": 12,
    "bg": "bg3_front_door",
-   "text": "Mẹ quên chìa khoá à?",
+   "text": "Mẹ quên mang theo chìa khoá à?",
    "layers": [
     {
      "frames": [
@@ -406,7 +727,18 @@
   {
    "id": 13,
    "bg": "bg3_front_door",
-   "text": "Giọng mẹ đáp: Nhanh lên con, ngoài này lạnh lắm.",
+   "text": [
+    "Giọng mẹ đáp lại, vẫn dịu dàng và ấm áp như mọi ngày:",
+    {
+     "pause": 0.3
+    },
+    {
+     "say": "Nhanh lên con, ngoài này lạnh lắm.",
+     "voice": {
+      "preset": "vn_me_sau_cua"
+     }
+    }
+   ],
    "layers": [
     {
      "frames": [
@@ -434,12 +766,22 @@
    ],
    "camera": {
     "zoom": 1
-   }
+   },
+   "sfx": [
+    {
+     "sound": "footsteps_slow",
+     "at": 0,
+     "loop": true,
+     "length": 2.5,
+     "volume": 0.6,
+     "fade_out": 0.3
+    }
+   ]
   },
   {
    "id": 13.5,
    "bg": "bg3_front_door",
-   "text": "Tôi đưa tay về phía tay nắm cửa.",
+   "text": "Tôi thở phào nhẹ nhõm, kiễng chân với lấy tay nắm cửa, chỉ cần xoay nhẹ một cái nữa thôi là cánh cửa sẽ mở ra.",
    "fade_in": 0,
    "camera": {
     "zoom": [
@@ -478,12 +820,25 @@
      },
      "start": 0.45
     }
+   ],
+   "sfx": [
+    {
+     "sound": "reverse_swell",
+     "at": 0.2,
+     "volume": 0.8
+    },
+    {
+     "sound": "door_handle_rattle",
+     "at": 0.62,
+     "length": 0.5,
+     "volume": 0.6
+    }
    ]
   },
   {
    "id": 14,
    "bg": "bg3_front_door",
-   "text": "Đúng lúc đó, điện thoại trong tay tôi rung lên.",
+   "text": "Đúng lúc đó, chiếc điện thoại trong tay tôi khẽ rung lên.",
    "shake": {
     "amp": 3,
     "from": 0.1,
@@ -501,13 +856,20 @@
      "x": 0.56,
      "start": 0.35
     }
+   ],
+   "sfx": [
+    {
+     "sound": "phone_vibrate",
+     "at": 0.25,
+     "volume": 2.0
+    }
    ]
   },
   {
    "id": 15,
    "bg": "bg3_front_door",
    "bg_dim": 0.35,
-   "text": "Là tin nhắn của mẹ: Mẹ vẫn ở quê. Mất điện cả xóm. Con ngủ sớm đi nhé.",
+   "text": "Là tin nhắn của mẹ. Mẹ nhắn rằng mẹ vẫn đang ở dưới quê, cả xóm bị mất điện từ tối, và dặn tôi nhớ đi ngủ sớm.",
    "camera": {
     "zoom": [
      1,
@@ -528,7 +890,7 @@
   {
    "id": 16,
    "bg": "bg3_front_door",
-   "text": "Vậy… ai đang đứng ngoài cửa?",
+   "text": "Tôi đứng chết lặng. Nếu mẹ vẫn đang ở quê… thì ai đang đứng ngoài cánh cửa kia?",
    "flash": [
     0.45
    ],
@@ -554,12 +916,30 @@
      "start": 0.45
     }
    ],
-   "fade_in": 0
+   "fade_in": 0,
+   "sfx": [
+    {
+     "sound": "ghost_stinger",
+     "at": 0.44,
+     "volume": 1.6
+    }
+   ]
   },
   {
    "id": 17,
    "bg": "bg3_front_door",
-   "text": "Tiếng cào cửa vang lên, chậm rãi. Giọng nói kia trầm dần, méo đi: Khoa… mở… cửa…",
+   "text": [
+    "Bên ngoài vang lên tiếng móng tay cào chậm rãi lên mặt gỗ, còn giọng nói ấy thì trầm dần xuống, méo mó đi đến rợn người:",
+    {
+     "pause": 0.5
+    },
+    {
+     "say": "Khoa… [0.6] mở… [0.6] cửa…",
+     "voice": {
+      "preset": "vn_ma_me"
+     }
+    }
+   ],
    "shake": {
     "amp": 1.5,
     "from": 0,
@@ -582,13 +962,34 @@
      "y": 1,
      "h": 0.6
     }
+   ],
+   "sfx": [
+    {
+     "sound": "door_scratch",
+     "at": 0.02,
+     "loop": true,
+     "length": 7,
+     "fade_out": 1
+    },
+    {
+     "sound": "heartbeat",
+     "at": 0,
+     "loop": true,
+     "length": 8,
+     "volume": 0.8
+    },
+    {
+     "sound": "breath_close",
+     "at": 0.55,
+     "volume": 0.5
+    }
    ]
   },
   {
    "id": 18,
    "bg": "bg3b_peephole",
    "flicker": 0.25,
-   "text": "Tôi nín thở, ghé mắt nhìn qua lỗ mắt mèo. Hành lang bên ngoài… trống trơn.",
+   "text": "Tôi bịt chặt miệng, run rẩy ghé mắt nhìn qua lỗ mắt mèo. Ngoài hành lang trống trơn, không hề có một bóng người nào cả.",
    "camera": {
     "zoom": [
      1,
@@ -609,6 +1010,22 @@
      "start": 0.8,
      "tint": false,
      "glow": false
+    }
+   ],
+   "sfx": [
+    {
+     "sound": "flicker_buzz",
+     "at": 0.15,
+     "volume": 0.6
+    },
+    {
+     "sound": "reverse_swell",
+     "at": 0.62
+    },
+    {
+     "sound": "whisper_eerie",
+     "at": 0.8,
+     "volume": 0.7
     }
    ]
   },
@@ -642,12 +1059,19 @@
      "glow": false
     }
    ],
-   "fade_in": 0
+   "fade_in": 0,
+   "sfx": [
+    {
+     "sound": "ghost_stinger",
+     "at": 0.0,
+     "volume": 2.2
+    }
+   ]
   },
   {
    "id": 20,
    "bg": "bg3_front_door",
-   "text": "Tôi ngã ngửa ra sau.",
+   "text": "Tôi hét lên một tiếng rồi ngã ngửa ra sau, lưng đập mạnh xuống sàn nhà lạnh ngắt.",
    "shake": {
     "amp": 12,
     "from": 0,
@@ -659,12 +1083,19 @@
      "x": 0.6,
      "h": 0.48
     }
+   ],
+   "sfx": [
+    {
+     "sound": "body_fall",
+     "at": 0.05,
+     "volume": 1.2
+    }
    ]
   },
   {
    "id": 21,
    "bg": "bg2_hallway",
-   "text": "Rồi vùng dậy, chạy thục mạng về phòng.",
+   "text": "Chẳng kịp nghĩ ngợi gì thêm, tôi vùng dậy và chạy thục mạng về phòng mình.",
    "layers": [
     {
      "frames": [
@@ -683,12 +1114,18 @@
      "face": "auto",
      "breathe": 0
     }
+   ],
+   "sfx": [
+    {
+     "sound": "footsteps_run",
+     "at": 0.05
+    }
    ]
   },
   {
    "id": 22,
    "bg": "bg1_bedroom",
-   "text": "Tôi tự nhủ: nó không vào được… nếu tôi không mở cửa.",
+   "text": "Tôi thu mình vào một góc, liên tục tự nhủ rằng nó sẽ không thể vào được, chừng nào tôi còn chưa tự tay mở cửa cho nó.",
    "layers": [
     {
      "sprite": "boy_hoodie/E3_crouch_hug_knees_shaking",
@@ -696,12 +1133,26 @@
      "h": 0.4,
      "jitter": 2
     }
+   ],
+   "sfx": [
+    {
+     "sound": "heartbeat",
+     "at": 0,
+     "loop": true,
+     "length": 5,
+     "volume": 0.9
+    },
+    {
+     "sound": "door_bang",
+     "at": 0.75,
+     "volume": 0.8
+    }
    ]
   },
   {
    "id": 23,
    "bg": "bg1_bedroom",
-   "text": "Tiếng đập cửa dồn dập… rồi đột ngột im bặt.",
+   "text": "Tiếng đập cửa vang lên dồn dập, như muốn phá tung cả căn nhà… rồi bất chợt im bặt.",
    "shake": {
     "amp": 6,
     "from": 0,
@@ -713,13 +1164,23 @@
      "x": 0.62,
      "h": 0.4
     }
+   ],
+   "sfx": [
+    {
+     "sound": "door_bang",
+     "at": 0.0,
+     "loop": true,
+     "length": 2.2,
+     "volume": 1.2,
+     "fade_out": 0.15
+    }
    ]
   },
   {
    "id": 24,
    "bg": "bg1_bedroom",
    "min_duration": 3,
-   "text": "Mọi thứ im lặng.",
+   "text": "Mọi thứ chìm vào im lặng, chỉ còn tiếng tim tôi đập thình thịch trong lồng ngực.",
    "layers": [
     {
      "frames": [
@@ -734,16 +1195,38 @@
      "y": 1.02,
      "h": 0.95
     }
+   ],
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0.15,
+     "loop": true,
+     "length": 3,
+     "volume": 0.6
+    }
    ]
   },
   {
    "id": 25,
    "bg": "bg1_bedroom",
-   "text": "Tôi nghĩ… nó đã đi rồi.",
+   "text": "Tôi bật đèn pin soi về phía cửa phòng, và bắt đầu tin rằng thứ đó đã bỏ đi thật rồi.",
    "layers": [
     {
      "sprite": "boy_hoodie/F1_flashlight_forward",
      "x": 0.6
+    }
+   ],
+   "sfx": [
+    {
+     "sound": "flashlight_click",
+     "at": 0.12
+    },
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "loop": true,
+     "length": 3,
+     "volume": 0.5
     }
    ]
   },
@@ -751,7 +1234,18 @@
    "id": 26,
    "bg": "bg1_bedroom",
    "bg_dim": 0.35,
-   "text": "Điện thoại lại rung. Một tin nhắn mới, từ chính số của tôi: Cảm ơn con đã để cửa sau mở.",
+   "text": [
+    "Điện thoại lại rung lên lần nữa. Một tin nhắn mới, gửi đến từ chính số điện thoại của tôi:",
+    {
+     "pause": 0.6
+    },
+    {
+     "say": "Cảm ơn con… đã để cửa sau mở.",
+     "voice": {
+      "preset": "vn_ma_me"
+     }
+    }
+   ],
    "camera": {
     "zoom": [
      1,
@@ -766,6 +1260,13 @@
      "x": 0.5,
      "y": 0.96,
      "h": 0.9
+    }
+   ],
+   "sfx": [
+    {
+     "sound": "phone_vibrate",
+     "at": 0.03,
+     "volume": 2.0
     }
    ]
   },
@@ -783,12 +1284,30 @@
      "sprite": "boy_hoodie/F5_drop_phone_shock",
      "x": 0.6
     }
+   ],
+   "sfx": [
+    {
+     "sound": "phone_drop",
+     "at": 0.18,
+     "volume": 2.4
+    }
    ]
   },
   {
    "id": 28,
    "bg": "bg1_bedroom",
-   "text": "Sau lưng tôi, có tiếng ai đó thì thầm: Mẹ về rồi đây.",
+   "text": [
+    "Và ngay sau lưng tôi, gần đến mức tôi cảm nhận được hơi thở lạnh buốt, có tiếng ai đó thì thầm:",
+    {
+     "pause": 0.6
+    },
+    {
+     "say": "Mẹ về rồi đây.",
+     "voice": {
+      "preset": "vn_ma_me"
+     }
+    }
+   ],
    "camera": {
     "zoom": [
      1,
@@ -803,6 +1322,17 @@
     {
      "sprite": "boy_hoodie/B3_look_back_over_shoulder",
      "x": 0.6
+    }
+   ],
+   "sfx": [
+    {
+     "sound": "breath_close",
+     "at": 0.5,
+     "volume": 0.8
+    },
+    {
+     "sound": "reverse_swell",
+     "at": 0.72
     }
    ]
   },
@@ -832,15 +1362,22 @@
      "ease": "out"
     }
    ],
-   "fade_in": 0
+   "fade_in": 0,
+   "sfx": [
+    {
+     "sound": "ghost_stinger",
+     "at": 0.0,
+     "volume": 2.4
+    }
+   ]
   },
   {
    "id": 30,
    "bg": "black",
    "fade_in": 0,
-   "text": "Đêm nay, cửa nhà bạn đã khoá hết chưa?",
+   "text": "Đêm nay, trước khi đi ngủ, bạn đã kiểm tra hết các cánh cửa trong nhà mình chưa?",
    "min_duration": 4.5,
-   "title_text": "Đêm nay, cửa nhà bạn đã khoá hết chưa?",
+   "title_text": "Đêm nay, bạn đã kiểm tra hết các cánh cửa trong nhà mình chưa?",
    "fade_out": 1.5,
    "layers": []
   }

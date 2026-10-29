@@ -18,7 +18,10 @@ in the storyboard:
 
 Scene keys (all optional except bg):
   bg              background name in assets/backgrounds, or "black"
-  text            narration (read by the TTS voice, also shown as subtitle)
+  text            narration (TTS + subtitle). "[0.6]" = 0.6 s pause. Or a list of
+                  strings / {"say": "...", "voice": {...}} / {"pause": s} for per-line voices
+  voice           per-scene voice overrides (merged over settings.voice; "preset" names a
+                  voice from the storyboard's "voice_presets" or assets/audio/voice_presets.json)
   duration        fixed length (s); otherwise narration + lead/tail, at least min_duration
   layers          list of sprites / phone UI drawn in order, see draw_layer()
   camera          {"keys": [{"p", "zoom", "x", "y", "ease"}...], "handheld": n}  or
@@ -43,6 +46,7 @@ import hashlib
 import json
 import math
 import random
+import re
 import subprocess
 import textwrap
 import wave
@@ -60,15 +64,27 @@ DEFAULTS = {
     "voice": {
         "piper": "piper",            # piper-tts executable (PATH), or set in config.local.json
         "models_dir": "voices",      # folder with <model>.onnx + .onnx.json (relative to the project)
+        "engine": "piper",           # "piper" or "vieneu" (VieNeu-TTS: preset voices + voice cloning)
+        "vieneu_voice": "preset:Hải Đăng",  # VieNeu: "preset:<name>" or "clone:<id>" (tools/clone_voice.py)
+        "vieneu_python": "python3", "dubber_root": "",  # where vieneu + the Dubber package live
         "model": "ngochuyennew", "length_scale": 1.0, "sentence_silence": 0.3,
-        "sample_rate": 22050,
+        # phrasing (see tts): pauses shorter than this are read as a comma, not a cut;
+        # soften_endings "none" | "final" | "all" (full stops read as commas);
+        # trim_chunks drops engine silence around each chunk (+ chunk_gap seconds)
+        "merge_pause_below": 0.45, "soften_endings": "none", "trim_chunks": True, "chunk_gap": 0.12,
+        "max_sec_per_word": 0.5,     # run-on guard: longer per word = the engine kept going
+        "max_inner_pause": 0.35,     # silences inside a line are cut to this (0 = keep)
+        # voice colour (see voice_filters): pitch (semitones), tempo, reverb 0..1,
+        # lowpass/highpass Hz, volume dB; piper: noise_scale (expressiveness), noise_w (rhythm variation)
+        "sample_rate": 44100,        # narration rate; every engine/preset is resampled to it
     },
     "timing": {"lead": 0.4, "tail": 0.7, "min_duration": 2.5, "fade_in": 0.15, "fade_out": 0.0},
     "audio": {"sample_rate": 44100, "narration_volume": 1.0, "sfx_volume": 1.0, "music_volume": 0.5,
               "duck": 0.35,            # music gain while narration speaks
               "placeholder_beep": True,  # audible stand-in for sounds not in the library yet
               "trim_silence": True, "trim_threshold": 0.08,  # fraction of the file's peak
-              "normalize_db": -18},  # loudness of every sound before volume; null = as recorded
+              "normalize_db": -18,
+              "limiter_ceiling_db": -2.0},  # loudness of every sound before volume; null = as recorded
     "fonts": {"regular": "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
               "bold": "/System/Library/Fonts/Supplemental/Arial Bold.ttf"},
     "look": {
@@ -80,7 +96,9 @@ DEFAULTS = {
         "bob_hz": 1.6, "breathe_hz": 0.35,
     },
     "subtitles": {"enabled": True, "size": 0.042, "line_height": 0.055, "bottom": 0.06,
-                  "wrap": 48, "color": [240, 240, 240], "stroke": [0, 0, 0]},
+                  "wrap": 48, "color": [240, 240, 240], "stroke": [0, 0, 0],
+                  "split": "sentence",   # "sentence": one sentence at a time, timed with the voice; "none": whole text
+                  "min_chars": 18},      # shorter sentences are shown together with the next
     "title": {"size": 0.06, "color": [225, 225, 230]},
     "phone": {"clock": "03:00", "call_label": "Cuộc gọi đến…", "call_sub": "Di động",
               "decline": "Từ chối", "accept": "Trả lời", "message_time": "Vừa xong",
@@ -89,6 +107,7 @@ DEFAULTS = {
               "tint": True, "glow": False, "breathe": 0.0},
 }
 CHARACTERS: dict = {}
+STORY: dict = {}
 
 
 def deep_merge(base: dict, over: dict) -> dict:
@@ -112,27 +131,237 @@ def font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
 
 # ---------------------------------------------------------------- narration
 
-def tts(text: str, voice: dict) -> np.ndarray:
-    """Narration as int16 mono samples, cached in build/tts/."""
-    key = hashlib.sha1(json.dumps([text, voice], sort_keys=True).encode()).hexdigest()[:16]
+PAUSE = re.compile(r"\[(\d+(?:\.\d+)?)\]")
+
+
+@lru_cache(maxsize=None)
+def library_presets() -> dict:
+    path = ROOT / "assets/audio/voice_presets.json"
+    return json.loads(path.read_text()).get("presets", {}) if path.exists() else {}
+
+
+def voice_presets() -> dict:
+    """Shared library (assets/audio/voice_presets.json) < the storyboard's own "voice_presets",
+    so a storyboard can carry the exact voices it was made with."""
+    return {**library_presets(), **STORY.get("voice_presets", {})}
+
+
+def resolve_voice(*layers: dict | None) -> dict:
+    """Layers applied left to right; in each layer its "preset" goes first, then the
+    layer's own keys. Pass only what was written (not defaults merged in), otherwise
+    the defaults would override the preset — use narration_voice() for scenes."""
+    out = {}
+    for layer in layers:
+        if not layer:
+            continue
+        if layer.get("preset"):
+            out = deep_merge(out, voice_presets()[layer["preset"]])
+        out = deep_merge(out, {k: v for k, v in layer.items() if k != "preset"})
+    return out
+
+
+def narration_voice(scene_voice: dict | None = None) -> dict:
+    """Voice for a scene: defaults < storyboard settings.voice (its preset, then its keys) < scene voice."""
+    written = deep_merge(STORY.get("voice", {}), STORY.get("settings", {}).get("voice", {}))
+    return {**resolve_voice(DEFAULTS["voice"], written, scene_voice), "sample_rate": CFG["voice"]["sample_rate"]}
+
+
+def speech_items(text) -> list:
+    """Scene text -> [("say", str, voice_override) | ("pause", seconds)].
+    text: "plain [0.6] text" (a [n] marker = n seconds of silence) or a list of
+    strings / {"say": str, "voice": {...}} / {"pause": n}."""
+    items = []
+    for part in (text if isinstance(text, list) else [text]):
+        if isinstance(part, dict) and "pause" in part:
+            items.append(("pause", float(part["pause"])))
+            continue
+        say, over = (part, None) if isinstance(part, str) else (part["say"], part.get("voice"))
+        pos = 0
+        for m in PAUSE.finditer(say):
+            if say[pos:m.start()].strip():
+                items.append(("say", say[pos:m.start()].strip(), over))
+            items.append(("pause", float(m.group(1))))
+            pos = m.end()
+        if say[pos:].strip():
+            items.append(("say", say[pos:].strip(), over))
+    return items
+
+
+def spoken_text(text) -> str:
+    """What the subtitle shows: the spoken words without pause markers."""
+    return " ".join(i[1] for i in speech_items(text) if i[0] == "say")
+
+
+def voice_filters(v: dict, sr: int) -> str:
+    """ffmpeg filter chain for the voice colour settings (piper itself has no pitch control)."""
+    f = [f"aresample={sr}"]  # engines output 22.05k (piper) / 48k (VieNeu): work at one known rate
+    if v.get("pitch"):  # semitones; resample trick keeps the duration
+        r = 2 ** (v["pitch"] / 12)
+        f += [f"asetrate={sr * r:.0f}", f"aresample={sr}", f"atempo={1 / r:.5f}"]
+    if v.get("tempo") and v["tempo"] != 1:
+        f.append(f"atempo={v['tempo']}")
+    if v.get("highpass"):
+        f.append(f"highpass=f={v['highpass']}")
+    if v.get("lowpass"):
+        f.append(f"lowpass=f={v['lowpass']}")
+    if v.get("reverb"):
+        a = v["reverb"]
+        f.append(f"aecho=0.8:0.88:45|95|160:{0.45 * a:.3f}|{0.32 * a:.3f}|{0.2 * a:.3f}")
+    if v.get("volume"):
+        f.append(f"volume={v['volume']}dB")
+    return ",".join(f)
+
+
+_VIENEU = None
+
+
+def vieneu(req: dict, v: dict) -> dict:
+    """Send one request to the VieNeu worker (started on first use, model loaded once)."""
+    global _VIENEU
+    if _VIENEU is None or _VIENEU.poll() is not None:
+        _VIENEU = subprocess.Popen([v["vieneu_python"], str(ROOT / "tools/vieneu_worker.py"), v["dubber_root"]],
+                                   stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True, encoding="utf-8")
+    _VIENEU.stdin.write(json.dumps(req, ensure_ascii=False) + "\n")
+    _VIENEU.stdin.flush()
+    reply = json.loads(_VIENEU.stdout.readline())
+    if not reply.get("ok"):
+        raise RuntimeError(f"VieNeu: {reply.get('error')}")
+    return reply
+
+
+# settings that change what a chunk sounds like, per engine (others don't invalidate the cache)
+_ENGINE_KEYS = {"piper": ("model", "length_scale", "sentence_silence", "noise_scale", "noise_w"),
+                "vieneu": ("vieneu_voice",)}
+_COLOUR_KEYS = ("pitch", "tempo", "highpass", "lowpass", "reverb", "volume", "sample_rate")
+
+
+def tts_chunk(text: str, v: dict) -> np.ndarray:
+    """One piece of speech as float32 at v["sample_rate"], cached in build/tts/.
+    piper: speed = length_scale; VieNeu has no speed control, use "tempo"."""
+    engine = v.get("engine", "piper")
+    ident = {k: v.get(k) for k in _ENGINE_KEYS[engine] + _COLOUR_KEYS}
+    key = hashlib.sha1(json.dumps([text, engine, ident] if engine != "piper" else [text, v],
+                                  sort_keys=True).encode()).hexdigest()[:16]
     path = ROOT / "build/tts" / f"{key}.wav"
+    sr = v["sample_rate"]
     if not path.exists():
         path.parent.mkdir(parents=True, exist_ok=True)
-        models = Path(voice["models_dir"]).expanduser()
-        model = (models if models.is_absolute() else ROOT / models) / f"{voice['model']}.onnx"
-        subprocess.run(
-            [voice["piper"], "-m", str(model), "-f", str(path),
-             "--length-scale", str(voice["length_scale"]),
-             "--sentence-silence", str(voice["sentence_silence"])],
-            input=text.encode(), check=True, capture_output=True)
+        raw = path.with_suffix(".raw.wav")
+        if engine == "vieneu":
+            vieneu({"cmd": "say", "text": text, "voice": v["vieneu_voice"], "out": str(raw)}, v)
+        else:
+            models = Path(v["models_dir"]).expanduser()
+            model = (models if models.is_absolute() else ROOT / models) / f"{v['model']}.onnx"
+            cmd = [v["piper"], "-m", str(model), "-f", str(raw),
+                   "--length-scale", str(v["length_scale"]), "--sentence-silence", str(v["sentence_silence"])]
+            for opt in ("noise_scale", "noise_w"):
+                if v.get(opt) is not None:
+                    cmd += [f"--{opt.replace('_', '-')}", str(v[opt])]
+            subprocess.run(cmd, input=text.encode(), check=True, capture_output=True)
+        chain = voice_filters(v, sr)
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(raw), "-ac", "1", "-ar", str(sr)]
+                       + (["-af", chain] if chain else []) + [str(path)], check=True)
+        raw.unlink()
     with wave.open(str(path)) as w:
-        assert w.getframerate() == voice["sample_rate"]
-        return np.frombuffer(w.readframes(w.getnframes()), np.int16)
+        return np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(np.float32) / 32768
+
+
+def phrase_plan(text, voice: dict) -> list:
+    """speech_items with short pauses folded into the phrase: TTS engines read every
+    chunk as a finished sentence (falling, lengthened last word), so a chunk is only
+    cut at pauses >= voice["merge_pause_below"]; shorter ones become a comma."""
+    limit = voice.get("merge_pause_below", 0) or 0
+    plan = []
+    for item in speech_items(text):
+        prev = plan[-1] if plan else None
+        if item[0] == "pause" and item[1] < limit and prev and prev[0] == "say":
+            plan[-1] = ("say", prev[1] if prev[1].rstrip()[-1:] in ",.…!?:;" else prev[1] + ",", prev[2], True)
+            continue
+        if item[0] == "say" and prev and prev[0] == "say" and len(prev) == 4 and prev[2] == item[2]:
+            plan[-1] = ("say", prev[1] + " " + item[1], item[2])  # glued across a folded pause
+            continue
+        plan.append(item)
+    return [p[:3] if p[0] == "say" else p for p in plan]
+
+
+def soften(text: str, mode: str) -> str:
+    """Lighter sentence endings for the TTS input (subtitles keep the real punctuation).
+    "final": the chunk's closing full stop becomes a comma; "all": every full stop does."""
+    if mode == "all":
+        text = re.sub(r"\.(?=\s|$)", ",", text)
+    elif mode == "final":
+        text = re.sub(r"\.\s*$", ",", text)
+    return text
+
+
+def squeeze_pauses(x: np.ndarray, sr: int, longest: float) -> np.ndarray:
+    """Shorten silences inside a chunk to at most `longest` seconds (engines sometimes
+    leave multi-second holes mid-sentence); pauses meant by the script are separate."""
+    hop = int(sr * 0.02)
+    n = len(x) // hop
+    if n == 0 or longest <= 0:
+        return x
+    loud = np.sqrt((x[: n * hop].reshape(n, hop) ** 2).mean(axis=1)) > 10 ** (-40 / 20)
+    keep, run = [], 0
+    max_run = int(longest / 0.02)
+    for i, a in enumerate(loud):
+        run = 0 if a else run + 1
+        if a or run <= max_run:
+            keep.append(i)
+    return np.concatenate([x[i * hop:(i + 1) * hop] for i in keep] + [x[n * hop:]])
+
+
+def trim_silence(x: np.ndarray, sr: int, keep: float = 0.06) -> np.ndarray:
+    """Drop the engine's own silence around a chunk; pauses come from the script."""
+    loud = np.flatnonzero(np.abs(x) > 10 ** (-40 / 20))
+    if not len(loud):
+        return x
+    k = int(keep * sr)
+    return x[max(0, loud[0] - k):loud[-1] + k]
+
+
+def speak_checked(text: str, v: dict, sr: int) -> np.ndarray:
+    """One line, guarded against run-on synthesis: neural engines sometimes keep
+    babbling after the last word (seen with a closing comma or "à?"). When the result
+    is far longer than the words need, try other endings and keep the shortest."""
+    words = len(text.split())
+    limit = max(1.2, words * v.get("max_sec_per_word", 0.5)) / v.get("tempo", 1.0)
+    first = soften(text, v.get("soften_endings", "none"))
+    bare = text.rstrip(" ,.…!?:;")
+    tried = []
+    for cand in dict.fromkeys([first, text, bare + ".", bare + "!"]):
+        chunk = tts_chunk(cand, v)
+        length = len(trim_silence(chunk, sr)) / sr
+        if length <= limit:
+            return chunk
+        tried.append((length, chunk))
+    return min(tried, key=lambda c: c[0])[1]
+
+
+def tts(text, voice: dict) -> np.ndarray:
+    """Narration for a scene's text as int16 at voice["sample_rate"] (pauses and per-line voices applied)."""
+    sr = voice["sample_rate"]
+    parts = []
+    for item in phrase_plan(text, voice):
+        if item[0] == "pause":
+            parts.append(np.zeros(round(item[1] * sr), np.float32))
+        else:
+            # every chunk at the scene's rate, whatever engine/preset made it;
+            # a line with its own preset is that voice, not the narrator plus changes
+            base = DEFAULTS["voice"] if item[2] and item[2].get("preset") else voice
+            v = {**resolve_voice(base, item[2]), "sample_rate": sr}
+            chunk = speak_checked(item[1], v, sr)
+            if v.get("max_inner_pause"):
+                chunk = squeeze_pauses(chunk, sr, v["max_inner_pause"])
+            parts.append(trim_silence(chunk, sr) if v.get("trim_chunks") else chunk)
+            if v.get("trim_chunks"):
+                parts.append(np.zeros(int(sr * v.get("chunk_gap", 0.12)), np.float32))
+    out = np.concatenate(parts) if parts else np.zeros(0, np.float32)
+    return (np.clip(out, -1, 1) * 32767).astype(np.int16)
 
 
 # ---------------------------------------------------------------- sound
 
-STORY: dict = {}
 
 
 @lru_cache(maxsize=None)
@@ -250,7 +479,8 @@ def mix_audio(plan, starts: dict, narr_spans, total: float, sr: int) -> np.ndarr
     out = voice + sfx + music
     # soft limiter: only the loud peaks above the knee are squeezed (a single
     # jump-scare hit must not turn the whole film down)
-    knee, ceil = 0.8, 0.89  # ceiling -1 dB leaves room for AAC overshoot
+    ceil = 10 ** (aud["limiter_ceiling_db"] / 20)  # below 0 dB: AAC encoding overshoots peaks
+    knee = ceil * 0.9
     mag = np.abs(out)
     over = mag > knee
     out[over] = np.sign(out[over]) * (knee + (ceil - knee) * np.tanh((mag[over] - knee) / (ceil - knee)))
@@ -562,6 +792,44 @@ def draw_layer(canvas: Image.Image, layer: dict, p: float, t: float, rng: random
         canvas.paste(im, (round(x), round(y)), im)
 
 
+def subtitle_parts(text: str, min_chars: int, max_chars: int = 96) -> list[str]:
+    """Sentences, long ones cut at commas so each part fits two subtitle lines."""
+    parts = []
+    for sent in (p for p in re.split(r"(?<=[.!?…:])\s+", text) if p.strip()):
+        cur = ""
+        for piece in re.split(r"(?<=,)\s+", sent):
+            if cur and len(cur) + 1 + len(piece) > max_chars:
+                parts.append(cur)
+                cur = piece
+            else:
+                cur = f"{cur} {piece}".strip()
+        parts.append(cur)
+    merged = []
+    for p in parts:
+        if merged and len(merged[-1]) < min_chars:
+            merged[-1] += " " + p
+        else:
+            merged.append(p)
+    return merged
+
+
+def subtitle_at(scene: dict, t: float) -> str:
+    """The subtitle shown at time t: with split "sentence", each sentence stays up for
+    its share (by length) of the time the narration speaks."""
+    text = spoken_text(scene["text"])
+    sub = CFG["subtitles"]
+    if sub.get("split", "none") != "sentence" or "_speech" not in scene:
+        return text
+    parts = subtitle_parts(text, sub.get("min_chars", 18), sub["wrap"] * 2)
+    start, length = scene["_speech"]
+    q = min(max((t - start) / max(length, 1e-6), 0), 0.9999) * sum(len(p) for p in parts)
+    for p in parts:
+        if q < len(p):
+            return p
+        q -= len(p)
+    return parts[-1]
+
+
 def subtitle(canvas: Image.Image, text: str):
     sub = CFG["subtitles"]
     W, H = canvas.size
@@ -619,7 +887,7 @@ def render_frame(scene: dict, t: float, dur: float, size: tuple[int, int], rng: 
         ImageDraw.Draw(canvas).text((W / 2, H / 2), scene["title_text"], font=font(round(H * ti["size"]), True),
                                     fill=tuple(ti["color"]), anchor="mm")
     elif scene.get("text") and CFG["subtitles"]["enabled"]:
-        subtitle(canvas, scene["text"])
+        subtitle(canvas, subtitle_at(scene, t))
 
     fi = scene.get("fade_in", timing["fade_in"])
     fo = scene.get("fade_out", timing["fade_out"])
@@ -673,11 +941,13 @@ def main():
     plan, starts, t0 = [], {}, 0.0
     narr_spans = []  # (start, end) seconds where narration speaks, for music ducking
     for s in scenes:
-        speech = tts(s["text"], voice) if s.get("text") else np.zeros(0, np.int16)
+        sv = narration_voice(s.get("voice"))
+        speech = tts(s["text"], sv) if s.get("text") else np.zeros(0, np.int16)
         speech_len = len(speech) / voice["sample_rate"]
         dur = s.get("duration") or max(s.get("min_duration", timing["min_duration"]),
                                        timing["lead"] + speech_len + timing["tail"])
         plan.append((s, dur, speech))
+        s["_speech"] = (timing["lead"], speech_len)  # for sentence-by-sentence subtitles
         starts[s["id"]] = t0
         if len(speech):
             narr_spans.append((t0 + timing["lead"], t0 + timing["lead"] + speech_len))
@@ -693,7 +963,7 @@ def main():
     plan = [(s, d) for s, d, _ in plan]
 
     total = sum(d for _, d in plan)
-    print(f"{len(plan)} scenes, {total:.1f}s, {size[0]}x{size[1]}@{fps} -> {out}")
+    print(f"{len(plan)} scenes, {total:.1f}s, {size[0]}x{size[1]}@{fps} -> {out}", flush=True)
     ff = subprocess.Popen(
         ["ffmpeg", "-y", "-loglevel", "error",
          "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{size[0]}x{size[1]}", "-r", str(fps), "-i", "-",
@@ -701,11 +971,15 @@ def main():
          "-c:v", "libx264", "-preset", video["preset"], "-crf", str(video.get("crf", 20)),
          "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-shortest", str(out)],
         stdin=subprocess.PIPE)
+    total_frames, done = sum(round(d * fps) for _, d in plan), 0
     for s, dur in plan:
         rng = random.Random(str(s["id"]))
         for i in range(round(dur * fps)):
             ff.stdin.write(render_frame(s, i / fps, dur, size, rng).tobytes())
-        print(f"  scene {s['id']:>4}  {dur:5.1f}s")
+            done += 1
+            if done % fps == 0:  # machine-readable, for the Studio progress bar
+                print(f"progress {done}/{total_frames}", flush=True)
+        print(f"  scene {s['id']:>4}  {dur:5.1f}s", flush=True)
     ff.stdin.close()
     ff.wait()
     wav_path.unlink()

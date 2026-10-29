@@ -21,10 +21,8 @@
    "preset": "veryfast"
   },
   "voice": {
-   "model": "ngochuyennew",
-   "length_scale": 1.1,
-   "sentence_silence": 0.35,
-   "sample_rate": 22050
+   "sample_rate": 44100,
+   "preset": "vn_hai_dang"
   },
   "timing": {
    "lead": 0.4,
@@ -123,7 +121,8 @@
    "placeholder_beep": true,
    "trim_silence": true,
    "trim_threshold": 0.08,
-   "normalize_db": -18
+   "normalize_db": -18,
+   "limiter_ceiling_db": -2.0
   }
  },
  "characters": {
@@ -423,6 +422,22 @@
    "volume": 1.0
   }
  ],
+ "voice_presets": {
+  "vn_hai_dang": {
+   "desc": "VieNeu nam: Hải Đăng",
+   "engine": "vieneu",
+   "vieneu_voice": "preset:Hải Đăng"
+  },
+  "vn_ma_me": {
+   "desc": "Giọng ma dựa trên VieNeu Ngọc Huyền: chậm, trầm sâu, vang",
+   "engine": "vieneu",
+   "vieneu_voice": "preset:Ngọc Huyền",
+   "tempo": 0.8,
+   "pitch": -5,
+   "lowpass": 3500,
+   "reverb": 0.55
+  }
+ },
  "scenes": [
   {
    "id": 0,
@@ -436,7 +451,7 @@
    "id": 1,
    "bg": "bg1_bedroom",
    "fade_in": 1.5,
-   "text": "Đêm đó, tôi tỉnh dậy vì khát nước. Đồng hồ chỉ đúng ba giờ sáng.",
+   "text": "Đêm đó, [0.3] tôi tỉnh dậy vì khát nước. [0.6] Đồng hồ chỉ đúng ba giờ sáng.",
    "camera": {
     "keys": [
      {
@@ -489,7 +504,7 @@
   {
    "id": 2,
    "bg": "bg1_bedroom",
-   "text": "Mẹ tôi đi công tác. Cả căn nhà chỉ còn mỗi mình tôi.",
+   "text": "Mẹ tôi đi công tác. [0.5] Cả căn nhà… [0.3] chỉ còn mỗi mình tôi.",
    "camera": {
     "keys": [
      {
@@ -548,7 +563,7 @@
   {
    "id": 3,
    "bg": "bg2_hallway",
-   "text": "Hành lang tối om. Tôi bật đèn pin, rón rén đi về phía bếp.",
+   "text": "Hành lang tối om. [0.5] Tôi bật đèn pin, [0.3] rón rén đi về phía bếp.",
    "camera": {
     "keys": [
      {
@@ -597,7 +612,7 @@
   {
    "id": 4,
    "bg": "bg2_hallway",
-   "text": "Và rồi tôi thấy nó. Ở cuối hành lang, có ai đó đang đứng quay lưng về phía tôi.",
+   "text": "Và rồi… [0.6] tôi thấy nó. [0.6] Ở cuối hành lang, [0.4] có ai đó đang đứng quay lưng về phía tôi.",
    "camera": {
     "keys": [
      {
@@ -653,7 +668,7 @@
    "id": 5,
    "bg": "bg2_hallway",
    "flicker": 0.12,
-   "text": "Tóc dài. Áo len màu be. Giống hệt chiếc áo mẹ tôi hay mặc.",
+   "text": "Tóc dài. [0.5] Áo len màu be. [0.6] Giống hệt chiếc áo mẹ tôi hay mặc.",
    "camera": {
     "keys": [
      {
@@ -697,7 +712,7 @@
   {
    "id": 6,
    "bg": "bg2_hallway",
-   "text": "Mẹ… mẹ về rồi à? Tôi thì thầm.",
+   "text": "Mẹ… [0.4] mẹ về rồi à? [0.5] Tôi thì thầm.",
    "camera": {
     "keys": [
      {
@@ -731,7 +746,7 @@
    "id": 7,
    "bg": "bg2_hallway",
    "flicker": 0.45,
-   "text": "Đèn pin chớp tắt. Khi nó sáng lại… người đó đã quay mặt về phía tôi. Và đứng gần hơn.",
+   "text": "Đèn pin chớp tắt. [0.6] Khi nó sáng lại… [0.6] người đó đã quay mặt về phía tôi. [0.5] Và đứng gần hơn.",
    "camera": {
     "keys": [
      {
@@ -797,7 +812,7 @@
   {
    "id": 8,
    "bg": "bg2_hallway",
-   "text": "Nó bắt đầu bước tới. Chậm rãi. Từng bước một.",
+   "text": "Nó bắt đầu bước tới. [0.5] Chậm rãi. [0.5] Từng bước một.",
    "camera": {
     "keys": [
      {
@@ -856,50 +871,73 @@
   {
    "id": 9,
    "bg": "bg2_hallway",
-   "text": "Tôi quay đầu bỏ chạy.",
+   "text": "Tôi quay đầu… [0.2] bỏ chạy.",
    "camera": {
     "keys": [
      {
       "p": 0,
-      "zoom": 1.25,
+      "zoom": 1.2,
       "x": 0.45,
       "y": 0.58
      },
      {
       "p": 1,
-      "zoom": 1.25,
-      "x": 0.2,
+      "zoom": 1.28,
+      "x": 0.42,
       "y": 0.58,
-      "ease": "in"
+      "ease": "smooth"
      }
     ],
-    "handheld": 8
+    "handheld": 9
    },
    "sfx": [
     {
      "sound": "footsteps_run",
-     "at": 0
+     "at": 0.18
     }
    ],
    "layers": [
     {
-     "cycle": "boy_hoodie/run",
-     "fps": 10,
+     "cycle": "ghost_mother/walk",
+     "fps": 2,
      "x": [
-      0.42,
-      -0.05
+      0.6,
+      0.5
+     ],
+     "y": 0.95,
+     "h": 0.62,
+     "face": "auto",
+     "glow": true,
+     "breathe": 0
+    },
+    {
+     "sprite": "boy_hoodie/L3_freeze_flashlight_off",
+     "x": 0.25,
+     "y": "floor",
+     "jitter": 2,
+     "end": 0.18
+    },
+    {
+     "cycle": "boy_hoodie/run",
+     "fps": 11,
+     "x": [
+      0.25,
+      -0.3
      ],
      "y": 0.97,
      "face": "auto",
-     "bob": 8,
-     "breathe": 0
+     "bob": 10,
+     "breathe": 0,
+     "start": 0.18,
+     "end": 0.75
     }
-   ]
+   ],
+   "min_duration": 3.2
   },
   {
    "id": 10,
    "bg": "bg1_bedroom",
-   "text": "Tôi đóng sầm cửa phòng, áp lưng vào cánh cửa.",
+   "text": "Tôi đóng sầm cửa phòng, [0.3] áp lưng vào cánh cửa.",
    "camera": {
     "keys": [
      {
@@ -941,7 +979,18 @@
   {
    "id": 11,
    "bg": "bg1_bedroom",
-   "text": "Cốc. Cốc. Cốc. Ngoài cửa, giọng mẹ tôi vang lên: Khoa ơi… mở cửa cho mẹ.",
+   "text": [
+    "Cốc. [0.5] Cốc. [0.5] Cốc. [0.6] Ngoài cửa, giọng mẹ tôi vang lên:",
+    {
+     "pause": 0.5
+    },
+    {
+     "say": "Khoa ơi… [0.7] mở cửa… [0.5] cho mẹ.",
+     "voice": {
+      "preset": "vn_ma_me"
+     }
+    }
+   ],
    "camera": {
     "keys": [
      {
@@ -988,7 +1037,7 @@
   {
    "id": 12,
    "bg": "bg1_bedroom",
-   "text": "Tay nắm cửa bắt đầu xoay. Tôi trượt người xuống, dùng hết sức ghì chặt cánh cửa.",
+   "text": "Tay nắm cửa bắt đầu xoay. [0.5] Tôi trượt người xuống, [0.3] dùng hết sức ghì chặt cánh cửa.",
    "camera": {
     "keys": [
      {
@@ -1037,7 +1086,7 @@
    "id": 13,
    "bg": "bg1_bedroom",
    "min_duration": 4.0,
-   "text": "Rồi… mọi thứ im bặt.",
+   "text": "Rồi… [0.8] mọi thứ im bặt.",
    "camera": {
     "keys": [
      {
@@ -1063,7 +1112,7 @@
   {
    "id": 14,
    "bg": "bg1_bedroom",
-   "text": "Tôi ngồi trùm chăn ở góc phòng rất lâu. Không dám thở mạnh.",
+   "text": "Tôi ngồi trùm chăn ở góc phòng rất lâu. [0.5] Không dám thở mạnh.",
    "camera": {
     "keys": [
      {
@@ -1101,7 +1150,7 @@
   {
    "id": 15,
    "bg": "bg1_bedroom",
-   "text": "Rồi tôi nghe thấy tiếng thì thầm. Nhưng nó không phát ra từ ngoài cửa.",
+   "text": "Rồi tôi nghe thấy tiếng thì thầm. [0.6] Nhưng nó không phát ra… [0.4] từ ngoài cửa.",
    "camera": {
     "keys": [
      {
@@ -1142,7 +1191,7 @@
   {
    "id": 16,
    "bg": "bg1_bedroom",
-   "text": "Mà là từ… ngay phía trên đầu tôi.",
+   "text": "Mà là từ… [0.7] ngay phía trên đầu tôi.",
    "camera": {
     "keys": [
      {
@@ -1248,7 +1297,7 @@
    "fade_in": 0,
    "fade_out": 2.0,
    "min_duration": 5.0,
-   "text": "Có những thứ… đã ở trong nhà từ trước khi bạn khoá cửa.",
+   "text": "Có những thứ… [0.6] đã ở trong nhà… [0.5] từ trước khi bạn khoá cửa.",
    "title_text": "Có những thứ… đã ở trong nhà từ trước khi bạn khoá cửa."
   }
  ]

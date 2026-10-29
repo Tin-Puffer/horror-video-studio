@@ -1,0 +1,237 @@
+{
+ "_note": "Đoạn đọc thử và các tổ hợp giọng cho tools/voice_demo.py. role -> preset trong voice_presets.json.",
+ "passage": [
+  {
+   "role": "narrator",
+   "text": "Đêm đó, tôi tỉnh dậy vì khát nước. [0.5] Đồng hồ chỉ đúng ba giờ sáng.",
+   "after": 0.7
+  },
+  {
+   "role": "narrator",
+   "text": "Ở cuối hành lang, [0.4] có ai đó đang đứng quay lưng về phía tôi.",
+   "after": 0.6
+  },
+  {
+   "role": "khoa",
+   "text": "Mẹ… [0.3] mẹ về rồi à?",
+   "after": 0.9
+  },
+  {
+   "role": "ghost",
+   "text": "Khoa ơi… [0.7] mở cửa… [0.5] cho mẹ.",
+   "after": 0.5
+  }
+ ],
+ "demos": [
+  {
+   "name": "01_goc_hien_tai",
+   "desc": "Giọng hiện tại, một giọng đọc hết",
+   "roles": {
+    "narrator": "goc",
+    "khoa": "goc",
+    "ghost": "goc"
+   }
+  },
+  {
+   "name": "02_ke_chuyen_tram",
+   "desc": "Nữ kể chậm, trầm, nghỉ dài (một giọng)",
+   "roles": {
+    "narrator": "ke_chuyen_tram",
+    "khoa": "ke_chuyen_tram",
+    "ghost": "ke_chuyen_tram"
+   }
+  },
+  {
+   "name": "03_thi_tham_u_am",
+   "desc": "Nữ thì thầm u ám (một giọng)",
+   "roles": {
+    "narrator": "thi_tham_u_am",
+    "khoa": "thi_tham_u_am",
+    "ghost": "thi_tham_u_am"
+   }
+  },
+  {
+   "name": "04_nam_tram",
+   "desc": "Nam trầm kể chuyện (một giọng)",
+   "roles": {
+    "narrator": "nam_tram",
+    "khoa": "nam_tram",
+    "ghost": "nam_tram"
+   }
+  },
+  {
+   "name": "05_nam_tre",
+   "desc": "Nam trẻ ngôi thứ nhất (một giọng)",
+   "roles": {
+    "narrator": "nam_tre",
+    "khoa": "nam_tre",
+    "ghost": "nam_tre"
+   }
+  },
+  {
+   "name": "06_nu_ke_va_giong_ma",
+   "desc": "Nữ kể trầm + thoại Khoa riêng + giọng ma riêng",
+   "roles": {
+    "narrator": "ke_chuyen_tram",
+    "khoa": "khoa_so_hai",
+    "ghost": "ma_me"
+   }
+  },
+  {
+   "name": "07_nam_tre_va_giong_ma",
+   "desc": "Nam trẻ kể (như Khoa) + thoại Khoa + giọng ma",
+   "roles": {
+    "narrator": "nam_tre",
+    "khoa": "khoa_so_hai",
+    "ghost": "ma_me"
+   }
+  },
+  {
+   "name": "08_nam_tram_va_giong_ma",
+   "desc": "Nam trầm kể + thoại Khoa + giọng ma",
+   "roles": {
+    "narrator": "nam_tram",
+    "khoa": "khoa_so_hai",
+    "ghost": "ma_me"
+   }
+  },
+  {
+   "name": "09_vieneu_hai_dang",
+   "desc": "VieNeu nam Hải Đăng kể + giọng ma VieNeu",
+   "roles": {
+    "narrator": "vn_hai_dang",
+    "khoa": "vn_hai_dang",
+    "ghost": "vn_ma_me"
+   }
+  },
+  {
+   "name": "10_vieneu_quang_son",
+   "desc": "VieNeu nam Quang Sơn kể + giọng ma VieNeu",
+   "roles": {
+    "narrator": "vn_quang_son",
+    "khoa": "vn_quang_son",
+    "ghost": "vn_ma_me"
+   }
+  },
+  {
+   "name": "11_vieneu_ngoc_huyen",
+   "desc": "VieNeu nữ Ngọc Huyền kể + giọng ma VieNeu",
+   "roles": {
+    "narrator": "vn_ngoc_huyen",
+    "khoa": "vn_ngoc_huyen",
+    "ghost": "vn_ma_me"
+   }
+  },
+  {
+   "name": "12_vieneu_thien_minh",
+   "desc": "VieNeu nam Thiện Minh kể + giọng ma VieNeu",
+   "roles": {
+    "narrator": "vn_thien_minh",
+    "khoa": "vn_thien_minh",
+    "ghost": "vn_ma_me"
+   }
+  },
+  {
+   "name": "13_clone_ke_chuyen",
+   "desc": "Giọng clone kể + giọng ma VieNeu",
+   "roles": {
+    "narrator": "clone_ke_chuyen",
+    "khoa": "clone_ke_chuyen",
+    "ghost": "vn_ma_me"
+   }
+  },
+  {
+   "name": "14_clone_nhu_hien_tai",
+   "desc": "Như video vừa rồi (cắt vụn, nhấn cuối nặng)",
+   "passage": "passage_3h",
+   "roles": {
+    "narrator": "clone_ke_chuyen",
+    "khoa": "clone_ke_chuyen",
+    "ghost": "vn_giong_dien_thoai"
+   },
+   "override": {
+    "merge_pause_below": 0,
+    "trim_chunks": false
+   }
+  },
+  {
+   "name": "15_clone_lien_mach",
+   "desc": "Đọc liền mạch, nghỉ ngắn thành dấu phẩy, tốc độ gốc",
+   "passage": "passage_3h",
+   "roles": {
+    "narrator": "clone_ke_chuyen",
+    "khoa": "clone_ke_chuyen",
+    "ghost": "vn_giong_dien_thoai"
+   },
+   "override": {}
+  },
+  {
+   "name": "16_clone_lien_mach_nhanh10",
+   "desc": "Liền mạch + nhanh hơn 10%",
+   "passage": "passage_3h",
+   "roles": {
+    "narrator": "clone_ke_chuyen",
+    "khoa": "clone_ke_chuyen",
+    "ghost": "vn_giong_dien_thoai"
+   },
+   "override": {
+    "tempo": 1.1
+   }
+  },
+  {
+   "name": "17_clone_nhanh10_nhe_cuoi",
+   "desc": "Liền mạch + nhanh 10% + nhẹ chữ cuối câu",
+   "passage": "passage_3h",
+   "roles": {
+    "narrator": "clone_ke_chuyen",
+    "khoa": "clone_ke_chuyen",
+    "ghost": "vn_giong_dien_thoai"
+   },
+   "override": {
+    "tempo": 1.1,
+    "soften_endings": "final"
+   }
+  },
+  {
+   "name": "18_clone_nhanh15_nhe_het",
+   "desc": "Liền mạch + nhanh 15% + nhẹ mọi dấu chấm",
+   "passage": "passage_3h",
+   "roles": {
+    "narrator": "clone_ke_chuyen",
+    "khoa": "clone_ke_chuyen",
+    "ghost": "vn_giong_dien_thoai"
+   },
+   "override": {
+    "tempo": 1.15,
+    "soften_endings": "all"
+   }
+  }
+ ],
+ "passage_3h": [
+  {
+   "role": "narrator",
+   "text": "Đêm đó, [0.3] mẹ tôi về quê. [0.6] Tôi ở nhà một mình.",
+   "after": 0.6
+  },
+  {
+   "role": "narrator",
+   "text": "Người gọi… [0.7] là số điện thoại của chính tôi.",
+   "after": 0.6
+  },
+  {
+   "role": "narrator",
+   "text": "Tôi run run bấm nghe. [0.4] Đầu dây bên kia, một giọng khàn đặc thì thầm:",
+   "after": 0.4
+  },
+  {
+   "role": "ghost",
+   "text": "Ra mở cửa đi.",
+   "after": 0.8
+  },
+  {
+   "role": "narrator",
+   "text": "Tôi tự nhủ: [0.4] nó không vào được… [0.6] nếu tôi không mở cửa.",
+   "after": 0.5
+  }
+ ]
+}

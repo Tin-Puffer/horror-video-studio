@@ -26,6 +26,7 @@ asset_requests entries:
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -100,6 +101,75 @@ def collect(story: dict):
     return sprites, cycles, bgs, hotspots, anchors
 
 
+PAUSE_MARK = re.compile(r"\[(\d+(?:\.\d+)?)\]")
+
+
+def narration_parts(text) -> list[tuple[str, bool]]:
+    """(text, is_narrator) for a scene's text (string or list form)."""
+    if isinstance(text, str):
+        return [(text, True)]
+    out = []
+    for part in text or []:
+        if isinstance(part, str):
+            out.append((part, True))
+        elif "say" in part:
+            out.append((part["say"], not part.get("voice")))
+    return out
+
+
+def rule_warnings(story: dict) -> list[str]:
+    """Agreed storyboard rules (scripts/QUY_TAC_KICH_BAN.md) that can be checked mechanically."""
+    w = []
+    st = story.get("settings", {})
+    used_presets = {st.get("voice", {}).get("preset")} | {
+        p.get("voice", {}).get("preset") for s in story["scenes"] if isinstance(s.get("text"), list)
+        for p in s["text"] if isinstance(p, dict)} | {s.get("voice", {}).get("preset") for s in story["scenes"]}
+    missing = sorted(p for p in used_presets - {None} if p not in story.get("voice_presets", {}))
+    if missing:
+        w.append(f"giọng chưa nhúng vào voice_presets của kịch bản: {missing} (§1)")
+    for block in ("audio", "timing", "subtitles"):
+        if block not in st:
+            w.append(f"thiếu settings.{block} (§1)")
+    if st.get("subtitles", {}).get("split") != "sentence":
+        w.append('phụ đề nên để settings.subtitles.split = "sentence" (§8)')
+    extra = sorted(set(story.get("voice_presets", {})) - {st.get("voice", {}).get("preset")})
+    if extra:
+        w.append(f"chỉ dùng giọng người kể — bỏ các giọng phụ khỏi voice_presets: {extra} (§3)")
+    for s in story["scenes"]:
+        sid = s["id"]
+        if s.get("voice"):
+            w.append(f"cảnh {sid}: có giọng riêng cho cảnh — chỉ dùng giọng người kể (§3)")
+        if any(not narrator for _, narrator in narration_parts(s.get("text"))):
+            w.append(f"cảnh {sid}: có câu đọc bằng giọng khác — để người kể thuật lại (§3)")
+        for txt, narrator in narration_parts(s.get("text")):
+            if narrator:
+                short = [float(n) for n in PAUSE_MARK.findall(txt) if float(n) < 0.5]
+                if short:
+                    w.append(f"cảnh {sid}: ngắt nghỉ ngắn {short} giữa lời kể — viết liền mạch, chỉ nghỉ ≥ 0.5s (§3)")
+                if re.search(r"\b(Cốc|Cộc|Rầm|Két|Bùm)\b[.!…]", txt):
+                    w.append(f"cảnh {sid}: tiếng động đang được đọc thành lời — dùng sfx (§3)")
+        words = sum(len(PAUSE_MARK.sub("", t).split()) for t, _ in narration_parts(s.get("text")))
+        if words > 45:
+            w.append(f"cảnh {sid}: lời đọc {words} chữ — tách cảnh (≤ ~40 chữ/cảnh) (§3)")
+        cam = s.get("camera", {})
+        keys = cam.get("keys", [])
+        if keys:
+            xs = [k["x"] for k in keys if "x" in k]
+            ys = [k["y"] for k in keys if "y" in k]
+            zmin = min([k.get("zoom", 1.0) for k in keys] or [1.0])
+            if zmin < 1.15 and (max(xs or [0]) - min(xs or [0]) > 0.02 or max(ys or [0]) - min(ys or [0]) > 0.02):
+                w.append(f"cảnh {sid}: camera lia khi zoom {zmin} < 1.15 — khung sẽ kẹt mép phông (§6)")
+        if s.get("text") is None and not s.get("sfx") and s.get("bg") != "black" and not s.get("title_text"):
+            w.append(f"cảnh {sid}: cảnh không lời mà cũng không có âm thanh (§7)")
+        for L in s.get("layers", []):
+            if L.get("flip") is not None:
+                w.append(f"cảnh {sid}: lớp dùng flip — dùng \"face\" (§5)")
+            moving = isinstance(L.get("x"), list) and abs(L["x"][1] - L["x"][0]) > 0.08
+            if moving and "sprite" in L and not L.get("pin"):
+                w.append(f"cảnh {sid}: {L['sprite']} di chuyển bằng ảnh tĩnh — dùng cycle (§5)")
+    return w
+
+
 def request_prompt(req: dict) -> tuple[str, list[str]]:
     kind = req["kind"]
     if kind == "sheet":
@@ -113,6 +183,9 @@ def request_prompt(req: dict) -> tuple[str, list[str]]:
         bg = load_json(BGS / "meta.json")
         return f"{bg.get('style_prompt', '')} {req['scene']}", bg.get("reference_images", [])
     if kind == "sound":
+        if req.get("prompt"):
+            return (f"{req['prompt']}\n(ElevenLabs Sound Effects, Duration {req.get('length', 'Auto')}; "
+                    f"hoặc tìm \"{req['search']}\" trên pixabay.com/sound-effects)", [])
         return (f"Tìm trên pixabay.com/sound-effects hoặc freesound.org với từ khoá: \"{req['search']}\" "
                 f"(độ dài {req.get('length', 'tuỳ')}). Tải về dạng mp3/wav.", [])
     if kind == "character_base":
@@ -166,6 +239,8 @@ def main():
         if not sound_exists(name):
             (pending if name in requested_sounds else errors).append(f"âm thanh {name} ({where})")
 
+    warnings = rule_warnings(story)
+
     used = [r for r in sprites if sprite_exists(r)]
     print(f"{path.name}: {len(story['scenes'])} cảnh, dùng lại {len(used)} sprite + "
           f"{sum(1 for b in bgs if (BGS / f'{b}.png').exists())} phông + "
@@ -202,6 +277,8 @@ def main():
         md.append("Không còn asset nào cần tạo.")
     out.write_text("\n".join(md))
 
+    for w in warnings:
+        print("  quy tắc:", w)
     for p in pending:
         print("  chờ asset:", p)
     for e in errors:

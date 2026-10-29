@@ -130,7 +130,10 @@ video { width: 100%; max-height: 160px; background: #000; border-radius: 6px; }
 
 <footer>
   <div><h3 style="margin-top:0">Kiểm tra / yêu cầu asset</h3><div id="checkOut" class="hint">Bấm "Kiểm tra kịch bản" để xem asset còn thiếu và prompt cần tạo.</div></div>
-  <div><h3 style="margin-top:0">Xuất video</h3><pre id="jobLog" class="hint"></pre><div id="videoBox"></div></div>
+  <div><h3 style="margin-top:0">Xuất video</h3>
+    <div id="jobBox" style="display:none;margin-bottom:6px"><div class="row"><b id="jobLabel" class="fixed"></b><span id="jobPct" class="fixed hint"></span></div>
+      <div style="height:10px;background:var(--panel2);border-radius:5px;overflow:hidden;margin-top:5px"><div id="jobBar" style="height:100%;width:0;background:var(--accent2);transition:width .4s"></div></div></div>
+    <pre id="jobLog" class="hint"></pre><div id="videoBox"></div></div>
 </footer>
 
 <div class="modal" id="libModal"><div class="box">
@@ -201,7 +204,7 @@ function renderList() {
   $("#sceneList").innerHTML = st.story.scenes.map((s, i) => `
     <div class="scene ${i === st.sel ? "sel" : ""} ${sceneMissing(s) ? "missing" : ""}" data-i="${i}">
       <div><span class="id">#${s.id}</span><span class="bg">${esc(s.bg)}${s.layers?.length ? " · " + s.layers.length + " lớp" : ""}</span></div>
-      <div class="txt">${esc(s.text || s.title_text || "(không lời)")}</div>
+      <div class="txt">${esc((typeof s.text === "string" ? s.text : (s.text || []).map(x => x.say || x).filter(x => typeof x === "string").join(" ")) || s.title_text || "(không lời)")}</div>
     </div>`).join("");
   document.querySelectorAll(".scene").forEach(el => el.onclick = () => { st.sel = +el.dataset.i; st.layer = -1; renderAll(); });
 }
@@ -259,7 +262,10 @@ function renderProps() {
   let h = `
     <h3>Cảnh #${s.id} <span><button class="small" id="sceneRaw">JSON cảnh</button></span></h3>
     ${select(s, "bg", "Phông nền", bgs, false)}
-    <label>Lời đọc (giọng đọc + phụ đề)</label><textarea id="sceneText" rows="3">${esc(s.text || "")}</textarea>
+    <label>Lời đọc (giọng đọc + phụ đề) — [0.6] = nghỉ 0.6s</label><textarea id="sceneText" rows="3">${esc(typeof s.text === "string" || !s.text ? (s.text || "") : JSON.stringify(s.text))}</textarea>
+    <div class="grid2"><div><label>Giọng cảnh này (preset)</label><input id="voicePreset" list="presetList" value="${esc(s.voice?.preset || "")}" placeholder="(giọng chung)"></div>
+    <div><label>Cao độ (nửa cung, âm = trầm)</label><input id="voicePitch" value="${s.voice?.pitch ?? ""}" placeholder="0"></div></div>
+    <datalist id="presetList">${Object.entries(st.cat.voice_presets || {}).map(([k, v]) => `<option value="${k}">${esc(v.desc || "")}</option>`).join("")}</datalist>
     <div class="grid3">${field(s, "duration", "Dài cố định (s)", "number", 'step="0.1"')}${field(s, "min_duration", "Tối thiểu (s)", "number", 'step="0.1"')}${field(s, "bg_dim", "Làm tối phông", "number", 'step="0.05" min="0" max="1"')}</div>
     ${field(s, "title_text", "Chữ giữa màn hình", "text")}
     <h3>Camera (mốc chuyển động) <span><button class="small" id="addKey">+ Mốc tại thời điểm này</button></span></h3>
@@ -289,7 +295,16 @@ function renderProps() {
   drawCamKeys(camObj);
   drawSfx(s);
 
-  $("#sceneText").onchange = e => { if (e.target.value.trim()) s.text = e.target.value.trim(); else delete s.text; changed(); renderList(); };
+  $("#sceneText").onchange = e => {
+    const v = e.target.value.trim();
+    if (!v) delete s.text;
+    else if (v.startsWith("[{") || v.startsWith('["')) { try { s.text = JSON.parse(v); } catch { return status("Lời đọc dạng danh sách bị lỗi JSON", "bad"); } }
+    else s.text = v;
+    changed(); renderList();
+  };
+  const setVoice = (k, v) => { s.voice = s.voice || {}; if (v === "" || v === null) delete s.voice[k]; else s.voice[k] = v; if (!Object.keys(s.voice).length) delete s.voice; changed(); };
+  $("#voicePreset").onchange = e => setVoice("preset", e.target.value.trim());
+  $("#voicePitch").onchange = e => setVoice("pitch", e.target.value.trim() === "" ? "" : +e.target.value);
   $("#flashIn").onchange = e => { const v = e.target.value.split(",").map(x => x.trim()).filter(Boolean).map(Number); if (v.length) s.flash = v; else delete s.flash; changed(); };
   // keep camera/shake attached only when they hold something
   st._attach = () => {
@@ -611,25 +626,48 @@ $("#checkBtn").onclick = async () => {
   });
 };
 
-async function startRender(query, label) {
+const RENDER_BTNS = ["#renderPrevBtn", "#renderFullBtn", "#renderSceneBtn"];
+function lockRender(on) { RENDER_BTNS.forEach(b => { $(b).disabled = on; $(b).style.opacity = on ? .5 : 1; }); }
+async function startRender(query) {
   if (st.dirty) await save();
   const { job } = await (await post(`/api/render?name=${encodeURIComponent(st.name)}&${query}`)).json();
-  $("#videoBox").innerHTML = ""; $("#jobLog").textContent = label + "…";
+  $("#videoBox").innerHTML = "";
+  watchJob(job);
+}
+function watchJob(job) {
+  lockRender(true);
+  $("#jobBox").style.display = "";
+  const t0 = Date.now();
   const poll = async () => {
-    const j = await (await api("/api/job?id=" + job)).json();
-    $("#jobLog").textContent = j.log.slice(-6).join("\n");
+    let j;
+    try { j = await (await api("/api/job?id=" + job)).json(); } catch (e) { lockRender(false); return status("Mất kết nối với Studio: " + e.message, "bad"); }
+    const pct = Math.round(j.progress * 100), secs = Math.round((Date.now() / 1000) - j.started);
+    $("#jobLabel").textContent = "Đang xuất: " + j.label;
+    $("#jobPct").textContent = j.progress > 0 ? `${pct}% · ${secs}s` : `chuẩn bị giọng đọc & âm thanh… ${secs}s`;
+    $("#jobBar").style.width = Math.max(2, pct) + "%";
+    $("#jobLog").textContent = j.log.slice(-4).join("\n");
+    status(j.done ? "" : `Đang xuất ${j.label}: ${pct}%`);
     if (!j.done) return setTimeout(poll, 1000);
-    status(j.ok ? "Xuất xong: " + j.output : "Xuất lỗi — xem log", j.ok ? "ok" : "bad");
+    lockRender(false);
+    $("#jobLabel").textContent = (j.ok ? "Xong: " : "Lỗi: ") + j.label;
+    $("#jobBar").style.background = j.ok ? "var(--ok)" : "var(--accent)";
+    status(j.ok ? "Xuất xong: " + j.output : "Xuất lỗi — xem log bên dưới", j.ok ? "ok" : "bad");
     if (j.ok && j.output) $("#videoBox").innerHTML = `<div class="hint">${j.output}</div><video controls src="/files/${j.output}?t=${Date.now()}"></video>`;
   };
+  $("#jobBar").style.background = "var(--accent2)";
   poll();
 }
-$("#renderPrevBtn").onclick = () => startRender("preview=1", "Đang xuất bản nháp");
-$("#renderFullBtn").onclick = () => startRender("preview=0", "Đang xuất Full HD (vài phút)");
-$("#renderSceneBtn").onclick = () => startRender(`preview=1&scenes=${scene().id}`, "Đang xuất cảnh #" + scene().id);
+async function resumeJobs() {
+  const jobs = await (await api("/api/jobs")).json();
+  const running = jobs.find(j => !j.done);
+  if (running) watchJob(running.id);
+}
+$("#renderPrevBtn").onclick = () => startRender("preview=1");
+$("#renderFullBtn").onclick = () => startRender("preview=0");
+$("#renderSceneBtn").onclick = () => startRender(`preview=1&scenes=${scene().id}`);
 
 function renderAll() { renderList(); renderProps(); requestFrame(); drawMarkers(); }
-init().then(() => { if (new URLSearchParams(location.hash.slice(1)).has("lib")) openLib(); })
+init().then(() => { resumeJobs(); if (new URLSearchParams(location.hash.slice(1)).has("lib")) openLib(); })
   .catch(e => status("Lỗi khởi động: " + e.message, "bad"));
 </script>
 </body>

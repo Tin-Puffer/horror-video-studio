@@ -20,3 +20,15 @@ Thời gian = giá trị kéo ở thanh **Duration** trên web (không ghi vào 
 | flicker_buzz | 2s | Light bulb flickering with electric buzz and crackle |
 | breath_close | 5s | Scared child breathing heavily and shakily, very close to the microphone |
 | clock_tick | 15s | Quiet wall clock ticking in a silent room at night, seamless loop |
+
+## Bổ sung cho phim “Cuộc gọi lúc 3 giờ sáng”
+
+| Mã (tên file) | Thời gian | Prompt |
+|---|---|---|
+| phone_ring | 6s | Smartphone ringing with a default ringtone in a silent dark bedroom at night, seamless loop |
+| phone_vibrate | 1.5s | Smartphone vibrating twice on a wooden surface, text message notification buzz |
+| hangup_tone | 2s | Phone call disconnected, short beep beep beep busy tone heard through a phone speaker |
+| door_scratch | 8s | Slow creepy fingernails scratching down a wooden door from the other side, seamless loop |
+| door_bang | 3s | Violent rapid pounding on a wooden front door, fists hitting hard, indoor |
+| body_fall | 1.5s | A child falling backwards onto a wooden floor, heavy thud |
+| phone_drop | 1s | Smartphone dropped onto a wooden floor, plastic clatter and bounce |

@@ -11,6 +11,7 @@ from __future__ import annotations
 import io
 import json
 import mimetypes
+import os
 import random
 import re
 import shutil
@@ -61,7 +62,9 @@ def catalog() -> dict:
     sounds = {}
     for f in sorted((ROOT / "assets/audio/sfx").glob("*.*")) if (ROOT / "assets/audio/sfx").exists() else []:
         sounds[f.stem] = {**ameta.get(f.stem, {"desc": "(chưa mô tả)"}), "url": f"/files/assets/audio/sfx/{f.name}"}
-    return {"characters": chars, "backgrounds": bgs, "sounds": sounds}
+    vp = ROOT / "assets/audio/voice_presets.json"
+    presets = json.loads(vp.read_text()).get("presets", {}) if vp.exists() else {}
+    return {"characters": chars, "backgrounds": bgs, "sounds": sounds, "voice_presets": presets}
 
 
 def configure(story: dict):
@@ -70,11 +73,13 @@ def configure(story: dict):
     if "voice" in story:
         cfg["voice"] = render.deep_merge(cfg["voice"], story["voice"])
     chars = story.get("characters", {})
+    render.STORY = story  # story-level voice_presets / music
     if cfg != render.CFG or chars != render.CHARACTERS:
         render.CFG, render.CHARACTERS = cfg, chars
         for fn in (render.font, render.sprite_src, render.sprite_scaled, render.phone_ui, render.vignette):
             fn.cache_clear()
     render.load_meta.cache_clear()  # meta.json may change after ingest
+    render.library_presets.cache_clear()
     render.bg_meta.cache_clear()
 
 
@@ -82,7 +87,8 @@ def scene_duration(scene: dict) -> float:
     timing = render.CFG["timing"]
     if scene.get("duration"):
         return scene["duration"]
-    speech = render.tts(scene["text"], render.CFG["voice"]) if scene.get("text") else []
+    voice = render.narration_voice(scene.get("voice"))
+    speech = render.tts(scene["text"], voice) if scene.get("text") else []
     return max(scene.get("min_duration", timing["min_duration"]),
                timing["lead"] + len(speech) / render.CFG["voice"]["sample_rate"] + timing["tail"])
 
@@ -100,20 +106,34 @@ def frame_png(story: dict, index: int, p: float) -> tuple[bytes, float]:
     return buf.getvalue(), dur
 
 
-def start_job(args: list[str]) -> str:
+def start_job(args: list[str], label: str) -> str:
+    """Run a tool in the background; the same command never runs twice at once."""
+    cmd = " ".join(args)
+    for job in JOBS.values():
+        if job["cmd"] == cmd and not job["done"]:
+            return job["id"]
     job_id = str(int(time.time() * 1000))
-    job = {"id": job_id, "cmd": " ".join(args), "log": [], "done": False, "ok": None, "output": None}
+    job = {"id": job_id, "cmd": cmd, "label": label, "log": [], "done": False, "ok": None,
+           "output": None, "progress": 0.0, "started": time.time()}
     JOBS[job_id] = job
 
     def run():
-        proc = subprocess.Popen([sys.executable, "-W", "ignore", *args], cwd=ROOT,
+        env = {**os.environ, "PYTHONUNBUFFERED": "1"}  # lines must arrive as they are printed
+        proc = subprocess.Popen([sys.executable, "-W", "ignore", *args], cwd=ROOT, env=env,
                                 stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
         for line in proc.stdout:
-            job["log"].append(line.rstrip())
+            line = line.rstrip()
+            m = re.match(r"progress (\d+)/(\d+)", line)
+            if m:
+                job["progress"] = int(m.group(1)) / int(m.group(2))
+                continue
+            job["log"].append(line)
             m = re.search(r"-> (\S+\.mp4)", line) or re.search(r"done: (\S+\.mp4)", line)
             if m:
                 job["output"] = str(Path(m.group(1)).resolve().relative_to(ROOT))
         job["ok"] = proc.wait() == 0
+        if job["ok"]:
+            job["progress"] = 1.0
         job["done"] = True
     threading.Thread(target=run, daemon=True).start()
     return job_id
@@ -176,6 +196,9 @@ class Handler(BaseHTTPRequestHandler):
                 return self.send_json(catalog())
             if url.path == "/api/job":
                 return self.send_json(JOBS[q["id"]])
+            if url.path == "/api/jobs":  # running first, then the latest finished ones
+                jobs = sorted(JOBS.values(), key=lambda j: (j["done"], -j["started"]))
+                return self.send_json(jobs[:5])
             self.send_json({"error": "not found"}, HTTPStatus.NOT_FOUND)
         except Exception as e:  # report to the UI instead of dropping the connection
             self.send_json({"error": f"{type(e).__name__}: {e}"}, HTTPStatus.INTERNAL_SERVER_ERROR)
@@ -206,12 +229,14 @@ class Handler(BaseHTTPRequestHandler):
                                        "requests": req.read_text() if req.exists() else ""})
             if url.path == "/api/render":
                 args = ["tools/render.py", str(story_path(q["name"]))]
+                label = f"{q['name']} — " + ("cảnh " + q["scenes"] if q.get("scenes") else
+                                             "bản nháp" if q.get("preview") == "1" else "Full HD")
                 if q.get("preview") == "1":
                     args.append("--preview")
                 if q.get("scenes"):  # own file, so the full preview is not overwritten
                     args += ["--scenes", q["scenes"],
                              "-o", f"build/{story_path(q['name']).stem}_scene_{q['scenes']}.mp4"]
-                return self.send_json({"job": start_job(args)})
+                return self.send_json({"job": start_job(args, label)})
             if url.path == "/api/catalog/rebuild":
                 res = subprocess.run([sys.executable, "-W", "ignore", "tools/catalog.py"], cwd=ROOT,
                                      capture_output=True, text=True)

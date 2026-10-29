@@ -3,6 +3,16 @@
 Làm video hoạt hình kinh dị kể chuyện (tiếng Việt) từ sprite vẽ tay nét sáp màu do Gemini tạo.
 Kho asset tăng liên tục — luôn làm việc dựa trên mục lục, không dựa trí nhớ.
 
+## QUY TẮC KỊCH BẢN (bắt buộc)
+Mọi kịch bản mới theo **`scripts/QUY_TAC_KICH_BAN.md`** (đã thống nhất với người dùng) và bắt đầu từ
+**`templates/kich_ban_mau.json`** (có sẵn mọi thiết lập đã chốt). `tools/check_story.py` tự cảnh báo vi phạm
+(dòng "quy tắc:") — phải xử lý hết trước khi giao.
+
+## Dùng AI / máy khác
+- Viết kịch bản bằng AI khác: `python3 tools/make_brief.py` → gửi `build/brief.zip` (hoặc BRIEF_VIET_KICH_BAN.md + ảnh).
+- Máy khác: clone repo, cài Python/ffmpeg/piper/VieNeu (Dubber), tạo `config.local.json`, chép giọng clone
+  `~/Library/Application Support/dubber/voices/vieneu/giong-ke-chuyen-clone-e6b153/` sang máy mới.
+
 ## Nguyên tắc
 - **Kịch bản JSON quyết định mọi cấu hình, vị trí, kích thước** (settings / characters / scenes / layers).
   `tools/render.py` chỉ là bộ máy; không thêm hằng số cố định vào code — thêm khoá cấu hình có giá trị mặc định trong `DEFAULTS`.
@@ -11,7 +21,7 @@ Kho asset tăng liên tục — luôn làm việc dựa trên mục lục, khôn
 
 ## Viết kịch bản mới (video thật)
 1. `python3 tools/catalog.py`, rồi đọc `assets/CATALOG.md` và xem ảnh `assets/catalog/*.png`.
-2. Viết `scripts/<truyen>.json` (mẫu: `scripts/cuoc_goi_3h.json`). Ưu tiên dùng lại asset có sẵn:
+2. Viết `scripts/<truyen>.json`, copy từ `templates/kich_ban_mau.json` (ví dụ đầy đủ: `scripts/cuoc_goi_3h.json`). Ưu tiên dùng lại asset có sẵn:
    `"cycle": "boy_hoodie/walk"` cho di chuyển, `"face": "auto"`, `"y": "floor"`,
    `"pin": {"point": "hand", "at": "<hotspot>"}` khi tay phải chạm vật trên phông.
    Lưu ý tỉ lệ chibi: tay ngang ngực không với tới tay nắm cửa ở góc toàn thân (dùng K1/K2 giơ tay lên).
@@ -37,6 +47,21 @@ Kho asset tăng liên tục — luôn làm việc dựa trên mục lục, khôn
 - `python3 tools/studio.py` hoặc bấm đúp `studio.command` → http://localhost:8765 (stdlib, không cần cài gì).
 - `tools/studio.py` (API: kịch bản, catalog, xem trước 1 khung bằng chính render.py, kiểm tra, xuất video) + `tools/studio.html` (giao diện).
 - Thêm tính năng render mới → thêm điều khiển tương ứng trong studio.html; khoá lạ vẫn sửa được qua "JSON lớp/cảnh".
+
+## Giọng đọc
+- **Mặc định:** preset `clone_ke_chuyen` (giọng clone người dùng chốt, bản demo 18: tempo 1.15, soften_endings "all").
+- **Cách viết lời kể (người dùng yêu cầu):** câu dài, liền mạch, có câu nối và miêu tả; KHÔNG chèn [n] giữa câu
+  (mỗi chỗ cắt bị đọc như hết câu → chữ cuối nặng, rời rạc). Chỉ dùng nghỉ ≥ 0.5s cho khoảnh khắc kịch tính (câu của ma).
+- Bộ bảo vệ VieNeu trong render.py: gộp nghỉ ngắn (merge_pause_below), chống đọc lan man (max_sec_per_word),
+  nén lặng giữa câu (max_inner_pause). Sau khi đổi giọng/lời: đo chữ/giây từng cảnh (~3.5–4.6 là ổn) và cao độ trong video.
+- Giọng mẫu có tên: `assets/audio/voice_presets.json` (model, length_scale, noise_scale, noise_w, sentence_silence, pitch, reverb, lowpass, volume).
+- Kịch bản: `settings.voice` / `scene.voice` / từng câu `{"say": "...", "voice": {"preset": "ma_me"}}`; `[0.6]` trong lời = nghỉ 0.6s.
+- Engine: `piper` (nhanh, chỉnh tốc độ bằng length_scale) hoặc `vieneu` (VieNeu-TTS của Dubber: 25 giọng có sẵn
+  `preset:<tên>` + giọng clone; tốc độ chỉnh bằng `tempo`). VieNeu chạy qua `tools/vieneu_worker.py` bằng Python của Dubber
+  (`vieneu_python`, `dubber_root` trong config.local.json). Mọi câu được đưa về `voice.sample_rate` (44.1 kHz).
+- Clone giọng: `python3 tools/clone_voice.py <file> "<Tên>" [--start giây]` (lấy 3–8s sạch, một người nói, không nhạc)
+  → lưu vào thư viện giọng của Dubber + thêm preset vào voice_presets.json. Chỉ clone giọng của người đã đồng ý.
+- So sánh giọng: sửa `assets/audio/voice_demos.json` rồi `python3 tools/voice_demo.py` → `build/voice_demos/*.mp3`.
 
 ## Dựng video
 - `python3 tools/render.py scripts/<truyen>.json [--preview] [--scenes 7-13.5] [--no-subtitles]` → `build/`.

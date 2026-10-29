@@ -140,9 +140,12 @@ Dùng trong cảnh: `"sfx": [{"sound": <tên>, "at": 0.3}]`; nhạc nền: `"mus
 
 | Âm thanh | Loại | Mô tả | Tag | Âm lượng |
 |---|---|---|---|---|
+| `body_fall` | sfx | Người ngã ngửa xuống sàn gỗ | ngã | 1.0 |
 | `breath_close` | sfx | Hơi thở run rẩy sát tai | thở, sợ | 0.7 |
 | `clock_tick` | sfx | Đồng hồ tích tắc nhỏ, lặp được | đồng hồ, im lặng | 0.5 |
+| `door_bang` | sfx | Đập cửa gỗ dồn dập, hoảng loạn | đập cửa | 1.0 |
 | `door_handle_rattle` | sfx | Tay nắm cửa bị vặn lạch cạch | tay nắm cửa, cửa | 0.9 |
+| `door_scratch` | sfx | Móng tay cào chậm lên cửa gỗ từ phía bên ngoài, lặp được | cào cửa, ma | 0.9 |
 | `door_slam` | sfx | Đóng sầm cửa gỗ | cửa, đóng sầm | 0.9 |
 | `drone_low` | music | Nhạc nền u ám trầm, lặp được | nhạc nền, u ám | 0.7 |
 | `flashlight_click` | sfx | Tiếng bật công tắc đèn pin | đèn pin | 0.9 |
@@ -151,7 +154,11 @@ Dùng trong cảnh: `"sfx": [{"sound": <tên>, "at": 0.3}]`; nhạc nền: `"mus
 | `footsteps_run` | sfx | Tiếng chạy gấp trên sàn gỗ | bước chân, chạy | 0.8 |
 | `footsteps_slow` | sfx | Bước chân chậm trên sàn gỗ, lặp được | bước chân, chậm | 0.7 |
 | `ghost_stinger` | sfx | Tiếng hù jumpscare khi ma xuất hiện (đánh mạnh + rít) | jumpscare, ma xuất hiện | 1.0 |
+| `hangup_tone` | sfx | Tiếng tút tút khi đầu dây bên kia cúp máy | điện thoại, cúp máy | 0.7 |
 | `heartbeat` | sfx | Tim đập căng thẳng, lặp được | tim đập, căng thẳng | 0.8 |
 | `knock_3` | sfx | Cốc… cốc… cốc — ba tiếng gõ cửa gỗ chậm rãi | gõ cửa | 1.0 |
+| `phone_drop` | sfx | Điện thoại rơi xuống sàn gỗ | điện thoại, rơi | 0.9 |
+| `phone_ring` | sfx | Chuông điện thoại di động đổ giữa đêm (nhạc chuông mặc định, lặp được) | điện thoại, chuông | 0.8 |
+| `phone_vibrate` | sfx | Điện thoại rung báo tin nhắn (2 lần) | điện thoại, rung, tin nhắn | 0.9 |
 | `reverse_swell` | sfx | Tiếng rít tăng dần (riser) trước khi hù | căng thẳng, trước jumpscare | 0.8 |
 | `whisper_eerie` | sfx | Tiếng thì thầm rợn người của phụ nữ (không rõ lời) | thì thầm, ma | 0.8 |

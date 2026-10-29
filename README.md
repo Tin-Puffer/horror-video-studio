@@ -25,6 +25,26 @@ Giọng đọc dùng [piper](https://github.com/rhasspy/piper). Tải một gi�
 }
 ```
 
+### Giọng đọc VieNeu và giọng clone (tuỳ chọn, khuyên dùng)
+
+Kịch bản mẫu dùng giọng clone `clone_ke_chuyen` (VieNeu-TTS). Cần cài VieNeu-TTS cùng một bản Dubber
+(gói `dubber` có `vieneu_tts` + `voice_library`), rồi khai báo trong `config.local.json`:
+
+```json
+{"voice": {"vieneu_python": "/đường/dẫn/python-có-vieneu", "dubber_root": "/đường/dẫn/Dubber", "preset": "clone_ke_chuyen"}}
+```
+
+Giọng clone **không có trong repo**: chép thư mục giọng (`voices/vieneu/<id>/` trong dữ liệu người dùng của Dubber)
+từ máy cũ sang, hoặc tự clone giọng mới: `python3 tools/clone_voice.py <file> "<Tên>" --start <giây>`
+(chỉ với giọng của bạn hoặc người đã đồng ý). Không có VieNeu thì đổi `settings.voice` sang một preset piper.
+
+## Viết kịch bản
+
+- Quy tắc bắt buộc: `scripts/QUY_TAC_KICH_BAN.md`; bắt đầu từ `templates/kich_ban_mau.json`.
+- `python3 tools/check_story.py scripts/<truyen>.json` báo lỗi asset và vi phạm quy tắc.
+- Nhờ AI khác viết: `python3 tools/make_brief.py` → gửi `build/brief.zip` (quy tắc + tài liệu JSON + mục lục kho + mẫu + ví dụ).
+- So sánh giọng: `python3 tools/voice_demo.py` → `build/voice_demos/`.
+
 ## Dùng
 
 ```bash

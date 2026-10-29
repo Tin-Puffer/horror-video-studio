@@ -89,6 +89,7 @@ def main():
     path = Path(sys.argv[1])
     story = json.loads(path.read_text())
     render.CFG = render.deep_merge(render.DEFAULTS, story.get("settings", {}))
+    render.STORY = story
     timing, voice = render.CFG["timing"], render.CFG["voice"]
     descs = {}
 
@@ -111,12 +112,22 @@ def main():
     out.append("")
     t_total = 0.0
     for s in story["scenes"]:
-        speech = render.tts(s["text"], voice) if s.get("text") else []
+        sv = render.narration_voice(s.get("voice"))
+        speech = render.tts(s["text"], sv) if s.get("text") else []
         dur = s.get("duration") or max(s.get("min_duration", timing["min_duration"]),
                                        timing["lead"] + len(speech) / voice["sample_rate"] + timing["tail"])
         out += [f"## Cảnh {s['id']} — {s['bg']}  ·  {t_total:.1f}s → {t_total + dur:.1f}s ({dur:.1f}s)", ""]
         if s.get("text"):
-            out.append(f"**Lời đọc:** {s['text']}")
+            parts = []
+            for it in render.speech_items(s["text"]):
+                if it[0] == "pause":
+                    parts.append(f"_(nghỉ {it[1]:g}s)_")
+                else:
+                    tag = f" _[giọng {it[2].get('preset', 'riêng')}]_" if it[2] else ""
+                    parts.append(it[1] + tag)
+            out.append(f"**Lời đọc:** {' '.join(parts)}")
+        if s.get("voice"):
+            out.append(f"**Giọng cảnh:** {', '.join(f'{k}={v}' for k, v in s['voice'].items())}")
         if s.get("title_text"):
             out.append(f"**Chữ trên màn hình:** {s['title_text']}")
         out.append(f"**Camera:** {camera_text(s.get('camera'), dur)}")
