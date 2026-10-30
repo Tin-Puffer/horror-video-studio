@@ -11,3 +11,6 @@ config.local.json
 # original generated sheets (large) and voice test samples
 assets/source/
 assets/audio/voice_samples/
+
+# local Python environment
+.venv/

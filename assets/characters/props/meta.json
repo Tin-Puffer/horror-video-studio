@@ -1,0 +1,136 @@
+{
+ "name": "Đạo cụ (bát cơm cúng, nhang, dấu tay, dép)",
+ "style_prompt": "Prop in the same hand-drawn crayon / colored-pencil texture with thick black outlines and minimal flat colors, three-quarter view, thick black outline all around.",
+ "reference_images": [
+  "assets/source/props_sheet_DC.png"
+ ],
+ "default_h": 0.2,
+ "sprites": {
+  "DC1_bowl_chopsticks_upright": {
+   "desc": "Bát cơm cúng đầy, trứng luộc bên trên, đôi đũa cắm thẳng giữa bát",
+   "tags": [
+    "bát cơm",
+    "cúng",
+    "đũa cắm thẳng",
+    "trứng"
+   ],
+   "facing": "front"
+  },
+  "DC2_bowl_chopsticks_across": {
+   "desc": "Bát cơm vơi, đũa gác ngang miệng bát (thói quen của mẹ)",
+   "tags": [
+    "bát cơm",
+    "vơi",
+    "đũa gác ngang",
+    "mẹ về"
+   ],
+   "facing": "front"
+  },
+  "DC3_bowl_empty_eggshell": {
+   "desc": "Bát sạch trơn, vỏ trứng vỡ bên cạnh",
+   "tags": [
+    "bát cơm",
+    "sạch trơn",
+    "vỏ trứng",
+    "leo thang"
+   ],
+   "facing": "front"
+  },
+  "DC4_incense_broken": {
+   "desc": "Bát hương đồng, một nén nhang gãy gập, không khói",
+   "tags": [
+    "bát hương",
+    "nhang gãy",
+    "điềm xấu"
+   ],
+   "facing": "front"
+  },
+  "DC5_black_handprints": {
+   "desc": "Hai dấu tay đen ngón dài như muội than",
+   "tags": [
+    "dấu tay",
+    "đen",
+    "cô hồn"
+   ],
+   "facing": "front"
+  },
+  "DC6_mother_slippers": {
+   "desc": "Đôi dép nhựa nâu mòn gót của mẹ",
+   "tags": [
+    "dép",
+    "mẹ",
+    "đêm 49"
+   ],
+   "facing": "front"
+  },
+  "VM1_fire_bucket_1": {
+   "desc": "Xô sắt gỉ đốt vàng mã, lửa cháy, khung 1/3 (chu kỳ fire, xô đứng yên)",
+   "tags": [
+    "vàng mã",
+    "lửa",
+    "cúng"
+   ],
+   "facing": "front"
+  },
+  "VM2_fire_bucket_2": {
+   "desc": "Xô sắt gỉ đốt vàng mã, lửa cháy, khung 2/3 (chu kỳ fire, xô đứng yên)",
+   "tags": [
+    "vàng mã",
+    "lửa",
+    "cúng"
+   ],
+   "facing": "front"
+  },
+  "VM3_fire_bucket_3": {
+   "desc": "Xô sắt gỉ đốt vàng mã, lửa cháy, khung 3/3 (chu kỳ fire, xô đứng yên)",
+   "tags": [
+    "vàng mã",
+    "lửa",
+    "cúng"
+   ],
+   "facing": "front"
+  },
+  "VM4_grandma_crouch_drop_paper": {
+   "desc": "Bà ngồi xổm thả xấp vàng mã xuống (mặt hắt ánh lửa)",
+   "tags": [
+    "bà",
+    "vàng mã",
+    "đốt"
+   ],
+   "facing": "right"
+  },
+  "VM5_grandma_hold_paper": {
+   "desc": "Bà đứng ôm xấp vàng mã trước ngực, cúi đầu",
+   "tags": [
+    "bà",
+    "vàng mã"
+   ],
+   "facing": "right"
+  },
+  "VM6_joss_paper_stack": {
+   "desc": "Xấp vàng mã đỏ vàng nằm dưới đất",
+   "tags": [
+    "vàng mã",
+    "đạo cụ"
+   ],
+   "facing": "front"
+  },
+  "DC1b_bowl_chopsticks_vertical": {
+   "desc": "Bát cơm cúng đầy, trứng luộc, đôi đũa cắm THẲNG ĐỨNG song song giữa bát (thay DC1)",
+   "tags": [
+    "bát cơm",
+    "cúng",
+    "đũa cắm thẳng",
+    "trứng"
+   ],
+   "facing": "front"
+  }
+ },
+ "cycles": {
+  "fire": [
+   "VM1_fire_bucket_1",
+   "VM2_fire_bucket_2",
+   "VM3_fire_bucket_3"
+  ]
+ }
+}

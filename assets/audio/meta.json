@@ -195,6 +195,145 @@
    ],
    "volume": 0.9,
    "kind": "sfx"
+  },
+  "rice_scatter": {
+   "desc": "Nắm gạo muối rải xuống sân xi măng",
+   "tags": [
+    "gạo muối",
+    "cúng cô hồn"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "paper_burn": {
+   "desc": "Đốt vàng mã trong thùng sắt, lửa lách tách (lặp được)",
+   "tags": [
+    "vàng mã",
+    "lửa",
+    "cúng"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "ritual_bell": {
+   "desc": "Mõ gõ ba tiếng rồi chuông đồng nhỏ ngân",
+   "tags": [
+    "mõ",
+    "chuông",
+    "cúng",
+    "tang"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "gate_rattle": {
+   "desc": "Cổng sắt xếp bị lay rung lạch cạch",
+   "tags": [
+    "cổng sắt",
+    "rung",
+    "ngoài cổng"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "door_bolt_lock": {
+   "desc": "Chốt cửa kim loại gài lại, tách gọn",
+   "tags": [
+    "chốt cửa",
+    "khoá"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "door_creak_open": {
+   "desc": "Cửa gỗ phòng ngủ từ từ mở kẽo kẹt dài",
+   "tags": [
+    "cửa",
+    "kẽo kẹt",
+    "mở cửa"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "dog_howl": {
+   "desc": "Một con chó tru dài thê lương từ xa",
+   "tags": [
+    "chó tru",
+    "đêm",
+    "điềm"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "night_insects": {
+   "desc": "Không khí đêm: dế, tắc kè kêu xa, yên tĩnh (lặp được)",
+   "tags": [
+    "côn trùng",
+    "đêm",
+    "không khí"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "rain_roof": {
+   "desc": "Mưa đều trên mái tôn, nước nhỏ giọt máng (lặp được)",
+   "tags": [
+    "mưa",
+    "mái tôn",
+    "không khí"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "woman_sob_door": {
+   "desc": "Tiếng phụ nữ khóc nghẹn sau cánh cửa gỗ",
+   "tags": [
+    "khóc",
+    "mẹ",
+    "sau cửa"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "chewing_wet": {
+   "desc": "Nhiều miệng nhai nhóp nhép, húp vội (lặp được)",
+   "tags": [
+    "nhai",
+    "cô hồn",
+    "ăn"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "spoon_bowl_tap": {
+   "desc": "Thìa kim loại gõ khẽ thành bát ba lần",
+   "tags": [
+    "thìa",
+    "bát",
+    "tiếng động lạ"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "chopsticks_clatter": {
+   "desc": "Rất nhiều đôi đũa va bát lách cách gấp gáp",
+   "tags": [
+    "đũa",
+    "bát",
+    "cô hồn"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "slipper_drag": {
+   "desc": "Tiếng dép lê lẹp xẹp kéo lê trên sàn gạch (lặp được)",
+   "tags": [
+    "dép",
+    "bước chân",
+    "mẹ"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
   }
  }
 }

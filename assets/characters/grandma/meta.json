@@ -1,0 +1,272 @@
+{
+ "name": "Bà nội",
+ "style_prompt": "Same elderly woman as the reference images: a small Vietnamese grandmother, slightly hunched, silver-gray hair in a small bun, dark brown \"ao ba ba\" blouse, loose black trousers, black sandals, wrinkled face clearly visible. Hand-drawn crayon / colored-pencil texture, thick black outlines, simple chibi proportions, dot eyes, minimal flat colors. Never white clothing.",
+ "reference_images": [
+  "assets/source/grandma_base.png",
+  "assets/source/grandma_sheet_A.png"
+ ],
+ "default_h": 0.5,
+ "cycles": {
+  "walk": [
+   "D1_walk_1",
+   "D2_walk_2",
+   "D3_walk_3",
+   "D4_walk_4",
+   "D5_walk_5",
+   "D6_walk_6"
+  ],
+  "walk_old": [
+   "B1_walk_1",
+   "B2_walk_2",
+   "B3_walk_3",
+   "B4_walk_4",
+   "B5_walk_5",
+   "B3_walk_3"
+  ],
+  "walk_v2": [
+   "C1_walk_1",
+   "C2_walk_2",
+   "C3_walk_3",
+   "C4_walk_4",
+   "C5_walk_5",
+   "C6_walk_6"
+  ]
+ },
+ "sprites": {
+  "00_stand_front": {
+   "desc": "Đứng chính diện, hai tay đan trước bụng, hiền và lo lắng",
+   "tags": [
+    "đứng",
+    "chính diện"
+   ],
+   "facing": "front"
+  },
+  "A1_hold_hands_warn": {
+   "desc": "Nghiêng người nắm chặt hai tay đứa trẻ (có đôi tay trẻ con trong hình), nghiêm mặt dặn dò",
+   "tags": [
+    "dặn dò",
+    "nắm tay",
+    "cảnh báo"
+   ],
+   "facing": "right"
+  },
+  "A2_incense_pray": {
+   "desc": "Cúi đầu chắp ba nén nhang đang cháy, khấn",
+   "tags": [
+    "thắp nhang",
+    "khấn",
+    "cúng",
+    "bàn thờ"
+   ],
+   "facing": "right"
+  },
+  "A3_scatter_rice_salt": {
+   "desc": "Ôm bát, vung tay rải gạo muối (hạt bay trong hình)",
+   "tags": [
+    "rải gạo muối",
+    "cúng cô hồn",
+    "sân"
+   ],
+   "facing": "left"
+  },
+  "A4_sit_hug_knees_grief": {
+   "desc": "Ngồi bệt ôm gối, cúi đầu, kiệt sức đau buồn",
+   "tags": [
+    "ngồi",
+    "buồn",
+    "khóc",
+    "kiệt sức"
+   ],
+   "facing": "front"
+  },
+  "A5_scoop_rice": {
+   "desc": "Đứng cầm bát, dùng muôi gỗ xới cơm, mắt nhìn xuống",
+   "tags": [
+    "xới cơm",
+    "bát cơm thứ hai",
+    "bữa cơm"
+   ],
+   "facing": "left"
+  },
+  "A6_head_bowed_face_hidden": {
+   "desc": "Đứng im, cúi gằm, mặt chìm trong bóng tối",
+   "tags": [
+    "cúi mặt",
+    "rợn",
+    "bí ẩn",
+    "chính diện"
+   ],
+   "facing": "front"
+  },
+  "B1_walk_1": {
+   "desc": "Đi chậm lưng còng, tay chống lưng, khung 1/6",
+   "tags": [
+    "đi",
+    "chu kỳ",
+    "già"
+   ],
+   "facing": "right"
+  },
+  "B2_walk_2": {
+   "desc": "Đi chậm lưng còng, tay chống lưng, khung 2/6",
+   "tags": [
+    "đi",
+    "chu kỳ",
+    "già"
+   ],
+   "facing": "right"
+  },
+  "B3_walk_3": {
+   "desc": "Đi chậm lưng còng, tay chống lưng, khung 3/6",
+   "tags": [
+    "đi",
+    "chu kỳ",
+    "già"
+   ],
+   "facing": "right"
+  },
+  "B4_walk_4": {
+   "desc": "Đi chậm lưng còng, tay chống lưng, khung 4/6",
+   "tags": [
+    "đi",
+    "chu kỳ",
+    "già"
+   ],
+   "facing": "right"
+  },
+  "B5_walk_5": {
+   "desc": "Đi chậm lưng còng, tay chống lưng, khung 5/6",
+   "tags": [
+    "đi",
+    "chu kỳ",
+    "già"
+   ],
+   "facing": "right"
+  },
+  "B6_walk_6": {
+   "desc": "Đi chậm lưng còng, tay chống lưng, khung 6/6 (mặt bị mờ, không dùng trong chu kỳ)",
+   "tags": [
+    "đi",
+    "chu kỳ",
+    "già"
+   ],
+   "facing": "right"
+  },
+  "C1_walk_1": {
+   "desc": "Đi chậm lưng còng, tay chống lưng, bước rõ, khung 1/6",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "C2_walk_2": {
+   "desc": "Đi chậm lưng còng, tay chống lưng, bước rõ, khung 2/6",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "C3_walk_3": {
+   "desc": "Đi chậm lưng còng, tay chống lưng, bước rõ, khung 3/6",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "C4_walk_4": {
+   "desc": "Đi chậm lưng còng, tay chống lưng, bước rõ, khung 4/6",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "C5_walk_5": {
+   "desc": "Đi chậm lưng còng, tay chống lưng, bước rõ, khung 5/6",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "C6_walk_6": {
+   "desc": "Đi chậm lưng còng, tay chống lưng, bước rõ, khung 6/6",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "E1_hold_boy_hands": {
+   "desc": "Bà (trái) nắm chặt hai tay Khoa (phải), bà rưng rưng, Khoa sợ — HAI nhân vật chung một hình (h ≈ 0.5 cho cả cặp)",
+   "tags": [
+    "bà",
+    "Khoa",
+    "nắm tay",
+    "dặn dò"
+   ],
+   "facing": "right"
+  },
+  "E2_whisper_boy_ear": {
+   "desc": "Bà (trái) cúi ghé tai thì thầm, tay đặt vai Khoa (phải), Khoa mở to mắt — HAI nhân vật chung một hình",
+   "tags": [
+    "bà",
+    "Khoa",
+    "thì thầm",
+    "dặn dò"
+   ],
+   "facing": "right"
+  },
+  "D1_walk_1": {
+   "desc": "Đi chậm, tay chống lưng, chu kỳ chuẩn, khung 1/6 (chạm-hạ-lướt)",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "D2_walk_2": {
+   "desc": "Đi chậm, tay chống lưng, chu kỳ chuẩn, khung 2/6 (chạm-hạ-lướt)",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "D3_walk_3": {
+   "desc": "Đi chậm, tay chống lưng, chu kỳ chuẩn, khung 3/6 (chạm-hạ-lướt)",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "D4_walk_4": {
+   "desc": "Đi chậm, tay chống lưng, chu kỳ chuẩn, khung 4/6 (chạm-hạ-lướt)",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "D5_walk_5": {
+   "desc": "Đi chậm, tay chống lưng, chu kỳ chuẩn, khung 5/6 (chạm-hạ-lướt)",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  },
+  "D6_walk_6": {
+   "desc": "Đi chậm, tay chống lưng, chu kỳ chuẩn, khung 6/6 (chạm-hạ-lướt)",
+   "tags": [
+    "đi",
+    "chu kỳ"
+   ],
+   "facing": "right"
+  }
+ }
+}

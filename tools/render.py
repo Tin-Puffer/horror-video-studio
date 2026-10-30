@@ -126,7 +126,10 @@ CFG: dict = DEFAULTS
 
 @lru_cache(maxsize=None)
 def font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
-    return ImageFont.truetype(CFG["fonts"]["bold" if bold else "regular"], size)
+    key = "bold" if bold else "regular"
+    path = CFG["fonts"][key]
+    # a storyboard written on another OS may name a font this machine lacks: use this machine's
+    return ImageFont.truetype(path if Path(path).exists() else DEFAULTS["fonts"][key], size)
 
 
 # ---------------------------------------------------------------- narration
@@ -473,7 +476,9 @@ def mix_audio(plan, starts: dict, narr_spans, total: float, sr: int) -> np.ndarr
             for a0, a1 in narr_spans:
                 env[round(a0 * sr):round(a1 * sr)] = aud["duck"]
             k = round(0.25 * sr)  # smooth the gain changes
-            env = np.convolve(env, np.ones(k) / k, mode="same").astype(np.float32)
+            # moving average via cumulative sum: O(n) (np.convolve is O(n*k), hours on long films)
+            c = np.cumsum(np.pad(env.astype(np.float64), (k // 2, k - 1 - k // 2), mode="edge"))
+            env = ((c[k - 1:] - np.concatenate(([0.0], c[:-k]))) / k).astype(np.float32)
             tmp *= env
         music += tmp
     out = voice + sfx + music

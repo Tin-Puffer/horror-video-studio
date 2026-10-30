@@ -733,6 +733,74 @@
     "sợ"
    ],
    "facing": "right"
+  },
+  "M1_kneel_incense": {
+   "desc": "Quỳ chắp ba nén nhang đang cháy, mắt nhắm buồn",
+   "tags": [
+    "quỳ",
+    "thắp nhang",
+    "cúng",
+    "bàn thờ"
+   ],
+   "facing": "right"
+  },
+  "M2_carry_rice_bowl": {
+   "desc": "Đứng bưng bát cơm cắm đũa thẳng bằng hai tay",
+   "tags": [
+    "bát cơm",
+    "cúng cơm",
+    "bưng"
+   ],
+   "facing": "right"
+  },
+  "M3_sit_stool_eat": {
+   "desc": "Ngồi ghế đẩu ăn cơm một mình (có ghế)",
+   "tags": [
+    "ngồi",
+    "ăn cơm",
+    "ghế đẩu",
+    "cô đơn"
+   ],
+   "facing": "right"
+  },
+  "M4_sit_stool_look_back_fear": {
+   "desc": "Ngồi ghế đẩu cầm bát, ngoái lại, mắt mở to sợ hãi (có ghế)",
+   "tags": [
+    "ngồi",
+    "ngoái lại",
+    "sợ",
+    "ghế đẩu"
+   ],
+   "facing": "left"
+  },
+  "M5_lie_unconscious": {
+   "desc": "Nằm ngửa bất tỉnh, đầu bên trái",
+   "tags": [
+    "nằm",
+    "ngất",
+    "bất tỉnh"
+   ],
+   "facing": "left"
+  },
+  "M6_lie_peek_under_door": {
+   "desc": "Nằm sấp áp mặt nhìn qua khe dưới cửa, sợ (mép cửa đen ở rìa trái)",
+   "tags": [
+    "nằm sấp",
+    "nhìn trộm",
+    "khe cửa",
+    "sợ"
+   ],
+   "facing": "left"
+  },
+  "M7_lie_prone_back_view": {
+   "desc": "Nằm sấp nhìn từ phía sau (đế giày gần người xem, đầu hướng vào trong), hai tay chống sàn cạnh đầu — ghé nhìn qua khe cửa trên phông nhìn thẳng",
+   "tags": [
+    "nằm sấp",
+    "nhìn trộm",
+    "khe cửa",
+    "sau lưng"
+   ],
+   "facing": "front"
   }
  }
 }

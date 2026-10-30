@@ -18,11 +18,13 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
+from render import DEFAULTS
+
 ROOT = Path(__file__).resolve().parent.parent
 CHARS = ROOT / "assets/characters"
 BGS = ROOT / "assets/backgrounds"
 OUT = ROOT / "assets/catalog"
-FONT = "/System/Library/Fonts/Supplemental/Arial Unicode.ttf"
+FONT = DEFAULTS["fonts"]["regular"]  # this machine's font (config.local.json)
 
 
 def contact_sheet(items: list[tuple[str, Path]], out: Path, thumb_h: int = 220, cols: int = 8):

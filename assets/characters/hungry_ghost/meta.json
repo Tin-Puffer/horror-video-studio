@@ -1,0 +1,78 @@
+{
+ "name": "Cô hồn đói",
+ "style_prompt": "Same hungry ghost as the reference images: emaciated skeletal body with visible ribs, very long thin neck, slightly swollen belly, ash gray-blue skin, pitch black hands up to the wrists, long bony fingers, torn dark brown ragged cloth, long stringy black hair, hollow pitch-black eye sockets. Hand-drawn crayon / colored-pencil texture, thick black outlines, minimal flat colors. Absolutely no white on the character.",
+ "reference_images": [
+  "assets/source/hungry_ghost_base.png",
+  "assets/source/hungry_ghost_sheet_A.png"
+ ],
+ "default_h": 0.6,
+ "cycles": {},
+ "sprites": {
+  "00_stand_front": {
+   "desc": "Đứng thẳng chính diện, gầy trơ xương, mắt đen rỗng, miệng há",
+   "tags": [
+    "đứng",
+    "chính diện",
+    "đám đông"
+   ],
+   "facing": "front"
+  },
+  "A1_crouch_eat_rice": {
+   "desc": "Ngồi xổm bốc cơm nhét vào miệng, bát cơm dưới đất (có bát)",
+   "tags": [
+    "ăn cơm",
+    "bốc",
+    "ngồi xổm",
+    "nhìn trộm"
+   ],
+   "facing": "right"
+  },
+  "A2_crouch_look_up": {
+   "desc": "Ngồi xổm, ngẩng phắt lên nhìn, mắt đen rỗng",
+   "tags": [
+    "ngồi xổm",
+    "nhìn",
+    "hù",
+    "phát hiện"
+   ],
+   "facing": "right"
+  },
+  "A3_stand_front": {
+   "desc": "Đứng còng chính diện, tay buông thõng, nhìn thẳng",
+   "tags": [
+    "đứng",
+    "chính diện",
+    "đám đông",
+    "ngoài cổng"
+   ],
+   "facing": "front"
+  },
+  "A4_back_look_over_shoulder": {
+   "desc": "Quay lưng, ngoái đầu nhìn qua vai",
+   "tags": [
+    "quay lưng",
+    "ngoái lại",
+    "đám đông"
+   ],
+   "facing": "left"
+  },
+  "A5_reach_black_hand": {
+   "desc": "Lom khom vươn bàn tay đen xương xẩu ra chộp",
+   "tags": [
+    "vươn tay",
+    "tay đen",
+    "chộp"
+   ],
+   "facing": "right"
+  },
+  "A6_crawl": {
+   "desc": "Bò bốn chân sát đất, cổ vươn dài, xương sống lồi",
+   "tags": [
+    "bò",
+    "sát đất",
+    "bóng"
+   ],
+   "facing": "right"
+  }
+ }
+}

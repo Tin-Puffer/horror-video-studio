@@ -115,6 +115,20 @@ def clear_paper_white(img: Image.Image, threshold: int = 240) -> Image.Image:
     return out.putalpha(out.getchannel("A").filter(ImageFilter.GaussianBlur(0.8))) or out
 
 
+def clear_holes(img: Image.Image, points, threshold: int = 230) -> Image.Image:
+    """Make the enclosed paper-white region around each point transparent
+    (a gap between arm and body, under a stool). Points are fractions of the
+    cropped sprite; unlike clear_paper_white this leaves white rice and eyes alone."""
+    arr = np.asarray(img).copy()
+    paper = Image.fromarray((arr[..., :3].min(axis=2) >= threshold).astype(np.uint8) * 255).copy()
+    for fx, fy in points:
+        ImageDraw.floodfill(paper, (int(fx * img.width), int(fy * img.height)), 128)
+    hole = np.asarray(paper.filter(ImageFilter.MaxFilter(5))) == 128
+    hole |= np.asarray(paper) == 128
+    arr[..., 3] = np.where(hole, 0, arr[..., 3])
+    return Image.fromarray(arr)
+
+
 def crop_to_content(img: Image.Image) -> Image.Image | None:
     a = np.asarray(img.getchannel("A"))
     ys, xs = np.where(a > 20)
@@ -138,17 +152,47 @@ def main():
         cut = remove_background(src, sheet.get("light_beams", False))
         alpha = np.asarray(cut.getchannel("A"))
         ys, xs = gutters(alpha, rows, axis=0), gutters(alpha, cols, axis=1)
+        boxes = sheet.get("boxes")  # irregular sheets: [x0, y0, x1, y1] per name instead of the grid
+        sprites = {}
         for i, name in enumerate(sheet["names"]):
             if not name:
                 continue
             r, c = divmod(i, cols)
-            cell = cut.crop((xs[c], ys[r], xs[c + 1], ys[r + 1]))
+            cell = cut.crop(tuple(boxes[i]) if boxes else (xs[c], ys[r], xs[c + 1], ys[r + 1]))
             if name in sheet.get("clear_white", []):
                 cell = clear_paper_white(cell)
-            sprite = crop_to_content(drop_specks(cell))
+            # keep_box: animation frames cut with equal boxes keep their box, so the
+            # still part (e.g. a bucket under changing flames) stays in place
+            keep = name in sheet.get("keep_box", [])
+            sprite = drop_specks(cell) if keep else crop_to_content(drop_specks(cell))
             if sprite is None:
                 print(f"  ! empty cell {name}")
                 continue
+            if name in sheet.get("holes", {}):
+                sprite = clear_holes(sprite, sheet["holes"][name])
+            sprites[name] = sprite
+        if sheet.get("same_height") and sprites:
+            # cycle frames: render scales every frame to the same height, so pad the
+            # top to a common height; the body then dips instead of growing
+            top = max(s.height for s in sprites.values())
+            for name, s in sprites.items():
+                padded = Image.new("RGBA", (s.width, top), (0, 0, 0, 0))
+                padded.paste(s, (0, top - s.height))
+                sprites[name] = padded
+        if sheet.get("align_head") and sprites:
+            # cycle frames are placed by their centre: pad left/right so the head sits
+            # at the same x in every frame, otherwise the body jitters as stride changes
+            heads = {}
+            for name, s in sprites.items():
+                a = np.asarray(s.getchannel("A"))[: max(1, s.height // 4)] > 128
+                heads[name] = np.nonzero(a)[1].mean() if a.any() else s.width / 2
+            half = max(max(heads[n], s.width - heads[n]) for n, s in sprites.items())
+            for name, s in sprites.items():
+                w = int(np.ceil(2 * half))
+                padded = Image.new("RGBA", (w, s.height), (0, 0, 0, 0))
+                padded.paste(s, (round(half - heads[name]), 0))
+                sprites[name] = padded
+        for name, sprite in sprites.items():
             sprite.save(out_dir / f"{name}.png")
             print(f"  {name}.png {sprite.size}")
 

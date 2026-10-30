@@ -8,6 +8,8 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
+from render import DEFAULTS
+
 ROOT = Path(__file__).resolve().parent.parent
 # Gemini sparkle logo position on 2752x1536 output (bottom-right corner)
 WATERMARK = (2580, 1365, 2700, 1485)
@@ -28,7 +30,8 @@ def set_clock(im: Image.Image, text: str = "03:00") -> Image.Image:
     box = (1282, 810, 1392, 848)
     d = ImageDraw.Draw(im)
     d.rounded_rectangle(box, 4, fill=(22, 27, 36))
-    font = ImageFont.truetype("/System/Library/Fonts/Menlo.ttc", 30)
+    mono = [p for p in ("/System/Library/Fonts/Menlo.ttc", "C:/Windows/Fonts/consola.ttf") if Path(p).exists()]
+    font = ImageFont.truetype(mono[0] if mono else DEFAULTS["fonts"]["regular"], 30)
     glow = Image.new("RGBA", im.size, (0, 0, 0, 0))
     gd = ImageDraw.Draw(glow)
     cx, cy = (box[0] + box[2]) / 2, (box[1] + box[3]) / 2
@@ -40,8 +43,22 @@ def set_clock(im: Image.Image, text: str = "03:00") -> Image.Image:
     return out.convert("RGB")
 
 
+def dawn_light(im: Image.Image) -> Image.Image:
+    """Night picture -> early dawn: lift the shadows and wash in pale gray-blue
+    morning light from the upper right (the window side)."""
+    a = np.asarray(im.convert("RGB")).astype(np.float32) / 255
+    a = a ** 0.72  # lift dark tones
+    h, w = a.shape[:2]
+    yy, xx = np.mgrid[0:h, 0:w]
+    glow = np.clip(1.0 - np.hypot((xx - w) / w, yy / h) / 1.3, 0, 1)[..., None] * 0.22
+    a = a * (1 - glow) + np.array([0.80, 0.84, 0.92]) * glow
+    a = a * 0.9 + a.mean(axis=2, keepdims=True) * 0.1  # a little less saturated
+    return Image.fromarray((a.clip(0, 1) * 255).astype(np.uint8))
+
+
 FIXES = {
     "bg1_bedroom": [set_clock],
+    "bg1d_corner_dawn": [dawn_light],
 }
 
 

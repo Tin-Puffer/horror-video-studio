@@ -1,0 +1,3808 @@
+{
+ "title": "Bát cơm thứ hai",
+ "output": "build/bat_com_thu_hai.mp4",
+ "logline": "Sau khi mẹ mất, Khoa phá lời bà dặn, gọi mẹ giữa đêm tháng bảy. Tiếng gọi ấy dẫn cả bầy cô hồn đói vào nhà, và kẻ ngày ngày ngồi ăn cạnh cậu chưa chắc đã là mẹ.",
+ "settings": {
+  "video": {
+   "size": [
+    1920,
+    1080
+   ],
+   "fps": 24,
+   "crf": 20,
+   "preset": "medium"
+  },
+  "preview": {
+   "size": [
+    960,
+    540
+   ],
+   "fps": 12,
+   "preset": "veryfast"
+  },
+  "voice": {
+   "sample_rate": 44100,
+   "preset": "clone_ke_chuyen",
+   "merge_pause_below": 0.45,
+   "trim_chunks": true,
+   "chunk_gap": 0.12,
+   "max_inner_pause": 0.35
+  },
+  "timing": {
+   "lead": 0.25,
+   "tail": 0.45,
+   "min_duration": 2.5,
+   "fade_in": 0.15,
+   "fade_out": 0
+  },
+  "fonts": {
+   "regular": "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+   "bold": "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
+  },
+  "look": {
+   "night_tint": [
+    0.8,
+    0.84,
+    0.98
+   ],
+   "glow_color": [
+    170,
+    200,
+    230
+   ],
+   "glow_strength": 0.55,
+   "glow_size": 9,
+   "vignette": {
+    "start": 0.65,
+    "spread": 0.75,
+    "power": 1.6,
+    "max_alpha": 200
+   },
+   "flash": {
+    "length": 0.25,
+    "max_alpha": 230
+   },
+   "bob_hz": 1.6,
+   "breathe_hz": 0.35
+  },
+  "subtitles": {
+   "enabled": true,
+   "size": 0.042,
+   "line_height": 0.055,
+   "bottom": 0.06,
+   "wrap": 48,
+   "color": [
+    240,
+    240,
+    240
+   ],
+   "stroke": [
+    0,
+    0,
+    0
+   ],
+   "split": "sentence",
+   "min_chars": 18
+  },
+  "title": {
+   "size": 0.06,
+   "color": [
+    225,
+    225,
+    230
+   ]
+  },
+  "phone": {
+   "clock": "03:00",
+   "call_label": "Cuộc gọi đến…",
+   "call_sub": "Di động",
+   "decline": "Từ chối",
+   "accept": "Trả lời",
+   "message_time": "Vừa xong",
+   "message_wrap": 15,
+   "glow_color": [
+    120,
+    160,
+    255,
+    90
+   ]
+  },
+  "layer": {
+   "x": 0.5,
+   "y": 0.95,
+   "h": 0.45,
+   "fps": 8,
+   "flip": null,
+   "tint": true,
+   "glow": false,
+   "face": null,
+   "breathe": 0
+  },
+  "audio": {
+   "sample_rate": 44100,
+   "narration_volume": 1.0,
+   "sfx_volume": 1.0,
+   "music_volume": 0.5,
+   "duck": 0.35,
+   "placeholder_beep": true,
+   "trim_silence": true,
+   "trim_threshold": 0.08,
+   "normalize_db": -18,
+   "limiter_ceiling_db": -2.0
+  }
+ },
+ "characters": {
+  "boy_hoodie": {
+   "h": 0.46,
+   "y": 0.96,
+   "tint": true,
+   "glow": false,
+   "breathe": 0.008
+  },
+  "ghost_mother": {
+   "tint": true,
+   "glow": true,
+   "breathe": 0.005
+  },
+  "mother_alive": {
+   "h": 0.6,
+   "breathe": 0.006
+  },
+  "grandma": {
+   "h": 0.5,
+   "breathe": 0.006
+  },
+  "hungry_ghost": {
+   "h": 0.58,
+   "glow": true,
+   "breathe": 0.006
+  },
+  "props": {
+   "h": 0.3,
+   "breathe": 0
+  }
+ },
+ "voice_presets": {
+  "clone_ke_chuyen": {
+   "desc": "Giọng clone kể chuyện — MẶC ĐỊNH (bản demo 18): nhanh 15%, nhẹ mọi dấu chấm",
+   "engine": "vieneu",
+   "vieneu_voice": "clone:giong-ke-chuyen-clone-e6b153",
+   "sample_rate": 44100,
+   "tempo": 1.15,
+   "soften_endings": "all"
+  }
+ },
+ "music": [
+  {
+   "sound": "drone_low",
+   "from": 1,
+   "to": 3,
+   "volume": 0.6,
+   "fade_in": 2.5,
+   "fade_out": 1.5
+  },
+  {
+   "sound": "drone_low",
+   "from": 24,
+   "to": 31,
+   "volume": 0.45,
+   "fade_in": 3,
+   "fade_out": 0.05
+  },
+  {
+   "sound": "drone_low",
+   "from": 34,
+   "to": 50,
+   "volume": 0.6,
+   "fade_in": 3,
+   "fade_out": 2
+  },
+  {
+   "sound": "drone_low",
+   "from": 54,
+   "to": 56,
+   "volume": 0.6,
+   "fade_in": 1.5,
+   "fade_out": 1.5
+  },
+  {
+   "sound": "drone_low",
+   "from": 57,
+   "to": 66,
+   "volume": 0.75,
+   "fade_in": 3,
+   "fade_out": 0.05
+  },
+  {
+   "sound": "drone_low",
+   "from": 75,
+   "to": 79,
+   "volume": 0.6,
+   "fade_in": 2,
+   "fade_out": 2
+  }
+ ],
+ "asset_requests": [],
+ "scenes": [
+  {
+   "id": 1,
+   "bg": "bg8_bedroom_door",
+   "text": "Đêm thứ bốn mươi chín sau ngày mẹ mất, tôi nằm co ro trong bóng tối và nghe thấy tiếng mẹ khóc nghẹn ngay sau cánh cửa phòng mình, quen thuộc đến mức tim tôi thắt lại.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.15,
+      "x": 0.5,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.4,
+      "x": 0.5,
+      "y": 0.66,
+      "ease": "in"
+     }
+    ],
+    "handheld": 4
+   },
+   "sfx": [
+    {
+     "sound": "night_insects",
+     "at": 0,
+     "volume": 0.35,
+     "loop": true,
+     "length": 14
+    },
+    {
+     "sound": "woman_sob_door",
+     "at": 0.15,
+     "volume": 0.9,
+     "loop": true,
+     "length": 12,
+     "fade_in": 1.0
+    }
+   ],
+   "layers": [],
+   "fade_in": 1.5
+  },
+  {
+   "id": 2,
+   "bg": "bg8_bedroom_door",
+   "text": "Mẹ van tôi mở cửa, giọng run run bảo rằng ngoài này đông lắm, chúng nó không cho mẹ đi, rồi mẹ cứ thế khóc mãi không thôi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.25,
+      "x": 0.32,
+      "y": 0.62
+     },
+     {
+      "p": 1,
+      "zoom": 1.25,
+      "x": 0.42,
+      "y": 0.62
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "woman_sob_door",
+     "at": 0,
+     "volume": 1.0,
+     "loop": true,
+     "length": 12
+    },
+    {
+     "sound": "heartbeat",
+     "at": 0.3,
+     "volume": 0.6,
+     "loop": true,
+     "length": 8
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/L5_peek_from_blanket",
+     "x": 0.2,
+     "y": "floor",
+     "h": 0.36,
+     "jitter": 2
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "bg": "bg8_bedroom_door",
+   "text": "Bà nội đã dặn rằng dù nghe thấy gì cũng không được mở cánh cửa ấy, nhưng trước đêm nay, tôi đã phá hai lời dặn của bà rồi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.3,
+      "x": 0.55,
+      "y": 0.55
+     },
+     {
+      "p": 1,
+      "zoom": 1.9,
+      "x": 0.555,
+      "y": 0.53,
+      "ease": "in"
+     }
+    ],
+    "handheld": 5
+   },
+   "sfx": [
+    {
+     "sound": "woman_sob_door",
+     "at": 0,
+     "volume": 0.7,
+     "loop": true,
+     "length": 6,
+     "fade_out": 1.5
+    },
+    {
+     "sound": "heartbeat",
+     "at": 0,
+     "volume": 0.9,
+     "loop": true,
+     "length": 12
+    },
+    {
+     "sound": "door_handle_rattle",
+     "at": 0.82,
+     "volume": 1.2
+    }
+   ],
+   "layers": []
+  },
+  {
+   "id": 4,
+   "bg": "black",
+   "sfx": [
+    {
+     "sound": "ritual_bell",
+     "at": 0.05,
+     "volume": 0.9
+    }
+   ],
+   "layers": [],
+   "duration": 4.0,
+   "fade_in": 0.6,
+   "fade_out": 1.0,
+   "title_text": "BÁT CƠM THỨ HAI"
+  },
+  {
+   "id": 5,
+   "bg": "bg6d_kitchen_day",
+   "text": "Mẹ tôi là một người phụ nữ hiền lành, chiều nào cũng đứng bên chiếc bếp ga cũ trong căn nhà ống nhỏ, khuấy nồi canh thơm lừng trong lúc nắng chiều rọi qua ô cửa sổ.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.4,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.3,
+      "x": 0.38,
+      "y": 0.6
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "paper_burn",
+     "at": 0,
+     "volume": 0.15,
+     "loop": true,
+     "length": 12,
+     "fade_in": 1.5,
+     "fade_out": 1.5
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "mother_alive/A1_stir_pot",
+     "x": 0.42,
+     "y": "floor",
+     "face": "left",
+     "tint": false
+    }
+   ],
+   "fade_in": 1.2
+  },
+  {
+   "id": 6,
+   "bg": "bg4d_main_room_day",
+   "text": "Đến bữa, mẹ lại khum tay gọi vọng lên gác bảo tôi xuống ăn cơm, giọng mẹ ấm áp đến mức bây giờ nhắm mắt lại, tôi vẫn còn nghe thấy.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.38,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.2,
+      "x": 0.45,
+      "y": 0.6
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "footsteps_slow",
+     "at": 0.1,
+     "volume": 0.5,
+     "loop": true,
+     "length": 5
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "mother_alive/A2_call_to_eat",
+     "x": 0.62,
+     "y": 0.88,
+     "h": 0.56,
+     "tint": false
+    },
+    {
+     "cycle": "boy_hoodie/walk",
+     "fps": 3.5,
+     "x": [
+      -0.12,
+      0.28
+     ],
+     "y": "floor",
+     "face": "auto",
+     "breathe": 0,
+     "end": 0.6,
+     "tint": false
+    },
+    {
+     "sprite": "boy_hoodie/00_idle_front_smile",
+     "x": 0.28,
+     "y": "floor",
+     "start": 0.6,
+     "tint": false
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "bg": "bg4d_main_room_day",
+   "text": "Hai mẹ con ngồi bên chiếc bàn gỗ thấp, mẹ gắp cho tôi miếng ngon nhất rồi mới và cơm, vừa ăn vừa hỏi chuyện trường lớp bằng giọng nhẹ nhàng.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.25,
+      "x": 0.68,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.4,
+      "x": 0.72,
+      "y": 0.6
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "spoon_bowl_tap",
+     "at": 0.3,
+     "volume": 0.35
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/M3_sit_stool_eat",
+     "x": 0.59,
+     "y": 0.83,
+     "h": 0.46,
+     "tint": false
+    },
+    {
+     "sprite": "mother_alive/A5_sit_eat",
+     "x": 0.85,
+     "y": 0.81,
+     "h": 0.55,
+     "tint": false
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "bg": "bg4d_main_room_day",
+   "text": "Ăn xong, mẹ luôn gác đôi đũa nằm ngang trên miệng bát, một thói quen cả đời mẹ không bỏ, dù ngày trước bố tôi đã cằn nhằn không biết bao nhiêu lần.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.4,
+      "x": 0.72,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 2.0,
+      "x": 0.84,
+      "y": 0.55,
+      "ease": "smooth"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "spoon_bowl_tap",
+     "at": 0.75,
+     "volume": 0.3
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/M3_sit_stool_eat",
+     "x": 0.59,
+     "y": 0.83,
+     "h": 0.46,
+     "tint": false
+    },
+    {
+     "sprite": "mother_alive/A7_sit_chopsticks_over_bowl",
+     "x": 0.85,
+     "y": 0.81,
+     "h": 0.55,
+     "tint": false
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "bg": "bg6d_kitchen_day",
+   "text": "Mẹ còn có một đôi dép nhựa nâu đã mòn vẹt gót, đi đâu cũng lẹp xẹp kéo lê một bên, tôi mua đôi mới mấy lần mà mẹ vẫn chẳng chịu thay.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.3,
+      "x": 0.6,
+      "y": 0.75
+     },
+     {
+      "p": 1,
+      "zoom": 1.6,
+      "x": 0.6,
+      "y": 0.8
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "slipper_drag",
+     "at": 0.1,
+     "volume": 0.5,
+     "length": 4,
+     "fade_out": 0.8
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC6_mother_slippers",
+     "x": 0.6,
+     "y": 0.93,
+     "h": 0.2,
+     "tint": false
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "bg": "bg6d_kitchen_day",
+   "text": "Tiếng dép ấy đi theo tôi suốt tuổi thơ, sáng sớm vọng ra từ bếp, tối muộn vọng lên ngoài cửa phòng, và tôi chưa bao giờ nghĩ có ngày mình lại sợ nó.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.15,
+      "x": 0.5,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.15,
+      "x": 0.5,
+      "y": 0.6
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "slipper_drag",
+     "at": 0,
+     "volume": 0.75,
+     "loop": true,
+     "length": 12
+    }
+   ],
+   "layers": [
+    {
+     "cycle": "mother_alive/walk",
+     "fps": 2.5,
+     "x": [
+      1.15,
+      0.42
+     ],
+     "y": "floor",
+     "face": "auto",
+     "breathe": 0,
+     "bob": 2,
+     "end": 0.69,
+     "tint": false
+    },
+    {
+     "sprite": "mother_alive/A1_stir_pot",
+     "x": 0.42,
+     "y": "floor",
+     "face": "left",
+     "start": 0.69,
+     "tint": false
+    }
+   ],
+   "fade_out": 0.8
+  },
+  {
+   "id": 11,
+   "bg": "bg5_altar_close",
+   "text": "Rồi mẹ mất vào một chiều mưa đầu tháng bảy âm lịch, đột ngột đến mức tôi chưa kịp nói với mẹ một lời nào cho tử tế.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.15,
+      "x": 0.5,
+      "y": 0.45
+     },
+     {
+      "p": 1,
+      "zoom": 1.5,
+      "x": 0.5,
+      "y": 0.32
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "rain_roof",
+     "at": 0,
+     "volume": 0.6,
+     "loop": true,
+     "length": 12
+    },
+    {
+     "sound": "ritual_bell",
+     "at": 0.4,
+     "volume": 0.5
+    }
+   ],
+   "layers": [],
+   "fade_in": 1.5
+  },
+  {
+   "id": 12,
+   "bg": "bg4_main_room",
+   "text": "Những ngày tang lễ trôi qua trong mùi nhang khói và tiếng mõ đều đều, tôi chỉ biết ngồi ôm gối ở góc nhà, nhìn tấm ảnh mẹ cười hiền trên bàn thờ.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.25,
+      "y": 0.55
+     },
+     {
+      "p": 1,
+      "zoom": 1.3,
+      "x": 0.25,
+      "y": 0.45
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "rain_roof",
+     "at": 0,
+     "volume": 0.5,
+     "loop": true,
+     "length": 12
+    },
+    {
+     "sound": "ritual_bell",
+     "at": 0.1,
+     "volume": 0.35
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/E3_crouch_hug_knees_shaking",
+     "x": 0.14,
+     "y": "floor",
+     "h": 0.36,
+     "jitter": 1
+    }
+   ]
+  },
+  {
+   "id": 13,
+   "bg": "bg4_main_room",
+   "text": "Đêm cuối cùng của tang lễ, bà nội chống lưng bước tới bên tôi, đôi mắt đỏ hoe, rồi bà kéo tôi đứng dậy trước bàn thờ mẹ.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.45,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.2,
+      "x": 0.35,
+      "y": 0.6
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "rain_roof",
+     "at": 0,
+     "volume": 0.45,
+     "loop": true,
+     "length": 10
+    },
+    {
+     "sound": "footsteps_slow",
+     "at": 0.05,
+     "volume": 0.4,
+     "loop": true,
+     "length": 5
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/B1_stand_worried",
+     "x": 0.22,
+     "y": "floor"
+    },
+    {
+     "cycle": "grandma/walk",
+     "fps": 2.5,
+     "x": [
+      0.92,
+      0.45
+     ],
+     "y": "floor",
+     "face": "auto",
+     "breathe": 0,
+     "bob": 2,
+     "end": 0.9
+    },
+    {
+     "sprite": "grandma/00_stand_front",
+     "x": 0.45,
+     "y": "floor",
+     "start": 0.9
+    }
+   ]
+  },
+  {
+   "id": 14,
+   "bg": "bg4_main_room",
+   "text": "Bà nắm chặt tay tôi bằng những ngón tay lạnh ngắt, ghé sát tai dặn ba điều, và bắt tôi nhắc lại từng điều một cho đến khi thuộc lòng.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.3,
+      "x": 0.45,
+      "y": 0.62
+     },
+     {
+      "p": 1,
+      "zoom": 1.6,
+      "x": 0.45,
+      "y": 0.62
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "rain_roof",
+     "at": 0,
+     "volume": 0.4,
+     "loop": true,
+     "length": 10
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "grandma/E1_hold_boy_hands",
+     "x": 0.45,
+     "y": "floor",
+     "h": 0.5,
+     "end": 0.55
+    },
+    {
+     "sprite": "grandma/E2_whisper_boy_ear",
+     "x": 0.45,
+     "y": "floor",
+     "h": 0.5,
+     "start": 0.55
+    }
+   ]
+  },
+  {
+   "id": 15,
+   "bg": "bg5_altar_close",
+   "text": "Điều thứ nhất, cúng cơm cho mẹ xong phải đợi nén nhang tàn hẳn rồi mới được dọn mâm, tuyệt đối không được vội vàng.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.45,
+      "y": 0.5
+     },
+     {
+      "p": 1,
+      "zoom": 1.45,
+      "x": 0.5,
+      "y": 0.6
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "rain_roof",
+     "at": 0,
+     "volume": 0.3,
+     "loop": true,
+     "length": 9
+    },
+    {
+     "sound": "ritual_bell",
+     "at": 0.05,
+     "volume": 0.35
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC1b_bowl_chopsticks_vertical",
+     "x": 0.52,
+     "y": 0.83,
+     "h": 0.42
+    }
+   ]
+  },
+  {
+   "id": 16,
+   "bg": "bg4_main_room",
+   "text": "Điều thứ hai, trời tối thì tuyệt đối không được gọi tên mẹ, vì người đã khuất nghe tiếng con gọi sẽ không nỡ mà đi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.4,
+      "x": 0.45,
+      "y": 0.62
+     },
+     {
+      "p": 1,
+      "zoom": 1.9,
+      "x": 0.45,
+      "y": 0.58,
+      "ease": "in"
+     }
+    ],
+    "handheld": 3
+   },
+   "sfx": [
+    {
+     "sound": "rain_roof",
+     "at": 0,
+     "volume": 0.3,
+     "loop": true,
+     "length": 9
+    },
+    {
+     "sound": "whisper_eerie",
+     "at": 0.6,
+     "volume": 0.35
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "grandma/A6_head_bowed_face_hidden",
+     "x": 0.45,
+     "y": "floor",
+     "h": 0.5
+    }
+   ]
+  },
+  {
+   "id": 17,
+   "bg": "bg8_bedroom_door",
+   "text": "Và điều thứ ba, đêm thứ bốn mươi chín, dù nghe thấy bất cứ điều gì, tôi cũng không được bước chân ra khỏi phòng.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.15,
+      "x": 0.5,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.6,
+      "x": 0.5,
+      "y": 0.75,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "rain_roof",
+     "at": 0,
+     "volume": 0.25,
+     "loop": true,
+     "length": 9
+    },
+    {
+     "sound": "dog_howl",
+     "at": 0.55,
+     "volume": 0.6
+    }
+   ],
+   "layers": [],
+   "fade_out": 0.8
+  },
+  {
+   "id": 18,
+   "bg": "bg4_main_room",
+   "text": "Từ hôm đó, chiều nào tôi cũng xới một bát cơm thật đầy, đặt lên trên một quả trứng luộc và cắm thẳng đôi đũa tre vào giữa bát.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.38,
+      "y": 0.55
+     },
+     {
+      "p": 1,
+      "zoom": 1.3,
+      "x": 0.35,
+      "y": 0.5
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "night_insects",
+     "at": 0,
+     "volume": 0.4,
+     "loop": true,
+     "length": 10
+    },
+    {
+     "sound": "footsteps_slow",
+     "at": 0.05,
+     "volume": 0.4,
+     "length": 2
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/M2_carry_rice_bowl",
+     "x": 0.42,
+     "y": "floor",
+     "face": "left"
+    }
+   ],
+   "fade_in": 1.0
+  },
+  {
+   "id": 19,
+   "bg": "bg4_main_room",
+   "text": "Rồi tôi quỳ xuống thắp ba nén nhang, nhìn làn khói xám uốn lượn qua tấm ảnh mẹ, thì thầm kể cho mẹ nghe chuyện trong ngày như hồi mẹ còn sống.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.3,
+      "x": 0.38,
+      "y": 0.62
+     },
+     {
+      "p": 1,
+      "zoom": 1.45,
+      "x": 0.36,
+      "y": 0.56
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "night_insects",
+     "at": 0,
+     "volume": 0.35,
+     "loop": true,
+     "length": 11
+    },
+    {
+     "sound": "ritual_bell",
+     "at": 0.15,
+     "volume": 0.3
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/M1_kneel_incense",
+     "x": 0.4,
+     "y": "floor",
+     "h": 0.34,
+     "face": "left"
+    }
+   ]
+  },
+  {
+   "id": 20,
+   "bg": "bg5_altar_close",
+   "text": "Tuần đầu tiên trôi qua yên ả, sáng nào bát cơm cũng còn nguyên, quả trứng vẫn nằm đó, đôi đũa vẫn cắm thẳng như lúc tôi đặt xuống.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.5,
+      "y": 0.55
+     },
+     {
+      "p": 1,
+      "zoom": 1.3,
+      "x": 0.52,
+      "y": 0.6
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "volume": 0.4,
+     "loop": true,
+     "length": 10
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC1b_bowl_chopsticks_vertical",
+     "x": 0.52,
+     "y": 0.83,
+     "h": 0.42
+    }
+   ]
+  },
+  {
+   "id": 21,
+   "bg": "bg5_altar_close",
+   "text": "Cho đến một buổi sáng, khi bưng mâm xuống, tôi khựng lại, bởi bát cơm đã vơi đi một góc nhỏ như có ai vừa ăn vài miếng.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.5,
+      "y": 0.55
+     },
+     {
+      "p": 1,
+      "zoom": 1.6,
+      "x": 0.52,
+      "y": 0.7,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "volume": 0.35,
+     "loop": true,
+     "length": 6,
+     "fade_out": 1
+    },
+    {
+     "sound": "heartbeat",
+     "at": 0.4,
+     "volume": 0.5,
+     "loop": true,
+     "length": 6
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC2_bowl_chopsticks_across",
+     "x": 0.52,
+     "y": 0.82,
+     "h": 0.26
+    }
+   ]
+  },
+  {
+   "id": 22,
+   "bg": "bg5_altar_close",
+   "text": "Đôi đũa không còn cắm thẳng nữa mà nằm gác ngang trên miệng bát, đúng y như thói quen cả đời của mẹ.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.6,
+      "x": 0.52,
+      "y": 0.7
+     },
+     {
+      "p": 1,
+      "zoom": 2.2,
+      "x": 0.52,
+      "y": 0.72,
+      "ease": "smooth"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "heartbeat",
+     "at": 0,
+     "volume": 0.45,
+     "loop": true,
+     "length": 7
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC2_bowl_chopsticks_across",
+     "x": 0.52,
+     "y": 0.82,
+     "h": 0.26
+    }
+   ]
+  },
+  {
+   "id": 23,
+   "bg": "bg4_main_room",
+   "text": "Lạ thay, tôi không thấy sợ, trong lòng chỉ dâng lên một cảm giác ấm áp kỳ lạ, vì tôi tin rằng mẹ vẫn còn về thăm tôi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.25,
+      "x": 0.35,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.35,
+      "x": 0.33,
+      "y": 0.55
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "night_insects",
+     "at": 0,
+     "volume": 0.35,
+     "loop": true,
+     "length": 9
+    },
+    {
+     "sound": "spoon_bowl_tap",
+     "at": 0.7,
+     "volume": 0.2
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/00_idle_front_smile",
+     "x": 0.35,
+     "y": "floor"
+    }
+   ]
+  },
+  {
+   "id": 24,
+   "bg": "bg1_bedroom",
+   "text": "Những đêm sau, nằm trong bóng tối, tôi bắt đầu nghe thấy tiếng dép lẹp xẹp từ dưới bếp vọng lên, chậm rãi, kéo lê một bên.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.6,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.35,
+      "x": 0.68,
+      "y": 0.65
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "night_insects",
+     "at": 0,
+     "volume": 0.35,
+     "loop": true,
+     "length": 10
+    },
+    {
+     "sound": "slipper_drag",
+     "at": 0.2,
+     "volume": 0.45,
+     "loop": true,
+     "length": 9,
+     "fade_in": 1.0
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/G1_bed_sleeping",
+     "x": 0.7,
+     "y": 0.95,
+     "h": 0.5
+    }
+   ],
+   "fade_in": 1.0
+  },
+  {
+   "id": 25,
+   "bg": "bg6_kitchen",
+   "text": "Đó y hệt tiếng đôi dép mòn gót mẹ đi suốt mấy năm không chịu thay, có đêm còn xen lẫn tiếng thìa khẽ gõ vào thành bát, rồi mọi thứ lại im bặt.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.45,
+      "y": 0.55
+     },
+     {
+      "p": 1,
+      "zoom": 1.6,
+      "x": 0.66,
+      "y": 0.6,
+      "ease": "smooth"
+     }
+    ],
+    "handheld": 3
+   },
+   "sfx": [
+    {
+     "sound": "slipper_drag",
+     "at": 0,
+     "volume": 0.7,
+     "loop": true,
+     "length": 6,
+     "fade_out": 1.0
+    },
+    {
+     "sound": "spoon_bowl_tap",
+     "at": 0.55,
+     "volume": 0.6
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC6_mother_slippers",
+     "x": 0.69,
+     "y": 0.7,
+     "h": 0.07
+    }
+   ]
+  },
+  {
+   "id": 26,
+   "bg": "bg1_bedroom",
+   "text": "Một đêm, tôi lấy hết can đảm trở dậy, rón rén đi xuống bếp xem thử, tim đập thình thịch theo từng bước chân trần trên sàn lạnh.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.3,
+      "x": 0.68,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.3,
+      "x": 0.68,
+      "y": 0.6
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "night_insects",
+     "at": 0,
+     "volume": 0.3,
+     "loop": true,
+     "length": 10
+    },
+    {
+     "sound": "heartbeat",
+     "at": 0.3,
+     "volume": 0.6,
+     "loop": true,
+     "length": 7
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/G2_bed_wake_startled",
+     "x": 0.7,
+     "y": 0.95,
+     "h": 0.54
+    }
+   ]
+  },
+  {
+   "id": 27,
+   "bg": "bg6_kitchen",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.7,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.2,
+      "x": 0.6,
+      "y": 0.6
+     }
+    ],
+    "handheld": 4
+   },
+   "sfx": [
+    {
+     "sound": "floor_creak",
+     "at": 0.2,
+     "volume": 0.7
+    },
+    {
+     "sound": "heartbeat",
+     "at": 0,
+     "volume": 0.6,
+     "loop": true,
+     "length": 4.5
+    }
+   ],
+   "layers": [
+    {
+     "cycle": "boy_hoodie/tiptoe",
+     "fps": 6,
+     "x": [
+      0.95,
+      0.6
+     ],
+     "y": "floor",
+     "face": "auto",
+     "breathe": 0
+    }
+   ],
+   "duration": 4.5
+  },
+  {
+   "id": 28,
+   "bg": "bg4_main_room",
+   "text": "Bếp vắng tanh, nhưng ngoài gian thờ, chiếc ghế đẩu mẹ vẫn ngồi mỗi bữa cơm đã bị ai đó kéo lệch ra khỏi bàn, như vừa có người đứng dậy.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.4,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.7,
+      "x": 0.6,
+      "y": 0.68,
+      "ease": "in"
+     }
+    ],
+    "handheld": 4
+   },
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "volume": 0.4,
+     "loop": true,
+     "length": 10
+    },
+    {
+     "sound": "floor_creak",
+     "at": 0.15,
+     "volume": 0.4
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/A2_side_nervous_sweat",
+     "x": 0.35,
+     "y": "floor",
+     "face": "right",
+     "jitter": 1
+    }
+   ]
+  },
+  {
+   "id": 29,
+   "bg": "bg4_main_room",
+   "text": "Tôi đứng lặng hồi lâu rồi tự nhủ chắc mẹ chỉ về ngồi ăn với tôi một chút thôi, và tôi đẩy chiếc ghế lại chỗ cũ, khẽ chúc mẹ ngủ ngon.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.35,
+      "x": 0.55,
+      "y": 0.62
+     },
+     {
+      "p": 1,
+      "zoom": 1.4,
+      "x": 0.58,
+      "y": 0.64
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "volume": 0.35,
+     "loop": true,
+     "length": 10
+    },
+    {
+     "sound": "floor_creak",
+     "at": 0.5,
+     "volume": 0.3
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/A4_walk_reach_out",
+     "x": 0.49,
+     "y": 0.88,
+     "h": 0.44,
+     "face": "right"
+    }
+   ],
+   "fade_out": 0.8
+  },
+  {
+   "id": 30,
+   "bg": "bg1_bedroom",
+   "text": "Đêm thứ hai mươi mốt, nỗi nhớ mẹ dâng lên đến nghẹt thở, tôi trùm chăn kín đầu mà nước mắt cứ thế chảy ra không sao ngăn được.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.62,
+      "y": 0.62
+     },
+     {
+      "p": 1,
+      "zoom": 1.5,
+      "x": 0.68,
+      "y": 0.7
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "rain_roof",
+     "at": 0,
+     "volume": 0.5,
+     "loop": true,
+     "length": 12
+    },
+    {
+     "sound": "slipper_drag",
+     "at": 0.1,
+     "volume": 0.35,
+     "loop": true,
+     "length": 10,
+     "fade_in": 1.0
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/L5_peek_from_blanket",
+     "x": 0.68,
+     "y": "floor",
+     "h": 0.36
+    }
+   ],
+   "fade_in": 1.0
+  },
+  {
+   "id": 31,
+   "bg": "bg1_bedroom",
+   "text": "Và trước khi kịp nghĩ đến lời bà dặn, môi tôi đã khẽ bật ra hai tiếng mẹ ơi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.15,
+      "x": 0.5,
+      "y": 0.5
+     },
+     {
+      "p": 1,
+      "zoom": 1.25,
+      "x": 0.5,
+      "y": 0.46
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "rain_roof",
+     "at": 0,
+     "volume": 0.4,
+     "loop": true,
+     "length": 7
+    },
+    {
+     "sound": "slipper_drag",
+     "at": 0,
+     "volume": 0.45,
+     "loop": true,
+     "length": 5.5
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/D6_face_crying",
+     "x": 0.5,
+     "y": 1.02,
+     "h": 0.95
+    }
+   ]
+  },
+  {
+   "id": 32,
+   "bg": "bg1_bedroom",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.5,
+      "x": 0.68,
+      "y": 0.7
+     },
+     {
+      "p": 1,
+      "zoom": 1.6,
+      "x": 0.68,
+      "y": 0.7
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "heartbeat",
+     "at": 0.2,
+     "volume": 0.7,
+     "loop": true,
+     "length": 2.8
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/L5_peek_from_blanket",
+     "x": 0.68,
+     "y": "floor",
+     "h": 0.36
+    }
+   ],
+   "duration": 3.0,
+   "bg_dim": 0.45
+  },
+  {
+   "id": 33,
+   "bg": "bg6_kitchen",
+   "text": "Ngay lúc ấy, tiếng dép dưới bếp đột ngột dừng lại, và cả căn nhà chìm vào một sự im lặng nặng nề đến mức tôi nghe rõ cả tiếng tim mình.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.6,
+      "y": 0.5
+     },
+     {
+      "p": 1,
+      "zoom": 1.8,
+      "x": 0.69,
+      "y": 0.42,
+      "ease": "in"
+     }
+    ],
+    "handheld": 5
+   },
+   "sfx": [
+    {
+     "sound": "heartbeat",
+     "at": 0,
+     "volume": 0.8,
+     "loop": true,
+     "length": 11
+    },
+    {
+     "sound": "dog_howl",
+     "at": 0.75,
+     "volume": 0.55
+    }
+   ],
+   "layers": [],
+   "fade_out": 1.0
+  },
+  {
+   "id": 34,
+   "bg": "bg5_altar_close",
+   "text": "Sáng hôm sau, bát cơm trên bàn thờ sạch trơn không còn lấy một hạt, quả trứng chỉ còn lại mấy mảnh vỏ vỡ vụn nằm vương vãi bên cạnh.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.5,
+      "y": 0.55
+     },
+     {
+      "p": 1,
+      "zoom": 1.6,
+      "x": 0.52,
+      "y": 0.68,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "volume": 0.35,
+     "loop": true,
+     "length": 10
+    },
+    {
+     "sound": "reverse_swell",
+     "at": 0.55,
+     "volume": 0.5
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC3_bowl_empty_eggshell",
+     "x": 0.52,
+     "y": 0.82,
+     "h": 0.3
+    }
+   ],
+   "fade_in": 0.8
+  },
+  {
+   "id": 35,
+   "bg": "black",
+   "text": "Còn nén nhang tôi thắp tối qua thì gãy gập ngay giữa bát hương, như bị ai đó bẻ quặt xuống.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.15,
+      "x": 0.5,
+      "y": 0.5
+     },
+     {
+      "p": 1,
+      "zoom": 1.3,
+      "x": 0.5,
+      "y": 0.42
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "heartbeat",
+     "at": 0,
+     "volume": 0.5,
+     "loop": true,
+     "length": 7
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC4_incense_broken",
+     "x": 0.5,
+     "y": 0.85,
+     "h": 0.62
+    }
+   ]
+  },
+  {
+   "id": 36,
+   "bg": "bg4_main_room",
+   "text": "Tối đó tôi xới bát cơm đầy hơn, sáng ra vẫn sạch trơn, tôi xới thêm một bát nữa, và sáng hôm sau, cả hai bát đều trống rỗng.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.38,
+      "y": 0.55
+     },
+     {
+      "p": 1,
+      "zoom": 1.4,
+      "x": 0.35,
+      "y": 0.45
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "night_insects",
+     "at": 0,
+     "volume": 0.3,
+     "loop": true,
+     "length": 10
+    },
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "volume": 0.3,
+     "loop": true,
+     "length": 10
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/M2_carry_rice_bowl",
+     "x": 0.42,
+     "y": "floor",
+     "face": "left"
+    }
+   ]
+  },
+  {
+   "id": 37,
+   "bg": "bg5_altar_close",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.3,
+      "x": 0.51,
+      "y": 0.66
+     },
+     {
+      "p": 1,
+      "zoom": 1.45,
+      "x": 0.51,
+      "y": 0.68
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "reverse_swell",
+     "at": 0,
+     "volume": 0.6
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC3_bowl_empty_eggshell",
+     "x": 0.38,
+     "y": 0.82,
+     "h": 0.27
+    },
+    {
+     "sprite": "props/DC3_bowl_empty_eggshell",
+     "x": 0.64,
+     "y": 0.83,
+     "h": 0.27
+    }
+   ],
+   "duration": 3.2
+  },
+  {
+   "id": 38,
+   "bg": "bg1_bedroom",
+   "text": "Rồi đến cái đêm tôi nghe thấy tiếng bát đũa lách cách ngoài gian thờ, không phải của một đôi đũa mà là rất nhiều đôi, va vào nhau gấp gáp.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.65,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.45,
+      "x": 0.7,
+      "y": 0.6,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "chopsticks_clatter",
+     "at": 0.2,
+     "volume": 0.8,
+     "loop": true,
+     "length": 9
+    },
+    {
+     "sound": "night_insects",
+     "at": 0,
+     "volume": 0.2,
+     "loop": true,
+     "length": 10
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/G3_bed_blanket_chin_scared",
+     "x": 0.7,
+     "y": 0.95,
+     "h": 0.5,
+     "jitter": 1
+    }
+   ]
+  },
+  {
+   "id": 39,
+   "bg": "bg1_bedroom",
+   "text": "Xen lẫn trong đó là những tiếng nhai nhóp nhép, húp xì xụp, như có cả một mâm người đang ăn vội vàng trong bóng tối.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.45,
+      "x": 0.7,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.8,
+      "x": 0.7,
+      "y": 0.55,
+      "ease": "in"
+     }
+    ],
+    "handheld": 4
+   },
+   "sfx": [
+    {
+     "sound": "chewing_wet",
+     "at": 0,
+     "volume": 0.8,
+     "loop": true,
+     "length": 9
+    },
+    {
+     "sound": "chopsticks_clatter",
+     "at": 0,
+     "volume": 0.5,
+     "loop": true,
+     "length": 9
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/G3_bed_blanket_chin_scared",
+     "x": 0.7,
+     "y": 0.95,
+     "h": 0.5,
+     "jitter": 2
+    }
+   ]
+  },
+  {
+   "id": 40,
+   "bg": "bg8_bedroom_door",
+   "text": "Tôi run rẩy bò xuống sàn, áp má vào nền gỗ lạnh ngắt, rồi ghé mắt nhìn qua khe hở nhỏ dưới chân cửa.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.5,
+      "y": 0.65
+     },
+     {
+      "p": 1,
+      "zoom": 1.6,
+      "x": 0.5,
+      "y": 0.8,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "chewing_wet",
+     "at": 0,
+     "volume": 0.5,
+     "loop": true,
+     "length": 8
+    },
+    {
+     "sound": "floor_creak",
+     "at": 0.15,
+     "volume": 0.5
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/M7_lie_prone_back_view",
+     "x": 0.5,
+     "y": 1.22,
+     "h": 0.42
+    }
+   ]
+  },
+  {
+   "id": 41,
+   "bg": "bg9b_door_gap_ghosts",
+   "text": "Trong ánh nến đỏ leo lét, tôi thấy thấp thoáng những cái bóng gầy rộc ngồi xổm quanh mâm cơm, đôi tay đen đúa bốc cơm nhét vào miệng.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.35,
+      "y": 0.53
+     },
+     {
+      "p": 1,
+      "zoom": 1.2,
+      "x": 0.65,
+      "y": 0.53,
+      "ease": "smooth"
+     }
+    ],
+    "handheld": 3
+   },
+   "sfx": [
+    {
+     "sound": "chewing_wet",
+     "at": 0,
+     "volume": 0.9,
+     "loop": true,
+     "length": 10
+    },
+    {
+     "sound": "chopsticks_clatter",
+     "at": 0.1,
+     "volume": 0.5,
+     "loop": true,
+     "length": 9
+    }
+   ],
+   "layers": []
+  },
+  {
+   "id": 42,
+   "bg": "bg9b_door_gap_ghosts",
+   "text": "Một cái bóng bỗng ngừng nhai, rồi ngẩng phắt lên, nhìn thẳng về phía khe cửa nơi tôi đang nằm.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.25,
+      "x": 0.5,
+      "y": 0.52
+     },
+     {
+      "p": 1,
+      "zoom": 1.9,
+      "x": 0.49,
+      "y": 0.42,
+      "ease": "in"
+     }
+    ],
+    "handheld": 4
+   },
+   "sfx": [
+    {
+     "sound": "chewing_wet",
+     "at": 0,
+     "volume": 0.7,
+     "loop": true,
+     "length": 8,
+     "fade_out": 0.6
+    },
+    {
+     "sound": "heartbeat",
+     "at": 0.4,
+     "volume": 0.7,
+     "loop": true,
+     "length": 5
+    }
+   ],
+   "layers": []
+  },
+  {
+   "id": 43,
+   "bg": "bg9c_door_gap_face",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.25,
+      "x": 0.45,
+      "y": 0.5
+     },
+     {
+      "p": 1,
+      "zoom": 1.45,
+      "x": 0.43,
+      "y": 0.48,
+      "ease": "out"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "ghost_stinger",
+     "at": 0,
+     "volume": 1.8
+    }
+   ],
+   "layers": [],
+   "duration": 2.6,
+   "fade_in": 0,
+   "flash": [
+    0.0
+   ],
+   "shake": {
+    "amp": 12,
+    "from": 0,
+    "to": 0.45
+   }
+  },
+  {
+   "id": 44,
+   "bg": "bg1c_corner_night",
+   "text": "Tôi lùi lại, bịt chặt hai tai, ngồi co ro trong góc phòng đến tận sáng mà không dám nhắm mắt lấy một lần.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.15,
+      "x": 0.45,
+      "y": 0.55
+     },
+     {
+      "p": 1,
+      "zoom": 1.75,
+      "x": 0.5,
+      "y": 0.45,
+      "ease": "in"
+     }
+    ],
+    "handheld": 4
+   },
+   "sfx": [
+    {
+     "sound": "heartbeat",
+     "at": 0,
+     "volume": 0.7,
+     "loop": true,
+     "length": 9
+    },
+    {
+     "sound": "chewing_wet",
+     "at": 0,
+     "volume": 0.25,
+     "loop": true,
+     "length": 6,
+     "fade_out": 3
+    },
+    {
+     "sound": "breath_close",
+     "at": 0.35,
+     "volume": 0.5
+    },
+    {
+     "sound": "clock_tick",
+     "at": 0.5,
+     "volume": 0.35,
+     "loop": true,
+     "length": 5,
+     "fade_in": 1.0
+    }
+   ],
+   "layers": [],
+   "fade_out": 1.2
+  },
+  {
+   "id": 45,
+   "bg": "bg1d_corner_dawn",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.6,
+      "x": 0.5,
+      "y": 0.47
+     },
+     {
+      "p": 1,
+      "zoom": 1.4,
+      "x": 0.5,
+      "y": 0.5,
+      "ease": "smooth"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "volume": 0.35,
+     "loop": true,
+     "length": 4,
+     "fade_out": 1.0
+    },
+    {
+     "sound": "breath_close",
+     "at": 0.4,
+     "volume": 0.3
+    }
+   ],
+   "layers": [],
+   "duration": 4.0,
+   "fade_in": 1.5,
+   "fade_out": 1.0
+  },
+  {
+   "id": 46,
+   "bg": "bg4_main_room",
+   "text": "Sáng ra, quanh mâm cơm có những dấu tay đen in khắp mặt bàn gỗ, dấu của rất nhiều bàn tay gầy guộc với những ngón dài khẳng khiu.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.3,
+      "x": 0.6,
+      "y": 0.55
+     },
+     {
+      "p": 1,
+      "zoom": 2.6,
+      "x": 0.73,
+      "y": 0.6,
+      "ease": "smooth"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "volume": 0.35,
+     "loop": true,
+     "length": 10
+    },
+    {
+     "sound": "reverse_swell",
+     "at": 0.5,
+     "volume": 0.4
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC5_black_handprints",
+     "x": 0.69,
+     "y": 0.63,
+     "h": 0.06
+    },
+    {
+     "sprite": "props/DC5_black_handprints",
+     "x": 0.785,
+     "y": 0.625,
+     "h": 0.055
+    }
+   ],
+   "fade_in": 0.8
+  },
+  {
+   "id": 47,
+   "bg": "bg4_main_room",
+   "text": "Tôi nhìn chúng rất lâu, và tôi biết chắc rằng không có bàn tay nào trong số ấy là của mẹ.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 2.6,
+      "x": 0.73,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 3.0,
+      "x": 0.73,
+      "y": 0.6
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "heartbeat",
+     "at": 0,
+     "volume": 0.5,
+     "loop": true,
+     "length": 7
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC5_black_handprints",
+     "x": 0.69,
+     "y": 0.63,
+     "h": 0.06
+    },
+    {
+     "sprite": "props/DC5_black_handprints",
+     "x": 0.785,
+     "y": 0.625,
+     "h": 0.055
+    }
+   ]
+  },
+  {
+   "id": 48,
+   "bg": "bg4_main_room",
+   "text": "Bà nội đứng nhìn những dấu tay ấy thật lâu, rồi chậm rãi quay sang hỏi tôi có gọi mẹ vào ban đêm hay không.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.25,
+      "x": 0.45,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.4,
+      "x": 0.48,
+      "y": 0.6
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "volume": 0.35,
+     "loop": true,
+     "length": 9
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "grandma/A6_head_bowed_face_hidden",
+     "x": 0.55,
+     "y": "floor"
+    },
+    {
+     "sprite": "boy_hoodie/B1_stand_worried",
+     "x": 0.3,
+     "y": "floor"
+    }
+   ]
+  },
+  {
+   "id": 49,
+   "bg": "bg4_main_room",
+   "text": "Tôi cúi gằm mặt không đáp, bà ngồi sụp xuống bậc cửa, giọng run run bảo rằng tháng bảy là tháng cửa âm mở toang.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.3,
+      "x": 0.6,
+      "y": 0.65
+     },
+     {
+      "p": 1,
+      "zoom": 1.5,
+      "x": 0.72,
+      "y": 0.68
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "volume": 0.3,
+     "loop": true,
+     "length": 9
+    },
+    {
+     "sound": "whisper_eerie",
+     "at": 0.7,
+     "volume": 0.3
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "grandma/A4_sit_hug_knees_grief",
+     "x": 0.92,
+     "y": 0.97,
+     "h": 0.3
+    },
+    {
+     "sprite": "boy_hoodie/B1_stand_worried",
+     "x": 0.55,
+     "y": "floor"
+    }
+   ]
+  },
+  {
+   "id": 50,
+   "bg": "bg4_main_room",
+   "text": "Bà bảo tôi chỉ gọi có một người, nhưng những kẻ đói khát lang thang ngoài kia đều đã nghe thấy, và chúng đã lần theo tiếng gọi ấy mà vào nhà.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.5,
+      "x": 0.8,
+      "y": 0.7
+     },
+     {
+      "p": 1,
+      "zoom": 2.0,
+      "x": 0.88,
+      "y": 0.75,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "dog_howl",
+     "at": 0.6,
+     "volume": 0.6
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "grandma/A4_sit_hug_knees_grief",
+     "x": 0.92,
+     "y": 0.97,
+     "h": 0.3
+    }
+   ],
+   "fade_out": 1.0
+  },
+  {
+   "id": 51,
+   "bg": "bg7_front_yard",
+   "text": "Chiều hôm ấy, bà bày một mâm cúng cô hồn ngoài sân, vừa lâm râm khấn vái vừa vốc từng nắm gạo muối rải ra phía cổng sắt.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.45,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.3,
+      "x": 0.5,
+      "y": 0.6
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "rice_scatter",
+     "at": 0.25,
+     "volume": 1.0
+    },
+    {
+     "sound": "rice_scatter",
+     "at": 0.6,
+     "volume": 0.8
+    },
+    {
+     "sound": "ritual_bell",
+     "at": 0.05,
+     "volume": 0.4
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "grandma/A3_scatter_rice_salt",
+     "x": 0.45,
+     "y": "floor",
+     "face": "right"
+    }
+   ],
+   "fade_in": 1.0
+  },
+  {
+   "id": 52,
+   "bg": "bg7_front_yard",
+   "text": "Bà đốt một xấp vàng mã trong chiếc thùng sắt cũ, khói bay mù mịt, miệng lẩm bẩm xin các vong đã no thì đi đi, đừng quay lại nữa.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.25,
+      "x": 0.42,
+      "y": 0.62
+     },
+     {
+      "p": 1,
+      "zoom": 1.5,
+      "x": 0.5,
+      "y": 0.62
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "paper_burn",
+     "at": 0,
+     "volume": 0.8,
+     "loop": true,
+     "length": 12
+    },
+    {
+     "sound": "ritual_bell",
+     "at": 0.75,
+     "volume": 0.3
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/E2_back_stand",
+     "x": 0.18,
+     "y": "floor"
+    },
+    {
+     "sprite": "props/VM4_grandma_crouch_drop_paper",
+     "x": 0.42,
+     "y": 0.95,
+     "h": 0.3,
+     "tint": false
+    },
+    {
+     "cycle": "props/fire",
+     "fps": 6,
+     "x": 0.56,
+     "y": 0.96,
+     "h": 0.32,
+     "tint": false,
+     "breathe": 0
+    }
+   ]
+  },
+  {
+   "id": 53,
+   "bg": "bg7_front_yard",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.6,
+      "x": 0.56,
+      "y": 0.7
+     },
+     {
+      "p": 1,
+      "zoom": 2.0,
+      "x": 0.56,
+      "y": 0.66,
+      "ease": "smooth"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "paper_burn",
+     "at": 0,
+     "volume": 0.9,
+     "loop": true,
+     "length": 4.0,
+     "fade_out": 0.8
+    },
+    {
+     "sound": "whisper_eerie",
+     "at": 0.5,
+     "volume": 0.25
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/VM6_joss_paper_stack",
+     "x": 0.42,
+     "y": 0.97,
+     "h": 0.07
+    },
+    {
+     "cycle": "props/fire",
+     "fps": 6,
+     "x": 0.56,
+     "y": 0.96,
+     "h": 0.32,
+     "tint": false,
+     "breathe": 0
+    }
+   ],
+   "duration": 4.0
+  },
+  {
+   "id": 54,
+   "bg": "bg4_main_room",
+   "text": "Mấy đêm sau, căn nhà yên tĩnh trở lại, bát cơm trên bàn thờ còn nguyên, và tôi đã ngỡ rằng mọi chuyện thế là xong.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.62,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.3,
+      "x": 0.66,
+      "y": 0.6
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "night_insects",
+     "at": 0,
+     "volume": 0.45,
+     "loop": true,
+     "length": 10
+    },
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "volume": 0.25,
+     "loop": true,
+     "length": 10
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/M3_sit_stool_eat",
+     "x": 0.59,
+     "y": 0.83,
+     "h": 0.46
+    }
+   ]
+  },
+  {
+   "id": 55,
+   "bg": "bg7_front_yard",
+   "text": "Cho đến một đêm, tôi nghe tiếng cổng sắt rung lạch cạch, rồi một giọng khàn đặc từ ngoài đường vọng vào, gọi tên tôi rất chậm.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.6,
+      "y": 0.5
+     },
+     {
+      "p": 1,
+      "zoom": 1.8,
+      "x": 0.69,
+      "y": 0.45,
+      "ease": "in"
+     }
+    ],
+    "handheld": 4
+   },
+   "sfx": [
+    {
+     "sound": "gate_rattle",
+     "at": 0.15,
+     "volume": 1.0
+    },
+    {
+     "sound": "whisper_eerie",
+     "at": 0.55,
+     "volume": 0.8
+    },
+    {
+     "sound": "night_insects",
+     "at": 0,
+     "volume": 0.2,
+     "loop": true,
+     "length": 10
+    }
+   ],
+   "layers": []
+  },
+  {
+   "id": 56,
+   "bg": "bg7_front_yard",
+   "text": "Qua song cổng, giữa làn sương, tôi thấy một cái bóng cổ dài đứng im, khuôn mặt hõm sâu ngước về phía cửa sổ phòng tôi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.8,
+      "x": 0.69,
+      "y": 0.45
+     },
+     {
+      "p": 1,
+      "zoom": 2.3,
+      "x": 0.69,
+      "y": 0.42,
+      "ease": "in"
+     }
+    ],
+    "handheld": 4
+   },
+   "sfx": [
+    {
+     "sound": "whisper_eerie",
+     "at": 0.1,
+     "volume": 0.7
+    },
+    {
+     "sound": "heartbeat",
+     "at": 0,
+     "volume": 0.7,
+     "loop": true,
+     "length": 9
+    },
+    {
+     "sound": "gate_rattle",
+     "at": 0.8,
+     "volume": 0.6
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "hungry_ghost/A3_stand_front",
+     "x": 0.69,
+     "y": 0.64,
+     "h": 0.34
+    }
+   ],
+   "fade_out": 1.0
+  },
+  {
+   "id": 57,
+   "bg": "bg4_main_room",
+   "text": "Đêm thứ bốn mươi chín, bà tắt hết đèn trong nhà, đặt mâm cơm cuối cùng lên bàn thờ, rồi lặng lẽ dắt tôi về phòng.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.5,
+      "y": 0.55
+     },
+     {
+      "p": 1,
+      "zoom": 1.3,
+      "x": 0.48,
+      "y": 0.52
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "night_insects",
+     "at": 0,
+     "volume": 0.3,
+     "loop": true,
+     "length": 10
+    },
+    {
+     "sound": "ritual_bell",
+     "at": 0.1,
+     "volume": 0.3
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "grandma/A5_scoop_rice",
+     "x": 0.64,
+     "y": 0.86,
+     "h": 0.46
+    },
+    {
+     "sprite": "boy_hoodie/B1_stand_worried",
+     "x": 0.42,
+     "y": "floor"
+    }
+   ],
+   "fade_in": 1.2,
+   "bg_dim": 0.2
+  },
+  {
+   "id": 58,
+   "bg": "bg8_bedroom_door",
+   "text": "Bà khoá cửa phòng tôi từ bên ngoài, dặn dù có chuyện gì cũng phải nằm yên, vì đêm nay là đêm mẹ phải đi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.45,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.5,
+      "x": 0.58,
+      "y": 0.5,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "door_bolt_lock",
+     "at": 0.2,
+     "volume": 1.1
+    },
+    {
+     "sound": "night_insects",
+     "at": 0,
+     "volume": 0.25,
+     "loop": true,
+     "length": 9
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/B1_stand_worried",
+     "x": 0.25,
+     "y": "floor"
+    }
+   ]
+  },
+  {
+   "id": 59,
+   "bg": "bg8_bedroom_door",
+   "text": "Gần nửa đêm, tiếng dép lẹp xẹp lại vang lên dưới bếp, chậm rãi đi lên, và lần này nó dừng lại ngay trước cửa phòng tôi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.4,
+      "y": 0.62
+     },
+     {
+      "p": 1,
+      "zoom": 1.6,
+      "x": 0.5,
+      "y": 0.8,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "slipper_drag",
+     "at": 0,
+     "volume": 0.6,
+     "loop": true,
+     "length": 9,
+     "fade_in": 1.0,
+     "fade_out": 0.1
+    },
+    {
+     "sound": "heartbeat",
+     "at": 0.5,
+     "volume": 0.6,
+     "loop": true,
+     "length": 6
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/L5_peek_from_blanket",
+     "x": 0.18,
+     "y": "floor",
+     "h": 0.36,
+     "jitter": 1
+    }
+   ]
+  },
+  {
+   "id": 60,
+   "bg": "bg8_bedroom_door",
+   "text": "Rồi mẹ khóc, mẹ bảo mẹ muốn đi mà không đi được, chúng nó bám lấy mẹ, chúng nó đói lắm, con ra tiễn mẹ một đoạn thôi con.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.5,
+      "x": 0.5,
+      "y": 0.75
+     },
+     {
+      "p": 1,
+      "zoom": 1.9,
+      "x": 0.5,
+      "y": 0.8,
+      "ease": "in"
+     }
+    ],
+    "handheld": 4
+   },
+   "sfx": [
+    {
+     "sound": "woman_sob_door",
+     "at": 0,
+     "volume": 1.0,
+     "loop": true,
+     "length": 11
+    },
+    {
+     "sound": "heartbeat",
+     "at": 0,
+     "volume": 0.6,
+     "loop": true,
+     "length": 11
+    }
+   ],
+   "layers": []
+  },
+  {
+   "id": 61,
+   "bg": "bg8_bedroom_door",
+   "text": "Tôi bịt chặt hai tai, nhưng tiếng khóc như rót thẳng vào đầu, mỗi tiếng nấc lại kéo tôi lại gần cánh cửa thêm một chút.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.3,
+      "x": 0.3,
+      "y": 0.65
+     },
+     {
+      "p": 1,
+      "zoom": 1.3,
+      "x": 0.4,
+      "y": 0.65
+     }
+    ],
+    "handheld": 5
+   },
+   "sfx": [
+    {
+     "sound": "woman_sob_door",
+     "at": 0,
+     "volume": 1.1,
+     "loop": true,
+     "length": 11
+    },
+    {
+     "sound": "whisper_eerie",
+     "at": 0.5,
+     "volume": 0.4
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/E6_crouch_cover_ears",
+     "x": 0.24,
+     "y": "floor",
+     "h": 0.4,
+     "jitter": 2
+    }
+   ]
+  },
+  {
+   "id": 62,
+   "bg": "bg8_bedroom_door",
+   "text": "Không biết từ lúc nào, tôi đã đứng trước cửa, bàn tay đặt lên nắm cửa lạnh buốt.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.3,
+      "x": 0.5,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.7,
+      "x": 0.53,
+      "y": 0.55,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "woman_sob_door",
+     "at": 0,
+     "volume": 0.7,
+     "loop": true,
+     "length": 7,
+     "fade_out": 2.0
+    },
+    {
+     "sound": "heartbeat",
+     "at": 0,
+     "volume": 0.9,
+     "loop": true,
+     "length": 7
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/K2_reach_up_grip",
+     "x": 0.5,
+     "y": "floor",
+     "h": 0.52,
+     "face": "right"
+    }
+   ]
+  },
+  {
+   "id": 63,
+   "bg": "bg8_bedroom_door",
+   "text": "Cánh cửa bà đã khoá từ bên ngoài, không hiểu vì sao, lại khẽ mở ra.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.7,
+      "x": 0.53,
+      "y": 0.55
+     },
+     {
+      "p": 1,
+      "zoom": 2.2,
+      "x": 0.5,
+      "y": 0.55,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "door_creak_open",
+     "at": 0.35,
+     "volume": 1.2
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/K2_reach_up_grip",
+     "x": 0.5,
+     "y": "floor",
+     "h": 0.52,
+     "face": "right"
+    }
+   ]
+  },
+  {
+   "id": 64,
+   "bg": "bg4_main_room",
+   "text": "Gian thờ tối om, chỉ còn ba đốm nhang đỏ lập loè, và mẹ đứng quay lưng về phía tôi, ngay cạnh chiếc ghế mẹ vẫn ngồi mỗi bữa cơm.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.5,
+      "y": 0.55
+     },
+     {
+      "p": 1,
+      "zoom": 1.5,
+      "x": 0.75,
+      "y": 0.6,
+      "ease": "smooth"
+     }
+    ],
+    "handheld": 3
+   },
+   "sfx": [
+    {
+     "sound": "heartbeat",
+     "at": 0,
+     "volume": 0.5,
+     "loop": true,
+     "length": 10
+    },
+    {
+     "sound": "chewing_wet",
+     "at": 0.5,
+     "volume": 0.3,
+     "loop": true,
+     "length": 5,
+     "fade_in": 1.5
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "ghost_mother/GH9_back_stand",
+     "x": 0.88,
+     "y": 0.86,
+     "h": 0.48
+    }
+   ],
+   "bg_dim": 0.3,
+   "fade_in": 0.8
+  },
+  {
+   "id": 65,
+   "bg": "bg4_main_room",
+   "text": "Quanh mẹ, chen chúc kín cả gian nhà, là những cái bóng gầy rộc cổ dài ngoẵng, cúi gằm xuống mâm, bốc cơm từ bát của mẹ mà ăn ngấu nghiến.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.3,
+      "x": 0.4,
+      "y": 0.62
+     },
+     {
+      "p": 1,
+      "zoom": 1.3,
+      "x": 0.72,
+      "y": 0.62,
+      "ease": "smooth"
+     }
+    ],
+    "handheld": 4
+   },
+   "sfx": [
+    {
+     "sound": "chewing_wet",
+     "at": 0,
+     "volume": 1.0,
+     "loop": true,
+     "length": 11
+    },
+    {
+     "sound": "chopsticks_clatter",
+     "at": 0.1,
+     "volume": 0.6,
+     "loop": true,
+     "length": 10
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "hungry_ghost/A1_crouch_eat_rice",
+     "x": 0.6,
+     "y": 0.84,
+     "h": 0.3
+    },
+    {
+     "sprite": "ghost_mother/GH9_back_stand",
+     "x": 0.88,
+     "y": 0.86,
+     "h": 0.48
+    },
+    {
+     "sprite": "hungry_ghost/A5_reach_black_hand",
+     "x": 0.68,
+     "y": 0.92,
+     "h": 0.42,
+     "face": "right"
+    },
+    {
+     "sprite": "hungry_ghost/A6_crawl",
+     "x": 0.38,
+     "y": 0.98,
+     "h": 0.22,
+     "face": "right"
+    },
+    {
+     "sprite": "hungry_ghost/A1_crouch_eat_rice",
+     "x": 0.78,
+     "y": 0.98,
+     "h": 0.36,
+     "face": "left"
+    }
+   ],
+   "bg_dim": 0.3
+  },
+  {
+   "id": 66,
+   "bg": "bg4_main_room",
+   "text": "Mẹ từ từ quay đầu lại, đôi mắt mẹ đen kịt không còn lòng trắng, và mẹ thì thầm, như trách, như thương, [0.7] sao con lại gọi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.6,
+      "x": 0.8,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 2.6,
+      "x": 0.88,
+      "y": 0.5,
+      "ease": "in"
+     }
+    ],
+    "handheld": 3
+   },
+   "sfx": [
+    {
+     "sound": "chewing_wet",
+     "at": 0,
+     "volume": 0.5,
+     "loop": true,
+     "length": 10
+    },
+    {
+     "sound": "whisper_eerie",
+     "at": 0.65,
+     "volume": 0.9
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "hungry_ghost/A1_crouch_eat_rice",
+     "x": 0.6,
+     "y": 0.84,
+     "h": 0.3
+    },
+    {
+     "sprite": "ghost_mother/GH9_back_stand",
+     "x": 0.88,
+     "y": 0.86,
+     "h": 0.48,
+     "end": 0.35
+    },
+    {
+     "sprite": "ghost_mother/GH11_fake_smile_black_eyes",
+     "x": 0.88,
+     "y": 0.86,
+     "h": 0.48,
+     "start": 0.35
+    },
+    {
+     "sprite": "hungry_ghost/A1_crouch_eat_rice",
+     "x": 0.78,
+     "y": 0.98,
+     "h": 0.36,
+     "face": "left"
+    }
+   ],
+   "bg_dim": 0.3
+  },
+  {
+   "id": 67,
+   "bg": "bg4_main_room",
+   "text": "Tất cả những cái bóng cùng lúc ngừng ăn, và ngẩng lên nhìn tôi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.25,
+      "x": 0.62,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.4,
+      "x": 0.62,
+      "y": 0.58,
+      "ease": "in"
+     }
+    ],
+    "handheld": 5
+   },
+   "sfx": [
+    {
+     "sound": "reverse_swell",
+     "at": 0.1,
+     "volume": 0.9
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "hungry_ghost/A3_stand_front",
+     "x": 0.48,
+     "y": 0.86,
+     "h": 0.46
+    },
+    {
+     "sprite": "hungry_ghost/A2_crouch_look_up",
+     "x": 0.6,
+     "y": 0.84,
+     "h": 0.3,
+     "face": "left"
+    },
+    {
+     "sprite": "ghost_mother/GH11_fake_smile_black_eyes",
+     "x": 0.88,
+     "y": 0.86,
+     "h": 0.48
+    },
+    {
+     "sprite": "hungry_ghost/A2_crouch_look_up",
+     "x": 0.36,
+     "y": 0.98,
+     "h": 0.34
+    },
+    {
+     "sprite": "hungry_ghost/A2_crouch_look_up",
+     "x": 0.78,
+     "y": 0.98,
+     "h": 0.36,
+     "face": "left"
+    }
+   ],
+   "bg_dim": 0.3
+  },
+  {
+   "id": 68,
+   "bg": "bg4_main_room",
+   "sfx": [
+    {
+     "sound": "ghost_stinger",
+     "at": 0,
+     "volume": 2.2
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "ghost_mother/GH4_closeup_lunge_grin",
+     "x": 0.5,
+     "y": 1.05,
+     "h": [
+      0.7,
+      1.25
+     ],
+     "ease": "out",
+     "glow": true
+    }
+   ],
+   "duration": 1.6,
+   "fade_in": 0,
+   "bg_dim": 0.45,
+   "flash": [
+    0.0
+   ],
+   "shake": {
+    "amp": 16,
+    "from": 0,
+    "to": 0.6
+   }
+  },
+  {
+   "id": 69,
+   "bg": "black",
+   "sfx": [
+    {
+     "sound": "heartbeat",
+     "at": 0.2,
+     "volume": 0.6,
+     "length": 2.5,
+     "fade_out": 1.0
+    }
+   ],
+   "layers": [],
+   "duration": 3.0,
+   "fade_in": 0
+  },
+  {
+   "id": 70,
+   "bg": "bg8_bedroom_door",
+   "text": "Sáng hôm sau, bà tìm thấy tôi nằm ngất lịm trước cửa phòng, bà ôm tôi khóc rồi bảo hồn mẹ đã đi rồi, đã yên rồi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.25,
+      "x": 0.6,
+      "y": 0.7
+     },
+     {
+      "p": 1,
+      "zoom": 1.35,
+      "x": 0.6,
+      "y": 0.72
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "night_insects",
+     "at": 0,
+     "volume": 0.25,
+     "loop": true,
+     "length": 10
+    },
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "volume": 0.3,
+     "loop": true,
+     "length": 10
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/M5_lie_unconscious",
+     "x": 0.5,
+     "y": 0.99,
+     "h": 0.13
+    },
+    {
+     "sprite": "grandma/A6_head_bowed_face_hidden",
+     "x": 0.75,
+     "y": "floor"
+    }
+   ],
+   "fade_in": 1.5
+  },
+  {
+   "id": 71,
+   "bg": "bg4_main_room",
+   "text": "Nhưng từ hôm ấy, bữa cơm nào bà cũng lặng lẽ xới thêm một bát, đặt trước chiếc ghế trống bên cạnh tôi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.68,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.35,
+      "x": 0.72,
+      "y": 0.6
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "spoon_bowl_tap",
+     "at": 0.4,
+     "volume": 0.3
+    },
+    {
+     "sound": "night_insects",
+     "at": 0,
+     "volume": 0.25,
+     "loop": true,
+     "length": 9
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "boy_hoodie/M3_sit_stool_eat",
+     "x": 0.59,
+     "y": 0.83,
+     "h": 0.46
+    },
+    {
+     "sprite": "grandma/A5_scoop_rice",
+     "x": 0.76,
+     "y": 0.9,
+     "h": 0.46
+    }
+   ]
+  },
+  {
+   "id": 72,
+   "bg": "bg4_main_room",
+   "text": "Tôi hỏi bát ấy là cho ai, bà chỉ cúi mặt xuống mâm, không trả lời.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.35,
+      "x": 0.68,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.6,
+      "x": 0.74,
+      "y": 0.56,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "volume": 0.35,
+     "loop": true,
+     "length": 7
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC1b_bowl_chopsticks_vertical",
+     "x": 0.79,
+     "y": 0.61,
+     "h": 0.075
+    },
+    {
+     "sprite": "boy_hoodie/M3_sit_stool_eat",
+     "x": 0.59,
+     "y": 0.83,
+     "h": 0.46
+    },
+    {
+     "sprite": "grandma/A6_head_bowed_face_hidden",
+     "x": 0.76,
+     "y": 0.9,
+     "h": 0.46
+    }
+   ]
+  },
+  {
+   "id": 73,
+   "bg": "bg4_main_room",
+   "text": "Mỗi tối, tôi vẫn cảm thấy có ai đó ngồi sát bên mình, im lặng ăn cùng, hơi lạnh phả nhẹ vào một bên má.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.3,
+      "x": 0.65,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.7,
+      "x": 0.8,
+      "y": 0.62,
+      "ease": "smooth"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "chewing_wet",
+     "at": 0.3,
+     "volume": 0.15,
+     "loop": true,
+     "length": 6,
+     "fade_in": 1.0,
+     "fade_out": 1.0
+    },
+    {
+     "sound": "breath_close",
+     "at": 0.6,
+     "volume": 0.4
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC1b_bowl_chopsticks_vertical",
+     "x": 0.79,
+     "y": 0.61,
+     "h": 0.075
+    },
+    {
+     "sprite": "boy_hoodie/M3_sit_stool_eat",
+     "x": 0.59,
+     "y": 0.83,
+     "h": 0.46
+    }
+   ]
+  },
+  {
+   "id": 74,
+   "bg": "bg5_altar_close",
+   "text": "Sáng ra bát cơm ấy luôn sạch trơn, và tôi đã tự nhủ rằng đó là mẹ, rằng mẹ chưa bao giờ thật sự rời xa tôi.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.5,
+      "y": 0.45
+     },
+     {
+      "p": 1,
+      "zoom": 1.35,
+      "x": 0.5,
+      "y": 0.32
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "volume": 0.3,
+     "loop": true,
+     "length": 10
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC3_bowl_empty_eggshell",
+     "x": 0.52,
+     "y": 0.82,
+     "h": 0.3
+    }
+   ]
+  },
+  {
+   "id": 75,
+   "bg": "bg4_main_room",
+   "text": "Cho đến sáng nay, khi tôi để ý đến đôi đũa.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.3,
+      "x": 0.66,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.7,
+      "x": 0.72,
+      "y": 0.6,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "clock_tick",
+     "at": 0,
+     "volume": 0.4,
+     "loop": true,
+     "length": 4,
+     "fade_out": 0.5
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC1b_bowl_chopsticks_vertical",
+     "x": 0.79,
+     "y": 0.61,
+     "h": 0.075
+    },
+    {
+     "sprite": "boy_hoodie/M3_sit_stool_eat",
+     "x": 0.59,
+     "y": 0.83,
+     "h": 0.46
+    }
+   ],
+   "min_duration": 3.2
+  },
+  {
+   "id": 76,
+   "bg": "bg4d_main_room_day",
+   "text": "Mẹ tôi cả đời luôn gác đũa nằm ngang trên miệng bát.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.6,
+      "x": 0.8,
+      "y": 0.58
+     },
+     {
+      "p": 1,
+      "zoom": 1.9,
+      "x": 0.84,
+      "y": 0.55
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "spoon_bowl_tap",
+     "at": 0.3,
+     "volume": 0.25
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "mother_alive/A7_sit_chopsticks_over_bowl",
+     "x": 0.85,
+     "y": 0.81,
+     "h": 0.55,
+     "tint": false
+    }
+   ],
+   "fade_in": 0.6,
+   "fade_out": 0.6,
+   "min_duration": 3.5
+  },
+  {
+   "id": 77,
+   "bg": "bg5_altar_close",
+   "text": "Còn kẻ ngồi cạnh tôi mỗi bữa cơm thì cắm thẳng đôi đũa xuống giữa bát, như bát cơm cúng người chết.",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.2,
+      "x": 0.52,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 2.0,
+      "x": 0.52,
+      "y": 0.62,
+      "ease": "in"
+     }
+    ]
+   },
+   "sfx": [
+    {
+     "sound": "heartbeat",
+     "at": 0,
+     "volume": 0.6,
+     "loop": true,
+     "length": 8
+    },
+    {
+     "sound": "reverse_swell",
+     "at": 0.6,
+     "volume": 0.6
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC1b_bowl_chopsticks_vertical",
+     "x": 0.52,
+     "y": 0.83,
+     "h": 0.42
+    }
+   ]
+  },
+  {
+   "id": 78,
+   "bg": "bg4_main_room",
+   "text": "Vậy mẹ tôi đã đi đâu?",
+   "camera": {
+    "keys": [
+     {
+      "p": 0,
+      "zoom": 1.4,
+      "x": 0.66,
+      "y": 0.6
+     },
+     {
+      "p": 1,
+      "zoom": 1.4,
+      "x": 0.5,
+      "y": 0.6,
+      "ease": "smooth"
+     }
+    ],
+    "handheld": 3
+   },
+   "sfx": [
+    {
+     "sound": "whisper_eerie",
+     "at": 0.5,
+     "volume": 0.6
+    }
+   ],
+   "layers": [
+    {
+     "sprite": "props/DC1b_bowl_chopsticks_vertical",
+     "x": 0.79,
+     "y": 0.61,
+     "h": 0.075
+    },
+    {
+     "sprite": "boy_hoodie/M4_sit_stool_look_back_fear",
+     "x": 0.59,
+     "y": 0.83,
+     "h": 0.46
+    },
+    {
+     "sprite": "hungry_ghost/A4_back_look_over_shoulder",
+     "x": 0.4,
+     "y": 0.95,
+     "h": 0.52,
+     "start": 0.55
+    }
+   ],
+   "min_duration": 4.5,
+   "bg_dim": 0.2
+  },
+  {
+   "id": 79,
+   "bg": "black",
+   "sfx": [
+    {
+     "sound": "slipper_drag",
+     "at": 0.1,
+     "volume": 0.5,
+     "length": 3.5,
+     "fade_out": 1.5
+    },
+    {
+     "sound": "spoon_bowl_tap",
+     "at": 0.6,
+     "volume": 0.35
+    }
+   ],
+   "layers": [],
+   "duration": 4.0,
+   "fade_in": 0.5
+  }
+ ],
+ "parts": {
+  "_note": "Điểm cắt cho video ngắn (render --scenes a-b)",
+  "phan_1": [
+   1,
+   33
+  ],
+  "phan_2": [
+   34,
+   69
+  ],
+  "phan_3": [
+   70,
+   79
+  ]
+ }
+}

@@ -126,6 +126,460 @@
      0.5
     ]
    }
+  },
+  "bg4_main_room": {
+   "desc": "Gian nhà chính ban đêm: bàn thờ treo tường bên trái (ảnh thờ, bát hương, 2 nến đỏ, đĩa hoa quả, bát cơm), bàn ăn thấp + 2 ghế đẩu bên phải, lịch treo tường, cửa xuống bếp sát mép phải. Nửa trái sàn trống.",
+   "tags": [
+    "gian thờ",
+    "bàn thờ",
+    "bàn ăn",
+    "đêm",
+    "trong nhà"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "altar_shelf": [
+     0.3,
+     0.36
+    ],
+    "altar_portrait": [
+     0.31,
+     0.24
+    ],
+    "altar_rice": [
+     0.4,
+     0.33
+    ],
+    "altar_incense": [
+     0.31,
+     0.33
+    ],
+    "dining_table": [
+     0.73,
+     0.6
+    ],
+    "table_top_y": [
+     0.73,
+     0.585
+    ],
+    "stool_left": [
+     0.585,
+     0.8
+    ],
+    "stool_right": [
+     0.86,
+     0.78
+    ],
+    "kitchen_door": [
+     0.96,
+     0.5
+    ],
+    "calendar": [
+     0.7,
+     0.35
+    ],
+    "open_floor": [
+     0.3,
+     0.95
+    ]
+   }
+  },
+  "bg4d_main_room_day": {
+   "desc": "Gian nhà chính (cùng bố cục BG4) chiều nắng ấm trong hồi ức: kệ chỉ có bình hoa + bát, không ảnh thờ; nồi canh bốc khói trên bàn ăn.",
+   "tags": [
+    "gian nhà",
+    "ban ngày",
+    "hồi ức",
+    "ấm áp"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "altar_shelf": [
+     0.3,
+     0.36
+    ],
+    "altar_portrait": [
+     0.31,
+     0.24
+    ],
+    "altar_rice": [
+     0.4,
+     0.33
+    ],
+    "altar_incense": [
+     0.31,
+     0.33
+    ],
+    "dining_table": [
+     0.73,
+     0.6
+    ],
+    "table_top_y": [
+     0.73,
+     0.585
+    ],
+    "stool_left": [
+     0.585,
+     0.8
+    ],
+    "stool_right": [
+     0.86,
+     0.78
+    ],
+    "kitchen_door": [
+     0.96,
+     0.5
+    ],
+    "calendar": [
+     0.7,
+     0.35
+    ],
+    "open_floor": [
+     0.3,
+     0.95
+    ]
+   }
+  },
+  "bg5_altar_close": {
+   "desc": "Cận mặt bàn thờ ban đêm: ảnh thờ mẹ (dải băng tang đen) ở giữa, bát hương đồng với 3 nén nhang khói bên trái, 2 nến đỏ, đĩa và chân nến bên phải. Mặt gỗ phía trước trống để đặt đạo cụ (bát cơm).",
+   "tags": [
+    "bàn thờ",
+    "cận cảnh",
+    "ảnh thờ",
+    "nhang",
+    "đêm"
+   ],
+   "floor_y": 0.8,
+   "char_h": 0.3,
+   "hotspots": {
+    "portrait": [
+     0.5,
+     0.32
+    ],
+    "portrait_face": [
+     0.5,
+     0.26
+    ],
+    "incense_bowl": [
+     0.27,
+     0.6
+    ],
+    "incense_tips": [
+     0.27,
+     0.33
+    ],
+    "candle_left": [
+     0.35,
+     0.43
+    ],
+    "candle_right": [
+     0.66,
+     0.43
+    ],
+    "offering_spot": [
+     0.52,
+     0.78
+    ],
+    "plate": [
+     0.76,
+     0.59
+    ]
+   }
+  },
+  "bg6_kitchen": {
+   "desc": "Bếp nhà ống ban đêm: bệ bếp lát gạch bên trái (bếp ga 2 lò + nồi nhôm, nồi cơm điện, giá bát, ống đũa), cửa sổ song sắt hắt ánh trăng, ô cửa tối om dẫn ra nhà sau ở giữa-phải. Sàn giữa và phải trống.",
+   "tags": [
+    "bếp",
+    "đêm",
+    "trong nhà",
+    "cửa tối"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "doorway": [
+     0.69,
+     0.38
+    ],
+    "doorway_floor": [
+     0.69,
+     0.66
+    ],
+    "stove_pot": [
+     0.14,
+     0.5
+    ],
+    "rice_cooker": [
+     0.31,
+     0.43
+    ],
+    "window": [
+     0.42,
+     0.17
+    ],
+    "dish_rack": [
+     0.15,
+     0.22
+    ],
+    "open_floor": [
+     0.62,
+     0.95
+    ]
+   }
+  },
+  "bg6d_kitchen_day": {
+   "desc": "Bếp (cùng bố cục BG6) chiều nắng vàng trong hồi ức, nồi trên bếp bốc hơi, ô cửa sáng.",
+   "tags": [
+    "bếp",
+    "ban ngày",
+    "hồi ức",
+    "ấm áp"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "doorway": [
+     0.69,
+     0.38
+    ],
+    "doorway_floor": [
+     0.69,
+     0.66
+    ],
+    "stove_pot": [
+     0.14,
+     0.5
+    ],
+    "rice_cooker": [
+     0.31,
+     0.43
+    ],
+    "window": [
+     0.42,
+     0.17
+    ],
+    "dish_rack": [
+     0.15,
+     0.22
+    ],
+    "open_floor": [
+     0.62,
+     0.95
+    ]
+   }
+  },
+  "bg7_front_yard": {
+   "desc": "Sân trước nhà ban đêm: chậu cây + bàn cúng nhỏ ngoài trời bên trái, cổng sắt xếp hoen gỉ chiếm nửa phải, khe hở giữa cổng nhìn ra đường vắng có sương và cột đèn xa. Nền xi măng nứt.",
+   "tags": [
+    "sân",
+    "cổng sắt",
+    "ngoài trời",
+    "đêm",
+    "sương"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "offering_table": [
+     0.28,
+     0.47
+    ],
+    "offering_table_top": [
+     0.28,
+     0.455
+    ],
+    "gate_gap": [
+     0.69,
+     0.45
+    ],
+    "gate_gap_floor": [
+     0.69,
+     0.64
+    ],
+    "gate_left": [
+     0.5,
+     0.35
+    ],
+    "gate_right": [
+     0.88,
+     0.35
+    ],
+    "street_lamp": [
+     0.68,
+     0.19
+    ],
+    "open_floor": [
+     0.5,
+     0.95
+    ]
+   }
+  },
+  "bg8_bedroom_door": {
+   "desc": "Trong phòng ngủ nhìn thẳng vào cửa phòng đóng (giữa khung): tay nắm + chốt cài, khe sáng vàng dưới chân cửa hắt lên sàn gỗ; hai tờ tranh vẽ dán tường hai bên.",
+   "tags": [
+    "cửa phòng",
+    "khe sáng",
+    "đêm",
+    "trong nhà",
+    "đêm 49"
+   ],
+   "floor_y": 0.97,
+   "char_h": 0.46,
+   "hotspots": {
+    "door_center": [
+     0.5,
+     0.53
+    ],
+    "door_handle": [
+     0.555,
+     0.53
+    ],
+    "bolt_lock": [
+     0.58,
+     0.46
+    ],
+    "door_gap": [
+     0.5,
+     0.855
+    ],
+    "door_gap_left": [
+     0.41,
+     0.855
+    ],
+    "door_gap_right": [
+     0.59,
+     0.855
+    ]
+   }
+  },
+  "bg9_door_gap": {
+   "desc": "Góc nhìn nằm sát sàn qua khe dưới cửa (POV của Khoa): khung đen, khe ngang ở giữa (y 0.35–0.69) nhìn ra sàn gạch gian thờ, ánh nến đỏ xa. Nhân vật đặt nhỏ ở xa để lọt trong khe.",
+   "tags": [
+    "khe cửa",
+    "POV",
+    "nhìn trộm",
+    "gian thờ",
+    "đêm"
+   ],
+   "floor_y": 0.6,
+   "char_h": 0.2,
+   "hotspots": {
+    "slit_center": [
+     0.5,
+     0.52
+    ],
+    "far_floor": [
+     0.5,
+     0.45
+    ],
+    "mid_floor": [
+     0.5,
+     0.6
+    ],
+    "red_glow": [
+     0.45,
+     0.37
+    ]
+   },
+   "_note": "Khe hở y 0.35–0.69: chân ở far_floor (y≈0.45, h≈0.10) hoặc mid_floor (y≈0.6, h≤0.24) để đầu không lố lên phần đen."
+  },
+  "bg9b_door_gap_ghosts": {
+   "desc": "POV qua khe dưới cửa: đám cô hồn ngồi xổm quanh mâm cơm (khe cắt ngang người, thấy gối, chân, tay đen bốc cơm), bát đổ, một con nhỏ ở xa. Vẽ sẵn, không cần sprite.",
+   "tags": [
+    "khe cửa",
+    "POV",
+    "cô hồn",
+    "ăn",
+    "đêm"
+   ],
+   "floor_y": 0.6,
+   "char_h": 0.2,
+   "hotspots": {
+    "slit_center": [
+     0.5,
+     0.52
+    ],
+    "tray": [
+     0.53,
+     0.6
+    ],
+    "far_ghost": [
+     0.49,
+     0.37
+    ]
+   }
+  },
+  "bg9c_door_gap_face": {
+   "desc": "POV qua khe dưới cửa: một cô hồn áp mặt xuống sàn sát cửa, hốc mắt đen nhìn thẳng vào khe, miệng dính cơm (cú hù). Vẽ sẵn.",
+   "tags": [
+    "khe cửa",
+    "POV",
+    "cô hồn",
+    "hù",
+    "đêm"
+   ],
+   "floor_y": 0.6,
+   "char_h": 0.2,
+   "hotspots": {
+    "slit_center": [
+     0.5,
+     0.52
+    ],
+    "ghost_face": [
+     0.43,
+     0.48
+    ]
+   }
+  },
+  "bg1c_corner_night": {
+   "desc": "Góc phòng ngủ ban đêm, Khoa vẽ sẵn: ngồi co ro trong góc, bịt hai tai, MẮT MỞ TRỪNG nhìn về phía cửa (trái), khe sáng vàng dưới cửa, mép giường bên phải.",
+   "tags": [
+    "phòng ngủ",
+    "góc phòng",
+    "Khoa",
+    "sợ hãi",
+    "đêm"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {
+    "boy_face": [
+     0.5,
+     0.42
+    ],
+    "door": [
+     0.12,
+     0.5
+    ],
+    "door_gap": [
+     0.15,
+     0.86
+    ]
+   }
+  },
+  "bg1d_corner_dawn": {
+   "desc": "Góc phòng ngủ lúc rạng đông (đã chỉnh sáng), Khoa vẫn ngồi bịt tai, mắt đỏ thâm quầng, thức trắng cả đêm.",
+   "tags": [
+    "phòng ngủ",
+    "góc phòng",
+    "Khoa",
+    "rạng sáng",
+    "kiệt sức"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {
+    "boy_face": [
+     0.5,
+     0.45
+    ],
+    "door": [
+     0.17,
+     0.5
+    ]
+   }
   }
  }
 }
