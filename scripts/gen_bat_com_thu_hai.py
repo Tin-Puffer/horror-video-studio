@@ -141,7 +141,7 @@ a_mem_end = len(S)
 
 # ============================================================ 3. MẸ MẤT — BA LỜI DẶN
 a_death = scene("bg5_altar_close",
-                "Rồi mẹ mất vào một chiều mưa đầu tháng bảy âm lịch, đột ngột đến mức tôi chưa kịp nói với mẹ một lời nào cho tử tế.",
+                "Mẹ mất vào một buổi chiều mưa, đầu tháng bảy âm lịch, đột ngột đến mức tôi chưa kịp nói với mẹ một lời nào cho tử tế.",
                 camera=cam((0, 1.15, 0.5, 0.45), (1, 1.5, 0.5, 0.32)),
                 sounds=[RAIN(12, 0.6), sfx("ritual_bell", 0.4, 0.5)], fade_in=1.5)
 scene("bg4_main_room",
@@ -168,7 +168,7 @@ scene("bg5_altar_close",
       cam((0, 1.2, 0.45, 0.5), (1, 1.45, 0.5, 0.6)),
       [RAIN(9, 0.3), sfx("ritual_bell", 0.05, 0.35)])
 scene("bg4_main_room",
-      "Điều thứ hai, trời tối thì tuyệt đối không được gọi tên mẹ, vì người đã khuất nghe tiếng con gọi sẽ không nỡ mà đi.",
+      "Điều thứ hai, khi trời tối tuyệt đối không được gọi tên mẹ, vì nghe tiếng con gọi, người đã khuất sẽ không nỡ ra đi.",
       [L("grandma/A6_head_bowed_face_hidden", 0.45, h=0.5)],
       cam((0, 1.4, 0.45, 0.62), (1, 1.9, 0.45, 0.58, "in"), handheld=3),
       [RAIN(9, 0.3), sfx("whisper_eerie", 0.6, 0.35)])
@@ -247,7 +247,7 @@ a_call = scene("bg1_bedroom",
                cam((0, 1.2, 0.62, 0.62), (1, 1.5, 0.68, 0.7)),
                [RAIN(12, 0.5), sfx("slipper_drag", 0.1, 0.35, True, 10, 1.0)], fade_in=1.0)
 scene("bg1_bedroom",
-      "Và trước khi kịp nghĩ đến lời bà dặn, môi tôi đã khẽ bật ra hai tiếng mẹ ơi.",
+      "Rồi chẳng kịp nghĩ đến lời bà dặn nữa, môi tôi đã khẽ bật ra hai tiếng, mẹ ơi.",
       [L("boy_hoodie/D6_face_crying", 0.5, 1.02, h=0.95)],
       cam((0, 1.15, 0.5, 0.5), (1, 1.25, 0.5, 0.46)),
       [RAIN(7, 0.4), sfx("slipper_drag", 0, 0.45, True, 5.5, 0, 0)])
@@ -294,8 +294,9 @@ scene("bg1_bedroom",
 scene("bg8_bedroom_door",
       "Tôi run rẩy bò xuống sàn, áp má vào nền gỗ lạnh ngắt, rồi ghé mắt nhìn qua khe hở nhỏ dưới chân cửa.",
       [L("boy_hoodie/M7_lie_prone_back_view", 0.5, 1.22, h=0.42)],
-      cam((0, 1.2, 0.5, 0.65), (1, 1.6, 0.5, 0.8, "in")),
-      [sfx("chewing_wet", 0, 0.5, True, 8), sfx("floor_creak", 0.15, 0.5)])
+      cam((0, 1.15, 0.5, 0.6), (1, 1.35, 0.5, 0.8, "in")),
+      [sfx("chewing_wet", 0, 0.5, True, 8), sfx("floor_creak", 0.15, 0.5)],
+      subtitles={"bottom": 0.8})  # Khoa nằm sát đáy khung: phụ đề lên trên để không che đầu
 scene("bg9b_door_gap_ghosts",
       "Trong ánh nến đỏ leo lét, tôi thấy thấp thoáng những cái bóng gầy rộc ngồi xổm quanh mâm cơm, đôi tay đen đúa bốc cơm nhét vào miệng.",
       camera=cam((0, 1.2, 0.35, 0.53), (1, 1.2, 0.65, 0.53, "smooth"), handheld=3),
@@ -490,7 +491,7 @@ scene("bg5_altar_close",
       cam((0, 1.2, 0.52, 0.6), (1, 2.0, 0.52, 0.62, "in")),
       [sfx("heartbeat", 0, 0.6, True, 8), sfx("reverse_swell", 0.6, 0.6)])
 scene("bg4_main_room",
-      "Vậy mẹ tôi đã đi đâu?",
+      "Vậy thì [0.6] mẹ tôi đã đi đâu?",
       [L("props/DC1b_bowl_chopsticks_vertical", **BOWL_EMPTY_SEAT), L("boy_hoodie/M4_sit_stool_look_back_fear", **BOY_SEAT),
        L("hungry_ghost/A4_back_look_over_shoulder", 0.4, 0.95, h=0.52, start=0.55)],
       cam((0, 1.4, 0.66, 0.6), (1, 1.4, 0.5, 0.6, "smooth"), handheld=3),

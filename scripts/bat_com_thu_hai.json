@@ -661,7 +661,7 @@
   {
    "id": 11,
    "bg": "bg5_altar_close",
-   "text": "Rồi mẹ mất vào một chiều mưa đầu tháng bảy âm lịch, đột ngột đến mức tôi chưa kịp nói với mẹ một lời nào cho tử tế.",
+   "text": "Mẹ mất vào một buổi chiều mưa, đầu tháng bảy âm lịch, đột ngột đến mức tôi chưa kịp nói với mẹ một lời nào cho tử tế.",
    "camera": {
     "keys": [
      {
@@ -894,7 +894,7 @@
   {
    "id": 16,
    "bg": "bg4_main_room",
-   "text": "Điều thứ hai, trời tối thì tuyệt đối không được gọi tên mẹ, vì người đã khuất nghe tiếng con gọi sẽ không nỡ mà đi.",
+   "text": "Điều thứ hai, khi trời tối tuyệt đối không được gọi tên mẹ, vì nghe tiếng con gọi, người đã khuất sẽ không nỡ ra đi.",
    "camera": {
     "keys": [
      {
@@ -1557,7 +1557,7 @@
   {
    "id": 31,
    "bg": "bg1_bedroom",
-   "text": "Và trước khi kịp nghĩ đến lời bà dặn, môi tôi đã khẽ bật ra hai tiếng mẹ ơi.",
+   "text": "Rồi chẳng kịp nghĩ đến lời bà dặn nữa, môi tôi đã khẽ bật ra hai tiếng, mẹ ơi.",
    "camera": {
     "keys": [
      {
@@ -1950,13 +1950,13 @@
     "keys": [
      {
       "p": 0,
-      "zoom": 1.2,
+      "zoom": 1.15,
       "x": 0.5,
-      "y": 0.65
+      "y": 0.6
      },
      {
       "p": 1,
-      "zoom": 1.6,
+      "zoom": 1.35,
       "x": 0.5,
       "y": 0.8,
       "ease": "in"
@@ -1984,7 +1984,10 @@
      "y": 1.22,
      "h": 0.42
     }
-   ]
+   ],
+   "subtitles": {
+    "bottom": 0.8
+   }
   },
   {
    "id": 41,
@@ -3718,7 +3721,7 @@
   {
    "id": 78,
    "bg": "bg4_main_room",
-   "text": "Vậy mẹ tôi đã đi đâu?",
+   "text": "Vậy thì [0.6] mẹ tôi đã đi đâu?",
    "camera": {
     "keys": [
      {

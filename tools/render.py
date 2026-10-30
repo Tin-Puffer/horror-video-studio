@@ -815,7 +815,8 @@ def subtitle_parts(text: str, min_chars: int, max_chars: int = 96) -> list[str]:
             merged[-1] += " " + p
         else:
             merged.append(p)
-    return merged
+    # a part cut at a comma would show a dangling "," at the end of the line
+    return [re.sub(r"\s*[,;]$", "", p) for p in merged]
 
 
 def subtitle_at(scene: dict, t: float) -> str:
@@ -835,8 +836,10 @@ def subtitle_at(scene: dict, t: float) -> str:
     return parts[-1]
 
 
-def subtitle(canvas: Image.Image, text: str):
-    sub = CFG["subtitles"]
+def subtitle(canvas: Image.Image, text: str, over: dict | None = None):
+    """over: the scene's own "subtitles" keys (e.g. "bottom": 0.8 to move them up
+    when the action sits at the bottom of the frame)."""
+    sub = {**CFG["subtitles"], **(over or {})}
     W, H = canvas.size
     f = font(round(H * sub["size"]))
     lines = textwrap.wrap(text, sub["wrap"])
@@ -892,7 +895,7 @@ def render_frame(scene: dict, t: float, dur: float, size: tuple[int, int], rng: 
         ImageDraw.Draw(canvas).text((W / 2, H / 2), scene["title_text"], font=font(round(H * ti["size"]), True),
                                     fill=tuple(ti["color"]), anchor="mm")
     elif scene.get("text") and CFG["subtitles"]["enabled"]:
-        subtitle(canvas, subtitle_at(scene, t))
+        subtitle(canvas, subtitle_at(scene, t), scene.get("subtitles"))
 
     fi = scene.get("fade_in", timing["fade_in"])
     fo = scene.get("fade_out", timing["fade_out"])
