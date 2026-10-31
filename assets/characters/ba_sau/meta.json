@@ -1,0 +1,36 @@
+{
+ "name": "Bà Sáu bán xôi",
+ "style_prompt": "Same art style as the reference images: a plump middle-aged Vietnamese street vendor woman (Ba Sau), round kind face, dark hair in a low bun under a conical non la hat, faded dark-blue blouse, brown trousers, plastic sandals, carrying a bamboo basket of sticky rice wrapped in banana leaves. Hand-drawn crayon / colored-pencil texture, thick black outlines, simple chibi proportions, dot eyes, minimal flat colors, the same art style as the reference images. Never white clothing.",
+ "reference_images": [
+  "assets/characters/grandma/00_stand_front.png",
+  "assets/source/boy_hoodie_base.png"
+ ],
+ "default_h": 0.5,
+ "sprites": {
+  "A1_stand_basket": {
+   "desc": "Đứng chính diện, khoác thúng xôi, mặt hiền",
+   "tags": [
+    "bà Sáu",
+    "đứng"
+   ],
+   "facing": "front"
+  },
+  "A2_lean_whisper": {
+   "desc": "Nghiêng người (quay trái), che miệng nói nhỏ, tay kia kéo người lại gần, mặt lo lắng",
+   "tags": [
+    "bà Sáu",
+    "thì thầm"
+   ],
+   "facing": "left"
+  },
+  "A3_point_far": {
+   "desc": "Quay trái, duỗi tay chỉ ra xa, mặt sợ hãi",
+   "tags": [
+    "bà Sáu",
+    "chỉ tay"
+   ],
+   "facing": "left"
+  }
+ },
+ "cycles": {}
+}

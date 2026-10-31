@@ -1180,6 +1180,254 @@
      1908
     ]
    ]
+  },
+  {
+   "source": "assets/source/grandma_sheet_F.png",
+   "out_dir": "assets/characters/grandma",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "F1_sit_porch_gaze",
+    "F2_bed_rub_oil_boy",
+    "F3_cough_hunched",
+    "F4_sit_stool_three_fingers",
+    "F5_hold_effigy_back",
+    "F6_hug_boy_bed_dark"
+   ],
+   "boxes": [
+    [
+     179,
+     28,
+     578,
+     757
+    ],
+    [
+     874,
+     83,
+     1827,
+     754
+    ],
+    [
+     2085,
+     55,
+     2504,
+     787
+    ],
+    [
+     186,
+     812,
+     585,
+     1503
+    ],
+    [
+     963,
+     791,
+     1393,
+     1508
+    ],
+    [
+     1737,
+     881,
+     2631,
+     1508
+    ]
+   ]
+  },
+  {
+   "source": "assets/source/grandma_sheet_G.png",
+   "out_dir": "assets/characters/grandma",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "G1_fake_walk_1",
+    "G2_fake_walk_2",
+    "G3_fake_walk_3",
+    "G4_fake_walk_4",
+    "G5_sit_porch_wet_smile",
+    "G6_stand_dark_smile"
+   ]
+  },
+  {
+   "source": "assets/source/grandma_sheet_H.png",
+   "out_dir": "assets/characters/grandma",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "H1_bed_hold_wrist_whisper",
+    "H2_bed_edge_stroke_head",
+    "H3_sit_back_turned",
+    "H4_sit_offer_food",
+    "H5_closeup_hand_wrist",
+    "H6_closeup_face_smile"
+   ],
+   "boxes": [
+    [
+     76,
+     124,
+     1007,
+     727
+    ],
+    [
+     1090,
+     107,
+     2053,
+     768
+    ],
+    [
+     2208,
+     0,
+     2552,
+     795
+    ],
+    [
+     275,
+     823,
+     832,
+     1497
+    ],
+    [
+     1053,
+     837,
+     1888,
+     1470
+    ],
+    [
+     2050,
+     823,
+     2704,
+     1511
+    ]
+   ],
+   "clear_white": [
+    "H3_sit_back_turned"
+   ]
+  },
+  {
+   "source": "assets/source/props_sheet_HN.png",
+   "out_dir": "assets/characters/props",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "HN1_paper_effigy_hoodie",
+    "HN2_wooden_clog_upside_down",
+    "HN3_sandal_upside_down_puddle",
+    "HN4_muddy_footprints_trail",
+    "HN5_single_wet_footprint",
+    "HN6_wind_oil_bottle"
+   ]
+  },
+  {
+   "source": "assets/source/props_sheet_HP.png",
+   "out_dir": "assets/characters/props",
+   "grid": [
+    1,
+    3
+   ],
+   "names": [
+    "HP1_footprints_trail_toward",
+    "HP2_footprint_left_toward",
+    "HP3_footprint_right_toward"
+   ],
+   "boxes": [
+    [
+     41,
+     21,
+     1060,
+     1520
+    ],
+    [
+     1170,
+     124,
+     1803,
+     1520
+    ],
+    [
+     2023,
+     151,
+     2676,
+     1500
+    ]
+   ],
+   "rotate": {
+    "HP2_footprint_left_toward": 180,
+    "HP3_footprint_right_toward": 180
+   }
+  },
+  {
+   "source": "assets/source/ba_sau_sheet_A.png",
+   "out_dir": "assets/characters/ba_sau",
+   "grid": [
+    1,
+    3
+   ],
+   "names": [
+    "A1_stand_basket",
+    "A2_lean_whisper",
+    "A3_point_far"
+   ]
+  },
+  {
+   "source": "assets/source/grandma_sheet_I.png",
+   "out_dir": "assets/characters/grandma",
+   "grid": [
+    1,
+    2
+   ],
+   "names": [
+    "I1_back_incense_closeup",
+    "I2_fake_look_down_side"
+   ],
+   "holes": {
+    "I1_back_incense_closeup": [
+     [
+      0.68,
+      0.66
+     ],
+     [
+      0.62,
+      0.67
+     ]
+    ]
+   }
+  },
+  {
+   "source": "assets/source/cat_tabby_sheet_A.png",
+   "out_dir": "assets/characters/cat_tabby",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "A1_stand_look",
+    "A2_arch_hiss",
+    "A3_run_1",
+    "A4_run_2",
+    "A5_run_3",
+    "A6_run_4"
+   ],
+   "clear_white": [
+    "A5_run_3"
+   ]
+  },
+  {
+   "source": "assets/source/grandma_sheet_J.png",
+   "out_dir": "assets/characters/grandma",
+   "grid": [
+    1,
+    2
+   ],
+   "names": [
+    "J1_back_carry_effigy",
+    "J2_side_carry_effigy"
+   ]
   }
  ]
 }

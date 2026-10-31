@@ -8,15 +8,19 @@
 - writes build/<story>_requests.md: one ready-to-paste Gemini prompt per
   missing asset (style prompt of the character + layout + poses), with the
   reference images to attach
+- writes build/<story>_refs/<nn>_<request_id>/: the reference images to attach + prompt.txt,
+  one folder per open request (folders of finished requests are removed; ingest.py removes its own)
 - exit code 1 if something is missing and not requested
 
 asset_requests entries:
   {"id": "boy_hoodie_sheet_L", "kind": "sheet", "character": "boy_hoodie",
    "grid": [2, 3], "why": "cảnh 5, 9",
+   "note": "<English, optional: overrides the style for this sheet, e.g. a ghost version>",
+   "refs": ["<extra reference image, e.g. a second character in the poses>"],
    "sprites": [{"name": "L1_open_fridge", "pose": "<English pose>", "desc": "<VN>",
                 "tags": [...], "facing": "right", "anchors_needed": ["hand"]}, ...]}
   {"id": "bg4_bathroom", "kind": "background", "scene": "<English scene>",
-   "desc": "<VN>", "tags": [...], "floor_y": 0.95, "char_h": 0.46,
+   "desc": "<VN>", "tags": [...], "floor_y": 0.95, "char_h": 0.46, "refs": ["<layout reference>"],
    "hotspots_needed": ["mirror", "sink"]}
   {"id": "neighbor_base", "kind": "character_base", "character": "neighbor",
    "name": "<VN>", "design": "<English full description>", "default_h": 0.5}
@@ -27,6 +31,7 @@ from __future__ import annotations
 
 import json
 import re
+import shutil
 import sys
 from pathlib import Path
 
@@ -176,12 +181,13 @@ def request_prompt(req: dict) -> tuple[str, list[str]]:
         meta = char_meta(req["character"])
         r, c = req.get("grid", [2, 3])
         poses = "; ".join(f"{i + 1}) {sp['pose']}" for i, sp in enumerate(req["sprites"]))
-        prompt = (f"{meta.get('style_prompt', '')} {SHEET_LAYOUT.format(n=r * c, r=r, c=c)} "
+        note = f"{req['note']} " if req.get("note") else ""
+        prompt = (f"{meta.get('style_prompt', '')} {note}{SHEET_LAYOUT.format(n=r * c, r=r, c=c)} "
                   f"Poses (left to right, top to bottom): {poses}.")
-        return prompt, meta.get("reference_images", [])
+        return prompt, meta.get("reference_images", []) + req.get("refs", [])
     if kind == "background":
         bg = load_json(BGS / "meta.json")
-        return f"{bg.get('style_prompt', '')} {req['scene']}", bg.get("reference_images", [])
+        return f"{bg.get('style_prompt', '')} {req['scene']}", bg.get("reference_images", []) + req.get("refs", [])
     if kind == "sound":
         if req.get("prompt"):
             return (f"{req['prompt']}\n(ElevenLabs Sound Effects, Duration {req.get('length', 'Auto')}; "
@@ -193,6 +199,33 @@ def request_prompt(req: dict) -> tuple[str, list[str]]:
                             for d in CHARS.iterdir() if d.is_dir()) if m]
         return f"{req['design']} {BASE_LAYOUT}", [refs[0][0]] if refs else []
     raise ValueError(f"unknown request kind {kind}")
+
+
+def write_ref_folders(stem: str, open_reqs: list) -> None:
+    """build/<stem>_refs/<nn>_<id>/ = reference images to attach + prompt.txt, so nothing has to be looked up."""
+    base = ROOT / "build" / f"{stem}_refs"
+    shutil.rmtree(base, ignore_errors=True)
+    for i, req in enumerate(open_reqs, 1):
+        prompt, refs = request_prompt(req)
+        folder = base / f"{i:02d}_{req['id']}"
+        folder.mkdir(parents=True)
+        missing = []
+        for r in refs:
+            src = ROOT / r
+            if src.exists():
+                shutil.copy(src, folder / src.name)
+            else:
+                missing.append(r)
+        note = [f"Mã yêu cầu: {req['id']} ({req['kind']})", f"Dùng cho: {req.get('why', req.get('desc', ''))}", ""]
+        if req["kind"] == "sheet":
+            note += ["Ô (trái→phải, trên→dưới): " + ", ".join(sp["name"] for sp in req["sprites"]), ""]
+        if req["kind"] == "sound":
+            note += [f"Âm thanh: {req.get('desc', '')}", f"Độ dài: {req.get('length', 'tuỳ')}", ""]
+        if refs:
+            note += ["Kéo hết ảnh trong thư mục này vào Gemini, rồi dán prompt dưới đây.", ""]
+        if missing:
+            note += ["(Máy này không có, bỏ qua: " + ", ".join(missing) + ")", ""]
+        (folder / "prompt.txt").write_text("\n".join(note + ["PROMPT:", prompt, ""]))
 
 
 def main():
@@ -262,7 +295,8 @@ def main():
     out = ROOT / "build" / f"{path.stem}_requests.md"
     out.parent.mkdir(exist_ok=True)
     md = [f"# Asset cần tạo cho `{path.name}`", "",
-          "Mỗi mục: đính kèm ảnh tham chiếu, dán prompt vào Gemini, gửi ảnh kết quả cho Claude kèm mã yêu cầu.", ""]
+          "Mỗi mục: đính kèm ảnh tham chiếu, dán prompt vào Gemini, gửi ảnh kết quả cho Claude kèm mã yêu cầu.",
+          f"Ảnh cần đính kèm + prompt đã gom sẵn theo từng mục trong `build/{path.stem}_refs/`.", ""]
     for req in open_reqs:
         prompt, refs = request_prompt(req)
         md += [f"## `{req['id']}` ({req['kind']})", "",
@@ -271,11 +305,12 @@ def main():
         if req["kind"] == "sheet":
             md += ["- Ô (trái→phải, trên→dưới): " + ", ".join(sp["name"] for sp in req["sprites"])]
         if req["kind"] == "sound":
-            md += [f"- Âm thanh: {req.get('desc', '')}"]
+            md += [f"- Âm thanh: {req.get('desc', '')}", f"- Độ dài: {req.get('length', 'tuỳ')}"]
         md += ["", "```", prompt, "```", ""]
     if not open_reqs:
         md.append("Không còn asset nào cần tạo.")
     out.write_text("\n".join(md))
+    write_ref_folders(path.stem, open_reqs)
 
     for w in warnings:
         print("  quy tắc:", w)
@@ -284,6 +319,8 @@ def main():
     for e in errors:
         print("  LỖI:", e)
     print(f"  {len(open_reqs)} yêu cầu asset đang mở -> {out.relative_to(ROOT)}")
+    if open_reqs:
+        print(f"  ảnh tham chiếu + prompt từng yêu cầu -> build/{path.stem}_refs/")
     sys.exit(1 if errors else 0)
 
 

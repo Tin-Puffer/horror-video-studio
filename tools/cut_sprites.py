@@ -170,6 +170,8 @@ def main():
                 continue
             if name in sheet.get("holes", {}):
                 sprite = clear_holes(sprite, sheet["holes"][name])
+            if name in sheet.get("rotate", {}):  # Gemini drew it the wrong way round (e.g. footprints)
+                sprite = sprite.rotate(sheet["rotate"][name], expand=True)
             sprites[name] = sprite
         if sheet.get("same_height") and sprites:
             # cycle frames: render scales every frame to the same height, so pad the

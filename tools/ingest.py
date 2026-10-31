@@ -7,7 +7,7 @@ sheet           -> assets/source/<id>.png, sprites.json entry, cut, meta.json en
 background      -> assets/source/<id>.png, watermark removed, backgrounds/meta.json entry
 character_base  -> assets/source/<char>_base.png, new character folder + meta.json
 sound           -> assets/audio/sfx/<id>.<ext>, assets/audio/meta.json entry
-Then rebuilds the catalog. Anchors and hotspots listed as *_needed are reported
+Then rebuilds the catalog and removes build/<story>_refs/<nn>_<id>/. Anchors and hotspots listed as *_needed are reported
 so they can be measured on the new image (they are not guessed).
 """
 from __future__ import annotations
@@ -114,6 +114,8 @@ def main():
         todo.append(f"kiểm tra style_prompt của {char} trong meta.json")
 
     run("tools/catalog.py")
+    for folder in (ROOT / "build" / f"{story_path.stem}_refs").glob(f"[0-9][0-9]_{req_id}"):
+        shutil.rmtree(folder)  # thư mục ảnh tham chiếu + prompt của yêu cầu này đã xong việc
     print(f"ingested {req_id} ({kind})")
     for t in todo:
         print("  còn việc:", t)

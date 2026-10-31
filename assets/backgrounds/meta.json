@@ -580,6 +580,72 @@
      0.5
     ]
    }
+  },
+  "bg11_peephole_yard": {
+   "desc": "Nhìn qua mắt mèo cửa chính: khung tròn giữa nền đen, sân xi măng ánh trăng bị bóp méo, cổng sắt xa",
+   "tags": [
+    "mắt mèo",
+    "sân",
+    "POV"
+   ],
+   "floor_y": 0.7,
+   "char_h": 0.3,
+   "hotspots": {}
+  },
+  "bg10_river_wharf": {
+   "desc": "Bến sông thị trấn ban đêm: bậc đá xuống mặt nước đen, sương mỏng, bụi tre bên phải, bờ xa có một đốm đèn",
+   "tags": [
+    "bến sông",
+    "đêm",
+    "nước"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bg12_bedside_drawer": {
+   "desc": "Cận tủ đầu giường gỗ, ngăn kéo mở: khăn tay, lược gỗ, tràng hạt của bà, chừa chỗ trống giữa ngăn đặt lọ dầu",
+   "tags": [
+    "ngăn kéo",
+    "tủ đầu giường",
+    "cận"
+   ],
+   "floor_y": 0.8,
+   "char_h": 0.3,
+   "hotspots": {}
+  },
+  "bg5b_altar_grandpa_lit": {
+   "desc": "Cận bàn thờ ÔNG nội ban đêm: ảnh thờ ông, bát hương có 3 nén nhang đang cháy khói, 2 nến sáng",
+   "tags": [
+    "bàn thờ",
+    "ông",
+    "nhang cháy"
+   ],
+   "floor_y": 0.8,
+   "char_h": 0.6,
+   "hotspots": {}
+  },
+  "bg5c_altar_grandpa_cold": {
+   "desc": "Cùng bố cục bg5b nhưng nguội lạnh: chỉ còn chân nhang trơ trọi, không khói, nến tắt, bụi",
+   "tags": [
+    "bàn thờ",
+    "ông",
+    "nguội lạnh"
+   ],
+   "floor_y": 0.8,
+   "char_h": 0.6,
+   "hotspots": {}
+  },
+  "bg7d_front_yard_morning": {
+   "desc": "Sân trước buổi sáng sớm (cùng bố cục bg7): nắng nhạt, cổng mở hé, ngoài đường có người đạp xe, người đi bộ, hàng quán",
+   "tags": [
+    "sân",
+    "buổi sáng",
+    "cổng"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
   }
  }
 }

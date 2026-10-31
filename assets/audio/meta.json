@@ -334,6 +334,93 @@
    ],
    "volume": 0.8,
    "kind": "sfx"
+  },
+  "cat_hiss": {
+   "desc": "Mèo xù lông rít lên rồi chạy mất",
+   "tags": [
+    "mèo"
+   ],
+   "volume": 1.0,
+   "kind": "sfx"
+  },
+  "rooster_crow": {
+   "desc": "Một tiếng gà gáy xa lúc rạng sáng",
+   "tags": [
+    "gà gáy",
+    "sáng"
+   ],
+   "volume": 1.0,
+   "kind": "sfx"
+  },
+  "motorbike_stop": {
+   "desc": "Xe máy chạy tới dừng lại rồi tắt máy, trời mưa",
+   "tags": [
+    "xe máy"
+   ],
+   "volume": 1.0,
+   "kind": "sfx"
+  },
+  "cough_old": {
+   "desc": "Bà già ho khù khụ, khô, ba tràng",
+   "tags": [
+    "ho",
+    "bà"
+   ],
+   "volume": 1.0,
+   "kind": "sfx"
+  },
+  "river_lapping": {
+   "desc": "Nước sông vỗ nhẹ vào bậc đá ban đêm (lặp được)",
+   "tags": [
+    "sông",
+    "nước"
+   ],
+   "volume": 1.0,
+   "kind": "sfx"
+  },
+  "frogs_night": {
+   "desc": "Ếch nhái kêu ran ven sông ban đêm (lặp được)",
+   "tags": [
+    "ếch",
+    "đêm"
+   ],
+   "volume": 1.0,
+   "kind": "sfx"
+  },
+  "scissors_hair": {
+   "desc": "Kéo cắt một lọn tóc",
+   "tags": [
+    "kéo",
+    "tóc"
+   ],
+   "volume": 1.0,
+   "kind": "sfx"
+  },
+  "water_drip": {
+   "desc": "Nước nhỏ tong tỏng xuống nền gạch (lặp được)",
+   "tags": [
+    "nước",
+    "nhỏ giọt"
+   ],
+   "volume": 1.0,
+   "kind": "sfx"
+  },
+  "gate_knock_metal": {
+   "desc": "Ba tiếng gõ chậm lên cổng sắt gỉ",
+   "tags": [
+    "gõ",
+    "cổng sắt"
+   ],
+   "volume": 1.0,
+   "kind": "sfx"
+  },
+  "knock_2_hesitant": {
+   "desc": "Hai tiếng gõ cửa gỗ ngập ngừng, rồi im",
+   "tags": [
+    "gõ cửa"
+   ],
+   "volume": 1.0,
+   "kind": "sfx"
   }
  }
 }

@@ -1,0 +1,68 @@
+{
+ "name": "Mèo mướp nhà bên",
+ "style_prompt": "A small Vietnamese street tabby cat (meo muop): gray-brown fur with dark tiger stripes, ringed tail, yellow-green eyes, no white fur. Hand-drawn crayon / colored-pencil texture, thick black outlines, simple chibi proportions, dot eyes, minimal flat colors, the same art style as the reference images.",
+ "reference_images": [
+  "assets/characters/grandma/00_stand_front.png",
+  "assets/characters/props/HN6_wind_oil_bottle.png"
+ ],
+ "default_h": 0.14,
+ "sprites": {
+  "A1_stand_look": {
+   "desc": "Đứng bốn chân nhìn tới (quay phải), đuôi dựng",
+   "tags": [
+    "mèo",
+    "đứng"
+   ],
+   "facing": "right"
+  },
+  "A2_arch_hiss": {
+   "desc": "Cong lưng xù lông, đuôi dựng, tai cụp, há miệng rít nhe nanh (quay phải)",
+   "tags": [
+    "mèo",
+    "xù lông",
+    "rít"
+   ],
+   "facing": "right"
+  },
+  "A3_run_1": {
+   "desc": "Chạy, khung 1/4 (duỗi)",
+   "tags": [
+    "mèo",
+    "chạy"
+   ],
+   "facing": "right"
+  },
+  "A4_run_2": {
+   "desc": "Chạy, khung 2/4 (chạm trước)",
+   "tags": [
+    "mèo",
+    "chạy"
+   ],
+   "facing": "right"
+  },
+  "A5_run_3": {
+   "desc": "Chạy, khung 3/4 (gom)",
+   "tags": [
+    "mèo",
+    "chạy"
+   ],
+   "facing": "right"
+  },
+  "A6_run_4": {
+   "desc": "Chạy, khung 4/4 (đẩy)",
+   "tags": [
+    "mèo",
+    "chạy"
+   ],
+   "facing": "right"
+  }
+ },
+ "cycles": {
+  "run": [
+   "A3_run_1",
+   "A4_run_2",
+   "A5_run_3",
+   "A6_run_4"
+  ]
+ }
+}

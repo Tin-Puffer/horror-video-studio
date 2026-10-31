@@ -124,6 +124,79 @@
     "trứng"
    ],
    "facing": "front"
+  },
+  "HN1_paper_effigy_hoodie": {
+   "desc": "Hình nhân giấy ngồi, mặc áo hoodie xanh rêu của Khoa, lọn tóc buộc chỉ đỏ trước ngực",
+   "tags": [
+    "hình nhân",
+    "thế mạng"
+   ],
+   "facing": "front"
+  },
+  "HN2_wooden_clog_upside_down": {
+   "desc": "Một chiếc guốc mộc nằm úp sấp trên bậc đá ướt",
+   "tags": [
+    "guốc",
+    "bến sông"
+   ],
+   "facing": "front"
+  },
+  "HN3_sandal_upside_down_puddle": {
+   "desc": "Một chiếc dép nhựa đen của bà úp sấp trong vũng nước, bùn sông bám gót",
+   "tags": [
+    "dép",
+    "vũng nước"
+   ],
+   "facing": "front"
+  },
+  "HN4_muddy_footprints_trail": {
+   "desc": "Dãy dấu chân trần bùn ướt đi xa dần (nằm trên nền)",
+   "tags": [
+    "dấu chân",
+    "bùn"
+   ],
+   "facing": "front"
+  },
+  "HN5_single_wet_footprint": {
+   "desc": "Một dấu chân trần bùn ướt đơn lẻ (dùng để hiện dần từng dấu)",
+   "tags": [
+    "dấu chân",
+    "bùn"
+   ],
+   "facing": "front"
+  },
+  "HN6_wind_oil_bottle": {
+   "desc": "Lọ dầu gió xanh nhỏ, nắp vặn chặt, phủ bụi mỏng",
+   "tags": [
+    "dầu gió",
+    "bụi"
+   ],
+   "facing": "front"
+  },
+  "HP1_footprints_trail_toward": {
+   "desc": "Dãy dấu chân bùn — Gemini vẽ lẫn hướng (dấu xa hướng ra, dấu gần hướng vào): KHÔNG dùng cho cảnh đi vào nhà; ghép từ HP2/HP3",
+   "tags": [
+    "dấu chân",
+    "bùn",
+    "đi vào"
+   ],
+   "facing": "front"
+  },
+  "HP2_footprint_left_toward": {
+   "desc": "Một dấu chân TRÁI bùn ướt, mũi chân hướng về người xem (đã xoay 180° khi cắt: rotate trong sprites.json)",
+   "tags": [
+    "dấu chân",
+    "trái"
+   ],
+   "facing": "front"
+  },
+  "HP3_footprint_right_toward": {
+   "desc": "Một dấu chân PHẢI bùn ướt, mũi chân hướng về người xem (đã xoay 180° khi cắt: rotate trong sprites.json)",
+   "tags": [
+    "dấu chân",
+    "phải"
+   ],
+   "facing": "front"
   }
  },
  "cycles": {
