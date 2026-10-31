@@ -62,7 +62,10 @@ def main():
     md = TASK
     md += section("Quy tắc kịch bản", (ROOT / "scripts/QUY_TAC_KICH_BAN.md").read_text())
     md += section("Tài liệu JSON (khoá và ý nghĩa)", json_reference(), "text")
-    md += section("Mục lục kho asset", (ROOT / "assets/CATALOG.md").read_text())
+    cat = ROOT / "assets/catalog"
+    details = [cat / "backgrounds.md"] + sorted(p for p in cat.glob("*.md") if p.stem not in ("backgrounds", "PROMPTS"))
+    md += section("Mục lục kho asset", "\n\n".join(p.read_text().rstrip() for p in
+                                                  [ROOT / "assets/CATALOG.md", *details, cat / "PROMPTS.md"]))
     md += section("Kịch bản mẫu (bắt đầu từ đây)", (ROOT / "templates/kich_ban_mau.json").read_text(), "json")
     example = ROOT / "scripts/cuoc_goi_3h.json"
     sys.path.insert(0, str(ROOT / "tools"))

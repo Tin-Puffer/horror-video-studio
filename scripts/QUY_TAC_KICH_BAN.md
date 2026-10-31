@@ -10,7 +10,7 @@ Bắt đầu từ `templates/kich_ban_mau.json`; kiểm tra bằng `python3 tool
 - Đường dẫn công cụ của máy chỉ nằm trong `config.local.json`.
 
 ## 2. Asset: dùng lại trước, thiếu thì yêu cầu
-- Đọc `assets/CATALOG.md` + xem `assets/catalog/*.png` trước khi viết. Ưu tiên tối đa asset có sẵn.
+- Đọc `assets/CATALOG.md` (bản ngắn) trước khi viết, rồi `assets/catalog/<nhân vật>.md` của các nhân vật truyện dùng; ảnh `assets/catalog/*.png` chỉ xem khi cần. Ưu tiên tối đa asset có sẵn.
 - Thiếu thì khai báo `asset_requests` (gom ít sheet nhất):
   - **sheet nhân vật** 2×3, `pose` tiếng Anh, `desc`/`tags` tiếng Việt, `facing`, `anchors_needed`; prompt luôn kèm style prompt + ảnh tham chiếu của nhân vật.
   - **chu kỳ chuyển động ≥ 4–6 khung khác nhau rõ rệt**, cùng cỡ, cùng đường chân.

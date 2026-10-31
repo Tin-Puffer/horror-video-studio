@@ -2,8 +2,11 @@
 """Build the asset catalog that story writing starts from.
 
 Outputs:
-  assets/CATALOG.md            every character sprite, cycle, background and
-                               hotspot with description/tags (read this first)
+  assets/CATALOG.md            short index: characters + cycle names, backgrounds +
+                               hotspot names, sounds (read this first)
+  assets/catalog/<char>.md     every sprite of one character: facing, desc, tags, anchors
+  assets/catalog/backgrounds.md  floor_y, char_h, hotspot coordinates
+  assets/catalog/PROMPTS.md    style prompts + reference images (for asset_requests)
   assets/catalog/<char>.png    labelled contact sheet per character
   assets/catalog/backgrounds.png
 Also reports sprites that exist on disk but have no description in meta.json,
@@ -48,10 +51,24 @@ def contact_sheet(items: list[tuple[str, Path]], out: Path, thumb_h: int = 220, 
     sheet.convert("RGB").save(out)
 
 
+def write(path: Path, lines: list[str]):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(lines))
+
+
 def main():
-    lines = ["# Kho asset — mục lục", "",
-             "> Tự sinh bởi `python3 tools/catalog.py`. Đừng sửa tay: sửa `meta.json` rồi chạy lại.",
-             "> Ảnh xem nhanh: `assets/catalog/<nhân vật>.png`, `assets/catalog/backgrounds.png`.", ""]
+    # Short index (read first) + one detail file per character / backgrounds, so writing a story only
+    # loads the characters it uses and the cost stays flat as the library grows.
+    head = "> Tự sinh bởi `python3 tools/catalog.py`. Đừng sửa tay: sửa `meta.json` rồi chạy lại."
+    index = ["# Kho asset — mục lục (bản ngắn)", "", head,
+             "> Chi tiết từng nhân vật (sprite, hướng, neo, khung chu kỳ): `assets/catalog/<nhân vật>.md` — chỉ mở nhân vật truyện cần.",
+             "> Phông (floor_y, char_h, toạ độ điểm nóng): `assets/catalog/backgrounds.md`.",
+             "> Style prompt + ảnh tham chiếu (chỉ cần khi viết `asset_requests`; check_story tự ghép vào prompt): `assets/catalog/PROMPTS.md`.",
+             "> Ảnh xem nhanh (chỉ mở khi mô tả chữ chưa đủ): `assets/catalog/<nhân vật>.png`, `assets/catalog/backgrounds.png`.", "",
+             "## Nhân vật", "", "| Nhân vật | Tên | Sprite | Cao | Chu kỳ (`\"cycle\": \"<nv>/<tên>\"`) |", "|---|---|---|---|---|"]
+    prompts = ["# Style prompt + ảnh tham chiếu", "", head,
+               "> check_story.py tự ghép style prompt + ảnh tham chiếu vào prompt của `asset_requests`;",
+               "> file này để tham khảo khi viết `design` cho nhân vật mới cho cùng nét vẽ.", ""]
     problems = []
 
     for char_dir in sorted(p for p in CHARS.iterdir() if p.is_dir()):
@@ -60,13 +77,17 @@ def main():
         meta = json.loads(meta_path.read_text()) if meta_path.exists() else {}
         sprites = meta.get("sprites", {})
         files = sorted(p.stem for p in char_dir.glob("*.png"))
-        lines += [f"## Nhân vật `{char}` — {meta.get('name', '')}", "",
-                  f"- Chiều cao mặc định: `{meta.get('default_h', '?')}` khung hình",
-                  f"- Ảnh tham chiếu khi tạo thêm: {', '.join(f'`{r}`' for r in meta.get('reference_images', []))}",
-                  f"- Style prompt: {meta.get('style_prompt', '(chưa có)')}", ""]
-        if meta.get("cycles"):
+        cycles = meta.get("cycles", {})
+        index.append(f"| `{char}` | {meta.get('name', '')} | {len(files)} | {meta.get('default_h', '?')} | "
+                     f"{', '.join(f'`{n}`({len(f)})' for n, f in cycles.items())} |")
+        prompts += [f"## `{char}` — {meta.get('name', '')}", "",
+                    f"- Ảnh tham chiếu: {', '.join(f'`{r}`' for r in meta.get('reference_images', []))}",
+                    f"- Style prompt: {meta.get('style_prompt', '(chưa có)')}", ""]
+        lines = [f"# Nhân vật `{char}` — {meta.get('name', '')}", "", head, "",
+                 f"- Chiều cao mặc định: `{meta.get('default_h', '?')}` khung hình", ""]
+        if cycles:
             lines += ["**Chu kỳ chuyển động** (dùng `\"cycle\": \"%s/<tên>\"`):" % char, ""]
-            for name, frames in meta["cycles"].items():
+            for name, frames in cycles.items():
                 lines.append(f"- `{name}`: {len(frames)} khung — {', '.join(frames)}")
             lines.append("")
         lines += ["| Sprite | Hướng | Mô tả | Tag | Neo |", "|---|---|---|---|---|"]
@@ -83,45 +104,56 @@ def main():
             if name not in files:
                 problems.append(f"{char}/{name}: có trong meta.json nhưng thiếu file PNG")
         lines.append("")
-        contact_sheet([(n, char_dir / f"{n}.png") for n in files], OUT / f"{char}.png")
+        write(OUT / f"{char}.md", lines)
+        if files:  # a character created for an open asset request has no sprites yet
+            contact_sheet([(n, char_dir / f"{n}.png") for n in files], OUT / f"{char}.png")
+    index.append("")
 
     bg_meta = json.loads((BGS / "meta.json").read_text()) if (BGS / "meta.json").exists() else {}
     bgs = bg_meta.get("backgrounds", {})
     files = sorted(p.stem for p in BGS.glob("*.png"))
-    lines += ["## Phông nền", "", bg_meta.get("_coords", ""), "",
-              f"- Style prompt: {bg_meta.get('style_prompt', '')}", "",
-              "| Phông | Mô tả | floor_y | char_h | Điểm nóng (dùng tên trong `pin.at`) |", "|---|---|---|---|---|"]
+    prompts += ["## Phông nền", "",
+                f"- Ảnh tham chiếu: {', '.join(f'`{r}`' for r in bg_meta.get('reference_images', []))}",
+                f"- Style prompt: {bg_meta.get('style_prompt', '')}", ""]
+    index += ["## Phông nền", "", "| Phông | Mô tả | Điểm nóng (`pin.at`) |", "|---|---|---|"]
+    lines = ["# Phông nền", "", head, "", bg_meta.get("_coords", ""), "",
+             "| Phông | Mô tả | floor_y | char_h | Điểm nóng (dùng tên trong `pin.at`) |", "|---|---|---|---|---|"]
     for name in files:
         e = bgs.get(name)
         if not e:
             problems.append(f"background {name}: chưa có mô tả trong assets/backgrounds/meta.json")
             lines.append(f"| `{name}` | **(chưa mô tả)** | | | |")
+            index.append(f"| `{name}` | **(chưa mô tả)** | |")
             continue
         hs = "; ".join(f"`{k}` {v}" for k, v in e.get("hotspots", {}).items())
         lines.append(f"| `{name}` | {e['desc']} | {e.get('floor_y', '')} | {e.get('char_h', '')} | {hs} |")
+        index.append(f"| `{name}` | {e['desc']} | {', '.join(e.get('hotspots', {}))} |")
     lines.append("")
+    index.append("")
+    write(OUT / "backgrounds.md", lines)
+    write(OUT / "PROMPTS.md", prompts)
     contact_sheet([(n, BGS / f"{n}.png") for n in files], OUT / "backgrounds.png", thumb_h=180, cols=4)
 
     ameta = json.loads((ROOT / "assets/audio/meta.json").read_text()) if (ROOT / "assets/audio/meta.json").exists() else {}
     sounds = ameta.get("sounds", {})
     sfiles = sorted({p.stem for p in (ROOT / "assets/audio/sfx").glob("*.*")}) if (ROOT / "assets/audio/sfx").exists() else []
-    lines += ["## Âm thanh", "", "Dùng trong cảnh: `\"sfx\": [{\"sound\": <tên>, \"at\": 0.3}]`; nhạc nền: `\"music\"` ở cấp kịch bản.", ""]
+    index += ["## Âm thanh", "", "Dùng trong cảnh: `\"sfx\": [{\"sound\": <tên>, \"at\": 0.3}]`; nhạc nền: `\"music\"` ở cấp kịch bản.", ""]
     if sfiles:
-        lines += ["| Âm thanh | Loại | Mô tả | Tag | Âm lượng |", "|---|---|---|---|---|"]
+        index += ["| Âm thanh | Loại | Mô tả | Âm lượng |", "|---|---|---|---|"]
         for name in sfiles:
             e = sounds.get(name)
             if not e:
                 problems.append(f"sound {name}: chưa có mô tả trong assets/audio/meta.json")
-                lines.append(f"| `{name}` | ? | **(chưa mô tả)** | | |")
+                index.append(f"| `{name}` | ? | **(chưa mô tả)** | |")
                 continue
-            lines.append(f"| `{name}` | {e.get('kind', 'sfx')} | {e.get('desc', '')} | {', '.join(e.get('tags', []))} | {e.get('volume', 1)} |")
+            index.append(f"| `{name}` | {e.get('kind', 'sfx')} | {e.get('desc', '')} | {e.get('volume', 1)} |")
     else:
-        lines.append("(chưa có âm thanh nào)")
-    lines.append("")
+        index.append("(chưa có âm thanh nào)")
+    index.append("")
 
     if problems:
-        lines += ["## Cần bổ sung mô tả", ""] + [f"- {p}" for p in problems] + [""]
-    (ROOT / "assets/CATALOG.md").write_text("\n".join(lines))
+        index += ["## Cần bổ sung mô tả", ""] + [f"- {p}" for p in problems] + [""]
+    write(ROOT / "assets/CATALOG.md", index)
     n_sprites = sum(1 for _ in CHARS.glob("*/*.png"))
     print(f"catalog: {n_sprites} sprites, {len(files)} backgrounds, {len(sfiles)} sounds -> assets/CATALOG.md, assets/catalog/")
     for p in problems:

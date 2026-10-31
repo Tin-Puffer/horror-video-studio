@@ -57,7 +57,7 @@ python3 tools/render.py scripts/cuoc_goi_3h.json            # Full HD → build/
 |---|---|
 | `tools/render.py` | Dựng video từ kịch bản JSON (mọi cấu hình nằm trong kịch bản) |
 | `tools/studio.py` + `studio.html` | Giao diện chỉnh cảnh, xem trước khung hình thật, thư viện asset, xuất video |
-| `tools/catalog.py` | Sinh mục lục kho `assets/CATALOG.md` + ảnh tổng hợp `assets/catalog/` |
+| `tools/catalog.py` | Sinh mục lục ngắn `assets/CATALOG.md` + chi tiết từng nhân vật/phông/prompt và ảnh tổng hợp trong `assets/catalog/` |
 | `tools/check_story.py` | Kiểm tra kịch bản với kho, xuất danh sách asset cần tạo kèm prompt |
 | `tools/ingest.py` | Nạp ảnh/âm thanh mới vào kho theo yêu cầu trong kịch bản |
 | `tools/story_md.py` | Sinh kịch bản dạng đọc được (`.md`) từ JSON |

@@ -26,7 +26,9 @@ Mọi kịch bản mới theo **`scripts/QUY_TAC_KICH_BAN.md`** (đã thống nh
 - Trao đổi với người dùng bằng tiếng Việt.
 
 ## Viết kịch bản mới (video thật)
-1. `python3 tools/catalog.py`, rồi đọc `assets/CATALOG.md` và xem ảnh `assets/catalog/*.png`.
+1. `python3 tools/catalog.py`, rồi đọc `assets/CATALOG.md` (bản ngắn: nhân vật + chu kỳ, phông + tên điểm nóng, âm thanh).
+   Chỉ mở `assets/catalog/<nhân vật>.md` của nhân vật truyện dùng (và `backgrounds.md` khi cần toạ độ/floor_y);
+   `PROMPTS.md` chỉ khi viết `asset_requests`. Ảnh `assets/catalog/*.png` chỉ xem khi mô tả chữ chưa đủ — không đọc cả kho.
 2. Viết `scripts/<truyen>.json`, copy từ `templates/kich_ban_mau.json` (ví dụ đầy đủ: `scripts/cuoc_goi_3h.json`). Ưu tiên dùng lại asset có sẵn:
    `"cycle": "boy_hoodie/walk"` cho di chuyển, `"face": "auto"`, `"y": "floor"`,
    `"pin": {"point": "hand", "at": "<hotspot>"}` khi tay phải chạm vật trên phông.
