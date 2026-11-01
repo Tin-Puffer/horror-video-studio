@@ -2,8 +2,8 @@
  "name": "Bà nội",
  "style_prompt": "Same elderly woman as the reference images: a small Vietnamese grandmother, slightly hunched, silver-gray hair in a small bun, dark brown \"ao ba ba\" blouse, loose black trousers, black sandals, wrinkled face clearly visible. Hand-drawn crayon / colored-pencil texture, thick black outlines, simple chibi proportions, dot eyes, minimal flat colors. Never white clothing.",
  "reference_images": [
-  "assets/source/grandma_base.png",
-  "assets/source/grandma_sheet_A.png"
+  "assets/characters/grandma/00_stand_front.png",
+  "assets/characters/grandma/D1_walk_1.png"
  ],
  "default_h": 0.5,
  "cycles": {
@@ -14,22 +14,6 @@
    "D4_walk_4",
    "D5_walk_5",
    "D6_walk_6"
-  ],
-  "walk_old": [
-   "B1_walk_1",
-   "B2_walk_2",
-   "B3_walk_3",
-   "B4_walk_4",
-   "B5_walk_5",
-   "B3_walk_3"
-  ],
-  "walk_v2": [
-   "C1_walk_1",
-   "C2_walk_2",
-   "C3_walk_3",
-   "C4_walk_4",
-   "C5_walk_5",
-   "C6_walk_6"
   ],
   "fake_walk": [
    "G1_fake_walk_1",
@@ -46,25 +30,6 @@
     "chính diện"
    ],
    "facing": "front"
-  },
-  "A1_hold_hands_warn": {
-   "desc": "Nghiêng người nắm chặt hai tay đứa trẻ (có đôi tay trẻ con trong hình), nghiêm mặt dặn dò",
-   "tags": [
-    "dặn dò",
-    "nắm tay",
-    "cảnh báo"
-   ],
-   "facing": "right"
-  },
-  "A2_incense_pray": {
-   "desc": "Cúi đầu chắp ba nén nhang đang cháy, khấn",
-   "tags": [
-    "thắp nhang",
-    "khấn",
-    "cúng",
-    "bàn thờ"
-   ],
-   "facing": "right"
   },
   "A3_scatter_rice_salt": {
    "desc": "Ôm bát, vung tay rải gạo muối (hạt bay trong hình)",
@@ -103,108 +68,6 @@
     "chính diện"
    ],
    "facing": "front"
-  },
-  "B1_walk_1": {
-   "desc": "Đi chậm lưng còng, tay chống lưng, khung 1/6",
-   "tags": [
-    "đi",
-    "chu kỳ",
-    "già"
-   ],
-   "facing": "right"
-  },
-  "B2_walk_2": {
-   "desc": "Đi chậm lưng còng, tay chống lưng, khung 2/6",
-   "tags": [
-    "đi",
-    "chu kỳ",
-    "già"
-   ],
-   "facing": "right"
-  },
-  "B3_walk_3": {
-   "desc": "Đi chậm lưng còng, tay chống lưng, khung 3/6",
-   "tags": [
-    "đi",
-    "chu kỳ",
-    "già"
-   ],
-   "facing": "right"
-  },
-  "B4_walk_4": {
-   "desc": "Đi chậm lưng còng, tay chống lưng, khung 4/6",
-   "tags": [
-    "đi",
-    "chu kỳ",
-    "già"
-   ],
-   "facing": "right"
-  },
-  "B5_walk_5": {
-   "desc": "Đi chậm lưng còng, tay chống lưng, khung 5/6",
-   "tags": [
-    "đi",
-    "chu kỳ",
-    "già"
-   ],
-   "facing": "right"
-  },
-  "B6_walk_6": {
-   "desc": "Đi chậm lưng còng, tay chống lưng, khung 6/6 (mặt bị mờ, không dùng trong chu kỳ)",
-   "tags": [
-    "đi",
-    "chu kỳ",
-    "già"
-   ],
-   "facing": "right"
-  },
-  "C1_walk_1": {
-   "desc": "Đi chậm lưng còng, tay chống lưng, bước rõ, khung 1/6",
-   "tags": [
-    "đi",
-    "chu kỳ"
-   ],
-   "facing": "right"
-  },
-  "C2_walk_2": {
-   "desc": "Đi chậm lưng còng, tay chống lưng, bước rõ, khung 2/6",
-   "tags": [
-    "đi",
-    "chu kỳ"
-   ],
-   "facing": "right"
-  },
-  "C3_walk_3": {
-   "desc": "Đi chậm lưng còng, tay chống lưng, bước rõ, khung 3/6",
-   "tags": [
-    "đi",
-    "chu kỳ"
-   ],
-   "facing": "right"
-  },
-  "C4_walk_4": {
-   "desc": "Đi chậm lưng còng, tay chống lưng, bước rõ, khung 4/6",
-   "tags": [
-    "đi",
-    "chu kỳ"
-   ],
-   "facing": "right"
-  },
-  "C5_walk_5": {
-   "desc": "Đi chậm lưng còng, tay chống lưng, bước rõ, khung 5/6",
-   "tags": [
-    "đi",
-    "chu kỳ"
-   ],
-   "facing": "right"
-  },
-  "C6_walk_6": {
-   "desc": "Đi chậm lưng còng, tay chống lưng, bước rõ, khung 6/6",
-   "tags": [
-    "đi",
-    "chu kỳ"
-   ],
-   "facing": "right"
   },
   "E1_hold_boy_hands": {
    "desc": "Bà (trái) nắm chặt hai tay Khoa (phải), bà rưng rưng, Khoa sợ — HAI nhân vật chung một hình (h ≈ 0.5 cho cả cặp)",
@@ -307,14 +170,6 @@
     "dặn dò"
    ],
    "facing": "right"
-  },
-  "F5_hold_effigy_back": {
-   "desc": "Quay lưng, ôm hình nhân giấy mặc áo hoodie và xấp vàng mã",
-   "tags": [
-    "hình nhân",
-    "quay lưng"
-   ],
-   "facing": "away"
   },
   "F6_hug_boy_bed_dark": {
    "desc": "HAI nhân vật + giường: bà ôm chặt Khoa, cả hai run sợ, bà thì thầm",
@@ -452,14 +307,117 @@
    ],
    "facing": "away"
   },
-  "J2_side_carry_effigy": {
-   "desc": "Nghiêng (quay phải), đi chậm, bế hình nhân trước ngực như bế đứa trẻ, xấp vàng mã bên trên",
+  "K2_shoo_broom": {
+   "desc": "Vung chổi xua (con mèo), mặt hoảng (quay phải)",
    "tags": [
-    "hình nhân",
-    "đi",
-    "ra bến sông"
+    "xua mèo",
+    "chổi"
    ],
    "facing": "right"
+  },
+  "K3_lean_back_door_tremble": {
+   "desc": "Đứng tựa lưng vào cửa, hai tay run trước ngực, nhắm mắt",
+   "tags": [
+    "run",
+    "sợ"
+   ],
+   "facing": "front"
+  },
+  "K4_nod_look_hands": {
+   "desc": "Đứng cúi đầu gật lặng lẽ, nhìn đôi bàn tay mình (như đã biết trước)",
+   "tags": [
+    "lặng lẽ",
+    "biết trước"
+   ],
+   "facing": "front"
+  },
+  "K5_wipe_chopstick_holder": {
+   "desc": "Đứng lau đi lau lại ống đũa tre, mắt vô hồn (quay trái)",
+   "tags": [
+    "ống đũa",
+    "tang"
+   ],
+   "facing": "right"
+  },
+  "K6_raise_bowl_altar": {
+   "desc": "Kiễng chân nâng bát cơm (đũa gác ngang) đặt lên bàn thờ cao (quay trái)",
+   "tags": [
+    "bàn thờ",
+    "bát cơm"
+   ],
+   "facing": "right"
+  },
+  "L1_comb_into_coffin": {
+   "desc": "Ngồi ghế thấp quay phải, vươn tay xa về phía trước–xuống chải tóc cho ông nằm trong quan tài (không chải tóc mình)",
+   "tags": [
+    "chải tóc",
+    "tang"
+   ],
+   "facing": "right"
+  },
+  "M1_slump_asleep_table": {
+   "desc": "Ngồi ghế thấp gục đầu lên tay ngủ bên chiếc bàn nhỏ (có bàn), quay phải",
+   "tags": [
+    "ngủ gục",
+    "kiệt sức"
+   ],
+   "facing": "right"
+  },
+  "M2_kneel_mat_worried": {
+   "desc": "Quỳ ngồi trên gót (quay phải), tay đan trên đùi, lo lắng",
+   "tags": [
+    "lo lắng",
+    "chiếu"
+   ],
+   "facing": "right"
+  },
+  "N1_back_stare_altar": {
+   "desc": "Quay lưng đứng im, tay buông thõng, ngước nhìn lên (bàn thờ)",
+   "tags": [
+    "bát cơm",
+    "quay lưng"
+   ],
+   "facing": "away"
+  },
+  "N2_closeup_face_fear": {
+   "desc": "Cận mặt: tái đi, ánh mắt không ngạc nhiên mà sợ một nỗi sợ rất cũ",
+   "tags": [
+    "cận mặt",
+    "sợ"
+   ],
+   "facing": "front"
+  },
+  "N3_feed_chickens": {
+   "desc": "Đổ bát cơm cho mấy con gà mổ dưới chân (có gà)",
+   "tags": [
+    "đổ cơm",
+    "gà"
+   ],
+   "facing": "right"
+  },
+  "N4_pole_shoo_crow": {
+   "desc": "Vung cây sào tre dài lên cao xua (con quạ), ngước nhìn",
+   "tags": [
+    "xua quạ",
+    "sào"
+   ],
+   "facing": "left"
+  },
+  "N6_phone_forced_smile": {
+   "desc": "Đứng nghe điện thoại, gượng cười, mắt buồn",
+   "tags": [
+    "điện thoại",
+    "giấu chuyện"
+   ],
+   "facing": "front"
+  },
+  "N8_fold_sweater": {
+   "desc": "Đứng gấp chiếc áo len đan dở, cúi đầu",
+   "tags": [
+    "áo len",
+    "tang"
+   ],
+   "facing": "left"
   }
  }
 }

@@ -59,13 +59,18 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 ROOT = Path(__file__).resolve().parent.parent
 
 DEFAULTS = {
-    "video": {"size": [1920, 1080], "fps": 24, "crf": 20, "preset": "medium"},
-    "preview": {"size": [960, 540], "fps": 12, "preset": "veryfast"},
+    "video": {"size": [1920, 1080], "fps": 24, "crf": 20, "preset": "medium", "audio_bitrate": "160k"},
+    # --preview: very low quality for review, with the scene id in a corner ("#21") so feedback can name scenes
+    "preview": {"size": [640, 360], "fps": 10, "crf": 34, "preset": "ultrafast", "audio_bitrate": "64k",
+                "scene_label": {"enabled": True, "size": 0.07, "pos": [0.015, 0.02],
+                                "color": [255, 230, 60], "stroke": 3}},
     "voice": {
         "piper": "piper",            # piper-tts executable (PATH), or set in config.local.json
         "models_dir": "voices",      # folder with <model>.onnx + .onnx.json (relative to the project)
         "engine": "piper",           # "piper" or "vieneu" (VieNeu-TTS: preset voices + voice cloning)
         "vieneu_voice": "preset:Hải Đăng",  # VieNeu: "preset:<name>" or "clone:<id>" (tools/clone_voice.py)
+        "vieneu_temperature": None, "vieneu_top_k": None,  # VieNeu sampling (None = SDK default 0.4 / 50);
+        # lower temperature = fewer stray pauses and repeated words, flatter delivery
         "vieneu_python": "python3", "dubber_root": "",  # where vieneu + the Dubber package live
         "model": "ngochuyennew", "length_scale": 1.0, "sentence_silence": 0.3,
         # phrasing (see tts): pauses shorter than this are read as a comma, not a cut;
@@ -74,6 +79,10 @@ DEFAULTS = {
         "merge_pause_below": 0.45, "soften_endings": "none", "trim_chunks": True, "chunk_gap": 0.12,
         "max_sec_per_word": 0.5,     # run-on guard: longer per word = the engine kept going
         "max_inner_pause": 0.35,     # silences inside a line are cut to this (0 = keep)
+        # split_sentences: synthesize sentence by sentence (long ones cut at commas, <= max_chunk_chars):
+        # VieNeu cuts long input itself, mid-phrase, and repeats/slurs words more the longer the input
+        "split_sentences": False, "max_chunk_chars": 150, "sentence_gap": 0.22,
+        "level_db": None,            # e.g. -20: every chunk at the same speech loudness (dBFS), None = as made
         # voice colour (see voice_filters): pitch (semitones), tempo, reverb 0..1,
         # lowpass/highpass Hz, volume dB; piper: noise_scale (expressiveness), noise_w (rhythm variation)
         "sample_rate": 44100,        # narration rate; every engine/preset is resampled to it
@@ -235,23 +244,31 @@ def vieneu(req: dict, v: dict) -> dict:
 # settings that change what a chunk sounds like, per engine (others don't invalidate the cache)
 _ENGINE_KEYS = {"piper": ("model", "length_scale", "sentence_silence", "noise_scale", "noise_w"),
                 "vieneu": ("vieneu_voice",)}
+_SAMPLING_KEYS = ("vieneu_temperature", "vieneu_top_k")  # part of the cache key only when set
 _COLOUR_KEYS = ("pitch", "tempo", "highpass", "lowpass", "reverb", "volume", "sample_rate")
 
 
-def tts_chunk(text: str, v: dict) -> np.ndarray:
-    """One piece of speech as float32 at v["sample_rate"], cached in build/tts/.
-    piper: speed = length_scale; VieNeu has no speed control, use "tempo"."""
+def tts_cache_path(text: str, v: dict) -> Path:
     engine = v.get("engine", "piper")
     ident = {k: v.get(k) for k in _ENGINE_KEYS[engine] + _COLOUR_KEYS}
+    ident.update({k: v[k] for k in _SAMPLING_KEYS if v.get(k) is not None})
     key = hashlib.sha1(json.dumps([text, engine, ident] if engine != "piper" else [text, v],
                                   sort_keys=True).encode()).hexdigest()[:16]
-    path = ROOT / "build/tts" / f"{key}.wav"
+    return ROOT / "build/tts" / f"{key}.wav"
+
+
+def tts_chunk(text: str, v: dict) -> np.ndarray:
+    """One piece of speech as float32 at v["sample_rate"], cached in build/tts/ (delete the file for a new take).
+    piper: speed = length_scale; VieNeu has no speed control, use "tempo"."""
+    engine = v.get("engine", "piper")
+    path = tts_cache_path(text, v)
     sr = v["sample_rate"]
     if not path.exists():
         path.parent.mkdir(parents=True, exist_ok=True)
         raw = path.with_suffix(".raw.wav")
         if engine == "vieneu":
-            vieneu({"cmd": "say", "text": text, "voice": v["vieneu_voice"], "out": str(raw)}, v)
+            vieneu({"cmd": "say", "text": text, "voice": v["vieneu_voice"], "out": str(raw),
+                    "temperature": v.get("vieneu_temperature"), "top_k": v.get("vieneu_top_k")}, v)
         else:
             models = Path(v["models_dir"]).expanduser()
             model = (models if models.is_absolute() else ROOT / models) / f"{v['model']}.onnx"
@@ -299,34 +316,68 @@ def soften(text: str, mode: str) -> str:
 
 def squeeze_pauses(x: np.ndarray, sr: int, longest: float) -> np.ndarray:
     """Shorten silences inside a chunk to at most `longest` seconds (engines sometimes
-    leave multi-second holes mid-sentence); pauses meant by the script are separate."""
-    hop = int(sr * 0.02)
+    leave multi-second holes mid-sentence); pauses meant by the script are separate.
+    The cut is made in the middle of the silence and the two sides are crossfaded, so
+    no click or jump is heard (dropping raw frames made the voice sound jerky)."""
+    hop = int(sr * 0.01)
     n = len(x) // hop
     if n == 0 or longest <= 0:
         return x
-    loud = np.sqrt((x[: n * hop].reshape(n, hop) ** 2).mean(axis=1)) > 10 ** (-40 / 20)
-    keep, run = [], 0
-    max_run = int(longest / 0.02)
-    for i, a in enumerate(loud):
-        run = 0 if a else run + 1
-        if a or run <= max_run:
-            keep.append(i)
-    return np.concatenate([x[i * hop:(i + 1) * hop] for i in keep] + [x[n * hop:]])
+    loud = np.sqrt((x[: n * hop].reshape(n, hop) ** 2).mean(axis=1)) > 10 ** (-42 / 20)
+    keep_frames = int(longest / 0.01)
+    fade = int(sr * 0.015)
+    out, pos, k = [], 0, 0
+    while k < n:
+        if loud[k]:
+            k += 1
+            continue
+        start = k
+        while k < n and not loud[k]:
+            k += 1
+        if start == 0 or k == n or k - start <= keep_frames:
+            continue
+        # keep half of `longest` on each side of the cut, crossfade over `fade`
+        a = (start + keep_frames // 2) * hop
+        b = (k - keep_frames // 2) * hop
+        out.append(x[pos:a])
+        pos = b
+    out.append(x[pos:])
+    res = out[0]
+    for seg in out[1:]:
+        f = min(fade, len(res), len(seg))
+        if f > 0:
+            ramp = np.linspace(0, 1, f, dtype=np.float32)
+            res = np.concatenate([res[:-f], res[-f:] * (1 - ramp) + seg[:f] * ramp, seg[f:]])
+        else:
+            res = np.concatenate([res, seg])
+    return res
 
 
 def trim_silence(x: np.ndarray, sr: int, keep: float = 0.06) -> np.ndarray:
-    """Drop the engine's own silence around a chunk; pauses come from the script."""
+    """Drop the engine's own silence around a chunk; pauses come from the script.
+    Edges get a short fade so joined chunks do not click."""
     loud = np.flatnonzero(np.abs(x) > 10 ** (-40 / 20))
     if not len(loud):
         return x
     k = int(keep * sr)
-    return x[max(0, loud[0] - k):loud[-1] + k]
+    x = x[max(0, loud[0] - k):loud[-1] + int(0.12 * sr)].copy()  # keep the tail: word endings fade below -40 dB
+    f = min(int(0.01 * sr), len(x) // 2)
+    if f:
+        ramp = np.linspace(0, 1, f, dtype=np.float32)
+        x[:f] *= ramp
+        x[-f:] *= ramp[::-1]
+    return x
 
 
 def speak_checked(text: str, v: dict, sr: int) -> np.ndarray:
+    return speak_take(text, v, sr)[0]
+
+
+def speak_take(text: str, v: dict, sr: int) -> tuple:
     """One line, guarded against run-on synthesis: neural engines sometimes keep
     babbling after the last word (seen with a closing comma or "à?"). When the result
-    is far longer than the words need, try other endings and keep the shortest."""
+    is far longer than the words need, try other endings and keep the shortest.
+    Returns (audio, cache file of the take used, text sent)."""
     words = len(text.split())
     limit = max(1.2, words * v.get("max_sec_per_word", 0.5)) / v.get("tempo", 1.0)
     first = soften(text, v.get("soften_endings", "none"))
@@ -336,27 +387,87 @@ def speak_checked(text: str, v: dict, sr: int) -> np.ndarray:
         chunk = tts_chunk(cand, v)
         length = len(trim_silence(chunk, sr)) / sr
         if length <= limit:
-            return chunk
-        tried.append((length, chunk))
-    return min(tried, key=lambda c: c[0])[1]
+            return chunk, tts_cache_path(cand, v), cand
+        tried.append((length, chunk, cand))
+    best = min(tried, key=lambda c: c[0])
+    return best[1], tts_cache_path(best[2], v), best[2]
+
+
+def tts_pieces(text: str, max_chars: int) -> list:
+    """[(piece, gap_after)]: one piece per sentence; a sentence longer than max_chars is cut at
+    commas (greedy, each part <= max_chars when the commas allow). gap_after is "sentence" | "clause"."""
+    out = []
+    for sent in re.split(r"(?<=[.!?…])\s+", text.strip()):
+        if not sent:
+            continue
+        parts, cur = [], ""
+        for clause in re.split(r"(?<=,)\s+", sent):
+            if cur and len(cur) + 1 + len(clause) > max_chars:
+                parts.append(cur)
+                cur = clause
+            else:
+                cur = f"{cur} {clause}".strip()
+        parts.append(cur)
+        out += [(p, "clause") for p in parts[:-1]] + [(parts[-1], "sentence")]
+    return out
+
+
+def tts_lines(text, voice: dict) -> list:
+    """[("say", text, voice_dict) | ("pause", s)]: exactly what tts() sends to the engine, line by line
+    (also used by tools/check_voice.py to find the cached take of every line)."""
+    sr = voice["sample_rate"]
+    lines = []
+    for item in phrase_plan(text, voice):
+        if item[0] == "pause":
+            lines.append(item)
+            continue
+        base = DEFAULTS["voice"] if item[2] and item[2].get("preset") else voice
+        v = {**resolve_voice(base, item[2]), "sample_rate": sr}
+        pieces = tts_pieces(item[1], v["max_chunk_chars"]) if v.get("split_sentences") else [(item[1], "sentence")]
+        for k, (piece, gap) in enumerate(pieces):
+            lines.append(("say", piece, v))
+            if k < len(pieces) - 1:
+                lines.append(("pause", v["sentence_gap"] if gap == "sentence" else v.get("chunk_gap", 0.12)))
+    return lines
+
+
+def speech_level(x: np.ndarray, sr: int) -> float:
+    """Loudness of the voiced part of a chunk (dBFS RMS over 20 ms frames above -40 dB)."""
+    hop = int(sr * 0.02)
+    n = len(x) // hop
+    if n == 0:
+        return -90.0
+    rms = np.sqrt((x[:n * hop].reshape(n, hop) ** 2).mean(axis=1))
+    on = rms[rms > 10 ** (-40 / 20)]
+    return float(20 * np.log10(np.sqrt((on ** 2).mean()))) if len(on) else -90.0
+
+
+def level_chunk(x: np.ndarray, sr: int, target_db: float) -> np.ndarray:
+    """Bring a chunk to the same speech loudness as the others: chunks are separate takes,
+    and a louder or softer take next to its neighbours sounds like a jump."""
+    gain = 10 ** ((target_db - speech_level(x, sr)) / 20)
+    gain = min(gain, 0.95 / max(1e-6, float(np.abs(x).max())))
+    return x * gain
 
 
 def tts(text, voice: dict) -> np.ndarray:
     """Narration for a scene's text as int16 at voice["sample_rate"] (pauses and per-line voices applied)."""
     sr = voice["sample_rate"]
     parts = []
-    for item in phrase_plan(text, voice):
+    # every chunk at the scene's rate, whatever engine/preset made it;
+    # a line with its own preset is that voice, not the narrator plus changes
+    for item in tts_lines(text, voice):
         if item[0] == "pause":
             parts.append(np.zeros(round(item[1] * sr), np.float32))
         else:
-            # every chunk at the scene's rate, whatever engine/preset made it;
-            # a line with its own preset is that voice, not the narrator plus changes
-            base = DEFAULTS["voice"] if item[2] and item[2].get("preset") else voice
-            v = {**resolve_voice(base, item[2]), "sample_rate": sr}
+            v = item[2]
             chunk = speak_checked(item[1], v, sr)
             if v.get("max_inner_pause"):
                 chunk = squeeze_pauses(chunk, sr, v["max_inner_pause"])
-            parts.append(trim_silence(chunk, sr) if v.get("trim_chunks") else chunk)
+            chunk = trim_silence(chunk, sr) if v.get("trim_chunks") else chunk
+            if v.get("level_db") is not None:
+                chunk = level_chunk(chunk, sr, v["level_db"])
+            parts.append(chunk)
             if v.get("trim_chunks"):
                 parts.append(np.zeros(int(sr * v.get("chunk_gap", 0.12)), np.float32))
     out = np.concatenate(parts) if parts else np.zeros(0, np.float32)
@@ -734,7 +845,8 @@ def draw_layer(canvas: Image.Image, layer: dict, p: float, t: float, rng: random
     """Layer keys: sprite | frames+fps | ui ("call"/"message", name, message,
     plus any settings.phone key), x, y (feet baseline, 0..1), h (height, 0..1 of
     frame), flip, start/end (0..1 of scene), bob (px@1080p), jitter (px@1080p),
-    tint, glow, clip_circle [cx, cy, r], ease ("in"/"out"/"smooth"),
+    tint, glow, clip_circle [cx, cy, r], clip_rect [x0, y0, x1, y1] (show the layer only inside, eg. a gap
+    in a gate so a far bird seems behind the bars), ease ("in"/"out"/"smooth"),
     face ("left"/"right"/"auto": flip to face that way, using the sprite's
     facing from meta.json), pin {"point": anchor, "at": [x, y]} (place the
     sprite so that anchor lands on a point of the frame, overrides x/y),
@@ -785,11 +897,16 @@ def draw_layer(canvas: Image.Image, layer: dict, p: float, t: float, rng: random
         j = layer["jitter"] * H / 1080
         x += rng.uniform(-j, j)
         y += rng.uniform(-j, j)
-    if "clip_circle" in layer:
-        layer["clip_circle"] = hotspot(bg, layer["clip_circle"])
+    if "clip_circle" in layer or "clip_rect" in layer:
         tmp = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
         tmp.paste(im, (round(x), round(y)), im)
-        mask = circle_mask(W, H, *layer["clip_circle"])
+        if "clip_circle" in layer:
+            layer["clip_circle"] = hotspot(bg, layer["clip_circle"])
+            mask = circle_mask(W, H, *layer["clip_circle"])
+        else:
+            x0, y0, x1, y1 = layer["clip_rect"]
+            mask = Image.new("L", (W, H), 0)
+            ImageDraw.Draw(mask).rectangle([x0 * W, y0 * H, x1 * W, y1 * H], fill=255)
         a = np.minimum(np.asarray(tmp.getchannel("A")), np.asarray(mask))
         tmp.putalpha(Image.fromarray(a))
         canvas.alpha_composite(tmp)
@@ -906,10 +1023,40 @@ def render_frame(scene: dict, t: float, dur: float, size: tuple[int, int], rng: 
         k = min(k, (dur - t) / fo)
     if k < 1:
         canvas.alpha_composite(Image.new("RGBA", (W, H), (0, 0, 0, round(255 * (1 - k)))))
+    lab = CFG.get("_scene_label")  # set by main() for --preview only
+    if lab and lab.get("enabled"):
+        ImageDraw.Draw(canvas).text((W * lab["pos"][0], H * lab["pos"][1]), f"#{scene['id']}",
+                                    font=font(round(H * lab["size"]), True), fill=tuple(lab["color"]),
+                                    stroke_width=lab.get("stroke", 3), stroke_fill=(0, 0, 0))
     return canvas.convert("RGB")
 
 
 # ---------------------------------------------------------------- main
+
+def write_audio_review(out: Path, plan, starts: dict, mix: np.ndarray, sr: int):
+    """Audio for listening back without rendering frames: full mix, narration alone, and scene start times."""
+    timing = CFG["timing"]
+    vsr = CFG["voice"]["sample_rate"]
+    voice = np.zeros(len(mix), np.float32)
+    for s, dur, speech in plan:
+        if len(speech):
+            v = speech.astype(np.float32) / 32768
+            v = np.interp(np.arange(round(len(v) * sr / vsr)) * vsr / sr, np.arange(len(v)), v).astype(np.float32)
+            place(voice, v, starts[s["id"]] + timing["lead"], sr, 1.0)
+    for name, sig in (("audio", mix), ("voice", voice)):
+        dst = out.with_name(f"{out.stem}_{name}.mp3")
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "s16le", "-ar", str(sr), "-ac", "1", "-i", "-",
+                        "-b:a", "192k", str(dst)], input=(np.clip(sig, -1, 1) * 32767).astype(np.int16).tobytes(),
+                       check=True)
+        print(f"done: {dst}")
+    lines = []
+    for s, dur, _ in plan:
+        t = starts[s["id"]]
+        lines.append(f"{int(t // 60):02d}:{t % 60:05.2f}  #{s['id']}  {spoken_text(s['text']) if s.get('text') else '(không lời)'}")
+    txt = out.with_name(f"{out.stem}_audio.txt")
+    txt.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"done: {txt}")
+
 
 def main():
     global CFG, CHARACTERS, STORY
@@ -918,6 +1065,8 @@ def main():
     ap.add_argument("--preview", action="store_true", help="use settings.preview size/fps")
     ap.add_argument("--scenes", help="e.g. 16-19 or 5")
     ap.add_argument("--no-subtitles", action="store_true")
+    ap.add_argument("--audio-only", action="store_true",
+                    help="no video: <out>_audio.mp3 (full mix), <out>_voice.mp3 (narration only), <out>_audio.txt (scene times)")
     ap.add_argument("-o", "--output")
     args = ap.parse_args()
 
@@ -936,6 +1085,7 @@ def main():
         lo, hi = float(a), float(b or a)
         scenes = [s for s in scenes if lo <= s["id"] <= hi]
     video = deep_merge(CFG["video"], CFG["preview"]) if args.preview else CFG["video"]
+    CFG["_scene_label"] = CFG["preview"].get("scene_label") if args.preview else None
     size, fps = tuple(video["size"]), video["fps"]
     out = Path(args.output or story["output"])
     if args.preview and not args.output:
@@ -962,6 +1112,9 @@ def main():
         t0 += dur
     total = t0
     mix = mix_audio(plan, starts, narr_spans, total, sr)
+    if args.audio_only:
+        write_audio_review(out, plan, starts, mix, sr)
+        return
     wav_path = out.with_suffix(".wav")
     with wave.open(str(wav_path), "wb") as w:
         w.setnchannels(1)
@@ -977,7 +1130,7 @@ def main():
          "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{size[0]}x{size[1]}", "-r", str(fps), "-i", "-",
          "-i", str(wav_path),
          "-c:v", "libx264", "-preset", video["preset"], "-crf", str(video.get("crf", 20)),
-         "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k", "-shortest", str(out)],
+         "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", video.get("audio_bitrate", "160k"), "-shortest", str(out)],
         stdin=subprocess.PIPE)
     total_frames, done = sum(round(d * fps) for _, d in plan), 0
     for s, dur in plan:

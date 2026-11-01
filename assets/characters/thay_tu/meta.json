@@ -1,0 +1,87 @@
+{
+ "name": "Thầy Tư (thầy cúng)",
+ "default_h": 0.58,
+ "reference_images": [
+  "assets/characters/thay_tu/thay_tu_base_front.png"
+ ],
+ "style_prompt": "Same man as the reference image: a lean old Vietnamese village ritual master (thay cung), thin gray goatee and mustache, small round glasses, sharp narrow eyes, black khan dong headwrap, long dark-brown traditional ao dai robe over black trousers, faded cloth shoulder bag, dark wooden prayer beads on his wrist, serious mysterious face. Hand-drawn crayon / colored-pencil texture, thick black outlines, simple chibi proportions, dot eyes, minimal flat colors. Never white clothing.",
+ "sprites": {
+  "thay_tu_base_front": {
+   "desc": "Ảnh mẫu: đứng chính diện",
+   "tags": [
+    "đứng",
+    "chính diện"
+   ],
+   "facing": "front"
+  },
+  "A1_sit_mat_almanac": {
+   "desc": "Ngồi xếp bằng trên chiếu, lật lịch cũ, bấm đốt ngón tay (quay phải)",
+   "tags": [
+    "xem giờ"
+   ],
+   "facing": "front"
+  },
+  "A2_sit_mat_pale": {
+   "desc": "Ngồi trên chiếu, đơ người, mặt tái mét, tay bấm đốt dừng giữa chừng",
+   "tags": [
+    "giờ trùng",
+    "tái mặt"
+   ],
+   "facing": "front"
+  },
+  "A3_write_talisman": {
+   "desc": "Quỳ bên bàn thấp viết bùa mực đỏ lên giấy vàng, miệng khấn",
+   "tags": [
+    "viết bùa"
+   ],
+   "facing": "right"
+  },
+  "A5_stand_point_stern": {
+   "desc": "Đứng chỉ tay quát, mặt nghiêm khắc (quay trái)",
+   "tags": [
+    "quát",
+    "dặn"
+   ],
+   "facing": "left"
+  },
+  "A6_back_pray_incense": {
+   "desc": "Đứng quay lưng, giơ ba nén nhang khấn lầm rầm",
+   "tags": [
+    "khấn",
+    "quay lưng"
+   ],
+   "facing": "away"
+  },
+  "C1_scatter_rice_salt": {
+   "desc": "Đứng vung tay rắc gạo muối (hạt bay trong hình)",
+   "tags": [
+    "gạo muối",
+    "trừ tà"
+   ],
+   "facing": "right"
+  },
+  "C3_sit_mat_explain": {
+   "desc": "Ngồi xếp bằng, giơ tay giảng giải, mặt nghiêm trầm",
+   "tags": [
+    "giảng",
+    "đổi đũa"
+   ],
+   "facing": "front"
+  },
+  "C4_sit_mat_shake_head": {
+   "desc": "Ngồi xếp bằng, nhắm mắt lắc đầu, giơ bàn tay từ chối",
+   "tags": [
+    "từ chối",
+    "đổi mạng"
+   ],
+   "facing": "front"
+  },
+  "C2_hang_bagua_mirror": {
+   "desc": "Kiễng chân giơ cao tay treo gương bát quái (quay trái)",
+   "tags": [
+    "gương bát quái"
+   ],
+   "facing": "left"
+  }
+ }
+}

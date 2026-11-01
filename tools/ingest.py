@@ -106,7 +106,8 @@ def main():
 
         def add_meta(meta):
             meta.update({"name": req.get("name", char), "default_h": req.get("default_h", 0.46),
-                         "reference_images": [src],
+                         # the cut sprite, not assets/source (not in git, missing on other machines)
+                         "reference_images": [f"assets/characters/{char}/{char}_base_front.png"],
                          "style_prompt": f"Same character as the reference image: {req['design']}"})
             meta.setdefault("sprites", {})[f"{char}_base_front"] = {
                 "desc": "Ảnh mẫu: đứng chính diện", "tags": ["đứng", "chính diện"], "facing": "front"}

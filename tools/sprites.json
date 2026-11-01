@@ -125,17 +125,6 @@
    ]
   },
   {
-   "source": "assets/source/ghost_mother_base.png",
-   "out_dir": "assets/characters/ghost_mother",
-   "grid": [
-    1,
-    1
-   ],
-   "names": [
-    "GH0_stand_front"
-   ]
-  },
-  {
    "source": "assets/source/ghost_mother_sheet_A.png",
    "out_dir": "assets/characters/ghost_mother",
    "grid": [
@@ -366,61 +355,6 @@
    }
   },
   {
-   "source": "assets/source/mother_alive_sheet_B.png",
-   "out_dir": "assets/characters/mother_alive",
-   "grid": [
-    2,
-    3
-   ],
-   "names": [
-    "B1_walk_1",
-    "B2_walk_2",
-    "B3_walk_3",
-    "B4_walk_4",
-    "B5_walk_5",
-    "B6_walk_6"
-   ],
-   "boxes": [
-    [
-     316,
-     20,
-     708,
-     780
-    ],
-    [
-     1188,
-     28,
-     1532,
-     788
-    ],
-    [
-     2092,
-     20,
-     2396,
-     780
-    ],
-    [
-     332,
-     764,
-     724,
-     1524
-    ],
-    [
-     1204,
-     764,
-     1540,
-     1532
-    ],
-    [
-     2084,
-     764,
-     2412,
-     1524
-    ]
-   ],
-   "same_height": true
-  },
-  {
    "source": "assets/source/grandma_base.png",
    "out_dir": "assets/characters/grandma",
    "grid": [
@@ -500,61 +434,6 @@
      1524
     ]
    ]
-  },
-  {
-   "source": "assets/source/grandma_sheet_B.png",
-   "out_dir": "assets/characters/grandma",
-   "grid": [
-    2,
-    3
-   ],
-   "names": [
-    "B1_walk_1",
-    "B2_walk_2",
-    "B3_walk_3",
-    "B4_walk_4",
-    "B5_walk_5",
-    "B6_walk_6"
-   ],
-   "boxes": [
-    [
-     308,
-     52,
-     692,
-     780
-    ],
-    [
-     1252,
-     68,
-     1572,
-     780
-    ],
-    [
-     2060,
-     44,
-     2420,
-     780
-    ],
-    [
-     308,
-     780,
-     684,
-     1508
-    ],
-    [
-     1220,
-     796,
-     1564,
-     1508
-    ],
-    [
-     2068,
-     780,
-     2436,
-     1508
-    ]
-   ],
-   "same_height": true
   },
   {
    "source": "assets/source/hungry_ghost_base.png",
@@ -897,118 +776,6 @@
      1868
     ]
    ]
-  },
-  {
-   "source": "assets/source/grandma_sheet_W2.png",
-   "out_dir": "assets/characters/grandma",
-   "grid": [
-    2,
-    3
-   ],
-   "names": [
-    "C1_walk_1",
-    "C2_walk_2",
-    "C3_walk_3",
-    "C4_walk_4",
-    "C5_walk_5",
-    "C6_walk_6"
-   ],
-   "same_height": true,
-   "boxes": [
-    [
-     164,
-     36,
-     572,
-     764
-    ],
-    [
-     1172,
-     52,
-     1572,
-     764
-    ],
-    [
-     2180,
-     36,
-     2580,
-     772
-    ],
-    [
-     164,
-     780,
-     564,
-     1516
-    ],
-    [
-     1172,
-     788,
-     1564,
-     1516
-    ],
-    [
-     2180,
-     780,
-     2580,
-     1516
-    ]
-   ],
-   "align_head": true
-  },
-  {
-   "source": "assets/source/mother_alive_sheet_W2.png",
-   "out_dir": "assets/characters/mother_alive",
-   "grid": [
-    2,
-    3
-   ],
-   "names": [
-    "C1_walk_1",
-    "C2_walk_2",
-    "C3_walk_3",
-    "C4_walk_4",
-    "C5_walk_5",
-    "C6_walk_6"
-   ],
-   "same_height": true,
-   "boxes": [
-    [
-     180,
-     20,
-     628,
-     788
-    ],
-    [
-     1188,
-     60,
-     1532,
-     788
-    ],
-    [
-     2156,
-     12,
-     2516,
-     788
-    ],
-    [
-     188,
-     772,
-     612,
-     1524
-    ],
-    [
-     1172,
-     788,
-     1532,
-     1516
-    ],
-    [
-     2180,
-     756,
-     2548,
-     1524
-    ]
-   ],
-   "align_head": true
   },
   {
    "source": "assets/source/grandma_boy_sheet_BK.png",
@@ -1428,6 +1195,715 @@
     "J1_back_carry_effigy",
     "J2_side_carry_effigy"
    ]
+  },
+  {
+   "source": "assets/source/ong_noi_base.png",
+   "out_dir": "assets/characters/ong_noi",
+   "grid": [
+    1,
+    1
+   ],
+   "names": [
+    "ong_noi_base_front"
+   ]
+  },
+  {
+   "source": "assets/source/thay_tu_base.png",
+   "out_dir": "assets/characters/thay_tu",
+   "grid": [
+    1,
+    1
+   ],
+   "names": [
+    "thay_tu_base_front"
+   ]
+  },
+  {
+   "source": "assets/source/co_ut_base.png",
+   "out_dir": "assets/characters/co_ut",
+   "grid": [
+    1,
+    1
+   ],
+   "names": [
+    "co_ut_base_front"
+   ]
+  },
+  {
+   "source": "assets/source/props_sheet_LB.png",
+   "out_dir": "assets/characters/props",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "LB1_talisman_folded",
+    "LB2_talisman_open",
+    "LB3_chopsticks_named",
+    "LB4_chopsticks_spare_carved",
+    "LB5_chopstick_broken",
+    "LB6_chopstick_holder"
+   ],
+   "by_island": true,
+   "speck_ratio": {
+    "LB6_chopstick_holder": 0.2
+   }
+  },
+  {
+   "source": "assets/source/grandma_sheet_K.png",
+   "out_dir": "assets/characters/grandma",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "K1_sit_comb_coffin",
+    "K2_shoo_broom",
+    "K3_lean_back_door_tremble",
+    "K4_nod_look_hands",
+    "K5_wipe_chopstick_holder",
+    "K6_raise_bowl_altar"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_O.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "O1_mourn_hold_incense_bowl",
+    "O2_mourn_frozen_pocket",
+    "O3_hold_broken_chopstick",
+    "O4_sit_stool_eat_chat",
+    "O5_mourn_look_up",
+    "O6_mourn_kneel_bow"
+   ]
+  },
+  {
+   "source": "assets/source/props_sheet_LD.png",
+   "out_dir": "assets/characters/props",
+   "grid": [
+    2,
+    4
+   ],
+   "names": [
+    "LD1_crow_perched",
+    "LD2_crow_caw",
+    "LD3_crow_look_down",
+    "LD4_crow_land",
+    "LD5_crow_fly_1",
+    "LD6_crow_fly_2",
+    "LD7_crow_fly_3",
+    "LD8_crow_fly_4"
+   ],
+   "by_island": true
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_N.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "N1_sit_hug_knees_drowsy",
+    "N2_kneel_strike_match",
+    "N3_crouch_hold_talisman",
+    "N4_tiptoe_peer_down",
+    "N5_stuff_pocket_guilty",
+    "N6_step_back_frozen"
+   ]
+  },
+  {
+   "source": "assets/source/grandma_sheet_L.png",
+   "out_dir": "assets/characters/grandma",
+   "grid": [
+    1,
+    1
+   ],
+   "names": [
+    "L1_comb_into_coffin"
+   ]
+  },
+  {
+   "source": "assets/source/props_sheet_LE.png",
+   "out_dir": "assets/characters/props",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "LE1_box_closed_rubberband",
+    "LE2_box_open_chopsticks",
+    "LE3_box_open_red_soil",
+    "LE4_matchbox_lit_match",
+    "LE5_hammer_coffin_nails",
+    "LE6_rice_coins_saucer"
+   ]
+  },
+  {
+   "source": "assets/source/thay_tu_sheet_A.png",
+   "out_dir": "assets/characters/thay_tu",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "A1_sit_mat_almanac",
+    "A2_sit_mat_pale",
+    "A3_write_talisman",
+    "A4_place_talisman_bend",
+    "A5_stand_point_stern",
+    "A6_back_pray_incense"
+   ]
+  },
+  {
+   "source": "assets/source/ong_noi_sheet_A.png",
+   "out_dir": "assets/characters/ong_noi",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "A1_sit_stool_carve",
+    "A2_sit_stool_tap_chopsticks",
+    "A3_stand_snatch_broken",
+    "A4_sit_bed_watch_clock",
+    "A5_sit_tell_story",
+    "A6_give_chopsticks_boy"
+   ],
+   "clear_white": [
+    "A4_sit_bed_watch_clock"
+   ]
+  },
+  {
+   "source": "assets/source/mother_alive_sheet_E.png",
+   "out_dir": "assets/characters/mother_alive",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "E1_fit_jacket_boy",
+    "E2_sit_sewing_machine",
+    "E3_hug_grandma_cry",
+    "E4_bend_coffin_tear",
+    "E5_sleep_armchair",
+    "E6_sit_hug_old_shirt"
+   ],
+   "clear_white": [
+    "E2_sit_sewing_machine",
+    "E6_sit_hug_old_shirt"
+   ]
+  },
+  {
+   "source": "assets/source/co_ut_sheet_A.png",
+   "out_dir": "assets/characters/co_ut",
+   "grid": [
+    1,
+    3
+   ],
+   "names": [
+    "A1_hug_boy",
+    "A2_phone_worried",
+    "A3_cook_humming"
+   ],
+   "clear_white": [
+    "A1_hug_boy"
+   ]
+  },
+  {
+   "source": "assets/source/props_sheet_LC.png",
+   "out_dir": "assets/characters/props",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "LC1_bowl_full_chopsticks_across",
+    "LC2_bowl_steaming_chopsticks_across",
+    "LC3_mirror_red_cloth",
+    "LC4_wall_clock_three",
+    "LC5_black_jacket_hanging",
+    "LC6_lunar_almanac"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_P.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    1,
+    2
+   ],
+   "names": [
+    "P1_bed_awake_grip_jacket",
+    "P2_sit_put_chopsticks_box"
+   ]
+  },
+  {
+   "source": "assets/source/ong_noi_sheet_B.png",
+   "out_dir": "assets/characters/ong_noi",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "B1_bed_dying_grandma_hold",
+    "B2_bed_dead_eyes_open_grandma",
+    "B3_back_sit_altar_with_grandma",
+    "B4_sit_stool_cough",
+    "B5_closeup_hands_carve",
+    "B6_ghost_stand_still"
+   ],
+   "clear_white": [
+    "B1_bed_dying_grandma_hold",
+    "B2_bed_dead_eyes_open_grandma"
+   ]
+  },
+  {
+   "source": "assets/source/mother_alive_sheet_G.png",
+   "out_dir": "assets/characters/mother_alive",
+   "grid": [
+    2,
+    2
+   ],
+   "names": [
+    "G1_sit_stool_eat_back",
+    "G2_stand_worried",
+    "G3_kneel_mat_worried",
+    "G4_topdown_back_lean"
+   ],
+   "boxes": [
+    [
+     123,
+     27,
+     674,
+     1293
+    ],
+    [
+     1458,
+     27,
+     1912,
+     1527
+    ],
+    [
+     701,
+     371,
+     1376,
+     1513
+    ],
+    [
+     1995,
+     220,
+     2669,
+     990
+    ]
+   ],
+   "clear_white": [
+    "G4_topdown_back_lean"
+   ]
+  },
+  {
+   "source": "assets/source/props_sheet_LF.png",
+   "out_dir": "assets/characters/props",
+   "grid": [
+    1,
+    4
+   ],
+   "names": [
+    "LF1_bowl_chopsticks_upright",
+    "LF2_bowl_upright_steaming",
+    "LF3_chopsticks_khoa",
+    "LF4_chopsticks_spare_khoa"
+   ]
+  },
+  {
+   "source": "assets/source/ong_noi_sheet_C.png",
+   "out_dir": "assets/characters/ong_noi",
+   "grid": [
+    2,
+    2
+   ],
+   "names": [
+    "C1_stand_snatch_broken_full",
+    "C2_sit_stool_eat_side",
+    "C3_sit_stool_tell_story_side",
+    "C4_bed_eyes_closed_grandma_cry"
+   ],
+   "boxes": [
+    [
+     165,
+     27,
+     688,
+     1128
+    ],
+    [
+     1527,
+     55,
+     1953,
+     846
+    ],
+    [
+     798,
+     591,
+     1376,
+     1530
+    ],
+    [
+     1444,
+     681,
+     2710,
+     1513
+    ]
+   ],
+   "clear_white": [
+    "C4_bed_eyes_closed_grandma_cry"
+   ],
+   "speck_ratio": {
+    "C4_bed_eyes_closed_grandma_cry": 0.25
+   }
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_Q.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    1,
+    3
+   ],
+   "names": [
+    "Q1_mourn_kneel_back",
+    "Q2_frozen_hands_mouth",
+    "Q3_kneel_mat_worried"
+   ]
+  },
+  {
+   "source": "assets/source/grandma_sheet_M.png",
+   "out_dir": "assets/characters/grandma",
+   "grid": [
+    1,
+    2
+   ],
+   "names": [
+    "M1_slump_asleep_table",
+    "M2_kneel_mat_worried"
+   ],
+   "clear_white": [
+    "M1_slump_asleep_table"
+   ]
+  },
+  {
+   "source": "assets/source/props_sheet_LG.png",
+   "out_dir": "assets/characters/props",
+   "grid": [
+    1,
+    1
+   ],
+   "names": [
+    "LG1_chopsticks_spare_ugly"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_R.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    1,
+    1
+   ],
+   "names": [
+    "R1_floor_box_spare_chopsticks"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_S.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    1,
+    4
+   ],
+   "names": [
+    "S1_run_away_a",
+    "S2_run_away_b",
+    "S3_run_away_c",
+    "S4_run_away_d"
+   ]
+  },
+  {
+   "source": "assets/source/ong_noi_sheet_D.png",
+   "out_dir": "assets/characters/ong_noi",
+   "grid": [
+    1,
+    2
+   ],
+   "names": [
+    "D1_bed_lie_side_watch_clock",
+    "D2_bed_jolt_awake"
+   ],
+   "clear_white": [
+    "D2_bed_jolt_awake"
+   ],
+   "holes": {
+    "D1_bed_lie_side_watch_clock": [
+     [
+      0.144,
+      0.37
+     ],
+     [
+      0.073,
+      0.4
+     ],
+     [
+      0.106,
+      0.684
+     ],
+     [
+      0.499,
+      0.706
+     ],
+     [
+      0.577,
+      0.731
+     ],
+     [
+      0.9247,
+      0.5844
+     ],
+     [
+      0.8696,
+      0.643
+     ],
+     [
+      0.8245,
+      0.7161
+     ]
+    ]
+   }
+  },
+  {
+   "source": "assets/source/thay_tu_sheet_C.png",
+   "out_dir": "assets/characters/thay_tu",
+   "grid": [
+    1,
+    4
+   ],
+   "names": [
+    "C1_scatter_rice_salt",
+    "C3_sit_mat_explain",
+    "C4_sit_mat_shake_head",
+    "C2_hang_bagua_mirror"
+   ],
+   "boxes": [
+    [
+     0,
+     0,
+     1230,
+     1330
+    ],
+    [
+     770,
+     640,
+     1400,
+     1536
+    ],
+    [
+     1440,
+     640,
+     2090,
+     1536
+    ],
+    [
+     1840,
+     0,
+     2752,
+     1320
+    ]
+   ],
+   "speck_ratio": {
+    "C1_scatter_rice_salt": 0.6,
+    "C2_hang_bagua_mirror": 0.3
+   }
+  },
+  {
+   "source": "assets/source/mother_alive_sheet_J.png",
+   "out_dir": "assets/characters/mother_alive",
+   "grid": [
+    1,
+    4
+   ],
+   "names": [
+    "J1_sleepwalk_stand",
+    "J2_sleepwalk_scoop_rice",
+    "J3_khoa_grab_mom_hand",
+    "J4_sleepwalk_bow_portrait"
+   ]
+  },
+  {
+   "source": "assets/source/grandma_sheet_N.png",
+   "out_dir": "assets/characters/grandma",
+   "grid": [
+    2,
+    4
+   ],
+   "names": [
+    "N1_back_stare_altar",
+    "N2_closeup_face_fear",
+    "N3_feed_chickens",
+    "N4_pole_shoo_crow",
+    "N5_sit_chair_guard",
+    "N6_phone_forced_smile",
+    "N7_sit_bed_portrait_cry",
+    "N8_fold_sweater"
+   ]
+  },
+  {
+   "source": "assets/source/props_sheet_LH.png",
+   "out_dir": "assets/characters/props",
+   "grid": [
+    2,
+    5
+   ],
+   "names": [
+    "LH1_sweater_unfinished",
+    "LH2_mourning_tunic_folded",
+    "LH3_calendar_circled",
+    "LH4_fingertips_needle_marks",
+    "LH5_rice_under_nails",
+    "LH6_mirror_bare",
+    "LH7_red_cloth_floor",
+    "LH8_pencil_case_talisman",
+    "LH9_sewing_machine_covered",
+    "LH10_bagua_mirror"
+   ],
+   "by_island": true,
+   "clear_white": [
+    "LH9_sewing_machine_covered"
+   ]
+  },
+  {
+   "source": "assets/source/mother_alive_sheet_H.png",
+   "out_dir": "assets/characters/mother_alive",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "H1_bed_lie_sick",
+    "H2_bed_sit_stare_bowl",
+    "H3_sit_knit_lamp",
+    "H4_bed_khoa_feed_soup",
+    "H5_bed_knit_collar_tremble",
+    "H6_bed_stroke_boy_hair"
+   ],
+   "by_island": true
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_T.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    2,
+    2
+   ],
+   "names": [
+    "T1_circle_calendar",
+    "T2_raise_hand_knock_talisman",
+    "T3_kneel_dig_grave",
+    "T4_kneel_hold_chopsticks"
+   ]
+  },
+  {
+   "source": "assets/source/ong_noi_sheet_E.png",
+   "out_dir": "assets/characters/ong_noi",
+   "grid": [
+    1,
+    1
+   ],
+   "names": [
+    "E1_ghost_tap_bowl"
+   ]
+  },
+  {
+   "source": "assets/source/mother_alive_sheet_I.png",
+   "out_dir": "assets/characters/mother_alive",
+   "grid": [
+    2,
+    3
+   ],
+   "names": [
+    "I1_floral_comb_hair",
+    "I2_market_step_xoi_boy",
+    "I3_hold_boy_hand",
+    "I4_sew_machine_cry_tunic",
+    "I5_lie_dead_tunic",
+    "I6_bed_khoa_hold_hand_cheek"
+   ]
+  },
+  {
+   "source": "assets/source/props_sheet_LJ.png",
+   "out_dir": "assets/characters/props",
+   "grid": [
+    1,
+    5
+   ],
+   "names": [
+    "LJ1_chopsticks_plain",
+    "LJ2_chopsticks_spare_top_carved",
+    "LJ3_box_closed_rubberband",
+    "LJ4_box_open_spare",
+    "LJ5_box_open_red_soil"
+   ],
+   "by_island": true
+  },
+  {
+   "source": "assets/source/props_sheet_LK.png",
+   "out_dir": "assets/characters/props",
+   "grid": [
+    1,
+    1
+   ],
+   "names": [
+    "LK1_chopsticks_burning"
+   ]
+  },
+  {
+   "source": "assets/source/mother_alive_sheet_L.png",
+   "out_dir": "assets/characters/mother_alive",
+   "grid": [
+    1,
+    1
+   ],
+   "names": [
+    "L1_sleepwalk_hold_bowl"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_V.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    1,
+    1
+   ],
+   "names": [
+    "V1_sneak_peek_scared"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_U.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    1,
+    6
+   ],
+   "names": [
+    "U1_run_jacket_1",
+    "U2_run_jacket_2",
+    "U3_run_jacket_3",
+    "U4_run_jacket_4",
+    "U5_run_jacket_5",
+    "U6_run_jacket_6"
+   ],
+   "same_height": true,
+   "align_head": true
   }
  ]
 }

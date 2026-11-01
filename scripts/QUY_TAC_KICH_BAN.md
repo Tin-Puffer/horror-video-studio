@@ -32,7 +32,8 @@ Bắt đầu từ `templates/kich_ban_mau.json`; kiểm tra bằng `python3 tool
 - Tốc độ đạt yêu cầu: **~3.5–4.6 chữ/giây** mỗi cảnh (trừ câu ma cố ý chậm).
 
 ## 4. Giọng mặc định (đã chốt — demo 18)
-- `settings.voice`: `{"preset": "clone_ke_chuyen", "merge_pause_below": 0.45, "trim_chunks": true, "chunk_gap": 0.12, "max_inner_pause": 0.35}`
+- `settings.voice`: `{"preset": "clone_ke_chuyen", "merge_pause_below": 0.45, "trim_chunks": true, "chunk_gap": 0.12, "max_inner_pause": 0.18, "split_sentences": true}`
+  (đọc từng câu; sau khi dựng chạy `tools/check_voice.py --fix` để nghe lại và đọc lại câu lỗi)
 - `clone_ke_chuyen` = giọng clone (VieNeu), `tempo` 1.15, `soften_endings` "all".
 - Kịch bản chỉ nhúng đúng một giọng trong `voice_presets`: `clone_ke_chuyen`.
 - Clone giọng người khác chỉ khi người dùng xác nhận đã được phép.
@@ -63,6 +64,6 @@ Bắt đầu từ `templates/kich_ban_mau.json`; kiểm tra bằng `python3 tool
 ## 9. Quy trình làm việc
 1. `tools/catalog.py` → đọc mục lục → viết kịch bản từ mẫu.
 2. `tools/check_story.py` (hết LỖI, xử lý cảnh báo quy tắc) → `tools/story_md.py` (bản đọc được).
-3. Dựng nháp, **tự kiểm tra trước khi báo**: xem khung hình (ffmpeg), đo **cao độ giọng** trong video, **chữ/giây** từng cảnh, **độ to** các tiếng quan trọng, đỉnh ≤ −1 dB.
+3. Dựng nháp bằng `--preview`: **chất lượng thật thấp** (640×360, 10 fps) và **số cảnh `#21` ở góc** để người dùng góp ý theo số cảnh (`settings.preview` trong mẫu; bản Full HD không có số). **Tự kiểm tra trước khi báo**: xem khung hình (ffmpeg), đo **cao độ giọng** trong video, **chữ/giây** từng cảnh, **độ to** các tiếng quan trọng, đỉnh ≤ −1 dB.
 4. Sao lưu kịch bản vào `build/backups/` trước khi sửa lớn.
 5. Người dùng nói "không dựng lại video" thì chỉ sửa kịch bản/asset. Người dùng tự xuất trong Studio.

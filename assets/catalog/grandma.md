@@ -7,31 +7,15 @@
 **Chu kỳ chuyển động** (dùng `"cycle": "grandma/<tên>"`):
 
 - `walk`: 6 khung — D1_walk_1, D2_walk_2, D3_walk_3, D4_walk_4, D5_walk_5, D6_walk_6
-- `walk_old`: 6 khung — B1_walk_1, B2_walk_2, B3_walk_3, B4_walk_4, B5_walk_5, B3_walk_3
-- `walk_v2`: 6 khung — C1_walk_1, C2_walk_2, C3_walk_3, C4_walk_4, C5_walk_5, C6_walk_6
 - `fake_walk`: 4 khung — G1_fake_walk_1, G2_fake_walk_2, G3_fake_walk_3, G4_fake_walk_4
 
 | Sprite | Hướng | Mô tả | Tag | Neo |
 |---|---|---|---|---|
 | `00_stand_front` | front | Đứng chính diện, hai tay đan trước bụng, hiền và lo lắng | đứng, chính diện |  |
-| `A1_hold_hands_warn` | right | Nghiêng người nắm chặt hai tay đứa trẻ (có đôi tay trẻ con trong hình), nghiêm mặt dặn dò | dặn dò, nắm tay, cảnh báo |  |
-| `A2_incense_pray` | right | Cúi đầu chắp ba nén nhang đang cháy, khấn | thắp nhang, khấn, cúng, bàn thờ |  |
 | `A3_scatter_rice_salt` | left | Ôm bát, vung tay rải gạo muối (hạt bay trong hình) | rải gạo muối, cúng cô hồn, sân |  |
 | `A4_sit_hug_knees_grief` | front | Ngồi bệt ôm gối, cúi đầu, kiệt sức đau buồn | ngồi, buồn, khóc, kiệt sức |  |
 | `A5_scoop_rice` | left | Đứng cầm bát, dùng muôi gỗ xới cơm, mắt nhìn xuống | xới cơm, bát cơm thứ hai, bữa cơm |  |
 | `A6_head_bowed_face_hidden` | front | Đứng im, cúi gằm, mặt chìm trong bóng tối | cúi mặt, rợn, bí ẩn, chính diện |  |
-| `B1_walk_1` | right | Đi chậm lưng còng, tay chống lưng, khung 1/6 | đi, chu kỳ, già |  |
-| `B2_walk_2` | right | Đi chậm lưng còng, tay chống lưng, khung 2/6 | đi, chu kỳ, già |  |
-| `B3_walk_3` | right | Đi chậm lưng còng, tay chống lưng, khung 3/6 | đi, chu kỳ, già |  |
-| `B4_walk_4` | right | Đi chậm lưng còng, tay chống lưng, khung 4/6 | đi, chu kỳ, già |  |
-| `B5_walk_5` | right | Đi chậm lưng còng, tay chống lưng, khung 5/6 | đi, chu kỳ, già |  |
-| `B6_walk_6` | right | Đi chậm lưng còng, tay chống lưng, khung 6/6 (mặt bị mờ, không dùng trong chu kỳ) | đi, chu kỳ, già |  |
-| `C1_walk_1` | right | Đi chậm lưng còng, tay chống lưng, bước rõ, khung 1/6 | đi, chu kỳ |  |
-| `C2_walk_2` | right | Đi chậm lưng còng, tay chống lưng, bước rõ, khung 2/6 | đi, chu kỳ |  |
-| `C3_walk_3` | right | Đi chậm lưng còng, tay chống lưng, bước rõ, khung 3/6 | đi, chu kỳ |  |
-| `C4_walk_4` | right | Đi chậm lưng còng, tay chống lưng, bước rõ, khung 4/6 | đi, chu kỳ |  |
-| `C5_walk_5` | right | Đi chậm lưng còng, tay chống lưng, bước rõ, khung 5/6 | đi, chu kỳ |  |
-| `C6_walk_6` | right | Đi chậm lưng còng, tay chống lưng, bước rõ, khung 6/6 | đi, chu kỳ |  |
 | `D1_walk_1` | right | Đi chậm, tay chống lưng, chu kỳ chuẩn, khung 1/6 (chạm-hạ-lướt) | đi, chu kỳ |  |
 | `D2_walk_2` | right | Đi chậm, tay chống lưng, chu kỳ chuẩn, khung 2/6 (chạm-hạ-lướt) | đi, chu kỳ |  |
 | `D3_walk_3` | right | Đi chậm, tay chống lưng, chu kỳ chuẩn, khung 3/6 (chạm-hạ-lướt) | đi, chu kỳ |  |
@@ -44,7 +28,6 @@
 | `F2_bed_rub_oil_boy` | left | HAI nhân vật + giường: bà ngồi mép giường xoa dầu gió lên trán Khoa đang nằm | giường, dặn dò, dầu gió |  |
 | `F3_cough_hunched` | left | Đứng còng, tay che miệng ho khù khụ, tay kia chống lưng | ho, còng |  |
 | `F4_sit_stool_three_fingers` | right | Ngồi ghế đẩu, giơ ba ngón tay, nghiêm mặt dặn ám hiệu | ám hiệu, dặn dò |  |
-| `F5_hold_effigy_back` | away | Quay lưng, ôm hình nhân giấy mặc áo hoodie và xấp vàng mã | hình nhân, quay lưng |  |
 | `F6_hug_boy_bed_dark` | front | HAI nhân vật + giường: bà ôm chặt Khoa, cả hai run sợ, bà thì thầm | giường, ôm, sợ |  |
 | `G1_fake_walk_1` | right | Bà giả đi thẳng lưng, khung 1/4 (chạm) | bà giả, đi |  |
 | `G2_fake_walk_2` | right | Bà giả đi thẳng lưng, khung 2/4 (hạ) | bà giả, đi |  |
@@ -61,4 +44,17 @@
 | `I1_back_incense_closeup` | away | Cận từ sau lưng, từ vai trở lên, hai tay giơ ba nén nhang khói bay (tiền cảnh trước bàn thờ) | thắp nhang, quay lưng, cận |  |
 | `I2_fake_look_down_side` | right | Bà giả đứng nghiêng (quay phải), cúi nhìn xuống đất, cười đơ (nhìn con mèo) | bà giả, nhìn xuống |  |
 | `J1_back_carry_effigy` | away | Quay lưng đi ra, ôm hình nhân (đầu hình nhân ló qua vai) và xấp vàng mã | hình nhân, quay lưng, ra bến sông |  |
-| `J2_side_carry_effigy` | right | Nghiêng (quay phải), đi chậm, bế hình nhân trước ngực như bế đứa trẻ, xấp vàng mã bên trên | hình nhân, đi, ra bến sông |  |
+| `K2_shoo_broom` | right | Vung chổi xua (con mèo), mặt hoảng (quay phải) | xua mèo, chổi |  |
+| `K3_lean_back_door_tremble` | front | Đứng tựa lưng vào cửa, hai tay run trước ngực, nhắm mắt | run, sợ |  |
+| `K4_nod_look_hands` | front | Đứng cúi đầu gật lặng lẽ, nhìn đôi bàn tay mình (như đã biết trước) | lặng lẽ, biết trước |  |
+| `K5_wipe_chopstick_holder` | right | Đứng lau đi lau lại ống đũa tre, mắt vô hồn (quay trái) | ống đũa, tang |  |
+| `K6_raise_bowl_altar` | right | Kiễng chân nâng bát cơm (đũa gác ngang) đặt lên bàn thờ cao (quay trái) | bàn thờ, bát cơm |  |
+| `L1_comb_into_coffin` | right | Ngồi ghế thấp quay phải, vươn tay xa về phía trước–xuống chải tóc cho ông nằm trong quan tài (không chải tóc mình) | chải tóc, tang |  |
+| `M1_slump_asleep_table` | right | Ngồi ghế thấp gục đầu lên tay ngủ bên chiếc bàn nhỏ (có bàn), quay phải | ngủ gục, kiệt sức |  |
+| `M2_kneel_mat_worried` | right | Quỳ ngồi trên gót (quay phải), tay đan trên đùi, lo lắng | lo lắng, chiếu |  |
+| `N1_back_stare_altar` | away | Quay lưng đứng im, tay buông thõng, ngước nhìn lên (bàn thờ) | bát cơm, quay lưng |  |
+| `N2_closeup_face_fear` | front | Cận mặt: tái đi, ánh mắt không ngạc nhiên mà sợ một nỗi sợ rất cũ | cận mặt, sợ |  |
+| `N3_feed_chickens` | right | Đổ bát cơm cho mấy con gà mổ dưới chân (có gà) | đổ cơm, gà |  |
+| `N4_pole_shoo_crow` | left | Vung cây sào tre dài lên cao xua (con quạ), ngước nhìn | xua quạ, sào |  |
+| `N6_phone_forced_smile` | front | Đứng nghe điện thoại, gượng cười, mắt buồn | điện thoại, giấu chuyện |  |
+| `N8_fold_sweater` | left | Đứng gấp chiếc áo len đan dở, cúi đầu | áo len, tang |  |

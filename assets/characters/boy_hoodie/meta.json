@@ -41,18 +41,32 @@
    "C6_run_step_c",
    "C5_run_step_b"
   ],
-  "talk": [
-   "D2_face_talk_small",
-   "D3_face_talk_open",
-   "D2_face_talk_small",
-   "D1_face_neutral"
-  ],
   "blink": [
    "D1_face_neutral",
    "D1_face_neutral",
    "D1_face_neutral",
    "D1_face_neutral",
    "D4_face_blink"
+  ],
+  "run_away": [
+   "S1_run_away_a",
+   "S2_run_away_b",
+   "S3_run_away_c",
+   "S4_run_away_d"
+  ],
+  "run_jacket": [
+   "U1_run_jacket_1",
+   "U2_run_jacket_2",
+   "U3_run_jacket_3",
+   "U4_run_jacket_4",
+   "U5_run_jacket_5",
+   "U6_run_jacket_6"
+  ],
+  "talk": [
+   "D2_face_talk_small",
+   "D3_face_talk_open",
+   "D2_face_talk_small",
+   "D1_face_neutral"
   ]
  },
  "sprites": {
@@ -65,15 +79,6 @@
     "bình thường"
    ],
    "facing": "front"
-  },
-  "A1_walk_sad": {
-   "desc": "Đi bộ, mặt buồn/lo",
-   "tags": [
-    "đi",
-    "buồn",
-    "lo"
-   ],
-   "facing": "right"
   },
   "A2_side_nervous_sweat": {
    "desc": "Đứng nghiêng nhìn ngang, đổ mồ hôi",
@@ -108,15 +113,6 @@
      0.465
     ]
    }
-  },
-  "A5_walk_scared_clutch": {
-   "desc": "Đi rụt rè, nắm tay trước ngực",
-   "tags": [
-    "đi",
-    "sợ",
-    "rụt rè"
-   ],
-   "facing": "left"
   },
   "A6_closeup_shock": {
    "desc": "Cận mặt, mắt trợn, há miệng",
@@ -164,47 +160,6 @@
    ],
    "facing": "right"
   },
-  "B5_run_scared": {
-   "desc": "Chạy hoảng loạn (1 khung)",
-   "tags": [
-    "chạy",
-    "sợ"
-   ],
-   "facing": "right"
-  },
-  "B6_sit_fallen": {
-   "desc": "Ngã ngồi dưới đất",
-   "tags": [
-    "ngồi",
-    "ngã",
-    "kiệt sức"
-   ],
-   "facing": "right"
-  },
-  "C1_walk_step_a": {
-   "desc": "Đi (bộ cũ 3 khung) chân trước",
-   "tags": [
-    "đi",
-    "chu kỳ"
-   ],
-   "facing": "right"
-  },
-  "C2_walk_step_b": {
-   "desc": "Đi (bộ cũ 3 khung) chân sau",
-   "tags": [
-    "đi",
-    "chu kỳ"
-   ],
-   "facing": "right"
-  },
-  "C3_walk_step_pass": {
-   "desc": "Đi (bộ cũ 3 khung) chân lướt qua",
-   "tags": [
-    "đi",
-    "chu kỳ"
-   ],
-   "facing": "right"
-  },
   "C4_run_step_a": {
    "desc": "Chạy hoảng, khung 1",
    "tags": [
@@ -241,24 +196,6 @@
    ],
    "facing": "front"
   },
-  "D2_face_talk_small": {
-   "desc": "Cận mặt, miệng hé",
-   "tags": [
-    "cận mặt",
-    "nói",
-    "khẩu hình"
-   ],
-   "facing": "front"
-  },
-  "D3_face_talk_open": {
-   "desc": "Cận mặt, miệng mở to",
-   "tags": [
-    "cận mặt",
-    "nói",
-    "khẩu hình"
-   ],
-   "facing": "front"
-  },
   "D4_face_blink": {
    "desc": "Cận mặt, nhắm mắt",
    "tags": [
@@ -286,14 +223,6 @@
    ],
    "facing": "front"
   },
-  "E1_back_walk_away": {
-   "desc": "Quay lưng bước đi (1 khung)",
-   "tags": [
-    "quay lưng",
-    "đi"
-   ],
-   "facing": "front"
-  },
   "E2_back_stand": {
    "desc": "Quay lưng đứng yên",
    "tags": [
@@ -312,15 +241,6 @@
     "sợ"
    ],
    "facing": "front"
-  },
-  "E4_hide_peek_wall": {
-   "desc": "Nép tường nhìn trộm (có vạch tường dọc)",
-   "tags": [
-    "trốn",
-    "nhìn trộm",
-    "tường"
-   ],
-   "facing": "left"
   },
   "E5_cover_mouth_hold_breath": {
    "desc": "Bịt miệng nín thở (nửa người)",
@@ -346,23 +266,6 @@
     "đèn pin",
     "đứng",
     "bóng tối"
-   ],
-   "facing": "left"
-  },
-  "F2_flashlight_walk_down": {
-   "desc": "Đi soi đèn pin xuống đất (1 khung)",
-   "tags": [
-    "đèn pin",
-    "đi"
-   ],
-   "facing": "left"
-  },
-  "F3_phone_light_forward": {
-   "desc": "Soi đèn điện thoại phía trước",
-   "tags": [
-    "điện thoại",
-    "đèn",
-    "sợ"
    ],
    "facing": "left"
   },
@@ -427,28 +330,6 @@
     "ngái ngủ"
    ],
    "facing": "front"
-  },
-  "G5_reach_door_handle": {
-   "desc": "Đưa tay ra ngang ngực (không với tới tay nắm cửa ở góc toàn thân)",
-   "tags": [
-    "với tay",
-    "cửa"
-   ],
-   "facing": "left",
-   "anchors": {
-    "hand": [
-     0.072,
-     0.546
-    ]
-   }
-  },
-  "G6_tiptoe_sneak": {
-   "desc": "Rón rén (1 khung)",
-   "tags": [
-    "rón rén",
-    "đi"
-   ],
-   "facing": "left"
   },
   "H1_walk_contact_a": {
    "desc": "Đi thường, khung 1/6",
@@ -782,16 +663,6 @@
    ],
    "facing": "left"
   },
-  "M6_lie_peek_under_door": {
-   "desc": "Nằm sấp áp mặt nhìn qua khe dưới cửa, sợ (mép cửa đen ở rìa trái)",
-   "tags": [
-    "nằm sấp",
-    "nhìn trộm",
-    "khe cửa",
-    "sợ"
-   ],
-   "facing": "left"
-  },
   "M7_lie_prone_back_view": {
    "desc": "Nằm sấp nhìn từ phía sau (đế giày gần người xem, đầu hướng vào trong), hai tay chống sàn cạnh đầu — ghé nhìn qua khe cửa trên phông nhìn thẳng",
    "tags": [
@@ -799,6 +670,261 @@
     "nhìn trộm",
     "khe cửa",
     "sau lưng"
+   ],
+   "facing": "front"
+  },
+  "O1_mourn_hold_incense_bowl": {
+   "desc": "Áo xô be: đứng ôm bát hương trước ngực, mắt đỏ",
+   "tags": [
+    "đưa tang",
+    "bát hương"
+   ],
+   "facing": "front"
+  },
+  "O2_mourn_frozen_pocket": {
+   "desc": "Áo xô be: đứng chết lặng, một tay thọc sâu trong túi siết chặt",
+   "tags": [
+    "chết lặng",
+    "lá bùa"
+   ],
+   "facing": "front"
+  },
+  "O3_hold_broken_chopstick": {
+   "desc": "Áo hoodie: cầm chiếc đũa gãy đôi định vứt vào sọt rác, mặt có lỗi",
+   "tags": [
+    "đũa gãy"
+   ],
+   "facing": "right"
+  },
+  "O4_sit_stool_eat_chat": {
+   "desc": "Áo hoodie: ngồi ghế đẩu ăn cơm, vừa ăn vừa kể chuyện vui (có ghế)",
+   "tags": [
+    "bữa cơm",
+    "vui"
+   ],
+   "facing": "right"
+  },
+  "O5_mourn_look_up": {
+   "desc": "Áo xô be: đứng ngước nhìn lên cao (con quạ), bất an",
+   "tags": [
+    "quạ",
+    "nghĩa địa"
+   ],
+   "facing": "right"
+  },
+  "N1_sit_hug_knees_drowsy": {
+   "desc": "Áo khoác đen: ngồi bó gối dưới sàn, gà gật buồn ngủ",
+   "tags": [
+    "canh linh cữu",
+    "buồn ngủ"
+   ],
+   "facing": "front"
+  },
+  "N2_kneel_strike_match": {
+   "desc": "Áo khoác đen: quỳ quẹt diêm, ánh lửa nhỏ hắt lên mặt sợ hãi",
+   "tags": [
+    "quẹt diêm"
+   ],
+   "facing": "right"
+  },
+  "N3_crouch_hold_talisman": {
+   "desc": "Áo khoác đen: ngồi xổm cầm lá bùa vàng gấp tư run run, mắt trợn",
+   "tags": [
+    "lá bùa",
+    "sợ"
+   ],
+   "facing": "right"
+  },
+  "N4_tiptoe_peer_down": {
+   "desc": "Áo khoác đen: kiễng chân bám mép (quan tài), nghiêng người nhìn xuống, tay cầm que diêm",
+   "tags": [
+    "quan tài",
+    "nhìn trộm"
+   ],
+   "facing": "right"
+  },
+  "N5_stuff_pocket_guilty": {
+   "desc": "Áo khoác đen: nhét lá bùa vào túi áo, liếc ngang tội lỗi",
+   "tags": [
+    "giấu bùa",
+    "tội lỗi"
+   ],
+   "facing": "front"
+  },
+  "N6_step_back_frozen": {
+   "desc": "Áo khoác đen: đứng đơ, lùi một bước, mặt tái cứng",
+   "tags": [
+    "lùi lại",
+    "sợ"
+   ],
+   "facing": "right"
+  },
+  "P1_bed_awake_grip_jacket": {
+   "desc": "Nằm mắt mở thao láo, tay nắm chiếc áo khoác đen treo đầu giường (có giường)",
+   "tags": [
+    "giường",
+    "mất ngủ"
+   ],
+   "facing": "front"
+  },
+  "Q1_mourn_kneel_back": {
+   "desc": "Áo xô be: quỳ QUAY LƯNG về người xem, hướng về bàn thờ, chắp tay cúi đầu",
+   "tags": [
+    "tang lễ",
+    "quay lưng"
+   ],
+   "facing": "away"
+  },
+  "Q2_frozen_hands_mouth": {
+   "desc": "Áo hoodie: đứng đơ người (quay trái), hai tay bịt miệng, mắt trợn",
+   "tags": [
+    "sốc",
+    "ông mất"
+   ],
+   "facing": "front"
+  },
+  "Q3_kneel_mat_worried": {
+   "desc": "Áo hoodie: quỳ ngồi trên gót (quay phải), lo sợ lắng nghe",
+   "tags": [
+    "lo lắng",
+    "chiếu"
+   ],
+   "facing": "front"
+  },
+  "R1_floor_box_spare_chopsticks": {
+   "desc": "Ngồi xếp bằng dưới sàn, cẩn thận bỏ đôi đũa dư chữ xấu vào hộp gỗ nhỏ, cặp sách mở trước mặt",
+   "tags": [
+    "đũa dư",
+    "ngồi"
+   ],
+   "facing": "right"
+  },
+  "S1_run_away_a": {
+   "desc": "Chạy ra xa (sau lưng) khung 1: chân trái chạm đất, chân phải đá ra sau",
+   "tags": [
+    "chạy",
+    "sau lưng"
+   ],
+   "facing": "away"
+  },
+  "S2_run_away_b": {
+   "desc": "Chạy ra xa khung 2: hai chân nhấc khỏi đất giữa không trung",
+   "tags": [
+    "chạy",
+    "sau lưng"
+   ],
+   "facing": "away"
+  },
+  "S3_run_away_c": {
+   "desc": "Chạy ra xa khung 3: chân phải chạm đất, chân trái đá ra sau",
+   "tags": [
+    "chạy",
+    "sau lưng"
+   ],
+   "facing": "away"
+  },
+  "S4_run_away_d": {
+   "desc": "Chạy ra xa khung 4: hai chân nhấc khỏi đất (bắt chéo ngược lại)",
+   "tags": [
+    "chạy",
+    "sau lưng"
+   ],
+   "facing": "away"
+  },
+  "T2_raise_hand_knock_talisman": {
+   "desc": "Áo khoác đen: cầm lá bùa, giơ tay ngập ngừng định gõ cửa",
+   "tags": [
+    "gõ cửa",
+    "lá bùa"
+   ],
+   "facing": "right"
+  },
+  "T4_kneel_hold_chopsticks": {
+   "desc": "Áo khoác đen: quỳ (quay trái) hai tay cầm đôi đũa run bần bật, mắt hoảng",
+   "tags": [
+    "đổi đũa",
+    "run"
+   ],
+   "facing": "front"
+  },
+  "V1_sneak_peek_scared": {
+   "desc": "Áo hoodie: rón rén khom người nhìn trộm (quay trái), tay siết ngực áo, mắt mở to sợ",
+   "tags": [
+    "nhìn trộm",
+    "rón rén",
+    "sợ"
+   ],
+   "facing": "left"
+  },
+  "U1_run_jacket_1": {
+   "desc": "Áo khoác đen: chạy hoảng loạn, khung 1/6",
+   "tags": [
+    "chạy",
+    "chu kỳ",
+    "áo khoác"
+   ],
+   "facing": "right"
+  },
+  "U2_run_jacket_2": {
+   "desc": "Áo khoác đen: chạy hoảng loạn, khung 2/6",
+   "tags": [
+    "chạy",
+    "chu kỳ",
+    "áo khoác"
+   ],
+   "facing": "right"
+  },
+  "U3_run_jacket_3": {
+   "desc": "Áo khoác đen: chạy hoảng loạn, khung 3/6",
+   "tags": [
+    "chạy",
+    "chu kỳ",
+    "áo khoác"
+   ],
+   "facing": "right"
+  },
+  "U4_run_jacket_4": {
+   "desc": "Áo khoác đen: chạy hoảng loạn, khung 4/6",
+   "tags": [
+    "chạy",
+    "chu kỳ",
+    "áo khoác"
+   ],
+   "facing": "right"
+  },
+  "U5_run_jacket_5": {
+   "desc": "Áo khoác đen: chạy hoảng loạn, khung 5/6",
+   "tags": [
+    "chạy",
+    "chu kỳ",
+    "áo khoác"
+   ],
+   "facing": "right"
+  },
+  "U6_run_jacket_6": {
+   "desc": "Áo khoác đen: chạy hoảng loạn, khung 6/6",
+   "tags": [
+    "chạy",
+    "chu kỳ",
+    "áo khoác"
+   ],
+   "facing": "right"
+  },
+  "D2_face_talk_small": {
+   "desc": "Cận mặt, miệng hé",
+   "tags": [
+    "cận mặt",
+    "nói",
+    "khẩu hình"
+   ],
+   "facing": "front"
+  },
+  "D3_face_talk_open": {
+   "desc": "Cận mặt, miệng mở to",
+   "tags": [
+    "cận mặt",
+    "nói",
+    "khẩu hình"
    ],
    "facing": "front"
   }

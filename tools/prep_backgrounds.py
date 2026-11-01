@@ -3,6 +3,7 @@
 
 Usage: python3 tools/prep_backgrounds.py   (assets/source/bg*.png -> assets/backgrounds/)
 """
+import json
 from pathlib import Path
 
 import numpy as np
@@ -15,8 +16,11 @@ ROOT = Path(__file__).resolve().parent.parent
 WATERMARK = (2580, 1365, 2700, 1485)
 
 
-def remove_watermark(im: Image.Image) -> Image.Image:
-    x0, y0, x1, y1 = WATERMARK
+def remove_watermark(im: Image.Image, box=None) -> Image.Image:
+    # Gemini sometimes outputs half size (1376x768): scale the logo box to the image
+    sx, sy = im.width / 2752, im.height / 1536
+    x0, y0, x1, y1 = box or (round(WATERMARK[0] * sx), round(WATERMARK[1] * sy),
+                             round(WATERMARK[2] * sx), round(WATERMARK[3] * sy))
     w = x1 - x0
     patch = im.crop((x0 - w - 10, y0, x0 - 10, y1))  # same-height texture just to the left
     mask = Image.new("L", (w, y1 - y0), 0)
@@ -58,6 +62,8 @@ def dawn_light(im: Image.Image) -> Image.Image:
 
 FIXES = {
     "bg1_bedroom": [set_clock],
+    # ảnh nửa cỡ, logo nằm lệch chỗ thường
+    "bgL25_mom_bed_sick_night": [lambda im: remove_watermark(im, (1220, 605, 1305, 692))],
     "bg1d_corner_dawn": [dawn_light],
 }
 
@@ -65,7 +71,11 @@ FIXES = {
 def main():
     out_dir = ROOT / "assets/backgrounds"
     out_dir.mkdir(parents=True, exist_ok=True)
+    ret_path = ROOT / "assets/retired.json"
+    retired = set(json.loads(ret_path.read_text()).get("backgrounds", [])) if ret_path.exists() else set()
     for src in sorted((ROOT / "assets/source").glob("bg*.png")):
+        if src.stem in retired:  # removed on purpose, don't recreate
+            continue
         im = remove_watermark(Image.open(src).convert("RGB"))
         for fix in FIXES.get(src.stem, []):
             im = fix(im)

@@ -83,6 +83,42 @@ def drop_specks(img: Image.Image, min_ratio: float = 0.02) -> Image.Image:
     return out
 
 
+def split_by_island(cut: Image.Image, xs: list, ys: list, cols: int) -> list:
+    """Give every opaque island to the grid cell holding its centre, so a pose drawn across a grid line stays
+    whole and its neighbour loses the stray piece. Returns one image per cell (only that cell's islands)."""
+    # 32-bit labels: crayon texture leaves hundreds of dust islands; 1 = opaque, not yet labelled
+    mask = Image.fromarray((np.asarray(cut.getchannel("A")) > 20).astype(np.int32), mode="I")
+    total = int(np.asarray(mask).sum())
+    nrow, ncol = len(ys) - 1, len(xs) - 1
+    owner, next_id = {}, 2
+    while True:
+        todo = np.argwhere(np.asarray(mask) == 1)
+        if not len(todo):
+            break
+        y, x = todo[0]
+        ImageDraw.floodfill(mask, (int(x), int(y)), next_id)
+        yy, xx = np.nonzero(np.asarray(mask) == next_id)
+        if len(yy) >= total * 0.0005:  # smaller = dust, dropped
+            r = min(max(int(np.searchsorted(ys, yy.mean())) - 1, 0), nrow - 1)
+            c = min(max(int(np.searchsorted(xs, xx.mean())) - 1, 0), ncol - 1)
+            owner[next_id] = r * cols + c
+        next_id += 1
+    lab = np.asarray(mask)
+    arr = np.asarray(cut)
+    cells = []
+    for cell in range(nrow * ncol):
+        ids = [k for k, o in owner.items() if o == cell]
+        m = np.isin(lab, ids)
+        if not m.any():
+            cells.append(Image.new("RGBA", (1, 1)))
+            continue
+        sub = arr.copy()
+        sub[..., 3] = np.where(m, sub[..., 3], 0)
+        yy, xx = np.nonzero(m)
+        cells.append(Image.fromarray(sub).crop((int(xx.min()), int(yy.min()), int(xx.max()) + 1, int(yy.max()) + 1)))
+    return cells
+
+
 def gutters(alpha: np.ndarray, n: int, axis: int, search: float = 0.2) -> list[int]:
     """Split positions along axis: the emptiest line near each even grid line."""
     profile = (alpha > 20).sum(axis=1 - axis)
@@ -141,6 +177,8 @@ def crop_to_content(img: Image.Image) -> Image.Image | None:
 
 def main():
     cfg = json.loads((ROOT / "tools/sprites.json").read_text())
+    ret_path = ROOT / "assets/retired.json"
+    retired = set(json.loads(ret_path.read_text()).get("sprites", [])) if ret_path.exists() else set()
     only = sys.argv[1:]  # optional: only sheets whose source path contains one of these
     for sheet in cfg["sheets"]:
         if only and not any(o in sheet["source"] for o in only):
@@ -153,18 +191,25 @@ def main():
         alpha = np.asarray(cut.getchannel("A"))
         ys, xs = gutters(alpha, rows, axis=0), gutters(alpha, cols, axis=1)
         boxes = sheet.get("boxes")  # irregular sheets: [x0, y0, x1, y1] per name instead of the grid
+        if sheet.get("by_island"):  # poses drawn across the grid lines: cut by island, not by grid cell
+            cut = split_by_island(cut, xs, ys, cols)
         sprites = {}
         for i, name in enumerate(sheet["names"]):
-            if not name:
+            if not name or f"{out_dir.name}/{name}" in retired:  # retired: removed on purpose, don't recreate
                 continue
             r, c = divmod(i, cols)
-            cell = cut.crop(tuple(boxes[i]) if boxes else (xs[c], ys[r], xs[c + 1], ys[r + 1]))
+            if isinstance(cut, list):  # by_island: already one image per cell
+                cell = cut[i]
+            else:
+                cell = cut.crop(tuple(boxes[i]) if boxes else (xs[c], ys[r], xs[c + 1], ys[r + 1]))
             if name in sheet.get("clear_white", []):
                 cell = clear_paper_white(cell)
             # keep_box: animation frames cut with equal boxes keep their box, so the
             # still part (e.g. a bucket under changing flames) stays in place
             keep = name in sheet.get("keep_box", [])
-            sprite = drop_specks(cell) if keep else crop_to_content(drop_specks(cell))
+            # speck_ratio: drop bigger spill from a neighbour cell (edge islands < ratio × biggest island)
+            ratio = sheet.get("speck_ratio", {}).get(name, 0.02)
+            sprite = drop_specks(cell, ratio) if keep else crop_to_content(drop_specks(cell, ratio))
             if sprite is None:
                 print(f"  ! empty cell {name}")
                 continue

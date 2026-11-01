@@ -2,8 +2,7 @@
  "name": "Cô hồn đói",
  "style_prompt": "Same hungry ghost as the reference images: emaciated skeletal body with visible ribs, very long thin neck, slightly swollen belly, ash gray-blue skin, pitch black hands up to the wrists, long bony fingers, torn dark brown ragged cloth, long stringy black hair, hollow pitch-black eye sockets. Hand-drawn crayon / colored-pencil texture, thick black outlines, minimal flat colors. Absolutely no white on the character.",
  "reference_images": [
-  "assets/source/hungry_ghost_base.png",
-  "assets/source/hungry_ghost_sheet_A.png"
+  "assets/characters/hungry_ghost/00_stand_front.png"
  ],
  "default_h": 0.6,
  "cycles": {},

@@ -40,6 +40,9 @@ Mọi kịch bản mới theo **`scripts/QUY_TAC_KICH_BAN.md`** (đã thống nh
    Âm thanh thiếu → `"kind": "sound"` với `search` (từ khoá tiếng Anh cho Pixabay/Freesound), `sound_kind` sfx|music.
    Gom yêu cầu thành ít sheet nhất; chu kỳ chuyển động cần ≥ 4 khung khác nhau rõ rệt.
 4. `python3 tools/check_story.py scripts/<truyen>.json` → phải hết LỖI; danh sách prompt cho người dùng ở `build/<truyen>_requests.md`.
+   Yêu cầu được xếp theo **đợt** (yêu cầu dùng ảnh của yêu cầu khác làm tham chiếu — `refs` trỏ tới file sẽ được tạo, base của
+   nhân vật mới, hoặc `"after"` — tự sang đợt sau). `build/<truyen>_refs/<nn>_<id>/`: ảnh tham chiếu đánh số `1_…, 2_…` (prompt gọi
+   "attached image 2"); mục chưa tới đợt chỉ có prompt.txt ghi rõ chờ gì — không chép ảnh thay thế. Nạp xong một đợt thì chạy lại check_story.
 5. `python3 tools/story_md.py scripts/<truyen>.json` → bản kịch bản đọc được `scripts/<truyen>.md` (tự sinh, không sửa tay).
 6. Có thể dựng nháp ngay khi chưa đủ asset (khung giữ chỗ, âm thanh thiếu phát tiếng bíp): `python3 tools/render.py scripts/<truyen>.json --preview`.
 
@@ -61,7 +64,13 @@ Mọi kịch bản mới theo **`scripts/QUY_TAC_KICH_BAN.md`** (đã thống nh
 - **Cách viết lời kể (người dùng yêu cầu):** câu dài, liền mạch, có câu nối và miêu tả; KHÔNG chèn [n] giữa câu
   (mỗi chỗ cắt bị đọc như hết câu → chữ cuối nặng, rời rạc). Chỉ dùng nghỉ ≥ 0.5s cho khoảnh khắc kịch tính (câu của ma).
 - Bộ bảo vệ VieNeu trong render.py: gộp nghỉ ngắn (merge_pause_below), chống đọc lan man (max_sec_per_word),
-  nén lặng giữa câu (max_inner_pause). Sau khi đổi giọng/lời: đo chữ/giây từng cảnh (~3.5–4.6 là ổn) và cao độ trong video.
+  nén lặng giữa câu (max_inner_pause), đọc từng câu một (`split_sentences`: VieNeu tự chặt đoạn dài giữa cụm từ và hay
+  lặp/nuốt chữ khi câu dài; câu > `max_chunk_chars` cắt ở dấu phẩy). Sau khi đổi giọng/lời: đo chữ/giây từng cảnh
+  (~3.5–4.6 là ổn) và cao độ trong video.
+- **Nghe lại trước khi giao preview:** `python3 tools/check_voice.py scripts/<truyen>.json --fix` — chuyển giọng thành chữ
+  (PhoWhisper qua Python của Dubber, `tools/asr_worker.py`), so với lời kịch bản, câu lệch/lặp/kéo dài thì đọc lại (VieNeu mỗi
+  lần đọc một khác) và giữ bản sát nhất → `build/<truyen>_voice_check.md`. Câu còn báo lỗi thì xem cột "Nghe được":
+  công cụ nghe nhầm chữ lặp có chủ ý (tích tắc tích tắc) thì bỏ qua.
 - Giọng mẫu có tên: `assets/audio/voice_presets.json` (model, length_scale, noise_scale, noise_w, sentence_silence, pitch, reverb, lowpass, volume).
 - Kịch bản: `settings.voice` / `scene.voice` / từng câu `{"say": "...", "voice": {"preset": "ma_me"}}`; `[0.6]` trong lời = nghỉ 0.6s.
 - Engine: `piper` (nhanh, chỉnh tốc độ bằng length_scale) hoặc `vieneu` (VieNeu-TTS của Dubber: 25 giọng có sẵn
@@ -73,9 +82,12 @@ Mọi kịch bản mới theo **`scripts/QUY_TAC_KICH_BAN.md`** (đã thống nh
 
 ## Dựng video
 - `python3 tools/render.py scripts/<truyen>.json [--preview] [--scenes 7-13.5] [--no-subtitles]` → `build/`.
+- **Bản preview gửi người dùng góp ý (bắt buộc):** chất lượng thật thấp (`settings.preview`: 640×360, 10 fps, crf 34, âm 64k)
+  và số cảnh ở góc trái trên (`#21`, khoá `preview.scene_label`) để người dùng góp ý theo số cảnh. Bản Full HD không có số cảnh.
 - Giọng: piper (đường dẫn trong `config.local.json`, không lên git), người dùng chọn `ngochuyennew` đọc tất cả. Âm thanh SFX/nhạc người dùng tự thêm sau.
 - Sau khi dựng: trích khung hình bằng ffmpeg và tự xem trước khi báo người dùng.
 
 ## Bản đồ thư mục
 - `assets/audio/sfx/` âm thanh + `assets/audio/meta.json` · `assets/source/` ảnh gốc (không sửa) · `assets/characters/<char>/` sprite + `meta.json` · `assets/backgrounds/` phông + `meta.json`
 - `tools/` cut_sprites, prep_backgrounds, catalog, check_story, ingest, render, studio · `scripts/` kịch bản + prompt · `build/` đầu ra
+- `assets/retired.json`: asset đã xoá có chủ ý (không video nào dùng) — check_story coi yêu cầu cũ là xong, cut_sprites/prep_backgrounds không tạo lại. Dọn kho: chỉ bỏ thứ không kịch bản nào dùng (đếm cả `sprite`, `cycle`, `frames`, `bg`, `sound`).

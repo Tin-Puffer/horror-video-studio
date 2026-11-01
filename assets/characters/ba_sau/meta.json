@@ -7,14 +7,6 @@
  ],
  "default_h": 0.5,
  "sprites": {
-  "A1_stand_basket": {
-   "desc": "Đứng chính diện, khoác thúng xôi, mặt hiền",
-   "tags": [
-    "bà Sáu",
-    "đứng"
-   ],
-   "facing": "front"
-  },
   "A2_lean_whisper": {
    "desc": "Nghiêng người (quay trái), che miệng nói nhỏ, tay kia kéo người lại gần, mặt lo lắng",
    "tags": [

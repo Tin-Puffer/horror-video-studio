@@ -1,0 +1,41 @@
+{
+ "name": "Cô Út (em gái út của bố)",
+ "default_h": 0.58,
+ "reference_images": [
+  "assets/characters/co_ut/co_ut_base_front.png"
+ ],
+ "style_prompt": "Same woman as the reference image: a warm Vietnamese countryside woman in her early thirties (the boy's aunt), round friendly face, shoulder-length black hair in a short ponytail, faded maroon long-sleeve blouse, dark navy trousers, plastic sandals, small cloth shoulder bag. Hand-drawn crayon / colored-pencil texture, thick black outlines, simple chibi proportions, dot eyes, minimal flat colors. Never white clothing.",
+ "sprites": {
+  "co_ut_base_front": {
+   "desc": "Ảnh mẫu: đứng chính diện",
+   "tags": [
+    "đứng",
+    "chính diện"
+   ],
+   "facing": "front"
+  },
+  "A1_hug_boy": {
+   "desc": "HAI nhân vật: cô Út quỳ một gối ôm chặt Khoa, rưng rưng",
+   "tags": [
+    "ôm",
+    "chịu tang"
+   ],
+   "facing": "left"
+  },
+  "A2_phone_worried": {
+   "desc": "Đứng nghe điện thoại, lo lắng (quay trái)",
+   "tags": [
+    "điện thoại"
+   ],
+   "facing": "front"
+  },
+  "A3_cook_humming": {
+   "desc": "Đứng khuấy nồi, ngân nga hát (quay phải)",
+   "tags": [
+    "nấu cơm",
+    "bình yên"
+   ],
+   "facing": "right"
+  }
+ }
+}

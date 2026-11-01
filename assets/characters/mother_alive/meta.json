@@ -2,8 +2,8 @@
  "name": "Mẹ lúc còn sống (cùng người với ma \"Mẹ\")",
  "style_prompt": "Same woman as the reference images: a kind Vietnamese mother, black hair tied in a low bun, faded beige cardigan over a long dark gray dress, worn dark brown plastic slippers, face clearly visible. Hand-drawn crayon / colored-pencil texture, thick black outlines, simple chibi proportions, dot eyes, minimal flat colors. Never white clothing.",
  "reference_images": [
-  "assets/source/mother_alive_base.png",
-  "assets/source/mother_alive_sheet_A.png"
+  "assets/characters/mother_alive/00_stand_front.png",
+  "assets/characters/mother_alive/A4_portrait_front.png"
  ],
  "default_h": 0.62,
  "cycles": {
@@ -14,22 +14,6 @@
    "D4_walk_4",
    "D5_walk_5",
    "D6_walk_6"
-  ],
-  "walk_old": [
-   "B1_walk_1",
-   "B2_walk_2",
-   "B6_walk_6",
-   "B4_walk_4",
-   "B5_walk_5",
-   "B6_walk_6"
-  ],
-  "walk_v2": [
-   "C1_walk_1",
-   "C2_walk_2",
-   "C3_walk_3",
-   "C4_walk_4",
-   "C5_walk_5",
-   "C6_walk_6"
   ]
  },
  "sprites": {
@@ -60,16 +44,6 @@
    ],
    "facing": "left"
   },
-  "A3_sit_eat_eyes_closed": {
-   "desc": "Ngồi ghế đẩu, và cơm, mắt nhắm (có ghế)",
-   "tags": [
-    "ngồi",
-    "ăn cơm",
-    "ghế đẩu",
-    "hồi ức"
-   ],
-   "facing": "left"
-  },
   "A4_portrait_front": {
    "desc": "Đứng chính diện, hai tay đan trước bụng, cười nhẹ như ảnh chân dung",
    "tags": [
@@ -90,69 +64,6 @@
    ],
    "facing": "left"
   },
-  "A6_offer_rice_bowl": {
-   "desc": "Đứng đưa bát cơm đầy bằng hai tay cho con",
-   "tags": [
-    "bát cơm",
-    "đưa",
-    "hồi ức"
-   ],
-   "facing": "left"
-  },
-  "B1_walk_1": {
-   "desc": "Đi lê dép, khung 1/6",
-   "tags": [
-    "đi",
-    "chu kỳ",
-    "dép"
-   ],
-   "facing": "right"
-  },
-  "B2_walk_2": {
-   "desc": "Đi lê dép, khung 2/6",
-   "tags": [
-    "đi",
-    "chu kỳ",
-    "dép"
-   ],
-   "facing": "right"
-  },
-  "B3_walk_3": {
-   "desc": "Đi lê dép, khung 3/6 (mặt bị mờ, không dùng trong chu kỳ)",
-   "tags": [
-    "đi",
-    "chu kỳ",
-    "dép"
-   ],
-   "facing": "right"
-  },
-  "B4_walk_4": {
-   "desc": "Đi lê dép, khung 4/6",
-   "tags": [
-    "đi",
-    "chu kỳ",
-    "dép"
-   ],
-   "facing": "right"
-  },
-  "B5_walk_5": {
-   "desc": "Đi lê dép, khung 5/6",
-   "tags": [
-    "đi",
-    "chu kỳ",
-    "dép"
-   ],
-   "facing": "right"
-  },
-  "B6_walk_6": {
-   "desc": "Đi lê dép, khung 6/6",
-   "tags": [
-    "đi",
-    "chu kỳ",
-    "dép"
-   ],
-   "facing": "right"
-  },
   "A7_sit_chopsticks_over_bowl": {
    "desc": "Ngồi ghế đẩu, cầm bát, đưa đôi đũa ngang trên miệng bát (sắp gác đũa), cười hiền (có ghế)",
    "tags": [
@@ -162,54 +73,6 @@
     "hồi ức"
    ],
    "facing": "left"
-  },
-  "C1_walk_1": {
-   "desc": "Đi lê dép, váy ngắn hơn lộ cổ chân, vung tay, bước rõ, khung 1/6",
-   "tags": [
-    "đi",
-    "chu kỳ"
-   ],
-   "facing": "right"
-  },
-  "C2_walk_2": {
-   "desc": "Đi lê dép, váy ngắn hơn lộ cổ chân, vung tay, bước rõ, khung 2/6",
-   "tags": [
-    "đi",
-    "chu kỳ"
-   ],
-   "facing": "right"
-  },
-  "C3_walk_3": {
-   "desc": "Đi lê dép, váy ngắn hơn lộ cổ chân, vung tay, bước rõ, khung 3/6",
-   "tags": [
-    "đi",
-    "chu kỳ"
-   ],
-   "facing": "right"
-  },
-  "C4_walk_4": {
-   "desc": "Đi lê dép, váy ngắn hơn lộ cổ chân, vung tay, bước rõ, khung 4/6",
-   "tags": [
-    "đi",
-    "chu kỳ"
-   ],
-   "facing": "right"
-  },
-  "C5_walk_5": {
-   "desc": "Đi lê dép, váy ngắn hơn lộ cổ chân, vung tay, bước rõ, khung 5/6",
-   "tags": [
-    "đi",
-    "chu kỳ"
-   ],
-   "facing": "right"
-  },
-  "C6_walk_6": {
-   "desc": "Đi lê dép, váy ngắn hơn lộ cổ chân, vung tay, bước rõ, khung 6/6",
-   "tags": [
-    "đi",
-    "chu kỳ"
-   ],
-   "facing": "right"
   },
   "D1_walk_1": {
    "desc": "Đi bước rõ, chu kỳ chuẩn, khung 1/6 (chạm-hạ-lướt)",
@@ -258,6 +121,157 @@
     "chu kỳ"
    ],
    "facing": "right"
+  },
+  "E1_fit_jacket_boy": {
+   "desc": "HAI nhân vật: mẹ quỳ kéo khoá chiếc áo khoác đen mới may cho Khoa, cười tự hào",
+   "tags": [
+    "áo khoác",
+    "mẹ con"
+   ],
+   "facing": "right"
+  },
+  "E2_sit_sewing_machine": {
+   "desc": "Ngồi may bên máy khâu đạp chân cũ (có máy + bàn), quay phải",
+   "tags": [
+    "máy khâu"
+   ],
+   "facing": "left"
+  },
+  "E3_hug_grandma_cry": {
+   "desc": "HAI nhân vật: mẹ ôm chầm vai bà khóc, bà lặng lẽ cúi đầu nhìn đôi tay",
+   "tags": [
+    "khóc",
+    "trùng tang"
+   ],
+   "facing": "right"
+  },
+  "E5_sleep_armchair": {
+   "desc": "Thiếp đi trên ghế dựa gỗ, đầu nghiêng (có ghế)",
+   "tags": [
+    "ngủ gục",
+    "kiệt sức"
+   ],
+   "facing": "front"
+  },
+  "E6_sit_hug_old_shirt": {
+   "desc": "Ngồi ghế đẩu ôm chiếc áo the cũ của ông, nhìn vô định (quay phải)",
+   "tags": [
+    "tang",
+    "hiên"
+   ],
+   "facing": "front"
+  },
+  "G1_sit_stool_eat_back": {
+   "desc": "Ngồi ghế đẩu QUAY LƯNG về người xem, đang ăn cơm (có ghế)",
+   "tags": [
+    "bữa cơm",
+    "quay lưng"
+   ],
+   "facing": "away"
+  },
+  "G2_stand_worried": {
+   "desc": "Đứng chính diện, hai tay nắm chặt trước ngực, lo sợ",
+   "tags": [
+    "lo lắng"
+   ],
+   "facing": "front"
+  },
+  "G3_kneel_mat_worried": {
+   "desc": "Quỳ ngồi trên gót (quay phải), tay đặt trên đùi, lo lắng lắng nghe",
+   "tags": [
+    "lo lắng",
+    "chiếu"
+   ],
+   "facing": "right"
+  },
+  "G4_topdown_back_lean": {
+   "desc": "Nhìn từ TRÊN và SAU LƯNG: gáy (búi tóc), vai, hai tay vươn xuống chỉnh áo (đặt ở mép dưới khung quan tài nhìn từ trên)",
+   "tags": [
+    "khâm liệm",
+    "từ trên"
+   ],
+   "facing": "away"
+  },
+  "J1_sleepwalk_stand": {
+   "desc": "Áo xô, tóc xoã, mắt nhắm: đứng im (quay trái), tay buông",
+   "tags": [
+    "mộng du",
+    "áo xô"
+   ],
+   "facing": "left"
+  },
+  "J2_sleepwalk_scoop_rice": {
+   "desc": "Mộng du (quay trái): cầm bát không, dùng muôi gỗ xới cơm từ nồi nhỏ, mắt nhắm",
+   "tags": [
+    "mộng du",
+    "xới cơm"
+   ],
+   "facing": "left"
+  },
+  "J3_khoa_grab_mom_hand": {
+   "desc": "HAI nhân vật: Khoa (phải) nắm tay mẹ gọi, mẹ (trái) nhắm mắt nghiêng đầu thì thầm",
+   "tags": [
+    "mộng du",
+    "mẹ con"
+   ],
+   "facing": "left"
+  },
+  "J4_sleepwalk_bow_portrait": {
+   "desc": "Mộng du (quay trái): khẽ cúi đầu chào (di ảnh ông) như chào người quen",
+   "tags": [
+    "mộng du",
+    "chào"
+   ],
+   "facing": "left"
+  },
+  "H1_bed_lie_sick": {
+   "desc": "Nằm ốm trên giường gỗ (đầu giường bên trái), mắt nhắm, gầy rộc (có giường)",
+   "tags": [
+    "ốm",
+    "giường"
+   ],
+   "facing": "right"
+  },
+  "H3_sit_knit_lamp": {
+   "desc": "Ngồi ghế đẩu đan áo len bên đèn dầu nhỏ (có đèn), mệt nhưng dịu dàng",
+   "tags": [
+    "đan len",
+    "đèn dầu"
+   ],
+   "facing": "left"
+  },
+  "I1_floral_comb_hair": {
+   "desc": "Áo hoa cũ: đứng chải tóc, cười tươi hiếm hoi (buổi sáng khoẻ lại)",
+   "tags": [
+    "áo hoa",
+    "chải tóc"
+   ],
+   "facing": "right"
+  },
+  "I2_market_step_xoi_boy": {
+   "desc": "HAI nhân vật: mẹ (áo hoa) và Khoa ngồi bậc đá ăn xôi lạc, mẹ cười",
+   "tags": [
+    "chợ",
+    "xôi",
+    "mẹ con"
+   ],
+   "facing": "right"
+  },
+  "I3_hold_boy_hand": {
+   "desc": "HAI nhân vật đứng: mẹ (áo hoa) siết tay Khoa, cười buồn; Khoa ngước lên cười",
+   "tags": [
+    "dặn dò",
+    "mẹ con"
+   ],
+   "facing": "right"
+  },
+  "L1_sleepwalk_hold_bowl": {
+   "desc": "Mộng du (quay trái): hai tay bưng bát cơm đầy to trước ngực, mắt nhắm",
+   "tags": [
+    "mộng du",
+    "bát cơm"
+   ],
+   "facing": "left"
   }
  }
 }

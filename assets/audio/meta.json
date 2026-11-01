@@ -421,6 +421,205 @@
    ],
    "volume": 1.0,
    "kind": "sfx"
+  },
+  "chopsticks_tap_2": {
+   "desc": "Đầu đũa tre gõ khẽ vào miệng bát sứ HAI tiếng",
+   "tags": [
+    "đũa gõ bát"
+   ],
+   "volume": 0.9,
+   "kind": "sfx"
+  },
+  "wind_gust_candle": {
+   "desc": "Một luồng gió lạnh lùa qua phòng (thổi tắt nến)",
+   "tags": [
+    "gió",
+    "nến tắt"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "crow_caw": {
+   "desc": "Một con quạ kêu khàn khàn (1–2 tiếng)",
+   "tags": [
+    "quạ"
+   ],
+   "volume": 0.9,
+   "kind": "sfx"
+  },
+  "mourners_cry": {
+   "desc": "Tiếng nhiều người khóc than đám tang, xa, lặp được",
+   "tags": [
+    "khóc than"
+   ],
+   "volume": 0.5,
+   "kind": "sfx"
+  },
+  "coffin_nails": {
+   "desc": "Búa đóng đinh dài vào gỗ quan tài, từng nhát chát chúa",
+   "tags": [
+    "đóng quan tài"
+   ],
+   "volume": 0.9,
+   "kind": "sfx"
+  },
+  "funeral_band": {
+   "desc": "Kèn trống đám ma Việt (kèn bầu, trống) buồn, lặp được",
+   "tags": [
+    "đám ma",
+    "kèn trống"
+   ],
+   "volume": 0.6,
+   "kind": "sfx"
+  },
+  "chant_murmur": {
+   "desc": "Ông thầy khấn lầm rầm không rõ lời, lặp được",
+   "tags": [
+    "khấn"
+   ],
+   "volume": 0.5,
+   "kind": "sfx"
+  },
+  "match_strike": {
+   "desc": "Quẹt diêm bùng lửa",
+   "tags": [
+    "diêm"
+   ],
+   "volume": 0.9,
+   "kind": "sfx"
+  },
+  "old_man_cough": {
+   "desc": "Ông già ho khan từng tràng",
+   "tags": [
+    "ho"
+   ],
+   "volume": 0.9,
+   "kind": "sfx"
+  },
+  "old_man_breath": {
+   "desc": "Ông già thở nặng nhọc, khò khè, lặp được",
+   "tags": [
+    "hấp hối"
+   ],
+   "volume": 0.6,
+   "kind": "sfx"
+  },
+  "sewing_machine": {
+   "desc": "Máy khâu đạp chân cũ chạy lạch cạch đều, lặp được",
+   "tags": [
+    "máy khâu"
+   ],
+   "volume": 0.6,
+   "kind": "sfx"
+  },
+  "clock_chime_3": {
+   "desc": "Đồng hồ quả lắc gõ ba tiếng boong ngân",
+   "tags": [
+    "đồng hồ",
+    "3 giờ"
+   ],
+   "volume": 0.9,
+   "kind": "sfx"
+  },
+  "memory_piano": {
+   "desc": "Piano buồn nhẹ, hoài niệm (cho đoạn kỷ niệm gia đình), lặp được",
+   "tags": [
+    "nhạc",
+    "hồi ức"
+   ],
+   "volume": 0.5,
+   "kind": "music"
+  },
+  "shovel_dirt": {
+   "desc": "Xúc đất hất xuống nắp gỗ, từng xẻng",
+   "tags": [
+    "hạ huyệt"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "bamboo_whittle": {
+   "desc": "Dao nhỏ gọt khắc tre lách tách, lặp được",
+   "tags": [
+    "khắc đũa"
+   ],
+   "volume": 0.6,
+   "kind": "sfx"
+  },
+  "wind_field": {
+   "desc": "Gió đồng thổi rì rào qua ruộng, lặp được",
+   "tags": [
+    "gió đồng"
+   ],
+   "volume": 0.6,
+   "kind": "sfx"
+  },
+  "wood_block_slow": {
+   "desc": "Tiếng mõ gỗ gõ đều đều chậm (tụng kinh), lặp được",
+   "tags": [
+    "mõ",
+    "tang lễ"
+   ],
+   "volume": 0.5,
+   "kind": "sfx"
+  },
+  "wings_flap": {
+   "desc": "Chim lớn vỗ cánh bay lên",
+   "tags": [
+    "quạ",
+    "vỗ cánh"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "soil_dig_hands": {
+   "desc": "Bới đất ẩm bằng tay, sột soạt, lặp được",
+   "tags": [
+    "bới đất"
+   ],
+   "volume": 0.7,
+   "kind": "sfx"
+  },
+  "cloth_slide": {
+   "desc": "Tấm vải từ từ trượt xuống rồi rơi khẽ xuống sàn",
+   "tags": [
+    "vải",
+    "gương"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "market_morning": {
+   "desc": "Chợ quê buổi sáng: tiếng người nói xa, rao hàng, xe đạp, lặp được",
+   "tags": [
+    "chợ"
+   ],
+   "volume": 0.5,
+   "kind": "sfx"
+  },
+  "rice_ladle_scoop": {
+   "desc": "Muôi gỗ xới cơm lạo xạo vào bát sứ, chậm, từng muôi",
+   "tags": [
+    "xới cơm"
+   ],
+   "volume": 0.8,
+   "kind": "sfx"
+  },
+  "knitting_needles": {
+   "desc": "Que đan len gõ lách cách nhẹ, chậm, lặp được",
+   "tags": [
+    "đan len"
+   ],
+   "volume": 0.6,
+   "kind": "sfx"
+  },
+  "chickens_cluck": {
+   "desc": "Mấy con gà mái cục tác, mổ thóc trong sân",
+   "tags": [
+    "gà"
+   ],
+   "volume": 0.6,
+   "kind": "sfx"
   }
  }
 }

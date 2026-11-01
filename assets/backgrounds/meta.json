@@ -454,37 +454,6 @@
     ]
    }
   },
-  "bg9_door_gap": {
-   "desc": "Góc nhìn nằm sát sàn qua khe dưới cửa (POV của Khoa): khung đen, khe ngang ở giữa (y 0.35–0.69) nhìn ra sàn gạch gian thờ, ánh nến đỏ xa. Nhân vật đặt nhỏ ở xa để lọt trong khe.",
-   "tags": [
-    "khe cửa",
-    "POV",
-    "nhìn trộm",
-    "gian thờ",
-    "đêm"
-   ],
-   "floor_y": 0.6,
-   "char_h": 0.2,
-   "hotspots": {
-    "slit_center": [
-     0.5,
-     0.52
-    ],
-    "far_floor": [
-     0.5,
-     0.45
-    ],
-    "mid_floor": [
-     0.5,
-     0.6
-    ],
-    "red_glow": [
-     0.45,
-     0.37
-    ]
-   },
-   "_note": "Khe hở y 0.35–0.69: chân ở far_floor (y≈0.45, h≈0.10) hoặc mid_floor (y≈0.6, h≤0.24) để đầu không lố lên phần đen."
-  },
   "bg9b_door_gap_ghosts": {
    "desc": "POV qua khe dưới cửa: đám cô hồn ngồi xổm quanh mâm cơm (khe cắt ngang người, thấy gối, chân, tay đen bốc cơm), bát đổ, một con nhỏ ở xa. Vẽ sẵn, không cần sprite.",
    "tags": [
@@ -646,6 +615,1002 @@
    "floor_y": 0.95,
    "char_h": 0.46,
    "hotspots": {}
+  },
+  "bgL5_cemetery_burial_day": {
+   "desc": "Nghĩa địa ngoài đồng ban ngày âm u: huyệt mới đào có quan tài, đống đất đỏ, xẻng; cây gạo khô trụi lá bên phải",
+   "tags": [
+    "nghĩa địa",
+    "hạ huyệt",
+    "cây gạo"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {}
+  },
+  "bgL4_procession_field": {
+   "desc": "Đoàn đưa tang nhỏ xa đi trên bờ ruộng gặt trơ gốc, trời âm u, giấy tiền bay",
+   "tags": [
+    "đưa tang",
+    "cánh đồng"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.3,
+   "hotspots": {}
+  },
+  "bgL6_old_village_altar_sepia": {
+   "desc": "Hồi ức (tông nâu sepia): nhà gỗ làng cũ, bàn thờ dài nhiều di ảnh, hàng bốn bát cơm, trẻ con ló nhìn qua cửa",
+   "tags": [
+    "hồi ức",
+    "làng cũ",
+    "trùng tang"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL2_wake_coffin": {
+   "desc": "Gian thờ đám tang ban đêm: quan tài gỗ mở nắp (nắp dựng tường phải) đặt giữa, đầu bên trái; bàn thờ có di ảnh ông, 2 nến, vòng hoa giấy; chiếu trước",
+   "tags": [
+    "đám tang",
+    "linh cữu",
+    "đêm"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {}
+  },
+  "bgL8_house_alley_dusk": {
+   "desc": "Con hẻm lúc chạng vạng, cuối hẻm là căn nhà ống mái rêu với cây bưởi già, một ô cửa sáng đèn",
+   "tags": [
+    "hẻm",
+    "nhà ống",
+    "chạng vạng"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.3,
+   "hotspots": {}
+  },
+  "bgL1_porch_day": {
+   "desc": "Hiên nhà ống chiều nắng vàng: cửa gỗ bên trái, nền gạch, cây bưởi già sai quả bên phải, tường rào thấp",
+   "tags": [
+    "hiên",
+    "cây bưởi",
+    "chiều"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL3a_coffin_top_hands_chest": {
+   "desc": "Cận từ trên xuống trong quan tài: ông nằm, áo the, hai tay đặt trên ngực, góc lá bùa vàng ló dưới gối",
+   "tags": [
+    "quan tài",
+    "cận",
+    "lá bùa"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {}
+  },
+  "bgL2c_wake_coffin_closed": {
+   "desc": "Gian thờ (cùng bố cục bgL2) sáng đưa tang: nắp quan tài đã đóng đinh, phủ khăn đỏ vàng",
+   "tags": [
+    "đám tang",
+    "đóng nắp"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {}
+  },
+  "bgL1n_porch_night": {
+   "desc": "Hiên nhà (cùng bố cục bgL1) ban đêm, ánh trăng qua lá bưởi, đèn vàng hắt ra từ cửa",
+   "tags": [
+    "hiên",
+    "cây bưởi",
+    "đêm"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL3d_coffin_top_full": {
+   "desc": "Nhìn thẳng từ trên xuống: quan tài nằm ngang (đầu trái, chân phải), thấy trọn cả người ông (đủ chân, đúng tỉ lệ), tay đặt ngực; lá bùa khuất dưới gối nên không thấy",
+   "tags": [
+    "quan tài",
+    "cận"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {
+    "face": [
+     0.245,
+     0.38
+    ],
+    "hands": [
+     0.44,
+     0.45
+    ],
+    "pillow": [
+     0.245,
+     0.37
+    ],
+    "feet": [
+     0.8,
+     0.45
+    ]
+   }
+  },
+  "bgL15_khoa_bed_awake_night": {
+   "desc": "Vẽ sẵn: Khoa nằm mắt mở thao láo trên giường, tay nắm áo khoác đen treo đầu giường, đồng hồ gần 3 giờ",
+   "tags": [
+    "phòng ngủ",
+    "mất ngủ",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "boy": [
+     0.665,
+     0.52
+    ],
+    "clock": [
+     0.92,
+     0.62
+    ]
+   }
+  },
+  "bgL5b_burial_shoveling": {
+   "desc": "Cùng nghĩa địa bgL5: bốn người áo xô xúc đất đỏ lấp huyệt, vài người cúi đầu đứng nhìn",
+   "tags": [
+    "hạ huyệt",
+    "xúc đất"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {
+    "grave": [
+     0.44,
+     0.62
+    ]
+   }
+  },
+  "bgL2n_wake_candles_out": {
+   "desc": "Gian thờ (cùng bố cục bgL2) nến đã tắt, tối om, chỉ còn ba đầu nhang đỏ lập loè",
+   "tags": [
+    "đám tang",
+    "nến tắt"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {
+    "coffin_head": [
+     0.36,
+     0.53
+    ]
+   }
+  },
+  "bgL13_home_altar_bo": {
+   "desc": "Cận bàn thờ cũ trong nhà (ảnh bố), nửa phải là tường trống để treo gương phủ vải đỏ",
+   "tags": [
+    "bàn thờ",
+    "bố"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {
+    "portrait": [
+     0.31,
+     0.24
+    ],
+    "mirror_spot": [
+     0.68,
+     0.35
+    ]
+   }
+  },
+  "bgL14_grandma_comb_coffin": {
+   "desc": "Vẽ sẵn: bà ngồi ghế thấp bên quan tài, chải tóc bạc cho ông (thấy đầu ông trên mép quan tài), thì thầm",
+   "tags": [
+    "chải tóc",
+    "tang",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {
+    "grandma": [
+     0.73,
+     0.5
+    ],
+    "ong_head": [
+     0.29,
+     0.45
+    ]
+   }
+  },
+  "bgL12_living_room_day": {
+   "desc": "Phòng khách buổi sáng xám: chiếu cói giữa nhà, tủ thấp, khay trà, bàn thờ trên cao; sàn trống",
+   "tags": [
+    "phòng khách",
+    "sáng"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.46,
+   "hotspots": {
+    "mat_center": [
+     0.52,
+     0.82
+    ]
+   }
+  },
+  "bgL10_altar_four_portraits": {
+   "desc": "Bàn thờ đêm có 4 di ảnh: ông, mẹ, bà và khung thứ tư phủ kín vải đen; mặt trước trống để đặt bát cơm",
+   "tags": [
+    "bàn thờ",
+    "4 di ảnh"
+   ],
+   "floor_y": 0.8,
+   "char_h": 0.6,
+   "hotspots": {
+    "offering_spot": [
+     0.5,
+     0.64
+    ]
+   }
+  },
+  "bgL11_ong_bed_corner_night": {
+   "desc": "Góc nhà cạnh gian thờ ban đêm: bàn thờ treo nhỏ (ảnh bố), đồng hồ quả lắc trên tường, cửa sổ trăng; sàn trống đặt giường tre (sprite)",
+   "tags": [
+    "góc nhà",
+    "giường ông",
+    "đêm"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "bed_spot": [
+     0.5,
+     0.85
+    ],
+    "clock": [
+     0.46,
+     0.34
+    ]
+   }
+  },
+  "bgL9_main_room_altar_ong": {
+   "desc": "Gian chính (cùng bố cục bg4) đêm: bàn thờ có ảnh ông (giữa) + ảnh bố; bàn ăn để trống",
+   "tags": [
+    "gian thờ",
+    "ông",
+    "đêm"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "altar_shelf": [
+     0.31,
+     0.33
+    ],
+    "dining_table": [
+     0.73,
+     0.62
+    ]
+   }
+  },
+  "bgL7_mom_room_day": {
+   "desc": "Phòng của mẹ ban ngày: cửa sổ nắng, kệ vải, cuộn chỉ, ma-nơ-canh; chừa trống chỗ đặt máy may (sprite)",
+   "tags": [
+    "phòng mẹ",
+    "may vá",
+    "ngày"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.5,
+   "hotspots": {
+    "machine_spot": [
+     0.4,
+     0.8
+    ]
+   }
+  },
+  "bgL3e_coffin_top_full_dropped": {
+   "desc": "Cùng khung bgL3d: tay phải buông thõng cạnh gối, chỉ còn ánh que diêm, khoé miệng hơi nhếch",
+   "tags": [
+    "quan tài",
+    "rợn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {
+    "face": [
+     0.245,
+     0.43
+    ],
+    "dropped_hand": [
+     0.59,
+     0.66
+    ],
+    "match": [
+     0.5,
+     0.93
+    ]
+   }
+  },
+  "bgL3c_coffin_face_smile": {
+   "desc": "Cận mặt ông trong quan tài (ảo giác): mắt hé mở nhìn thẳng, miệng cười toác rợn người, ánh que diêm",
+   "tags": [
+    "ảo giác",
+    "hù"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {
+    "face": [
+     0.5,
+     0.45
+    ]
+   }
+  },
+  "bgL10b_altar_four_portraits": {
+   "desc": "Bàn thờ 4 di ảnh (ông, mẹ, bà, khung phủ vải đen), lư hương nhỏ ở giữa mép trước, chỗ trống trước từng di ảnh để đặt bát",
+   "tags": [
+    "bàn thờ",
+    "4 di ảnh"
+   ],
+   "floor_y": 0.8,
+   "char_h": 0.6,
+   "hotspots": {
+    "offering_spot": [
+     0.5,
+     0.62
+    ],
+    "incense": [
+     0.49,
+     0.6
+    ]
+   }
+  },
+  "bgL3f_coffin_hand_talisman": {
+   "desc": "Cùng khung bgL3d: một bàn tay áo nâu (thầy Tư) thò vào từ mép trên, nhét mảnh giấy vàng gấp tư xuống dưới gối ông",
+   "tags": [
+    "quan tài",
+    "lá bùa"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {
+    "pillow": [
+     0.24,
+     0.37
+    ],
+    "talisman": [
+     0.3,
+     0.37
+    ]
+   }
+  },
+  "bgL14b_grandma_by_coffin": {
+   "desc": "Góc thấp: thành quan tài che kín (không thấy ông), bà ngồi ghế đẩu bên phải, lược trong lòng, tay đặt lên thành quan tài thì thầm",
+   "tags": [
+    "đám tang",
+    "bà",
+    "đêm"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {
+    "grandma": [
+     0.72,
+     0.55
+    ]
+   }
+  },
+  "bg4e_main_room_day_bo": {
+   "desc": "Gian chính ban ngày (như bg4d): kệ thờ trên tường có di ảnh bố, bát hương, 2 nến; bàn ăn nồi canh, ghế đẩu",
+   "tags": [
+    "gian chính",
+    "ban ngày",
+    "bữa cơm"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "altar_shelf": [
+     0.3,
+     0.33
+    ],
+    "dining_table": [
+     0.73,
+     0.6
+    ]
+   }
+  },
+  "bgL7n_mom_room_night": {
+   "desc": "Phòng mẹ ban đêm (cùng bố cục bgL7), chừa chỗ máy may + nửa phải trống đặt giường (sprite)",
+   "tags": [
+    "phòng mẹ",
+    "đêm"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.5,
+   "hotspots": {
+    "machine_spot": [
+     0.3,
+     0.88
+    ],
+    "bed_spot": [
+     0.6,
+     0.95
+    ]
+   }
+  },
+  "bgL18_field_path_night": {
+   "desc": "Bờ ruộng đêm chạy ngang khung, cỏ may rạp trong gió, xa xa hàng cây và cây gạo khô",
+   "tags": [
+    "cánh đồng",
+    "đêm"
+   ],
+   "floor_y": 0.9,
+   "char_h": 0.36,
+   "hotspots": {
+    "path": [
+     0.5,
+     0.76
+    ]
+   }
+  },
+  "bgL17_cemetery_night_grave": {
+   "desc": "Nghĩa địa đêm: mộ ông mới đắp đất đỏ, bia nhỏ, cây gạo khô bên phải, sương mỏng; chừa chỗ quỳ và chỗ sau bia",
+   "tags": [
+    "nghĩa địa",
+    "đêm",
+    "mộ ông"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {
+    "grave_head": [
+     0.53,
+     0.63
+    ],
+    "behind_headstone": [
+     0.475,
+     0.56
+    ],
+    "crow_branch": [
+     0.7,
+     0.27
+    ]
+   }
+  },
+  "bgL9d_main_room_altar_ong_day": {
+   "desc": "Gian chính có bàn thờ ông (cùng bố cục bgL9) buổi sáng xám",
+   "tags": [
+    "gian thờ",
+    "sáng"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "altar_shelf": [
+     0.31,
+     0.33
+    ],
+    "dining_table": [
+     0.73,
+     0.62
+    ]
+   }
+  },
+  "bgL16_market_morning": {
+   "desc": "Đầu chợ quê buổi sáng: mái bạt, gánh rau, hàng xôi bốc hơi; bậc đá trống ở tiền cảnh, nắng sớm",
+   "tags": [
+    "chợ",
+    "sáng",
+    "hồi ức"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.46,
+   "hotspots": {
+    "stone_step": [
+     0.4,
+     0.7
+    ]
+   }
+  },
+  "bgL19_mirror_ong_behind_mom": {
+   "desc": "Vẽ sẵn: trong gương, mẹ (áo xô, tóc xoã) xới cơm, ông áo the đứng sau đặt tay lên tay mẹ cầm muôi",
+   "tags": [
+    "gương",
+    "ông",
+    "mẹ",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {
+    "mirror": [
+     0.49,
+     0.43
+    ]
+   }
+  },
+  "bgL17b_two_graves_day": {
+   "desc": "Ban ngày âm u: hai mộ cạnh nhau (mộ ông đất se mặt có lỗ nhỏ ở đầu, mộ mẹ đất tươi), cây gạo khô",
+   "tags": [
+    "nghĩa địa",
+    "hai mộ",
+    "ngày"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {
+    "hole": [
+     0.29,
+     0.72
+    ],
+    "crow_branch": [
+     0.68,
+     0.215
+    ]
+   }
+  },
+  "bgL19b_mirror_khoa_alone": {
+   "desc": "Vẽ sẵn: cùng gương, chỉ còn Khoa đứng một mình giữa gian thờ tối, sau lưng hai bát cơm",
+   "tags": [
+    "gương",
+    "Khoa",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {
+    "mirror": [
+     0.49,
+     0.43
+    ]
+   }
+  },
+  "bgL27_khoa_peek_door_day": {
+   "desc": "Góc nhìn của Khoa nép sau cánh cửa buồng: chỉ thấy bàn tay bám mép cửa, khe cửa nhìn ra gian thờ (ảnh bố, bàn ăn)",
+   "tags": [
+    "nép cửa",
+    "nghe lén",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {
+    "boy": [
+     0.18,
+     0.85
+    ]
+   }
+  },
+  "bgL25n_mom_bedroom_night": {
+   "desc": "Phòng ngủ của mẹ ban đêm: giường gỗ đôi to sát tường (đầu giường bên trái), màn buộc, tủ nhỏ; sàn trái trống",
+   "tags": [
+    "phòng mẹ",
+    "đêm",
+    "giường"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.5,
+   "hotspots": {
+    "pillow": [
+     0.7,
+     0.5
+    ],
+    "bed_foot": [
+     0.82,
+     0.8
+    ],
+    "open_floor": [
+     0.3,
+     0.85
+    ]
+   }
+  },
+  "bgL24_altar_ong_bo_cold": {
+   "desc": "Cận bàn thờ nguội: ảnh ông + ảnh bố nhỏ bên cạnh, nến tắt; mặt bàn trống đặt bát",
+   "tags": [
+    "bàn thờ",
+    "ông",
+    "bố"
+   ],
+   "floor_y": 0.8,
+   "char_h": 0.6,
+   "hotspots": {
+    "offering_left": [
+     0.47,
+     0.7
+    ],
+    "offering_right": [
+     0.65,
+     0.68
+    ]
+   }
+  },
+  "bgL28_khoa_calendar_night": {
+   "desc": "Vẽ sẵn: Khoa đứng khoanh ngày trên tờ lịch treo tường dưới ánh đèn bàn",
+   "tags": [
+    "lịch",
+    "đếm ngày",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "calendar": [
+     0.21,
+     0.4
+    ]
+   }
+  },
+  "bgL29_grandma_room_portrait": {
+   "desc": "Vẽ sẵn: phòng bà ban đêm đèn dầu, bà ngồi mép giường ôm di ảnh ông khóc thì thầm",
+   "tags": [
+    "phòng bà",
+    "lời hứa",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {
+    "grandma": [
+     0.33,
+     0.55
+    ]
+   }
+  },
+  "bgL15b_khoa_bed_awake_plain": {
+   "desc": "Vẽ sẵn: Khoa nằm thao láo, hai tay để trên chăn (không chạm áo khoác treo đầu giường)",
+   "tags": [
+    "phòng ngủ",
+    "mất ngủ",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "boy": [
+     0.6,
+     0.6
+    ]
+   }
+  },
+  "bgL26_mom_sewing_tunic": {
+   "desc": "Vẽ sẵn: mẹ ngồi khóc bên máy khâu, bộ áo xô may xong nằm trên bàn máy, áo len rơi dưới gầm",
+   "tags": [
+    "máy khâu",
+    "áo xô",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.5,
+   "hotspots": {
+    "mother": [
+     0.42,
+     0.5
+    ]
+   }
+  },
+  "bgL9s_grandma_asleep_table": {
+   "desc": "Vẽ sẵn: bà gục đầu ngủ trên bàn ăn trong gian thờ ban đêm; bàn thờ có một bát cơm trước ảnh ông",
+   "tags": [
+    "gian thờ",
+    "bà",
+    "ngủ gục"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "grandma": [
+     0.8,
+     0.7
+    ]
+   }
+  },
+  "bgL16b_market_side_step": {
+   "desc": "Đầu chợ buổi sáng: đường giữa thông, bậc đá trước một sạp đóng cửa ở mép trái tiền cảnh",
+   "tags": [
+    "chợ",
+    "sáng"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.46,
+   "hotspots": {
+    "stone_step": [
+     0.18,
+     0.72
+    ]
+   }
+  },
+  "bgL23_house_roof_dusk": {
+   "desc": "Sân trước lúc chạng vạng nhìn lên nóc nhà mái rêu (chỗ quạ đậu) và cây bưởi bên phải",
+   "tags": [
+    "nóc nhà",
+    "cây bưởi",
+    "chạng vạng"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "roof_ridge": [
+     0.52,
+     0.06
+    ],
+    "pomelo_branch": [
+     0.75,
+     0.3
+    ]
+   }
+  },
+  "bgL22_backyard_morning": {
+   "desc": "Sân sau bếp buổi sáng xám: cửa bếp bên trái, giếng gạch, chum nước, dây phơi, bụi chuối; nền đất trống",
+   "tags": [
+    "sân sau",
+    "sáng"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.48,
+   "hotspots": {
+    "open_ground": [
+     0.6,
+     0.85
+    ]
+   }
+  },
+  "bgL25_mom_bed_sick_night": {
+   "desc": "Vẽ sẵn: mẹ ốm nằm trên giường trong phòng mẹ ban đêm",
+   "tags": [
+    "phòng mẹ",
+    "mẹ ốm",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.5,
+   "hotspots": {
+    "bed_foot": [
+     0.85,
+     0.8
+    ]
+   }
+  },
+  "bgL25e_mom_bedroom_day": {
+   "desc": "Phòng mẹ buổi sáng nắng, giường gọn; sàn trái trống",
+   "tags": [
+    "phòng mẹ",
+    "sáng"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.5,
+   "hotspots": {
+    "open_floor": [
+     0.3,
+     0.85
+    ]
+   }
+  },
+  "bgL25c_mom_bed_sit_bowl_morning": {
+   "desc": "Vẽ sẵn (đêm/rạng sáng): mẹ ngồi dậy trên giường, siết chăn, nhìn bát cơm cạnh gối",
+   "tags": [
+    "bát cơm",
+    "mẹ",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.5,
+   "hotspots": {
+    "bowl": [
+     0.64,
+     0.6
+    ]
+   }
+  },
+  "bgL25b_mom_bed_bowl_morning": {
+   "desc": "Vẽ sẵn (đêm/rạng sáng): mẹ ngủ, bát cơm sát gối, đũa gác ngang miệng bát chĩa vào mặt mẹ",
+   "tags": [
+    "bát cơm",
+    "đầu giường",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.5,
+   "hotspots": {
+    "bowl": [
+     0.63,
+     0.57
+    ]
+   }
+  },
+  "bgL25h_mom_stroke_khoa_night": {
+   "desc": "Vẽ sẵn: phòng mẹ ban đêm, mẹ nằm đưa tay xoa đầu Khoa ngồi ghế cạnh giường cúi đầu khóc",
+   "tags": [
+    "phòng mẹ",
+    "mẹ con",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.5,
+   "hotspots": {
+    "mother": [
+     0.69,
+     0.55
+    ],
+    "boy": [
+     0.61,
+     0.6
+    ]
+   }
+  },
+  "bgL25s_khoa_feed_soup": {
+   "desc": "Vẽ sẵn: chiều, Khoa ngồi mép giường bón canh cho mẹ trong phòng mẹ",
+   "tags": [
+    "phòng mẹ",
+    "bón canh",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL3m_coffin_mom_hand_talisman": {
+   "desc": "Cận từ trên: mẹ (áo xô) nằm trong quan tài, chỉ đỏ ở cổ tay, tay thầy Tư nhét bùa dưới gối",
+   "tags": [
+    "quan tài",
+    "mẹ",
+    "lá bùa"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {}
+  },
+  "bgL25d_mom_dead_morning": {
+   "desc": "Vẽ sẵn: sáng sớm lạnh, mẹ (áo xô) nằm mất trên giường, bình thản như ngủ",
+   "tags": [
+    "phòng mẹ",
+    "mẹ mất",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL20b_wake_coffin_mom_open": {
+   "desc": "Gian thờ đám tang mẹ (cùng bố cục bgL2): quan tài mở nắp, di ảnh mẹ",
+   "tags": [
+    "đám tang",
+    "mẹ",
+    "đêm"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {}
+  },
+  "bgL9m_main_room_altar_three": {
+   "desc": "Gian chính đêm: kệ thờ có ảnh ông, bố, mẹ và hai bát cơm",
+   "tags": [
+    "gian thờ",
+    "ba di ảnh",
+    "đêm"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "altar_shelf": [
+     0.3,
+     0.33
+    ]
+   }
+  },
+  "bgL30_khoa_dig_grave_night": {
+   "desc": "Vẽ sẵn: Khoa (áo khoác đen) quỳ bới lỗ nhỏ ở đầu mộ ông, đèn pin nằm cạnh",
+   "tags": [
+    "nghĩa địa",
+    "bới đất",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {}
+  },
+  "bgL17c_two_graves_small_hole": {
+   "desc": "Hai mộ cạnh nhau ban ngày; đầu mộ ông chỉ có một lỗ nhỏ trẻ con bới, đất vương vãi",
+   "tags": [
+    "nghĩa địa",
+    "hai mộ"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {
+    "hole": [
+     0.28,
+     0.72
+    ],
+    "crow_branch": [
+     0.68,
+     0.215
+    ]
+   }
+  },
+  "bgL25k_mom_knit_collar": {
+   "desc": "Vẽ sẵn: mẹ ngồi trên giường cố đan cổ áo len, tay run; Khoa ngồi cạnh nhìn",
+   "tags": [
+    "phòng mẹ",
+    "áo len",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL25m_khoa_hold_mom_hand": {
+   "desc": "Vẽ sẵn: mẹ (áo xô, tóc xoã) nằm thở yếu, Khoa ngồi bệt áp tay mẹ lên má khóc",
+   "tags": [
+    "phòng mẹ",
+    "đêm 49",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL31_mirror_opposite_room": {
+   "desc": "Nhìn qua khung cửa sang phòng đối diện: tấm vải đỏ đang tuột khỏi chiếc gương lớn",
+   "tags": [
+    "gương",
+    "vải đỏ",
+    "đêm 49"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {
+    "mirror": [
+     0.73,
+     0.5
+    ]
+   }
+  },
+  "bgL21b_altar_three": {
+   "desc": "Cận bàn thờ: ảnh ông (giữa), ảnh bố, ảnh mẹ mới; nhang khói, nến; mặt bàn trống đặt bát",
+   "tags": [
+    "bàn thờ",
+    "ông",
+    "bố",
+    "mẹ"
+   ],
+   "floor_y": 0.8,
+   "char_h": 0.6,
+   "hotspots": {
+    "offering_ong": [
+     0.75,
+     0.66
+    ],
+    "offering_me": [
+     0.63,
+     0.66
+    ]
+   }
+  },
+  "bgL19c_mirror_ong_whisper": {
+   "desc": "Vẽ sẵn: trong gương, mẹ bưng bát cơm, ông áo the đứng sau đặt tay lên tay mẹ, ghé tai thì thầm",
+   "tags": [
+    "gương",
+    "ông",
+    "mẹ",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {
+    "mirror": [
+     0.5,
+     0.42
+    ]
+   }
   }
  }
 }

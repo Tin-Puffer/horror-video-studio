@@ -8,8 +8,8 @@
 - writes build/<story>_requests.md: one ready-to-paste Gemini prompt per
   missing asset (style prompt of the character + layout + poses), with the
   reference images to attach
-- writes build/<story>_refs/<nn>_<request_id>/: the reference images to attach + prompt.txt,
-  one folder per open request (folders of finished requests are removed; ingest.py removes its own)
+- writes build/<story>_refs/<nn>_<request_id>/: the numbered reference images to attach (prompts live
+  in the .md), one folder per request that is ready now (ingest.py removes its own folder when done)
 - exit code 1 if something is missing and not requested
 
 asset_requests entries:
@@ -58,8 +58,16 @@ def char_meta(char: str) -> dict:
     return load_json(CHARS / char / "meta.json")
 
 
+RETIRED = json.loads((ROOT / "assets/retired.json").read_text()) if (ROOT / "assets/retired.json").exists() else {}
+
+
 def sprite_exists(ref: str) -> bool:
     return (CHARS / f"{ref}.png").exists()
+
+
+def sprite_done(ref: str) -> bool:
+    """Ingested, or deliberately removed from the library (assets/retired.json)."""
+    return sprite_exists(ref) or ref in RETIRED.get("sprites", [])
 
 
 SOUND_EXT = ("wav", "mp3", "ogg", "m4a", "flac", "aiff")
@@ -187,7 +195,9 @@ def request_prompt(req: dict) -> tuple[str, list[str]]:
         return prompt, meta.get("reference_images", []) + req.get("refs", [])
     if kind == "background":
         bg = load_json(BGS / "meta.json")
-        return f"{bg.get('style_prompt', '')} {req['scene']}", bg.get("reference_images", []) + req.get("refs", [])
+        # "style" replaces the shared style_prompt (eg. top-down shots or backgrounds that include people)
+        style = req.get("style", bg.get("style_prompt", ""))
+        return f"{style} {req['scene']}", bg.get("reference_images", []) + req.get("refs", [])
     if kind == "sound":
         if req.get("prompt"):
             return (f"{req['prompt']}\n(ElevenLabs Sound Effects, Duration {req.get('length', 'Auto')}; "
@@ -197,35 +207,61 @@ def request_prompt(req: dict) -> tuple[str, list[str]]:
     if kind == "character_base":
         refs = [m for m in (char_meta(d.name).get("reference_images", [])[:1]
                             for d in CHARS.iterdir() if d.is_dir()) if m]
-        return f"{req['design']} {BASE_LAYOUT}", [refs[0][0]] if refs else []
+        return f"{req['design']} {BASE_LAYOUT}", req.get("refs") or ([refs[0][0]] if refs else [])
     raise ValueError(f"unknown request kind {kind}")
 
 
+def outputs(req: dict) -> set[str]:
+    """Files an asset request produces once ingested (so later requests can use them as references)."""
+    if req["kind"] == "sheet":
+        return {f"assets/characters/{req['character']}/{sp['name']}.png" for sp in req["sprites"]}
+    if req["kind"] == "background":
+        return {f"assets/backgrounds/{req['id']}.png"}
+    if req["kind"] == "character_base":
+        return {f"assets/characters/{req['character']}/{req['character']}_base_front.png"}
+    return set()
+
+
+def plan_waves(open_reqs: list) -> list:
+    """Order open requests in waves: a request waits for every open request whose output it references
+    ("refs"), for its character's base, and for ids listed in "after". Returns [(wave, req, deps)]."""
+    ids = {r["id"]: r for r in open_reqs}
+    made_by = {f: r["id"] for r in open_reqs for f in outputs(r)}
+    bases = {r["character"]: r["id"] for r in open_reqs if r["kind"] == "character_base"}
+    deps = {}
+    for r in open_reqs:
+        d = {x for x in r.get("after", []) if x in ids}
+        d |= {made_by[f] for f in request_prompt(r)[1] if f in made_by}
+        if r["kind"] == "sheet" and r["character"] in bases:
+            d.add(bases[r["character"]])
+        d.discard(r["id"])
+        deps[r["id"]] = d
+    wave = {}
+
+    def w(i, seen=()):
+        if i not in wave:
+            wave[i] = 1 + max((w(d, seen + (i,)) for d in deps[i] if d not in seen), default=0)
+        return wave[i]
+    order = sorted(open_reqs, key=lambda r: (w(r["id"]), open_reqs.index(r)))
+    return [(wave[r["id"]], r, sorted(deps[r["id"]])) for r in order]
+
+
 def write_ref_folders(stem: str, open_reqs: list) -> None:
-    """build/<stem>_refs/<nn>_<id>/ = reference images to attach + prompt.txt, so nothing has to be looked up."""
+    """build/<stem>_refs/<nn>_<id>/ = only the numbered reference images to attach (1_…, 2_…: prompts say
+    "attached image 2"). The prompt itself lives in build/<stem>_requests.md. A request still waiting for
+    another one gets no folder, so it cannot be started with the wrong references."""
     base = ROOT / "build" / f"{stem}_refs"
     shutil.rmtree(base, ignore_errors=True)
-    for i, req in enumerate(open_reqs, 1):
-        prompt, refs = request_prompt(req)
+    for i, (wave, req, deps) in enumerate(plan_waves(open_reqs), 1):
+        refs = request_prompt(req)[1]
+        if deps or not refs:
+            continue
         folder = base / f"{i:02d}_{req['id']}"
         folder.mkdir(parents=True)
-        missing = []
-        for r in refs:
+        for k, r in enumerate(refs, 1):
             src = ROOT / r
             if src.exists():
-                shutil.copy(src, folder / src.name)
-            else:
-                missing.append(r)
-        note = [f"Mã yêu cầu: {req['id']} ({req['kind']})", f"Dùng cho: {req.get('why', req.get('desc', ''))}", ""]
-        if req["kind"] == "sheet":
-            note += ["Ô (trái→phải, trên→dưới): " + ", ".join(sp["name"] for sp in req["sprites"]), ""]
-        if req["kind"] == "sound":
-            note += [f"Âm thanh: {req.get('desc', '')}", f"Độ dài: {req.get('length', 'tuỳ')}", ""]
-        if refs:
-            note += ["Kéo hết ảnh trong thư mục này vào Gemini, rồi dán prompt dưới đây.", ""]
-        if missing:
-            note += ["(Máy này không có, bỏ qua: " + ", ".join(missing) + ")", ""]
-        (folder / "prompt.txt").write_text("\n".join(note + ["PROMPT:", prompt, ""]))
+                shutil.copy(src, folder / f"{k}_{src.name}")
 
 
 def main():
@@ -248,7 +284,9 @@ def main():
     for ref, scenes in sorted(cycles.items()):
         char, _, name = ref.partition("/")
         if name not in char_meta(char).get("cycles", {}):
-            errors.append(f"cycle {ref} không có trong meta.json (cảnh {scenes})")
+            asked = any(r["kind"] == "sheet" and r["character"] == char and name in r.get("cycles", {})
+                        for r in requests)
+            (pending if asked else errors).append(f"cycle {ref} (cảnh {scenes})")
     for bg, scenes in sorted(bgs.items()):
         if (BGS / f"{bg}.png").exists():
             continue
@@ -283,9 +321,9 @@ def main():
     open_reqs = []
     for req in requests:
         if req["kind"] == "sheet":
-            done = all(sprite_exists(f"{req['character']}/{sp['name']}") for sp in req["sprites"])
+            done = all(sprite_done(f"{req['character']}/{sp['name']}") for sp in req["sprites"])
         elif req["kind"] == "background":
-            done = (BGS / f"{req['id']}.png").exists()
+            done = (BGS / f"{req['id']}.png").exists() or req["id"] in RETIRED.get("backgrounds", [])
         elif req["kind"] == "sound":
             done = sound_exists(req["id"])
         else:
@@ -296,12 +334,21 @@ def main():
     out.parent.mkdir(exist_ok=True)
     md = [f"# Asset cần tạo cho `{path.name}`", "",
           "Mỗi mục: đính kèm ảnh tham chiếu, dán prompt vào Gemini, gửi ảnh kết quả cho Claude kèm mã yêu cầu.",
-          f"Ảnh cần đính kèm + prompt đã gom sẵn theo từng mục trong `build/{path.stem}_refs/`.", ""]
-    for req in open_reqs:
+          f"Ảnh cần đính kèm đã gom sẵn (đánh số theo thứ tự kéo vào) trong `build/{path.stem}_refs/<số>_<mã>/`.",
+          "Làm theo thứ tự số; mục ghi CHƯA LÀM thì đợi nạp xong mục nó chờ.", ""]
+    made_by = {f: r["id"] for r in open_reqs for f in outputs(r)}
+    for i, (wave, req, deps) in enumerate(plan_waves(open_reqs), 1):
         prompt, refs = request_prompt(req)
-        md += [f"## `{req['id']}` ({req['kind']})", "",
-               f"- Dùng cho: {req.get('why', '')}",
-               f"- Đính kèm: {', '.join(f'`{r}`' for r in refs) or '(không)'}"]
+        md += [f"## {i:02d} · Đợt {wave} · `{req['id']}` ({req['kind']})", "",
+               f"- Dùng cho: {req.get('why', '')}"]
+        if deps:
+            md += [f"- **CHƯA LÀM — chờ nạp:** {', '.join(f'`{d}`' for d in deps)}. Nạp xong chạy lại check_story: "
+                   f"thư mục ảnh `{i:02d}_{req['id']}` mới được tạo (không tự thay bằng ảnh khác)."]
+        elif refs:
+            md += [f"- Ảnh đính kèm: thư mục `build/{path.stem}_refs/{i:02d}_{req['id']}/` — kéo theo đúng thứ tự số 1, 2, 3…"]
+        miss = [r for r in refs if not (ROOT / r).exists() and r not in made_by]
+        if miss:
+            md += [f"- (Máy này không có, bỏ qua: {', '.join(miss)})"]
         if req["kind"] == "sheet":
             md += ["- Ô (trái→phải, trên→dưới): " + ", ".join(sp["name"] for sp in req["sprites"])]
         if req["kind"] == "sound":
@@ -320,7 +367,7 @@ def main():
         print("  LỖI:", e)
     print(f"  {len(open_reqs)} yêu cầu asset đang mở -> {out.relative_to(ROOT)}")
     if open_reqs:
-        print(f"  ảnh tham chiếu + prompt từng yêu cầu -> build/{path.stem}_refs/")
+        print(f"  ảnh tham chiếu từng yêu cầu (đánh số) -> build/{path.stem}_refs/")
     sys.exit(1 if errors else 0)
 
 

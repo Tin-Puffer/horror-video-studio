@@ -14,11 +14,27 @@
   },
   "preview": {
    "size": [
-    960,
-    540
+    640,
+    360
    ],
-   "fps": 12,
-   "preset": "veryfast"
+   "fps": 10,
+   "crf": 34,
+   "preset": "ultrafast",
+   "audio_bitrate": "64k",
+   "scene_label": {
+    "enabled": true,
+    "size": 0.07,
+    "pos": [
+     0.015,
+     0.02
+    ],
+    "color": [
+     255,
+     230,
+     60
+    ],
+    "stroke": 3
+   }
   },
   "voice": {
    "sample_rate": 44100,
@@ -26,7 +42,8 @@
    "merge_pause_below": 0.45,
    "trim_chunks": true,
    "chunk_gap": 0.12,
-   "max_inner_pause": 0.35
+   "max_inner_pause": 0.18,
+   "split_sentences": true
   },
   "timing": {
    "lead": 0.25,

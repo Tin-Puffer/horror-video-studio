@@ -1,0 +1,148 @@
+{
+ "name": "Ông nội",
+ "default_h": 0.58,
+ "reference_images": [
+  "assets/characters/ong_noi/ong_noi_base_front.png"
+ ],
+ "style_prompt": "Same elderly man as the reference image: a thin, gentle Vietnamese grandfather in his late seventies, swept-back silver-gray hair, high forehead with deep wrinkles, tired kind eyes, thin face, faded gray-blue short-sleeved collared button shirt, dark brown trousers, dark wooden clogs, slightly stooped. Hand-drawn crayon / colored-pencil texture, thick black outlines, simple chibi proportions, dot eyes, minimal flat colors. Never white clothing.",
+ "sprites": {
+  "ong_noi_base_front": {
+   "desc": "Ảnh mẫu: đứng chính diện",
+   "tags": [
+    "đứng",
+    "chính diện"
+   ],
+   "facing": "front"
+  },
+  "A1_sit_stool_carve": {
+   "desc": "Ngồi ghế đẩu thấp khắc tên lên đũa tre bằng dao nhỏ (quay phải)",
+   "tags": [
+    "khắc đũa",
+    "hiên"
+   ],
+   "facing": "right"
+  },
+  "A4_sit_bed_watch_clock": {
+   "desc": "Đêm, ngồi thẳng mép giường tre, nhìn lên tường (đồng hồ), căng thẳng canh giờ (có giường)",
+   "tags": [
+    "canh giờ",
+    "đêm",
+    "giường tre"
+   ],
+   "facing": "front"
+  },
+  "A6_give_chopsticks_boy": {
+   "desc": "HAI nhân vật: ông ngồi ghế dúi đôi đũa vào tay Khoa (đứng bên phải), tay run, cười buồn",
+   "tags": [
+    "đũa dư",
+    "ông cháu"
+   ],
+   "facing": "right"
+  },
+  "B1_bed_dying_grandma_hold": {
+   "desc": "HAI nhân vật + giường tre: ông nằm thở nặng nhọc, bà ngồi ghế cạnh nắm tay ông (đầu giường bên trái)",
+   "tags": [
+    "hấp hối",
+    "giường tre"
+   ],
+   "facing": "right"
+  },
+  "B2_bed_dead_eyes_open_grandma": {
+   "desc": "HAI nhân vật + giường tre: ông đã mất, mắt còn hé mở; bà cúi khóc, đưa tay vuốt mắt ông",
+   "tags": [
+    "ông mất",
+    "vuốt mắt"
+   ],
+   "facing": "right"
+  },
+  "B3_back_sit_altar_with_grandma": {
+   "desc": "HAI nhân vật quay lưng: ông bà ngồi cạnh nhau trước bàn thờ, bà nắm tay ông",
+   "tags": [
+    "bàn thờ",
+    "lời hứa"
+   ],
+   "facing": "away"
+  },
+  "B4_sit_stool_cough": {
+   "desc": "Ngồi ghế đẩu còng lưng ho vào nắm tay, tay kia ôm ngực",
+   "tags": [
+    "ho",
+    "ốm"
+   ],
+   "facing": "front"
+  },
+  "B5_closeup_hands_carve": {
+   "desc": "Cận đôi tay già khắc chữ lên chiếc đũa tre, vụn tre rơi",
+   "tags": [
+    "cận",
+    "khắc đũa"
+   ],
+   "facing": "right"
+  },
+  "B6_ghost_stand_still": {
+   "desc": "Bóng ông (ma): đứng im, lưng hơi còng, tay buông thõng, da xám xanh, mắt chìm trong bóng tối",
+   "tags": [
+    "ma",
+    "bóng ông"
+   ],
+   "facing": "front"
+  },
+  "C1_stand_snatch_broken_full": {
+   "desc": "Đứng ĐỦ CHÂN (quay trái) giơ chiếc đũa gãy vừa giật lại, tay kia giơ ngón tay cảnh báo, mặt nghiêm",
+   "tags": [
+    "đũa gãy",
+    "nghiêm"
+   ],
+   "facing": "right"
+  },
+  "C2_sit_stool_eat_side": {
+   "desc": "Ngồi ghế đẩu thấp (quay trái) cầm bát, gõ đũa, cười hiền — không kèm bàn (có ghế)",
+   "tags": [
+    "bữa cơm"
+   ],
+   "facing": "right"
+  },
+  "C3_sit_stool_tell_story_side": {
+   "desc": "Ngồi ghế đẩu thấp (quay trái), bát đặt trên gối, nhìn xa xăm kể chuyện cũ — không kèm bàn",
+   "tags": [
+    "kể chuyện"
+   ],
+   "facing": "right"
+  },
+  "C4_bed_eyes_closed_grandma_cry": {
+   "desc": "HAI nhân vật + giường tre: ông nằm nhắm hẳn mắt, bà ngồi cạnh khóc, tay đặt lên ngực ông",
+   "tags": [
+    "ông mất",
+    "nhắm mắt"
+   ],
+   "facing": "right"
+  },
+  "D1_bed_lie_side_watch_clock": {
+   "desc": "Đêm, nằm nghiêng trên giường tre (đầu giường bên trái), mặt hướng người xem, mắt mở thao láo ngước lên (đồng hồ)",
+   "tags": [
+    "giờ Dần",
+    "thức canh",
+    "giường tre"
+   ],
+   "facing": "right"
+  },
+  "D2_bed_jolt_awake": {
+   "desc": "Ngồi bật dậy trên giường tre, quay lưng nửa người, ngoái nhìn sang phải lên tường (đồng hồ), mặt hốt hoảng; chăn tuột",
+   "tags": [
+    "giờ Dần",
+    "giật mình",
+    "giường tre"
+   ],
+   "facing": "right"
+  },
+  "E1_ghost_tap_bowl": {
+   "desc": "Bóng ông (áo the, da xám) đứng (quay trái) cầm bát gõ đũa vào miệng bát",
+   "tags": [
+    "ma",
+    "gõ đũa",
+    "giấc mơ"
+   ],
+   "facing": "left"
+  }
+ }
+}

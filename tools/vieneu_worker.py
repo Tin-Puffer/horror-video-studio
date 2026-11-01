@@ -2,7 +2,8 @@
 """VieNeu-TTS worker, run with the Python that has `vieneu` + the Dubber package.
 
 Speaks JSON lines on stdin/stdout so the model (~1.6 GB) loads once per render:
-  {"cmd": "say", "text": "...", "voice": "preset:Hải Đăng" | "clone:<id>", "out": "/path.wav"}
+  {"cmd": "say", "text": "...", "voice": "preset:Hải Đăng" | "clone:<id>", "out": "/path.wav",
+   "temperature": 0.4, "top_k": 50}  (optional sampling settings, SDK defaults when left out)
   {"cmd": "clone", "audio": "/path", "name": "Tên", "start": 0.0}
   {"cmd": "list"}
 Each request gets one reply line: {"ok": true, ...} or {"ok": false, "error": "..."}.
@@ -45,7 +46,8 @@ def main():
             else:
                 sdk = sdk or shared_vieneu()
                 if req["cmd"] == "say":
-                    audio = sdk.infer(clean_text(req["text"]), voice=resolve(req["voice"]))
+                    opts = {k: req[k] for k in ("temperature", "top_k") if req.get(k) is not None}
+                    audio = sdk.infer(clean_text(req["text"]), voice=resolve(req["voice"]), **opts)
                     write_wav(Path(req["out"]), audio, sdk.sample_rate)
                     reply = {"sample_rate": sdk.sample_rate}
                 elif req["cmd"] == "clone":
