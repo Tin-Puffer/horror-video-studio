@@ -63,6 +63,16 @@
 | `LJ4_box_open_spare` | front | Hộp mở, đôi đũa dư nằm dọc bên trong (thấy đầu khắc chữ) | hộp, đũa dư |  |
 | `LJ5_box_open_red_soil` | front | Hộp mở, không còn đũa, chỉ còn nhúm đất đỏ ẩm (P3) | hộp, đất đỏ |  |
 | `LK1_chopsticks_burning` | front | Đôi đũa khắc tên nằm chéo trên đĩa đất nung, đang cháy, khói xám bốc lên | đốt đũa, lửa |  |
+| `LL10_bowl_spare_chopsticks` | front | Bát cơm thứ tư: đôi đũa dư (chữ KHOA khắc run kín bốn mặt ở đầu trên) cắm thẳng giữa bát | bát thứ tư, đũa dư |  |
+| `LL1_oil_lamp_lit` | front | Đèn dầu nhỏ bằng thuỷ tinh, ngọn lửa vàng leo lét | đèn dầu, bàn thờ |  |
+| `LL2_bowl_khoa_chopsticks` | front | Bát cơm nén chặt, đôi đũa khắc chữ KHOA to rõ cắm thẳng giữa bát | bát thứ ba, đũa Khoa |  |
+| `LL3_boy_hands_rice_full` | front | Cận hai bàn tay Khoa (cổ tay áo hoodie xanh), hạt cơm nguội dính dưới cả mười móng | hạt cơm, móng tay |  |
+| `LL4_boy_hands_clean_sweater` | front | Cận hai bàn tay Khoa (cổ tay áo len đỏ), móng tay sạch trơn | móng tay, sạch |  |
+| `LL5_boy_hands_few_grains` | front | Cận hai bàn tay Khoa (áo hoodie), vài hạt cơm nguội dưới mấy móng tay | hạt cơm, móng tay |  |
+| `LL6_hands_clasp_grandma_boy` | front | Cận đêm: bàn tay già (tay áo lụa tím) nắm chặt bàn tay nhỏ của Khoa (tay áo len đỏ), run run | nắm tay, bà cháu |  |
+| `LL7_grandma_pry_fingers` | front | Cận đêm: bàn tay bà nhẹ nhàng gỡ từng ngón tay Khoa khỏi tay mình | gỡ tay, chia tay |  |
+| `LL8_savings_book_papers` | front | Cuốn sổ tiết kiệm xanh cũ đặt trên xấp giấy tờ nhà buộc dây chun | sổ tiết kiệm, giấy tờ |  |
+| `LL9_bowl_grandma_chopsticks_soil` | front | Bát cơm, đôi đũa khắc tên bà cắm thẳng, hai đầu đũa dính đất đỏ của mộ | bát thứ ba, đũa bà, đất đỏ |  |
 | `VM1_fire_bucket_1` | front | Xô sắt gỉ đốt vàng mã, lửa cháy, khung 1/3 (chu kỳ fire, xô đứng yên) | vàng mã, lửa, cúng |  |
 | `VM2_fire_bucket_2` | front | Xô sắt gỉ đốt vàng mã, lửa cháy, khung 2/3 (chu kỳ fire, xô đứng yên) | vàng mã, lửa, cúng |  |
 | `VM3_fire_bucket_3` | front | Xô sắt gỉ đốt vàng mã, lửa cháy, khung 3/3 (chu kỳ fire, xô đứng yên) | vàng mã, lửa, cúng |  |

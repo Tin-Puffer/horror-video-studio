@@ -58,3 +58,10 @@
 | `N4_pole_shoo_crow` | left | Vung cây sào tre dài lên cao xua (con quạ), ngước nhìn | xua quạ, sào |  |
 | `N6_phone_forced_smile` | front | Đứng nghe điện thoại, gượng cười, mắt buồn | điện thoại, giấu chuyện |  |
 | `N8_fold_sweater` | left | Đứng gấp chiếc áo len đan dở, cúi đầu | áo len, tang |  |
+| `O1_lean_wall_panting` | right | Còng người vịn tay vào tường (không vẽ tường), tay kia ôm ngực, há miệng thở dốc | ho, vịn tường |  |
+| `O2_wipe_chopsticks_hem` | left | Đứng cúi đầu lấy vạt áo lau đôi đũa tre, bình thản, mắt rất buồn | lau đũa |  |
+| `O3_tuck_chopsticks_pocket` | front | Đứng nhẹ nhàng cất đôi đũa vào túi áo bà ba như cất vật quý | cất đũa, túi áo |  |
+| `O4_closeup_face_firm_tears` | front | Cận mặt: nhìn thẳng, miệng nghiêm, mắt ngấn nước (nghiêm mà thương) | cận mặt, nghiêm |  |
+| `O5_count_calendar` | right | Đứng nghiêng (quay phải) ngước nhìn tờ lịch trên tường, bấm đốt ngón tay đếm, lẩm nhẩm | lịch, đếm ngày |  |
+| `P1_closeup_face_smile_night` | front | Đêm, cận mặt áo bà ba tím mận + trâm bạc: ngẩng lên mỉm cười rất hiền, ánh đèn pin hắt từ dưới | cận mặt, nụ cười, đêm |  |
+| `P2_closeup_bun_hairpin` | away | Cận sau gáy: búi tóc bạc gọn có cây trâm bạc, cổ áo lụa tím mận | trâm bạc, búi tóc |  |

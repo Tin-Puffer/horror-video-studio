@@ -1,10 +1,10 @@
 """Sinh kịch bản "Lá bùa dưới gối ông" (3 phần × ~15 phút) từ mẫu templates/kich_ban_mau.json.
 
-    python3 scripts/gen_la_bua_duoi_goi_ong.py [1|2]  → scripts/la_bua_duoi_goi_ong_p<n>.json (mặc định Phần 1)
+    python3 scripts/gen_la_bua_duoi_goi_ong.py [1|2|3]  → scripts/la_bua_duoi_goi_ong_p<n>.json (mặc định Phần 1)
 
 Lời kể lấy NGUYÊN VĂN từ bản đã duyệt scripts/kich_ban_la_bua_duoi_goi_ong.md (mỗi đoạn văn → 1..n cảnh,
 tách ở ranh giới câu, ≤ 45 chữ/cảnh). Sửa lời thì sửa file md rồi chạy lại; ở đây chỉ dàn hình, camera, âm thanh.
-Asset cần tạo: ASSET_REQUESTS (Phần 1), ASSET_REQUESTS_P2 (Phần 2).
+Asset cần tạo: ASSET_REQUESTS (Phần 1), ASSET_REQUESTS_P2 (Phần 2), ASSET_REQUESTS_P3 (Phần 3).
 """
 import json
 import re
@@ -30,7 +30,21 @@ def chunks(par: str, limit: int = 45) -> list[str]:
             cur = []
         cur.append(sent)
     out.append(" ".join(cur))
+    if LONG_SENTENCE:   # câu đơn quá dài (quy tắc ≤ ~40 chữ/cảnh) → cắt ở dấu phẩy gần giữa nhất, lời vẫn nguyên văn
+        split = []
+        for txt in out:
+            words = txt.split()
+            commas = [k + 1 for k, w in enumerate(words[:-1]) if w.endswith(",")]
+            if len(words) > LONG_SENTENCE and commas:
+                k = min(commas, key=lambda c: abs(c - len(words) / 2))
+                split += [" ".join(words[:k]), " ".join(words[k:])]
+            else:
+                split.append(txt)
+        out = split
     return out
+
+
+LONG_SENTENCE = None   # Phần 3 đặt 40
 
 
 # ============================================================ CHUNG
@@ -1484,6 +1498,465 @@ ASSET_REQUESTS_P2 = [
 ]
 
 
+# ============================================================ PHẦN 3 — ASSET
+# Nguyên tắc (người dùng, 2026-11-02): cảnh có hai người tương tác, trang phục mới, hoặc bố cục khó ghép từ sprite →
+# vẽ sẵn cả cảnh thành PHÔNG (như góp ý P2), chỉ xin sprite cho tư thế một người dùng lại được trên phông có sẵn.
+SWEATER_REF = "assets/characters/props/LH1_sweater_unfinished.png"
+BOY_P3 = "assets/characters/boy_hoodie/00_idle_front_smile.png"   # ảnh mẫu Khoa có trong kho (assets/source chỉ có ở máy cũ)
+BOWL_REF = "assets/characters/props/LF1_bowl_chopsticks_upright.png"
+KHOA_CHOP_REF = "assets/characters/props/LF3_chopsticks_khoa.png"
+SPARE_TOP_REF = "assets/characters/props/LJ2_chopsticks_spare_top_carved.png"
+TALISMAN_REF = "assets/characters/props/LB1_talisman_folded.png"
+GHOST_ONG_REF = "assets/characters/ong_noi/B6_ghost_stand_still.png"
+GMA_PORTRAIT_BG = "assets/backgrounds/bgL10b_altar_four_portraits.png"   # di ảnh bà (khung thứ ba) → bà phải giống ảnh này
+ALTAR3_DAY = "assets/backgrounds/bgL9md_main_room_altar_three_day.png"   # gian thờ ban ngày P3 (tạo ở đợt 1)
+SWEATER_KHOA = "assets/backgrounds/bgL47_grandma_sweater_on_khoa.png"     # lần đầu Khoa mặc áo len → bản gốc cho cảnh sau
+BEST_GMA = "assets/backgrounds/bgL48_dinner_grandma_watch.png"            # lần đầu bà mặc áo bà ba đẹp + trâm bạc
+GRAVES_NIGHT = "assets/backgrounds/bgL51_two_graves_night_hole.png"
+SWEATER_DONE = ("the small dark-red knitted child's sweater of the reference, now FINISHED with a neat ribbed dark-red "
+                "collar")
+KHOA_IN_SWEATER = ("the boy wears the finished dark-red knitted sweater over his clothes (green hood NOT visible), "
+                   "charcoal pants, white sneakers")
+GMA_BEST = ("she wears her best ao ba ba blouse of deep PLUM-PURPLE silk (not her usual brown one), her silver hair combed "
+            "very neatly into a bun with a slim SILVER HAIRPIN through it")
+SICK_GMA = "She looks thinner, paler and more hunched than in the reference, ill."
+
+ASSET_REQUESTS_P3 = [
+    # ---------------------------------------------------- sprite một người (dùng lại trên phông có sẵn)
+    {"id": "grandma_sheet_O", "kind": "sheet", "character": "grandma", "grid": [1, 5],
+     "why": "P3: bà ho vịn tường; lau đũa của Khoa bằng vạt áo rồi cất vào túi; cận mặt nghiêm mà rưng rưng; nhìn lịch đếm ngày",
+     "note": SICK_GMA,
+     "sprites": [
+         {"name": "O1_lean_wall_panting", "pose": "side view facing LEFT, bent over, one palm pressed flat against an invisible "
+          "wall at her side (no wall drawn), the other hand on her chest, mouth open catching her breath, exhausted",
+          "desc": "Còng người vịn tay vào tường (không vẽ tường), tay kia ôm ngực, há miệng thở dốc", "tags": ["ho", "vịn tường"],
+          "facing": "left"},
+         {"name": "O2_wipe_chopsticks_hem", "pose": "standing, three-quarter view facing LEFT, head bowed, slowly wiping a pair of "
+          "bamboo chopsticks clean with the hem of her blouse, calm, no tears, eyes very sad",
+          "desc": "Đứng cúi đầu lấy vạt áo lau đôi đũa tre, bình thản, mắt rất buồn", "tags": ["lau đũa"], "facing": "left"},
+         {"name": "O3_tuck_chopsticks_pocket", "pose": "standing, front view, gently tucking a pair of bamboo chopsticks into the "
+          "front pocket of her blouse with both hands, as if putting away something precious, eyes lowered",
+          "desc": "Đứng nhẹ nhàng cất đôi đũa vào túi áo bà ba như cất vật quý", "tags": ["cất đũa", "túi áo"], "facing": "front"},
+         {"name": "O4_closeup_face_firm_tears", "pose": "CLOSE-UP of her face and shoulders, front view, looking straight at the "
+          "viewer, firm serious mouth, eyes full of tears but not crying, loving and stern at once",
+          "desc": "Cận mặt: nhìn thẳng, miệng nghiêm, mắt ngấn nước (nghiêm mà thương)", "tags": ["cận mặt", "nghiêm"],
+          "facing": "front"},
+         {"name": "O5_count_calendar", "pose": "standing, side view facing RIGHT, looking UP at something on the wall (a calendar, "
+          "not drawn), counting on the fingers of one raised hand, lips moving, worried",
+          "desc": "Đứng nghiêng (quay phải) ngước nhìn tờ lịch trên tường, bấm đốt ngón tay đếm, lẩm nhẩm", "tags": ["lịch", "đếm ngày"],
+          "facing": "right"},
+     ]},
+    {"id": "grandma_sheet_P", "kind": "sheet", "character": "grandma", "grid": [1, 2],
+     "why": "P3: đêm ra mộ — bà mặc áo bà ba đẹp nhất, cài trâm bạc (cận mặt cười hiền, cận búi tóc)",
+     "note": "In both poses " + GMA_BEST + ".",
+     "sprites": [
+         {"name": "P1_closeup_face_smile_night", "pose": "CLOSE-UP of her face and shoulders at night, front view, lit from below by "
+          "a flashlight, looking up at the viewer with a very gentle, tender, peaceful smile, eyes a little wet",
+          "desc": "Đêm, cận mặt áo bà ba tím mận + trâm bạc: ngẩng lên mỉm cười rất hiền, ánh đèn pin hắt từ dưới",
+          "tags": ["cận mặt", "nụ cười", "đêm"], "facing": "front"},
+         {"name": "P2_closeup_bun_hairpin", "pose": "CLOSE-UP from behind of the back of her head and neck: the neat silver bun "
+          "with a slim shining SILVER HAIRPIN through it, the plum-purple silk collar, warm lamp light",
+          "desc": "Cận sau gáy: búi tóc bạc gọn có cây trâm bạc, cổ áo lụa tím mận", "tags": ["trâm bạc", "búi tóc"],
+          "facing": "away"},
+     ]},
+    {"id": "boy_hoodie_sheet_W", "kind": "sheet", "character": "boy_hoodie", "grid": [1, 2],
+     "why": "P3: Khoa ngửi mùi khói bếp trên ngón tay; ngồi bậc hiên nghe bà gọi điện", "refs": [BOY_P3],
+     "sprites": [
+         {"name": "W1_smell_fingers_horror", "pose": "in his green hoodie, standing, side view facing LEFT, one hand raised to his "
+          "nose sniffing his own fingertips, staring at his hand in horror, pale",
+          "desc": "Áo hoodie: đứng đưa ngón tay lên mũi ngửi, trân trối nhìn bàn tay mình, kinh hãi", "tags": ["ngửi tay", "sợ"],
+          "facing": "left"},
+         {"name": "W2_sit_step_listen", "pose": "in his green hoodie, sitting on a short worn stone step (step included), side view "
+          "facing LEFT, arms around his knees, head slightly turned back over his shoulder, listening sadly",
+          "desc": "Áo hoodie: ngồi bậc thềm (có bậc) ôm gối, ngoái đầu lắng nghe, buồn", "tags": ["ngồi hiên", "nghe lén"],
+          "facing": "left"},
+     ]},
+    {"id": "props_sheet_LL", "kind": "sheet", "character": "props", "grid": [2, 5],
+     "why": "P3: đèn dầu bàn thờ, bát cơm thứ ba đũa KHOA, các cận bàn tay, sổ tiết kiệm, bát đũa bà dính đất, bát thứ tư đũa dư",
+     "note": ("Attached image 1 is only a style example. Every rice bowl on this sheet is EXACTLY the bowl of attached "
+              "image 2 (same bowl, rice packed into a dome). The carved KHOA chopsticks are those of attached image 3. "
+              "The spare chopsticks of pose 10 are EXACTLY those of attached image 4 (name carved in shaky letters only "
+              "near the top end, on all four faces). The dark-red knitted sweater cuffs are the sweater of attached "
+              "image 5. Every 'boy's hand' is a small child's hand."),
+     "refs": [BOWL_REF, KHOA_CHOP_REF, SPARE_TOP_REF, SWEATER_REF],
+     "sprites": [
+         {"name": "LL1_oil_lamp_lit", "pose": "a small old glass oil lamp with a tin base, a tiny weak yellow flame, faint glow",
+          "desc": "Đèn dầu nhỏ bằng thuỷ tinh, ngọn lửa vàng leo lét", "tags": ["đèn dầu", "bàn thờ"], "facing": "front"},
+         {"name": "LL2_bowl_khoa_chopsticks", "pose": "the rice bowl packed full, a pair of bamboo chopsticks stuck UPRIGHT in the "
+          "middle, the name KHOA carved big and clearly on them in slanted letters (like the attached chopsticks)",
+          "desc": "Bát cơm nén chặt, đôi đũa khắc chữ KHOA to rõ cắm thẳng giữa bát", "tags": ["bát thứ ba", "đũa Khoa"],
+          "facing": "front"},
+         {"name": "LL3_boy_hands_rice_full", "pose": "close-up of a boy's two small hands, palms down, fingers spread, green hoodie "
+          "cuffs at the wrists, white grains of cold cooked rice stuck under ALL ten fingernails",
+          "desc": "Cận hai bàn tay Khoa (cổ tay áo hoodie xanh), hạt cơm nguội dính dưới cả mười móng", "tags": ["hạt cơm", "móng tay"],
+          "facing": "front"},
+         {"name": "LL4_boy_hands_clean_sweater", "pose": "the same close-up of the boy's two hands, palms down, but with dark-red "
+          "knitted sweater cuffs, the fingernails completely CLEAN",
+          "desc": "Cận hai bàn tay Khoa (cổ tay áo len đỏ), móng tay sạch trơn", "tags": ["móng tay", "sạch"], "facing": "front"},
+         {"name": "LL5_boy_hands_few_grains", "pose": "the same close-up of the boy's two hands with green hoodie cuffs, only a FEW "
+          "white grains of cold rice under three or four fingernails",
+          "desc": "Cận hai bàn tay Khoa (áo hoodie), vài hạt cơm nguội dưới mấy móng tay", "tags": ["hạt cơm", "móng tay"],
+          "facing": "front"},
+         {"name": "LL6_hands_clasp_grandma_boy", "pose": "close-up at night: a thin wrinkled old woman's hand (plum-purple silk "
+          "sleeve) tightly holding a boy's small hand (dark-red knitted sweater cuff), the old fingers trembling",
+          "desc": "Cận đêm: bàn tay già (tay áo lụa tím) nắm chặt bàn tay nhỏ của Khoa (tay áo len đỏ), run run",
+          "tags": ["nắm tay", "bà cháu"], "facing": "front"},
+         {"name": "LL7_grandma_pry_fingers", "pose": "close-up at night: the old woman's wrinkled hand (plum-purple silk sleeve) "
+          "gently prying the boy's small fingers (dark-red sweater cuff) one by one off her other hand",
+          "desc": "Cận đêm: bàn tay bà nhẹ nhàng gỡ từng ngón tay Khoa khỏi tay mình", "tags": ["gỡ tay", "chia tay"],
+          "facing": "front"},
+         {"name": "LL8_savings_book_papers", "pose": "a small old blue savings passbook on top of a folded stack of yellowed house "
+          "papers tied with a rubber band",
+          "desc": "Cuốn sổ tiết kiệm xanh cũ đặt trên xấp giấy tờ nhà buộc dây chun", "tags": ["sổ tiết kiệm", "giấy tờ"],
+          "facing": "front"},
+         {"name": "LL9_bowl_grandma_chopsticks_soil", "pose": "the rice bowl packed full, a pair of bamboo chopsticks carved with a "
+          "DIFFERENT short name stuck upright in it, the tips of the chopsticks smeared with damp dark RED earth, a few red "
+          "crumbs on the rice",
+          "desc": "Bát cơm, đôi đũa khắc tên bà cắm thẳng, hai đầu đũa dính đất đỏ của mộ", "tags": ["bát thứ ba", "đũa bà", "đất đỏ"],
+          "facing": "front"},
+         {"name": "LL10_bowl_spare_chopsticks", "pose": "the rice bowl packed full, the attached spare chopsticks stuck UPRIGHT in "
+          "the middle, their carved top ends clearly visible",
+          "desc": "Bát cơm thứ tư: đôi đũa dư (chữ KHOA khắc run kín bốn mặt ở đầu trên) cắm thẳng giữa bát",
+          "tags": ["bát thứ tư", "đũa dư"], "facing": "front"},
+     ]},
+
+    # ---------------------------------------------------- phông nền (ảnh 1 luôn là ảnh style chung → refs bắt đầu từ ảnh 2)
+    {"id": "bgL9md_main_room_altar_three_day", "kind": "background",
+     "refs": ["assets/backgrounds/bgL9m_main_room_altar_three.png", "assets/backgrounds/bgL9d_main_room_altar_ong_day.png"],
+     "why": "P3: gian thờ ban ngày sau tang mẹ (bà ho, bà lau đũa, bà nhìn lịch, Khoa chạy về)",
+     "scene": ("IMPORTANT: cold gray DAYTIME light like attached image 3, ignore the night lighting described above. The SAME "
+               "room and layout as attached image 2 (altar shelf with the grandfather's, the small father's and the mother's "
+               "portraits, dining table and stools, wall calendar, door), but the altar shelf top in front of the portraits is "
+               "EMPTY (no rice bowls; bowls will be added), incense stubs only. Empty floor on the left. No people."),
+     "desc": "Gian chính ban ngày xám: kệ thờ ba di ảnh (ông, bố, mẹ), mặt kệ trống đặt bát; sàn trái trống",
+     "tags": ["gian thờ", "ba di ảnh", "ngày"], "floor_y": 0.95, "char_h": 0.46,
+     "hotspots_needed": ["altar_shelf", "dining_table", "calendar", "open_floor"]},
+    {"id": "bgL32_khoa_rice_sack_bed", "kind": "background",
+     "refs": ["assets/backgrounds/bgL15b_khoa_bed_awake_plain.png", BOY_P3],
+     "why": "P3: Khoa giấu bao gạo xuống gầm giường (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES the boy, warm LATE-AFTERNOON light, ignore the night lighting described "
+               "above. The SAME bedroom and bed as attached image 2 (no one in the bed): the boy of attached image 3 kneels on "
+               "the floor, pushing a fat white woven plastic rice sack, its neck tied tight with string, deep under the bed; "
+               "determined, tight-lipped face."),
+     "desc": "Vẽ sẵn chiều: Khoa quỳ đẩy bao gạo buộc chặt miệng vào gầm giường, mặt quyết tâm",
+     "tags": ["bao gạo", "gầm giường", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.46, "hotspots_needed": ["boy", "sack"]},
+    {"id": "bgL32b_rice_sack_pulled_out", "kind": "background", "refs": ["assets/backgrounds/bgL32_khoa_rice_sack_bed.png"],
+     "why": "P3: sáng ra bao gạo bị lôi ra, nút dây được cởi gọn",
+     "scene": ("IMPORTANT: pale gray DAWN light, ignore the night lighting described above. The SAME bedroom and bed as attached "
+               "image 2 but NO people: the white rice sack has been dragged out from under the bed into the middle of the "
+               "floor, its string untied and laid NEATLY in a straight line beside it, the neck open, a few grains of rice "
+               "spilled on the floor."),
+     "desc": "Rạng sáng: bao gạo bị lôi ra giữa sàn, sợi dây cởi ra đặt ngay ngắn bên cạnh, gạo vương",
+     "tags": ["bao gạo", "rạng sáng"], "floor_y": 0.95, "char_h": 0.46, "hotspots_needed": ["sack"]},
+    {"id": "bgL33_khoa_lock_cupboard", "kind": "background", "refs": ["assets/backgrounds/bg6d_kitchen_day.png", BOY_P3],
+     "why": "P3: Khoa cất nồi cơm vào tủ, khoá lại (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES the boy, warm LATE-AFTERNOON light, ignore the night lighting described "
+               "above. The SAME kitchen as attached image 2, and on the right an old tall wooden kitchen cupboard with two "
+               "doors: the boy of attached image 3 stands at it, side view, turning a small brass key in the cupboard lock; "
+               "through the narrow gap of the closing doors we glimpse the aluminium rice pot inside."),
+     "desc": "Vẽ sẵn chiều: Khoa vặn chìa khoá đồng khoá tủ gỗ, nồi cơm nhôm ở trong",
+     "tags": ["tủ bếp", "khoá", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.46, "hotspots_needed": ["boy", "cupboard"]},
+    {"id": "bgL33b_cupboard_open_empty", "kind": "background", "refs": ["assets/backgrounds/bgL33_khoa_lock_cupboard.png"],
+     "why": "P3: sáng ra cánh tủ mở toang, nồi không còn",
+     "scene": ("IMPORTANT: pale gray DAWN light, ignore the night lighting described above. The SAME kitchen and the SAME wooden "
+               "cupboard as attached image 2 but NO people: both cupboard doors are wide open, the shelf inside is EMPTY (the "
+               "rice pot is gone), the small brass key still hangs in the lock."),
+     "desc": "Rạng sáng: tủ bếp mở toang, ngăn trống trơn, chìa khoá còn cắm ổ",
+     "tags": ["tủ bếp", "rạng sáng"], "floor_y": 0.95, "char_h": 0.46, "hotspots_needed": ["cupboard"]},
+    {"id": "bgL34_kitchen_stove_warm_dawn", "kind": "background",
+     "refs": ["assets/backgrounds/bg6_kitchen.png", "assets/backgrounds/bgL33_khoa_lock_cupboard.png"],
+     "why": "P3: dưới bếp nồi cơm còn ấm, tro chưa nguội; Khoa (sprite W1) đứng ngửi tay",
+     "scene": ("IMPORTANT: pale gray DAWN light, ignore the night lighting described above. A corner of the SAME kitchen as "
+               "attached image 2: on the floor at the left a small old clay wood-fire stove with three clay supports, the SAME "
+               "aluminium rice pot as attached image 3 sitting on it with its lid slightly askew, gray ash with a few dying red "
+               "embers, a thin curl of smoke; a rice paddle lies beside it. The right half of the floor is empty. No people."),
+     "desc": "Góc bếp rạng sáng: bếp củi đất, nồi cơm nhôm còn ấm, tro còn vài đốm đỏ, khói mỏng; nửa phải trống",
+     "tags": ["bếp củi", "nồi cơm", "rạng sáng"], "floor_y": 0.95, "char_h": 0.46, "hotspots_needed": ["stove", "open_floor"]},
+    {"id": "bgL35_khoa_watch_mat_altar", "kind": "background",
+     "refs": ["assets/backgrounds/bgL9m_main_room_altar_three.png", BOY_P3],
+     "why": "P3: Khoa ngồi canh trên chiếu trước bàn thờ cả đêm (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES the boy. The SAME room as attached image 2 at night, only a small oil lamp "
+               "glowing on the altar shelf in front of the portraits, TWO rice bowls on the shelf: on a straw mat spread on the "
+               "floor right in front of the altar the boy of attached image 3 sits hugging his knees, a thin blanket over his "
+               "shoulders, a flashlight clutched in one hand, eyes wide open, staring at the altar, side view."),
+     "desc": "Vẽ sẵn đêm: Khoa ngồi bó gối trên chiếu trước bàn thờ, chăn mỏng khoác vai, tay nắm đèn pin, mắt mở trừng",
+     "tags": ["canh đêm", "chiếu", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.46, "hotspots_needed": ["boy", "altar_shelf"]},
+    {"id": "bgL35c_khoa_mat_dawn_key", "kind": "background", "refs": ["assets/backgrounds/bgL35_khoa_watch_mat_altar.png"],
+     "why": "P3: rạng sáng, Khoa vẫn ngồi trên chiếu, chăn tuột, tay cầm chìa khoá tủ, trên bàn thờ ba bát cơm",
+     "scene": ("IMPORTANT: this background INCLUDES the boy, pale gray DAWN light, ignore the night lighting described above. "
+               "The SAME room, mat and boy as attached image 2, the oil lamp burned out: the blanket has slipped off his "
+               "shoulders onto the mat, his flashlight lies on the floor, and in his open hand he holds a small brass "
+               "cupboard key, staring at it in confusion; on the altar shelf there are now THREE rice bowls."),
+     "desc": "Vẽ sẵn rạng sáng: Khoa ngồi trên chiếu, chăn tuột, tay cầm chìa khoá tủ ngơ ngác; trên kệ ba bát cơm",
+     "tags": ["rạng sáng", "chìa khoá", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.46, "hotspots_needed": ["boy", "key"]},
+    {"id": "bgL36_grandma_doorway_stare", "kind": "background", "refs": [ALTAR3_DAY, GMA_REF],
+     "why": "P3: bà đứng ở cửa buồng từ bao giờ, tay vịn khung cửa, nhìn bát cơm thứ ba (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES one person, cold gray morning light, ignore the night lighting described "
+               "above. A side-room doorway opening onto the room of attached image 2: the small grandmother of attached image 3, "
+               "thin, pale and ill, stands in the doorway, one hand gripping the door frame, staring fixedly off to the left "
+               "(at the altar) with a still, hollow face, no tears."),
+     "desc": "Vẽ sẵn sáng xám: bà đứng ở cửa buồng, tay vịn khung cửa, nhìn trân trân về phía bàn thờ",
+     "tags": ["cửa buồng", "bà", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.5, "hotspots_needed": ["grandma"]},
+    {"id": "bgL37_khoa_kneel_confess", "kind": "background", "refs": [ALTAR3_DAY, BOY_P3, GMA_REF, TALISMAN_REF],
+     "why": "P3: Khoa quỳ sụp trước mặt bà, giơ lá bùa nhàu, vừa khóc vừa kể (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES two people, cold gray morning light, ignore the night lighting described "
+               "above. In the room of attached image 2, in front of the altar: the boy of attached image 3 kneels on the floor "
+               "tiles, sobbing, holding up in both trembling hands the crumpled yellow talisman of attached image 5; the small "
+               "grandmother of attached image 4 stands before him looking down at him. Draw each person only once."),
+     "desc": "Vẽ sẵn: Khoa quỳ khóc giơ lá bùa nhàu trước mặt bà đang đứng nhìn xuống",
+     "tags": ["thú nhận", "lá bùa", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.5, "hotspots_needed": ["boy", "grandma"]},
+    {"id": "bgL37b_khoa_bow_floor", "kind": "background", "refs": ["assets/backgrounds/bgL37_khoa_kneel_confess.png"],
+     "why": "P3: kể xong, Khoa cúi gục đầu xuống nền gạch chờ bà mắng",
+     "scene": ("IMPORTANT: this background INCLUDES two people. The SAME room, light and grandmother as attached image 2, but "
+               "the boy now bows all the way down, forehead pressed to the cold floor tiles, the crumpled talisman on the floor "
+               "by his hands, shoulders shaking; the grandmother still stands, her hand half raised toward him."),
+     "desc": "Vẽ sẵn: Khoa cúi rạp trán xuống nền gạch, lá bùa dưới đất; bà đứng, tay hơi đưa ra",
+     "tags": ["thú nhận", "cúi đầu", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.5, "hotspots_needed": ["boy", "grandma"]},
+    {"id": "bgL38_grandma_sit_talisman_khoa", "kind": "background",
+     "refs": ["assets/backgrounds/bgL37_khoa_kneel_confess.png", TALISMAN_REF],
+     "why": "P3: bà ngồi xuống cạnh Khoa, cầm lá bùa nhàu, kể bí mật của ông (cảnh nền cho cả đoạn bà kể)",
+     "scene": ("IMPORTANT: this background INCLUDES two people. The SAME room and light as attached image 2: the grandmother "
+               "now sits on the floor beside the boy, both facing the viewer at a slight angle, she holds the crumpled yellow "
+               "talisman of attached image 3 in her lap with both hands, looking down at it, speaking quietly; the boy sits "
+               "close against her side, tear-stained face, looking up at her. Draw each person only once."),
+     "desc": "Vẽ sẵn: bà ngồi bệt cạnh Khoa, cầm lá bùa nhàu trong lòng, kể chuyện; Khoa nép vào bà ngước nhìn",
+     "tags": ["bà kể", "lá bùa", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.5, "hotspots_needed": ["grandma", "boy"]},
+    {"id": "bgL39_pagoda_boy_sepia", "kind": "background", "refs": ["assets/backgrounds/bgL6_old_village_altar_sepia.png"],
+     "why": "P3 hồi ức: đứa cháu nhỏ được bà nội gửi lên chùa — chính là ông",
+     "scene": ("IMPORTANT: a faded old MEMORY image in brownish sepia tones exactly like attached image 2, ignore the blue night "
+               "lighting described above. The old stone gate of a small village pagoda under a big banyan tree: an old village "
+               "woman in dark clothes leads a small six-year-old boy with a shaved head by the hand toward the gate, where a "
+               "monk in a brown robe waits; the little boy looks back over his shoulder, small bundle in his arms."),
+     "desc": "Hồi ức sepia: bà cụ dắt cậu bé đầu cạo trọc tới cổng chùa, sư đứng đợi, cậu bé ngoái lại",
+     "tags": ["hồi ức", "chùa", "sepia"], "floor_y": 0.95, "char_h": 0.4, "hotspots_needed": ["boy"]},
+    {"id": "bgL40_young_couple_sepia", "kind": "background",
+     "refs": ["assets/backgrounds/bgL6_old_village_altar_sepia.png", ONG_BASE, GMA_REF],
+     "why": "P3 hồi ức: ông về làng lấy bà; lời hứa; tiếng cười của bà như cô gái trẻ",
+     "scene": ("IMPORTANT: a faded old MEMORY image in brownish sepia tones like attached image 2, ignore the blue night lighting "
+               "described above. On the porch of an old wooden village house: a thin young man of about twenty (clearly the "
+               "YOUNG version of the grandfather of attached image 3, swept-back black hair, gentle face) and a young village "
+               "woman of about eighteen (the YOUNG version of the grandmother of attached image 4, long black braid, simple dark "
+               "blouse) sit side by side; she laughs shyly behind her hand, he looks at her tenderly but with a shadow of worry."),
+     "desc": "Hồi ức sepia: ông bà thời trẻ ngồi cạnh nhau trên hiên nhà gỗ, bà cười e thẹn, ông nhìn bà thương mà lo",
+     "tags": ["hồi ức", "ông bà trẻ", "sepia"], "floor_y": 0.95, "char_h": 0.46, "hotspots_needed": ["couple"]},
+    {"id": "bgL41_grandma_gate_night", "kind": "background",
+     "refs": ["assets/backgrounds/bg7_front_yard.png", GMA_REF, "assets/characters/props/LB3_chopsticks_named.png"],
+     "why": "P3 hồi ức: bà lén cầm hai đôi đũa ra tới cổng rồi không dám đi tiếp (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES one person. The SAME front yard and rusty folding iron gate as attached "
+               "image 2 at night: the grandmother of attached image 3 stands at the half-open gate, back three-quarters to us, "
+               "clutching TWO pairs of carved chopsticks like attached image 4 against her chest, staring out at a pitch-black "
+               "empty road beyond the gate, frozen with fear."),
+     "desc": "Vẽ sẵn đêm: bà đứng ở cổng sắt hé mở, ôm hai đôi đũa trước ngực, nhìn ra con đường tối om, sợ hãi",
+     "tags": ["cổng", "bà", "hồi ức", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.46, "hotspots_needed": ["grandma", "road"]},
+    {"id": "bgL42_grandma_hug_khoa_dawn", "kind": "background",
+     "refs": ["assets/backgrounds/bgL38_grandma_sit_talisman_khoa.png", "assets/backgrounds/bgL21b_altar_three.png"],
+     "why": "P3: hai bà cháu ôm nhau khóc trước ba bát cơm đến khi nắng lên đầy sân (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES two people, warm golden MORNING sunbeams flooding in through the door, ignore "
+               "the night lighting described above. The SAME room and the SAME two people as attached image 2: the grandmother "
+               "and the boy sit on the floor hugging each other tightly, crying, in front of the altar; on the altar, like "
+               "attached image 3, THREE rice bowls with chopsticks standing upright before the portraits."),
+     "desc": "Vẽ sẵn: nắng sớm tràn vào, hai bà cháu ngồi ôm nhau khóc trước bàn thờ có ba bát cơm",
+     "tags": ["bà cháu", "ôm", "nắng sớm", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.5, "hotspots_needed": ["hug"]},
+    {"id": "bgL44_grandma_teach_incense", "kind": "background",
+     "refs": ["assets/backgrounds/bgL21b_altar_three.png", GMA_REF, BOY_P3],
+     "why": "P3: bà dạy Khoa thắp nhang (hai người, tay bà đỡ tay cháu) — vẽ sẵn",
+     "scene": ("IMPORTANT: this background INCLUDES two people, soft gray daylight, ignore the night lighting described above. "
+               "In front of the SAME altar as attached image 2 (with its rice bowls): the boy of attached image 4 stands holding "
+               "three lit incense sticks in both hands, and the grandmother of attached image 3 stands close behind him, her "
+               "hands over his hands, guiding them to plant the sticks straight in the incense bowl, smiling softly."),
+     "desc": "Vẽ sẵn: bà đứng sau Khoa, tay bà đỡ tay cháu cắm ba nén nhang thẳng hàng vào bát hương",
+     "tags": ["thắp nhang", "bà cháu", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.5, "hotspots_needed": ["incense"]},
+    {"id": "bgL46_grandma_knit_window", "kind": "background",
+     "refs": ["assets/backgrounds/bgL7_mom_room_day.png", GMA_REF, SWEATER_REF,
+              "assets/characters/props/LH9_sewing_machine_covered.png"],
+     "why": "P3: bà ngồi bên cửa sổ đan nốt cổ áo len mẹ để lại, cạnh máy khâu phủ khăn (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES one person, warm golden LATE-AFTERNOON sunlight through the window, ignore "
+               "the night lighting described above. The SAME sewing room as attached image 2: the grandmother of attached image 3 "
+               "sits on a low stool by the window knitting the collar of the dark-red sweater of attached image 4 on her lap, "
+               "stitch by stitch, glasses low on her nose; beside her the covered sewing machine of attached image 5."),
+     "desc": "Vẽ sẵn chiều nắng: bà ngồi bên cửa sổ đan nốt cổ áo len đỏ, bên cạnh máy khâu phủ khăn",
+     "tags": ["đan len", "áo len", "vẽ sẵn"], "floor_y": 0.93, "char_h": 0.5, "hotspots_needed": ["grandma", "sweater"]},
+    {"id": "bgL47_grandma_sweater_on_khoa", "kind": "background",
+     "refs": ["assets/backgrounds/bgL46_grandma_knit_window.png", BOY_P3, SWEATER_REF],
+     "why": "P3: bà khoác chiếc áo len vừa đan xong lên vai Khoa, kéo cổ áo, cười (vẽ sẵn — bản gốc áo len cho các cảnh sau)",
+     "scene": ("IMPORTANT: this background INCLUDES two people, the SAME warm late-afternoon room as attached image 2. The boy of "
+               "attached image 3 now WEARS " + SWEATER_DONE + " (attached image 4) over his clothes, the green hood hidden; the "
+               "grandmother stands in front of him straightening the new collar with both hands, then admiring him with a "
+               "warm smile; the boy looks puzzled."),
+     "desc": "Vẽ sẵn: Khoa mặc áo len đỏ đã có cổ, bà chỉnh cổ áo rồi ngắm, cười; Khoa ngơ ngác",
+     "tags": ["áo len", "bà cháu", "vẽ sẵn"], "floor_y": 0.93, "char_h": 0.5, "hotspots_needed": ["boy", "grandma"]},
+    {"id": "bgL48_dinner_grandma_watch", "kind": "background",
+     "refs": ["assets/backgrounds/bgL9m_main_room_altar_three.png", GMA_REF, SWEATER_KHOA],
+     "why": "P3: bữa tối cuối — bà mặc áo bà ba đẹp nhất, cài trâm bạc, ngồi nhìn Khoa ăn, không động đũa (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES two people, warm yellow evening lamp light. In the SAME room as attached "
+               "image 2, at the low dining table: the boy of attached image 4, wearing the finished dark-red sweater exactly as "
+               "in attached image 4, eats from a full bowl of rice with a piece of fried fish on top; the grandmother of attached "
+               "image 3 sits across from him, " + GMA_BEST + "; her hands rest in her lap, her own bowl and chopsticks "
+               "untouched, she just watches him eat with a soft smile. A small electric fan on the floor."),
+     "desc": "Vẽ sẵn tối: Khoa (áo len đỏ) ăn cơm có miếng cá; bà (áo bà ba tím mận, trâm bạc) ngồi nhìn, bát đũa của bà để nguyên",
+     "tags": ["bữa tối", "trâm bạc", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.46, "hotspots_needed": ["boy", "grandma"]},
+    {"id": "bgL49_alley_night_two", "kind": "background",
+     "refs": ["assets/backgrounds/bgL8_house_alley_dusk.png", BEST_GMA],
+     "why": "P3: gần nửa đêm, hai bà cháu nắm tay đi ra con hẻm tối, vệt đèn pin nhỏ (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES two small people. The SAME alley as attached image 2 but at moonless NIGHT, "
+               "almost pitch black: seen from behind, the small grandmother and the boy dressed exactly as in attached image 3 "
+               "walk away down the alley hand in hand, the boy's flashlight throwing one tiny trembling beam on the ground."),
+     "desc": "Vẽ sẵn đêm không trăng: hai bà cháu (nhìn từ sau) nắm tay đi trong hẻm tối, vệt đèn pin nhỏ",
+     "tags": ["hẻm", "đêm", "bà cháu", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.3, "hotspots_needed": ["two"]},
+    {"id": "bgL50_field_two_walk_night", "kind": "background",
+     "refs": ["assets/backgrounds/bgL18_field_path_night.png", BEST_GMA],
+     "why": "P3: hai bà cháu đi qua cánh đồng gặt trơ gốc rạ, đom đóm (vẽ sẵn, góc rộng)",
+     "scene": ("IMPORTANT: this background INCLUDES two small people. The SAME field path as attached image 2 at night, harvested "
+               "rice stubble, fireflies glowing over the grass banks: wide shot, the small grandmother and the boy dressed "
+               "exactly as in attached image 3 walk along the path hand in hand, side view toward the right, the boy's tiny "
+               "flashlight beam ahead of them; the dry kapok tree far on the right."),
+     "desc": "Vẽ sẵn đêm (góc rộng): hai bà cháu nắm tay đi trên bờ ruộng gốc rạ, đom đóm, đèn pin nhỏ",
+     "tags": ["cánh đồng", "đom đóm", "vẽ sẵn"], "floor_y": 0.9, "char_h": 0.2, "hotspots_needed": ["two"]},
+    {"id": "bgL51_two_graves_night_hole", "kind": "background",
+     "refs": ["assets/backgrounds/bgL17c_two_graves_small_hole.png", "assets/backgrounds/bgL17_cemetery_night_grave.png"],
+     "why": "P3: đêm, mộ ông (se mặt, lỗ nhỏ ở đầu) cạnh mộ mẹ (đất mới) — nền cho mọi cảnh ở mộ",
+     "scene": ("Redraw attached image 2 EXACTLY (same framing): TWO red-earth graves lying SIDE BY SIDE, each with its own small "
+               "headstone — on the LEFT the grandfather's older grave, its earth settled and dry, with a SMALL hand-dug hollow at "
+               "its head; on the RIGHT the mother's NEW grave, a fresh higher mound of red earth — and the dry kapok tree. Only "
+               "change the time: NIGHT, with the darkness, thin mist and lighting of attached image 3. Do NOT add other tombs. "
+               "No people."),
+     "desc": "Đêm: hai mộ cạnh nhau (mộ ông có lỗ nhỏ ở đầu, mộ mẹ đất mới), cây gạo khô, sương mỏng",
+     "tags": ["nghĩa địa", "hai mộ", "đêm"], "floor_y": 0.95, "char_h": 0.42,
+     "hotspots_needed": ["hole", "behind_headstone", "crow_branch"]},
+    {"id": "bgL52_grandma_hand_mom_grave", "kind": "background", "refs": [GRAVES_NIGHT, BEST_GMA],
+     "why": "P3: bà đặt tay lên mộ mẹ thì thầm xin lỗi, Khoa đứng sau cầm đèn pin (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES two people. The SAME night graves as attached image 2 (the grandfather's "
+               "older grave on the LEFT, the mother's NEW higher mound of fresh red earth on the RIGHT): the grandmother, dressed "
+               "exactly as in attached image 3, kneels on the GROUND in front of the RIGHT (new) grave, her palm laid flat on its "
+               "fresh red earth, head bowed, whispering. The boy in the dark-red sweater stands on the GROUND a step behind her, "
+               "NOT on any grave, holding a flashlight that lights her. Nobody stands or kneels on top of a grave mound. Draw "
+               "each person only once."),
+     "desc": "Vẽ sẵn đêm: bà quỳ đặt bàn tay lên nấm đất mới của mộ mẹ thì thầm; Khoa (áo len) đứng sau soi đèn",
+     "tags": ["mộ mẹ", "xin lỗi", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.42, "hotspots_needed": ["grandma"]},
+    {"id": "bgL53_grandma_dig_bury", "kind": "background",
+     "refs": [GRAVES_NIGHT, BEST_GMA, TALISMAN_REF, KHOA_CHOP_REF],
+     "why": "P3: bà quỳ bới rộng lỗ ở đầu mộ ông bằng tay không, lá bùa và đũa của Khoa đặt cạnh (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES two people. The SAME night graves as attached image 2: the grandmother, dressed "
+               "exactly as in attached image 3, kneels at the HEAD of the grandfather's grave and widens the small hole with her "
+               "bare hands, red earth on her fingers; beside the hole lie the folded yellow talisman of attached image 4 and the "
+               "carved chopsticks of attached image 5; the boy in the dark-red sweater stands close, shining his flashlight on "
+               "the hole. Draw each person only once."),
+     "desc": "Vẽ sẵn đêm: bà quỳ bới lỗ ở đầu mộ ông bằng tay, lá bùa và đũa KHOA cạnh lỗ; Khoa soi đèn",
+     "tags": ["đổi đũa", "bới đất", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.42, "hotspots_needed": ["grandma", "hole"]},
+    {"id": "bgL53b_grandma_pat_earth", "kind": "background", "refs": ["assets/backgrounds/bgL53_grandma_dig_bury.png"],
+     "why": "P3: bà lấp đất, vỗ nhẹ như vỗ về đứa trẻ; đôi đũa của bà nằm trên nấm đất",
+     "scene": ("IMPORTANT: this background INCLUDES two people. Same place, night lighting, grandmother (plum-purple blouse, "
+               "silver hairpin) and boy (dark-red sweater, flashlight) as attached image 2, but the digging is FINISHED. "
+               "CHANGE these things: 1) there is NO open hole anywhere — where she dug there is now a small smooth DOME of "
+               "freshly patted red earth, and the old hollow at the head of the left grave is filled and smooth too; 2) on "
+               "top of that small dome lies ONE pair of bamboo chopsticks, side by side, clearly visible and lit by the "
+               "flashlight; 3) the grandmother kneels upright, calm, her open palm resting gently flat on the dome as if "
+               "soothing a child, NOT digging, hands clean of the hole; 4) no yellow paper and no other chopsticks on the "
+               "ground."),
+     "desc": "Vẽ sẵn đêm: hố đã lấp, bà quỳ vỗ nhẹ nấm đất, đôi đũa của bà nằm ngay ngắn trên đó; Khoa đứng soi đèn",
+     "tags": ["đổi đũa", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.42, "hotspots_needed": ["grandma", "mound"]},
+    {"id": "bgL54_chopsticks_on_mound", "kind": "background", "refs": ["assets/backgrounds/bgL53b_grandma_pat_earth.png"],
+     "why": "P3: cận — bàn tay bà đặt đôi đũa khắc tên mình lên nấm đất vừa lấp",
+     "scene": ("CLOSE-UP at night in the beam of a flashlight: a small mound of freshly patted red earth at the head of a grave "
+               "(as in attached image 2), and a thin wrinkled old hand in a plum-purple silk sleeve laying a pair of carved "
+               "bamboo chopsticks neatly side by side on top of it."),
+     "desc": "Cận đêm: bàn tay bà (tay áo lụa tím) đặt đôi đũa khắc tên lên nấm đất đỏ vừa lấp, ánh đèn pin",
+     "tags": ["đũa bà", "cận", "đổi đũa"], "floor_y": 0.95, "char_h": 0.4, "hotspots_needed": ["chopsticks"]},
+    {"id": "bgL55_ghost_behind_headstone", "kind": "background",
+     "refs": ["assets/backgrounds/bgL53b_grandma_pat_earth.png", GHOST_ONG_REF],
+     "why": "P3: đèn pin sáng lại — bóng ông đứng sau bia mộ; bà quỳ không quay lại (vẽ sẵn để bóng ông đúng chỗ)",
+     "scene": ("IMPORTANT: this background INCLUDES three figures. The SAME night scene, kneeling grandmother, boy and chopsticks on "
+               "the mound as attached image 2, colder and darker, and right BEHIND the grandfather's small headstone stands the "
+               "ghostly grandfather of attached image 3: thin, slightly hunched back, arms hanging limp, grayish skin, eyes lost "
+               "in shadow, half veiled by mist. The grandmother does NOT turn around; she grips the boy's hand."),
+     "desc": "Vẽ sẵn đêm: bóng ông đứng sau bia mộ trong sương; bà quỳ không quay lại, nắm chặt tay Khoa",
+     "tags": ["bóng ông", "nghĩa địa", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.42, "hotspots_needed": ["ghost", "grandma"]},
+    {"id": "bgL56_khoa_walk_away_field", "kind": "background",
+     "refs": ["assets/backgrounds/bgL18_field_path_night.png", SWEATER_KHOA],
+     "why": "P3: Khoa một mình đi về qua cánh đồng tối, không ngoảnh lại (vẽ sẵn, góc rộng)",
+     "scene": ("IMPORTANT: this background INCLUDES the boy, small in the frame. The SAME field path as attached image 2 at "
+               "moonless night: the boy in the dark-red sweater of attached image 3 walks ALONE toward the viewer along the path, "
+               "head down, tears on his cheeks, a tiny flashlight beam at his feet; far behind him, small in the mist, the "
+               "cemetery and the dry kapok tree."),
+     "desc": "Vẽ sẵn đêm (góc rộng): Khoa (áo len) đi một mình về phía người xem, cúi đầu khóc, xa sau lưng là nghĩa địa",
+     "tags": ["cánh đồng", "không ngoảnh lại", "vẽ sẵn"], "floor_y": 0.9, "char_h": 0.3, "hotspots_needed": ["boy", "cemetery"]},
+    {"id": "bgL58_grandma_dead_grave_morning", "kind": "background",
+     "refs": ["assets/backgrounds/bgL17c_two_graves_small_hole.png", BEST_GMA],
+     "why": "P3: sáng hôm sau, bà ngồi tựa vào mộ ông như đang ngủ, trâm bạc vẫn cài, tay đặt trên nấm đất (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES one person, pale misty gray DAWN, ignore the night lighting described above. "
+               "The SAME two graves and kapok tree as attached image 2, the hole at the head of the grandfather's grave now filled "
+               "with a small patted mound of red earth with NOTHING on top of it: the grandmother, dressed exactly as in attached "
+               "image 3 (plum-purple silk blouse, silver hairpin in her bun), sits on the ground leaning against the "
+               "grandfather's grave, head tilted gently as if asleep, eyes closed, peaceful, one hand resting on the mound."),
+     "desc": "Vẽ sẵn rạng sáng: bà ngồi tựa mộ ông, đầu nghiêng như ngủ, trâm bạc, một tay đặt trên nấm đất trống",
+     "tags": ["bà mất", "nghĩa địa", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.42, "hotspots_needed": ["grandma", "mound"]},
+    {"id": "bgL59_khoa_cry_altar", "kind": "background", "refs": [ALTAR3_DAY, SWEATER_KHOA],
+     "why": "P3: Khoa ngồi sụp trước bàn thờ, ôm chặt áo len, khóc (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES the boy, cold gray morning light, ignore the night lighting described above. "
+               "The SAME room as attached image 2, incense smoke, THREE rice bowls with chopsticks standing upright on the altar "
+               "shelf: the boy in the dark-red sweater of attached image 3 has collapsed sitting on the floor in front of the "
+               "altar, hugging himself tightly in the sweater, head bowed, sobbing."),
+     "desc": "Vẽ sẵn sáng xám: Khoa (áo len) ngồi sụp trước bàn thờ ba bát cơm, ôm chặt mình, khóc nấc",
+     "tags": ["khóc", "áo len", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.46, "hotspots_needed": ["boy"]},
+    {"id": "bgL60_wake_coffin_grandma", "kind": "background",
+     "refs": ["assets/backgrounds/bgL2c_wake_coffin_closed.png", GMA_PORTRAIT_BG],
+     "why": "P3: tang bà — cùng gian thờ đám tang, di ảnh bà",
+     "scene": ("IMPORTANT: soft gray DAYTIME, ignore the night lighting described above. The SAME funeral room as attached image 2, "
+               "same layout (closed coffin covered with a red-and-gold cloth, candles, paper wreaths, mat in front), but the "
+               "framed portrait on the altar is the old woman of the THIRD portrait in attached image 3, with a black ribbon. "
+               "Empty mat in front. No people."),
+     "desc": "Gian thờ đám tang bà (cùng bố cục bgL2c) ban ngày: quan tài đã đóng, di ảnh bà",
+     "tags": ["đám tang", "bà"], "floor_y": 0.95, "char_h": 0.42, "hotspots_needed": ["altar", "mat"]},
+    {"id": "bgL61_khoa_porch_cat_lap", "kind": "background",
+     "refs": ["assets/backgrounds/bgL1_porch_day.png", BOY_P3, "assets/characters/cat_tabby/A1_stand_look.png"],
+     "why": "P3: những ngày bình yên — mèo mướp nằm cuộn trong lòng Khoa ngoài hiên (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES the boy and a cat, warm afternoon sun, as in attached image 2. The boy of "
+               "attached image 3 sits on the porch step, and the tabby cat of attached image 4 lies curled up asleep in his lap; "
+               "he strokes it with a small, tired, real smile."),
+     "desc": "Vẽ sẵn chiều nắng: Khoa ngồi bậc hiên, mèo mướp cuộn tròn ngủ trong lòng, Khoa mỉm cười",
+     "tags": ["mèo mướp", "bình yên", "vẽ sẵn"], "floor_y": 0.93, "char_h": 0.46, "hotspots_needed": ["boy"]},
+    {"id": "bgL62_dinner_co_ut_khoa", "kind": "background",
+     "refs": ["assets/backgrounds/bgL9m_main_room_altar_three.png", UT_BASE, BOY_P3,
+              "assets/characters/props/LB6_chopstick_holder.png"],
+     "why": "P3: cô Út dọn mâm, cầm ống đũa hỏi sao đũa nào cũng khắc tên (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES two people, warm yellow evening lamp light. The SAME room as attached image 2, "
+               "at the low dining table with a simple dinner tray: the aunt of attached image 3 sits holding up the bamboo "
+               "chopstick holder of attached image 5, looking at the carved names with a curious smile; the boy of attached "
+               "image 4 sits across from her, talking."),
+     "desc": "Vẽ sẵn tối: cô Út ngồi mâm cơm cầm ống đũa tò mò ngắm tên khắc, Khoa ngồi đối diện kể chuyện",
+     "tags": ["cô Út", "ống đũa", "vẽ sẵn"], "floor_y": 0.95, "char_h": 0.46, "hotspots_needed": ["co_ut", "boy"]},
+    {"id": "bgL63_khoa_porch_sweater_dusk", "kind": "background",
+     "refs": ["assets/backgrounds/bgL1_porch_day.png", SWEATER_KHOA],
+     "why": "P3: tối tối Khoa mặc áo len ngồi ngoài hiên nhìn cây bưởi (vẽ sẵn)",
+     "scene": ("IMPORTANT: this background INCLUDES the boy, DUSK, deep orange sky fading to blue, ignore the night lighting "
+               "described above. The SAME porch and pomelo tree as attached image 2: the boy in the dark-red sweater of attached "
+               "image 3 sits alone on the porch step, side view, hugging his knees, looking at the pomelo tree, calm and a "
+               "little sad."),
+     "desc": "Vẽ sẵn chạng vạng: Khoa (áo len) ngồi một mình bậc hiên nhìn cây bưởi",
+     "tags": ["hiên", "cây bưởi", "áo len", "vẽ sẵn"], "floor_y": 0.93, "char_h": 0.46, "hotspots_needed": ["boy"]},
+
+    # ---------------------------------------------------- âm thanh
+    {"id": "rice_pour_sack", "kind": "sound", "sound_kind": "sfx", "desc": "Đổ gạo vào bao, hạt gạo chảy rào rào",
+     "prompt": "Uncooked rice being poured from a container into a woven plastic sack, steady rushing grains",
+     "search": "pouring rice sack", "length": "~4s", "tags": ["gạo"], "volume": 0.7},
+    {"id": "boy_sob_soft", "kind": "sound", "sound_kind": "sfx", "desc": "Cậu bé nấc khẽ, nén tiếng khóc",
+     "prompt": "A young boy quietly sobbing and hiccuping, trying to hold back tears, close and soft",
+     "search": "child crying softly sobbing", "length": "~6s", "tags": ["khóc", "nấc"], "volume": 0.6},
+    {"id": "murmur_far", "kind": "sound", "sound_kind": "sfx", "desc": "Giọng một bà cụ nói khẽ rất xa, không rõ lời",
+     "prompt": "An old woman talking softly and warmly far away in the open night, words not intelligible, gentle wind",
+     "search": "distant old woman talking softly", "length": "~8s", "tags": ["giọng xa"], "volume": 0.4},
+    {"id": "laugh_soft_far", "kind": "sound", "sound_kind": "sfx", "desc": "Tiếng cười nhẹ tênh, trong trẻo như cô gái trẻ, vọng xa",
+     "prompt": "A soft light carefree laugh of a young woman, distant, echoing gently over open fields at night",
+     "search": "young woman soft laugh distant", "length": "~3s", "tags": ["tiếng cười"], "volume": 0.5},
+    {"id": "cat_purr", "kind": "sound", "sound_kind": "sfx", "desc": "Mèo kêu rừ rừ đều, lặp được",
+     "prompt": "A cat purring contentedly, close, steady", "search": "cat purring", "length": "~8s", "tags": ["mèo"],
+     "volume": 0.6},
+    {"id": "fan_hum", "kind": "sound", "sound_kind": "sfx", "desc": "Quạt máy cũ quay vù vù đều, lặp được",
+     "prompt": "An old electric floor fan humming and whirring steadily in a quiet room", "search": "electric fan hum",
+     "length": "~10s", "tags": ["quạt máy"], "volume": 0.4},
+]
+
+
 # ============================================================ BỘ DỰNG CẢNH
 S = []
 
@@ -1541,10 +2014,11 @@ def walk(char, x, fps=2.5, end=None, cyc="walk", **kw):
     return d
 
 
-def beat(par, *shots):
-    """Một đoạn văn → các cảnh: mỗi phần lời (tách theo câu) dùng một shot (dict tham số scene), thiếu thì lặp shot cuối."""
+def beat(par, *shots, limit=45):
+    """Một đoạn văn → các cảnh: mỗi phần lời (tách theo câu) dùng một shot (dict tham số scene), thiếu thì lặp shot cuối.
+    `limit` nhỏ hơn → tách đoạn thành nhiều cảnh hơn (vẫn chỉ cắt ở ranh giới câu)."""
     first = None
-    for k, txt in enumerate(chunks(par)):
+    for k, txt in enumerate(chunks(par, limit)):
         sh = dict(shots[min(k, len(shots) - 1)])
         bg = sh.pop("bg")
         sid = scene(bg, txt, **sh)
@@ -2249,8 +2723,401 @@ def part2():
     )
 
 
+# ============================================================ PHẦN 3 — NGƯỜI THỨ BA
+A3D = "bgL9md_main_room_altar_three_day"         # gian thờ ban ngày (ông, bố, mẹ)
+SHELF3 = dict(y=0.362, h=0.075)                  # bgL9md: bát trên kệ thờ (đo trên phông: mặt kệ y 0.36; ông x 0.297, mẹ 0.333)
+ALT3 = dict(y=0.545, h=0.15)                     # bgL21b: mặt bàn thờ (bát ông x 0.8, bát mẹ x 0.68)
+FOUR_X = (0.33, 0.44, 0.565, 0.67)               # bgL10b: trước di ảnh ông, mẹ, bà, khung phủ vải đen
+
+
+def part3():
+    P = paragraphs("## Phần 3", "## Ghi chú sản xuất")
+    assert len(P) == 89, f"md Phần 3 đổi số đoạn ({len(P)}) — rà lại chỉ số đoạn bên dưới"
+    global LONG_SENTENCE
+    LONG_SENTENCE = 40
+    BOWL = "props/LF1_bowl_chopsticks_upright"
+    ALTAR2 = [L(BOWL, 0.8, **ALT3), L(BOWL, 0.68, **ALT3)]                     # bgL21b: bát ông + bát mẹ
+    THIRD = dict(x=0.74, y=0.565, h=0.15)                                     # bát thứ ba, sát bát mẹ
+    ALTAR3 = ALTAR2 + [L(BOWL, **THIRD)]
+    SHELF_2 = [day(L(BOWL, x, **SHELF3)) for x in (0.297, 0.333)]
+    SHELF_3 = SHELF_2 + [day(L(BOWL, 0.37, **SHELF3))]
+    FOUR = lambda n: [L(BOWL, x, 0.625, h=0.14) for x in FOUR_X[:n]]
+    CLOSE = lambda sprite, h=0.6, y=0.85, **kw: L(sprite, 0.5, y, h=h, tint=False, **kw)   # cận đồ vật trên nền đen
+    STILL = cam((0, 1.0, 0.5, 0.5), (1, 1.15, 0.5, 0.5, "smooth"))
+
+    # ---- mở đầu phần 3
+    silent("black", 4.0, title_text="LÁ BÙA DƯỚI GỐI ÔNG", fade_in=0.8, fade_out=0.8,
+           sounds=[sfx("rice_ladle_scoop", 0.4, 0.6), sfx("crow_caw", 2.4, 0.5)])
+    silent("black", 3.0, title_text="Phần 3 — Người thứ ba", fade_in=0.5, fade_out=0.8, sounds=[CLOCK(3, 0.4)])
+
+    # ---- bà yếu dần, con quạ
+    a_open = beat(P[0], V("bg1_bedroom", [L("boy_hoodie/L5_peek_from_blanket", 0.7, h=0.42, jitter=1)],
+                          cam((0, 1.2, 0.65, 0.6), (1, 1.5, 0.7, 0.6, "smooth")),
+                          [sfx("rice_ladle_scoop", 0, 0.45, True, 8, 0, 3.0), sfx("rooster_crow", 0.85, 0.3)],
+                          bg_dim=0.2, fade_in=0.8))
+    beat(P[1], V("bgL21b_altar_three", [day(b) for b in ALTAR2], cam((0, 1.3, 0.72, 0.45), (1, 1.6, 0.74, 0.47, "smooth")),
+                 [CLOCK(12, 0.25), sfx("rooster_crow", 0.1, 0.2)]))
+    beat(P[2],
+         V(A3D, SHELF_2 + [day(L("grandma/F3_cough_hunched", 0.3))], cam((0, 1.2, 0.35, 0.6), (1, 1.3, 0.32, 0.6)),
+           [sfx("cough_old", 0.1, 0.8)]),
+         V(A3D, SHELF_2 + [day(L("grandma/O1_lean_wall_panting", 0.15))], cam((0, 1.3, 0.2, 0.62), (1, 1.5, 0.17, 0.62, "smooth")),
+           [sfx("old_man_breath", 0, 0.2, True, 10), CLOCK(10, 0.2)]),
+         V("bgL23_house_roof_dusk", [L("props/LD1_crow_perched", 0.525, 0.08, h=0.06)],
+           cam((0, 1.15, 0.5, 0.5), (1, 1.6, 0.52, 0.3, "smooth")), [INSECTS(10, 0.2), sfx("crow_caw", 0.6, 0.4)]), limit=22)
+    beat(P[3],
+         V(A3D, SHELF_2 + [day(L("grandma/N6_phone_forced_smile", 0.45))], cam((0, 1.2, 0.45, 0.6), (1, 1.35, 0.45, 0.56)),
+           [sfx("cough_old", 0.4, 0.6)]),
+         V(A3D, SHELF_2 + [day(L("grandma/N6_phone_forced_smile", 0.45))], cam((0, 1.4, 0.45, 0.55), (1, 1.7, 0.45, 0.5, "smooth")),
+           [CLOCK(8, 0.2)]), limit=30)
+    beat(P[4], V("bgL23_house_roof_dusk", [L("boy_hoodie/L1_look_up_terrified", 0.32, h=0.42),
+                                           L("grandma/F3_cough_hunched", 0.62, h=0.44),
+                                           L("props/LD3_crow_look_down", 0.525, 0.08, h=0.06)],
+                 cam((0, 1.2, 0.45, 0.62), (1, 1.4, 0.5, 0.35, "smooth")), [sfx("crow_caw", 0.5, 0.6), INSECTS(8, 0.2)]))
+    a_open_end = len(S)
+
+    # ---- đêm canh bàn thờ
+    a_watch = beat(P[5],
+                   V("bgL32_khoa_rice_sack_bed", [], cam((0, 1.15, 0.5, 0.6), (1, 1.35, 0.45, 0.62, "smooth")),
+                     [sfx("rice_pour_sack", 0, 0.5)], fade_in=0.8),
+                   V("bgL33_khoa_lock_cupboard", [], cam((0, 1.2, 0.6, 0.55), (1, 1.5, 0.66, 0.5, "smooth")),
+                     [sfx("door_bolt_lock", 0.7, 0.6)]), limit=22)
+    beat(P[6], V("bgL35_khoa_watch_mat_altar", [], cam((0, 1.15, 0.5, 0.58), (1, 1.3, 0.48, 0.58, "smooth")),
+                 [INSECTS(12, 0.3), CLOCK(12, 0.3)], fade_in=0.8))
+    beat(P[7], V("bgL21b_altar_three", ALTAR2 + [L("props/LL1_oil_lamp_lit", 0.74, 0.545, h=0.1)],
+                 cam((0, 1.2, 0.7, 0.45), (1, 1.6, 0.7, 0.38, "smooth")), [CLOCK(12, 0.3)], bg_dim=0.25, flicker=0.04))
+    beat(P[8], V("bgL35_khoa_watch_mat_altar", [], cam((0, 1.3, 0.5, 0.6), (1, 1.5, 0.5, 0.6)),
+                 [CLOCK(12, 0.35), sfx("cough_old", 0.3, 0.3), sfx("wind_gust_candle", 0.7, 0.3)]))
+    silent("bgL35_khoa_watch_mat_altar", 4.0, [], cam((0, 1.15, 0.5, 0.58), (1, 1.2, 0.5, 0.58)),
+           [CLOCK(4, 0.4), sfx("cough_old", 1.2, 0.25), WIND(4, 0.15)], bg_dim=0.15)
+    beat(P[9], V("bgL35_khoa_watch_mat_altar", [], cam((0, 1.5, 0.5, 0.55), (1, 1.9, 0.5, 0.5, "in"), handheld=3),
+                 [CLOCK(10, 0.5), sfx("heartbeat", 0.3, 0.3, True, 8)]))
+    beat(P[10],
+         V("black", [CLOSE("props/LC4_wall_clock_three", 0.7, 0.9)], STILL, [sfx("clock_chime_3", 0.1, 0.9)]),
+         V("bgL35_khoa_watch_mat_altar", [], cam((0, 1.6, 0.5, 0.52), (1, 1.7, 0.5, 0.52), handheld=4),
+           [sfx("flashlight_click", 0.3, 0.5), sfx("flicker_buzz", 0.3, 0.4), sfx("flashlight_click", 0.7, 0.5)],
+           flicker=0.35, bg_dim=0.3, fade_out=1.2), limit=10)
+    beat(P[11],
+         V("bgL35c_khoa_mat_dawn_key", [], cam((0, 1.2, 0.5, 0.58), (1, 1.45, 0.52, 0.6, "smooth")),
+           [sfx("rooster_crow", 0.2, 0.3)], fade_in=1.0),
+         V("bgL21b_altar_three", [day(b) for b in ALTAR2] + [day(L(BOWL, **THIRD, start=0.6))],
+           cam((0, 1.3, 0.72, 0.47), (1, 1.6, 0.72, 0.5, "in")), [sfx("reverse_swell", 0.35, 0.5), sfx("chopsticks_tap_2", 0.6, 0.6)]))
+    beat(P[12],
+         V("bgL21b_altar_three", [day(b) for b in ALTAR3], cam((0, 1.4, 0.72, 0.5), (1, 2.0, 0.74, 0.5, "smooth")),
+           [sfx("heartbeat", 0, 0.4, True, 10)]),
+         V("black", [CLOSE("props/LL2_bowl_khoa_chopsticks", 0.75, 0.92)], cam((0, 1.15, 0.5, 0.5), (1, 1.25, 0.5, 0.45, "in")),
+           [sfx("reverse_swell", 0.2, 0.5)]), limit=25)
+    beat(P[13], V("black", [CLOSE("props/LF3_chopsticks_khoa", 0.5, 0.75)], cam((0, 1.0, 0.5, 0.5), (1, 1.3, 0.5, 0.5, "smooth")),
+                  [sfx("heartbeat", 0, 0.4, True, 10)]))
+    beat(P[14],
+         V("bgL35c_khoa_mat_dawn_key", [], cam((0, 1.4, 0.5, 0.6), (1, 1.6, 0.5, 0.62)), [sfx("heartbeat", 0, 0.5, True, 4)]),
+         V("black", [CLOSE("props/LL3_boy_hands_rice_full", 0.8, 0.95)], STILL, [sfx("reverse_swell", 0, 0.4)]), limit=10)
+    a_watch_end = len(S)
+
+    # ---- sáng ra: chính là Khoa
+    a_me = beat(P[15],
+                V("bgL33b_cupboard_open_empty", [], cam((0, 1.25, 0.6, 0.55), (1, 1.5, 0.66, 0.5, "in"), handheld=3),
+                  [sfx("footsteps_run", 0, 0.6, False, 1.2), sfx("heartbeat", 0.3, 0.5, True, 8)]),
+                V("bgL32b_rice_sack_pulled_out", [], cam((0, 1.2, 0.5, 0.6), (1, 1.5, 0.5, 0.66, "smooth"), handheld=3),
+                  [sfx("heartbeat", 0, 0.5, True, 8)]),
+                V("bgL34_kitchen_stove_warm_dawn", [], cam((0, 1.2, 0.3, 0.6), (1, 1.6, 0.25, 0.62, "smooth")),
+                  [sfx("heartbeat", 0, 0.4, True, 8), sfx("paper_burn", 0, 0.15, True, 8)]), limit=20)
+    beat(P[16], V("bgL34_kitchen_stove_warm_dawn", [L("boy_hoodie/W1_smell_fingers_horror", 0.68, face="left", jitter=1)],
+                  cam((0, 1.2, 0.5, 0.6), (1, 1.5, 0.65, 0.5, "in")), [sfx("breath_close", 0.2, 0.5), sfx("heartbeat", 0, 0.5, True, 12)]))
+    beat(P[17],
+         V("bgL34_kitchen_stove_warm_dawn", [L("boy_hoodie/W1_smell_fingers_horror", 0.68, face="left", jitter=1)],
+           cam((0, 1.6, 0.66, 0.48), (1, 1.8, 0.66, 0.45))),
+         V("bgL21b_altar_three", [day(b) for b in ALTAR3], cam((0, 1.6, 0.74, 0.5), (1, 2.3, 0.74, 0.5, "in"))),
+         V("black", [CLOSE("boy_hoodie/A6_closeup_shock", 1.0, 1.05)], cam((0, 1.15, 0.5, 0.5), (1, 1.2, 0.5, 0.45, "in")),
+           [sfx("reverse_swell", 0, 0.6), sfx("ghost_stinger", 0.45, 0.9)], fade_out=0.05), limit=10)
+    a_me_end = len(S)
+
+    # ---- bà biết, Khoa thú nhận
+    a_gma = beat(P[18], V("bgL36_grandma_doorway_stare", [], cam((0, 1.15, 0.565, 0.52), (1, 1.4, 0.64, 0.5, "smooth")),   # bà ở mép phải (x 0.86–0.99)
+                          [CLOCK(10, 0.3)], fade_in=0.6))
+    beat(P[19],
+         V("bgL36_grandma_doorway_stare", [], cam((0, 1.4, 0.64, 0.5), (1, 1.6, 0.69, 0.47))),
+         V(A3D, SHELF_3 + [day(L("grandma/O2_wipe_chopsticks_hem", 0.42, end=0.55)),
+                           day(L("grandma/O3_tuck_chopsticks_pocket", 0.42, start=0.55))],
+           cam((0, 1.3, 0.38, 0.55), (1, 1.5, 0.42, 0.55, "smooth")), [CLOCK(10, 0.25)]), limit=22)
+    beat(P[20],
+         V("black", [CLOSE("props/LH8_pencil_case_talisman", 0.55, 0.85)], STILL, [sfx("footsteps_run", 0, 0.5, False, 1.0)]),
+         V("bgL37_khoa_kneel_confess", [], cam((0, 1.15, 0.5, 0.55), (1, 1.35, 0.45, 0.58, "smooth")),
+           [sfx("boy_sob_soft", 0.3, 0.5)]), limit=20)
+    beat(P[21],
+         V("bgL3e_coffin_top_full_dropped", [], cam((0, 1.15, 0.45, 0.5), (1, 1.3, 0.55, 0.6, "smooth")), [WOOD(10, 0.2)], bg_dim=0.25),
+         V("bgL2c_wake_coffin_closed", [], cam((0, 1.2, 0.5, 0.55), (1, 1.4, 0.5, 0.6, "smooth")),
+           [sfx("coffin_nails", 0.3, 0.35)], bg_dim=0.2), limit=22)
+    beat(P[22],
+         V("bgL30_khoa_dig_grave_night", [], cam((0, 1.15, 0.5, 0.55), (1, 1.35, 0.52, 0.6, "smooth")), [WIND(12, 0.3)], bg_dim=0.15),
+         V("bgL19c_mirror_ong_whisper", [], cam((0, 1.15, 0.5, 0.5), (1, 1.4, 0.5, 0.42, "smooth")),
+           [sfx("whisper_eerie", 0.3, 0.25)], bg_dim=0.15), limit=30)
+    beat(P[23], V("bgL37b_khoa_bow_floor", [], cam((0, 1.2, 0.45, 0.6), (1, 1.45, 0.42, 0.66, "smooth")),
+                  [sfx("boy_sob_soft", 0.1, 0.5), CLOCK(10, 0.3)], fade_out=1.0))
+    a_gma_end = len(S)
+
+    # ---- bà kể bí mật của ông
+    a_tell = beat(P[24], V("bgL38_grandma_sit_talisman_khoa", [], cam((0, 1.15, 0.5, 0.55), (1, 1.35, 0.48, 0.52, "smooth")),
+                           [CLOCK(12, 0.2)], fade_in=1.0))
+    beat(P[25],
+         V("bgL6_old_village_altar_sepia", [], cam((0, 1.2, 0.4, 0.5), (1, 1.4, 0.55, 0.45, "smooth")), [WOOD(12, 0.2)]),
+         V("bgL39_pagoda_boy_sepia", [], cam((0, 1.15, 0.5, 0.55), (1, 1.4, 0.45, 0.6, "smooth")), [WIND(12, 0.2)]), limit=22)
+    beat(P[26],
+         V("bgL40_young_couple_sepia", [], cam((0, 1.15, 0.5, 0.55), (1, 1.3, 0.5, 0.5, "smooth"))),
+         V("bgL11_ong_bed_corner_night", [L("ong_noi/A4_sit_bed_watch_clock", **BED_ONG)],
+           cam((0, 1.2, 0.5, 0.55), (1, 1.5, 0.46, 0.4, "in")), [CLOCK(12, 0.4)]), limit=25)
+    beat(P[27], V("bgL40_young_couple_sepia", [], cam((0, 1.3, 0.55, 0.5), (1, 1.6, 0.6, 0.48, "smooth"))))
+    beat(P[28],
+         V("bgL1_porch_day", [day(L("ong_noi/A1_sit_stool_carve", **PORCH_STOOL))],
+           cam((0, 1.2, 0.35, 0.6), (1, 1.4, 0.32, 0.62, "smooth")), [sfx("bamboo_whittle", 0, 0.35, True, 14)]),
+         V("black", [CLOSE("ong_noi/B5_closeup_hands_carve", 0.7, 0.9)], STILL,
+           [sfx("bamboo_whittle", 0, 0.3, True, 10)]), limit=25)
+    beat(P[29], V("black", [CLOSE("props/LB6_chopstick_holder", 0.6, 0.85)], cam((0, 1.15, 0.5, 0.5), (1, 1.35, 0.5, 0.45, "in")),
+                  [sfx("whisper_eerie", 0.4, 0.2), sfx("reverse_swell", 0.6, 0.35)]))
+    beat(P[30],
+         V("bgL14_grandma_comb_coffin", [], cam((0, 1.15, 0.5, 0.55), (1, 1.35, 0.6, 0.5, "smooth")), [WOOD(10, 0.2)]),
+         V("bgL9s_grandma_asleep_table", [], cam((0, 1.2, 0.5, 0.55), (1, 1.4, 0.7, 0.62, "smooth")), [CLOCK(12, 0.3)]), limit=25)
+    beat(P[31],
+         V("bgL38_grandma_sit_talisman_khoa", [], cam((0, 1.4, 0.45, 0.5), (1, 1.6, 0.45, 0.48))),
+         V("bgL41_grandma_gate_night", [], cam((0, 1.15, 0.45, 0.55), (1, 1.4, 0.5, 0.52, "smooth")),
+           [INSECTS(12, 0.3), sfx("gate_rattle", 0.3, 0.25)]), limit=25)
+    beat(P[32],
+         V("bgL41_grandma_gate_night", [], cam((0, 1.4, 0.55, 0.5), (1, 1.9, 0.7, 0.48, "in")),
+           [WIND(12, 0.3), sfx("heartbeat", 0.2, 0.35, True, 10)]),
+         V("bgL29_grandma_room_portrait", [], cam((0, 1.15, 0.45, 0.55), (1, 1.35, 0.4, 0.55, "smooth")),
+           [sfx("woman_sob_door", 0.2, 0.35)]),
+         V("bgL38_grandma_sit_talisman_khoa", [], cam((0, 1.3, 0.45, 0.5), (1, 1.5, 0.45, 0.48, "smooth"))), limit=25)
+    beat(P[33],
+         V("bgL38_grandma_sit_talisman_khoa", [], cam((0, 1.5, 0.45, 0.48), (1, 1.6, 0.45, 0.48))),
+         V(A3D, [day(L("grandma/O4_closeup_face_firm_tears", 0.5, 1.08, h=1.0))], cam((0, 1.15, 0.5, 0.5), (1, 1.25, 0.5, 0.48, "smooth")),
+           [CLOCK(10, 0.2)], bg_dim=0.35), limit=20)
+    beat(P[34], V("bgL42_grandma_hug_khoa_dawn", [], cam((0, 1.3, 0.5, 0.55), (1, 1.1, 0.5, 0.55, "smooth")),
+                  [sfx("boy_sob_soft", 0.1, 0.35), sfx("rooster_crow", 0.6, 0.2)], fade_out=2.0))
+    a_tell_end = len(S)
+
+    # ---- ngày cuối cùng của bà
+    a_day = beat(P[35], V("bgL38_grandma_sit_talisman_khoa", [], cam((0, 1.2, 0.5, 0.55), (1, 1.35, 0.47, 0.52, "smooth")),
+                          [CLOCK(10, 0.2)], fade_in=1.0))
+    beat(P[36], V("bgL38_grandma_sit_talisman_khoa", [], cam((0, 1.35, 0.47, 0.5), (1, 1.6, 0.42, 0.48, "smooth"))))
+    beat(P[37],
+         V(A3D, SHELF_3 + [day(L("grandma/E1_hold_boy_hands", 0.45))], cam((0, 1.25, 0.45, 0.6), (1, 1.45, 0.45, 0.56, "smooth"))),
+         V(A3D, SHELF_3 + [day(L("grandma/O5_count_calendar", 0.55))], cam((0, 1.3, 0.6, 0.5), (1, 1.6, 0.66, 0.4, "smooth")),
+           [CLOCK(10, 0.35)]), limit=25)
+    beat(P[38],
+         V(A3D, SHELF_3 + [day(L("grandma/N6_phone_forced_smile", 0.45))], cam((0, 1.25, 0.45, 0.58), (1, 1.4, 0.45, 0.55))),
+         V("bgL1_porch_day", [day(L("boy_hoodie/W2_sit_step_listen", 0.35, h=0.36))],
+           cam((0, 1.2, 0.4, 0.6), (1, 1.4, 0.35, 0.62, "smooth")), [sfx("murmur_far", 0, 0.25, True, 14)]),
+         V(A3D, SHELF_3 + [day(L("grandma/N6_phone_forced_smile", 0.45))], cam((0, 1.5, 0.45, 0.48), (1, 1.75, 0.45, 0.45, "smooth"))),
+         limit=25)
+    beat(P[39], V("bgL44_grandma_teach_incense", [], cam((0, 1.15, 0.5, 0.55), (1, 1.4, 0.55, 0.5, "smooth")),
+                  [sfx("match_strike", 0.1, 0.5), sfx("ritual_bell", 0.7, 0.3)]))
+    beat(P[40], V("bg12_bedside_drawer", [L("props/LL8_savings_book_papers", 0.5, 0.66, h=0.22, tint=False)],
+                  cam((0, 1.15, 0.5, 0.55), (1, 1.4, 0.5, 0.58, "smooth")), [CLOCK(12, 0.2)]))
+    a_sweater = beat(P[41],
+                     V("bgL7_mom_room_day", [day(L("grandma/N8_fold_sweater", 0.6))], cam((0, 1.2, 0.58, 0.6), (1, 1.35, 0.6, 0.58))),
+                     V("black", [CLOSE("props/LH1_sweater_unfinished", 0.55, 0.85)], STILL),
+                     V("bgL46_grandma_knit_window", [], cam((0, 1.15, 0.5, 0.55), (1, 1.35, 0.5, 0.55, "smooth")),
+                       [sfx("knitting_needles", 0, 0.4, True, 12)]), limit=25)
+    silent("bgL46_grandma_knit_window", 6.0, [], cam((0, 1.35, 0.5, 0.55), (1, 1.6, 0.5, 0.58, "smooth")),
+           [sfx("knitting_needles", 0, 0.5, True, 6), WIND(6, 0.12)])
+    beat(P[42], V("bgL47_grandma_sweater_on_khoa", [], cam((0, 1.15, 0.5, 0.55), (1, 1.35, 0.48, 0.5, "smooth"))))
+    beat(P[43], V("bgL21b_altar_three", [day(b) for b in ALTAR3], cam((0, 1.4, 0.64, 0.45), (1, 1.8, 0.64, 0.42, "smooth")),
+                  [CLOCK(8, 0.2)]))
+    a_sweater_end = len(S)
+    silent("bgL48_dinner_grandma_watch", 4.0, [], cam((0, 1.2, 0.5, 0.58), (1, 1.3, 0.5, 0.56)),
+           [sfx("fan_hum", 0, 0.3, True, 4), sfx("chopsticks_tap_2", 1.0, 0.3)])
+    beat(P[44],
+         V("bgL48_dinner_grandma_watch", [], cam((0, 1.3, 0.5, 0.56), (1, 1.5, 0.6, 0.52, "smooth")), [sfx("fan_hum", 0, 0.25, True, 14)]),
+         V("black", [CLOSE("grandma/P2_closeup_bun_hairpin", 0.85, 0.95)], cam((0, 1.15, 0.5, 0.5), (1, 1.2, 0.5, 0.45, "smooth")),
+           [sfx("fan_hum", 0, 0.15, True, 10)], fade_out=1.5), limit=30)
+    a_day_end = len(S)
+
+    # ---- đêm ra mộ, đổi đũa
+    a_night = beat(P[45], V("bgL49_alley_night_two", [], cam((0, 1.15, 0.5, 0.6), (1, 1.4, 0.5, 0.62, "smooth")),
+                            [INSECTS(12, 0.3), sfx("footsteps_slow", 0.2, 0.25, True, 8)], fade_in=1.5))
+    beat(P[46], V("bgL50_field_two_walk_night", [], cam((0, 1.25, 0.3, 0.55), (1, 1.25, 0.6, 0.55, "smooth")),
+                  [sfx("frogs_night", 0, 0.5, False, 8, 0, 1.0), WIND(12, 0.35)]))
+    beat(P[47], V("bgL18_field_path_night", [walk("props", [0.05, 0.95], fps=6, cyc="crow_fly", y=0.3, h=0.04)],
+                  cam((0, 1.2, 0.3, 0.45), (1, 1.2, 0.7, 0.4, "smooth")), [sfx("wings_flap", 0.1, 0.5), WIND(12, 0.35),
+                                                                           sfx("crow_caw", 0.85, 0.4)]))
+    beat(P[48],
+         V("bgL50_field_two_walk_night", [], cam((0, 1.6, 0.45, 0.6), (1, 1.8, 0.55, 0.6, "smooth")), [sfx("cough_old", 0.15, 0.5)]),
+         V("black", [CLOSE("props/LL6_hands_clasp_grandma_boy", 0.7, 0.9, jitter=1)], STILL, [WIND(10, 0.25)]), limit=12)
+    a_grave = beat(P[49],
+                   V("bgL51_two_graves_night_hole", [L("props/LD1_crow_perched", 0.68, 0.23, h=0.06)],
+                     cam((0, 1.15, 0.5, 0.55), (1, 1.3, 0.45, 0.6, "smooth")), [WIND(12, 0.4), INSECTS(12, 0.2)]),
+                   V("bgL51_two_graves_night_hole", [], cam((0, 1.4, 0.34, 0.6), (1, 1.9, 0.33, 0.57, "in")),
+                     [sfx("heartbeat", 0.2, 0.3, True, 8)]), limit=25)
+    beat(P[50],
+         V("bgL52_grandma_hand_mom_grave", [], cam((0, 1.15, 0.5, 0.55), (1, 1.3, 0.55, 0.58, "smooth")), [WIND(8, 0.3)]),
+         V("bgL52_grandma_hand_mom_grave", [], cam((0, 1.4, 0.55, 0.6), (1, 1.7, 0.55, 0.6, "smooth")),
+           [sfx("murmur_far", 0, 0.2, True, 12), WIND(12, 0.2)]), limit=30)
+    beat(P[51],
+         V("bgL51_two_graves_night_hole", [], cam((0, 1.6, 0.33, 0.58), (1, 1.9, 0.33, 0.57, "smooth"))),
+         V("bgL53_grandma_dig_bury", [], cam((0, 1.7, 0.62, 0.55), (1, 1.85, 0.6, 0.57, "smooth")),   # khép vào bà, giấu lỗ cũ bên trái
+           [sfx("soil_dig_hands", 0, 0.5, True, 6)]),
+         V("bgL53b_grandma_pat_earth", [], cam((0, 1.3, 0.45, 0.62), (1, 1.5, 0.42, 0.65, "smooth")),
+           [sfx("soil_dig_hands", 0, 0.3, True, 4, 0, 1.0), WIND(10, 0.2)]), limit=25)
+    beat(P[52], V("bgL54_chopsticks_on_mound", [], cam((0, 1.15, 0.5, 0.55), (1, 1.4, 0.5, 0.58, "smooth")), [WIND(10, 0.25)]))
+    silent("bgL53b_grandma_pat_earth", 5.0, [], cam((0, 1.15, 0.5, 0.58), (1, 1.25, 0.48, 0.6)),
+           [WIND(5, 0.35), sfx("frogs_night", 0, 0.3, True, 5)])
+    beat(P[53],
+         V("bgL53b_grandma_pat_earth", [], cam((0, 1.3, 0.5, 0.6), (1, 1.4, 0.5, 0.6))),
+         V("bgL51_two_graves_night_hole", [L("grandma/P1_closeup_face_smile_night", 0.5, 1.08, h=1.0, tint=False)],
+           cam((0, 1.15, 0.5, 0.5), (1, 1.25, 0.5, 0.48, "smooth")), [WIND(10, 0.2)], bg_dim=0.45), limit=15)
+    a_ghost = beat(P[54],
+                   V("bgL53b_grandma_pat_earth", [], cam((0, 1.3, 0.5, 0.6), (1, 1.35, 0.5, 0.58), handheld=3),
+                     [sfx("flashlight_click", 0.3, 0.5), sfx("flicker_buzz", 0.2, 0.4)], flicker=0.35, bg_dim=0.25),
+                   V("bgL55_ghost_behind_headstone", [], cam((0, 1.2, 0.5, 0.55), (1, 1.7, 0.42, 0.42, "in"), handheld=3),
+                     [sfx("flashlight_click", 0, 0.5), sfx("reverse_swell", 0, 0.5), sfx("ghost_stinger", 0.1, 0.9),
+                      WIND(14, 0.3)]), limit=25)
+    beat(P[55],
+         V("bgL55_ghost_behind_headstone", [], cam((0, 1.5, 0.55, 0.6), (1, 1.6, 0.55, 0.62))),
+         V("black", [CLOSE("props/LL6_hands_clasp_grandma_boy", 0.7, 0.9, jitter=1)], STILL,
+           [WIND(10, 0.25), sfx("heartbeat", 0, 0.4, True, 10)]), limit=20)
+    beat(P[56], V("black", [CLOSE("props/LL7_grandma_pry_fingers", 0.7, 0.9)], cam((0, 1.0, 0.5, 0.5), (1, 1.2, 0.5, 0.5, "smooth")),
+                  [sfx("boy_sob_soft", 0.2, 0.45), WIND(10, 0.2)]))
+    beat(P[57], V("bgL56_khoa_walk_away_field", [], cam((0, 1.3, 0.5, 0.6), (1, 1.5, 0.5, 0.62, "smooth")),
+                  [sfx("footsteps_slow", 0, 0.2, True, 8), WIND(10, 0.35)]))
+    silent("bgL56_khoa_walk_away_field", 5.0, [], cam((0, 1.15, 0.5, 0.55), (1, 1.25, 0.5, 0.52)),
+           [WIND(5, 0.35), sfx("frogs_night", 0, 0.3, True, 5), sfx("murmur_far", 0.3, 0.25)])
+    beat(P[58], V("bgL1_porch_day", [day(L("grandma/F1_sit_porch_gaze", 0.36, h=0.42)),
+                                     day(L("ong_noi/C3_sit_stool_tell_story_side", 0.62, h=0.44, face="left"))],
+                  cam((0, 1.2, 0.5, 0.6), (1, 1.35, 0.5, 0.58, "smooth")), [sfx("murmur_far", 0, 0.3, True, 12)], fade_in=0.6))
+    beat(P[59], V("bgL40_young_couple_sepia", [], cam((0, 1.3, 0.45, 0.5), (1, 1.55, 0.42, 0.48, "smooth")),
+                  [sfx("laugh_soft_far", 0.3, 0.6)]))
+    beat(P[60],
+         V("bgL56_khoa_walk_away_field", [], cam((0, 1.5, 0.5, 0.55), (1, 1.7, 0.5, 0.55, "smooth")), [WIND(10, 0.3)]),
+         V("bgL56_khoa_walk_away_field", [], cam((0, 1.3, 0.5, 0.55), (1, 1.1, 0.5, 0.55, "smooth")),
+           [WIND(10, 0.25), sfx("rooster_crow", 0.8, 0.6)], fade_out=2.0), limit=20)
+    a_night_end = len(S)
+
+    # ---- sáng hôm sau: bà đã đổi mạng
+    a_found = beat(P[61], V("bgL58_grandma_dead_grave_morning", [], cam((0, 1.15, 0.5, 0.55), (1, 1.4, 0.45, 0.55, "smooth")),
+                            [WIND(12, 0.3), sfx("rooster_crow", 0.1, 0.25)], fade_in=2.0))
+    beat(P[62], V("bgL58_grandma_dead_grave_morning", [], cam((0, 1.5, 0.4, 0.65), (1, 1.9, 0.38, 0.68, "in")),
+                  [sfx("reverse_swell", 0.3, 0.4)]))
+    beat(P[63],
+         V(A3D, SHELF_3, cam((0, 1.2, 0.6, 0.6), (1, 1.5, 0.35, 0.5, "in"), handheld=4),
+           [sfx("footsteps_run", 0, 0.6, False, 1.5), sfx("heartbeat", 0.2, 0.5, True, 8)]),
+         V("black", [CLOSE("props/LL9_bowl_grandma_chopsticks_soil", 0.75, 0.92)], cam((0, 1.15, 0.5, 0.5), (1, 1.3, 0.5, 0.42, "in")),
+           [sfx("reverse_swell", 0.2, 0.5)]), limit=25)
+    beat(P[64],
+         V("bgL21b_altar_three", [day(b) for b in ALTAR3], cam((0, 1.8, 0.74, 0.5), (1, 1.5, 0.72, 0.5, "smooth"))),
+         V("black", [CLOSE("props/LL4_boy_hands_clean_sweater", 0.8, 0.95)], STILL), limit=10)
+    beat(P[65], V("bgL48_dinner_grandma_watch", [], cam((0, 1.2, 0.5, 0.56), (1, 1.5, 0.62, 0.5, "smooth")), [], bg_dim=0.15))
+    beat(P[66],
+         V("bgL36_grandma_doorway_stare", [], cam((0, 1.4, 0.64, 0.5), (1, 1.5, 0.67, 0.47)), bg_dim=0.15),
+         V("bgL54_chopsticks_on_mound", [], cam((0, 1.2, 0.5, 0.55), (1, 1.5, 0.5, 0.58, "smooth")), bg_dim=0.15), limit=15)
+    beat(P[67], V("bgL59_khoa_cry_altar", [], cam((0, 1.15, 0.5, 0.55), (1, 1.35, 0.5, 0.58, "smooth")),
+                  [sfx("boy_sob_soft", 0.1, 0.5)]))
+    silent("bgL59_khoa_cry_altar", 5.0, [], cam((0, 1.35, 0.5, 0.58), (1, 1.6, 0.5, 0.6, "smooth")),
+           [sfx("boy_sob_soft", 0.2, 0.35)], fade_out=1.5)
+    a_found_end = len(S)
+
+    # ---- tang bà, những ngày bình yên
+    a_calm = beat(P[68],
+                  V("bgL60_wake_coffin_grandma", [], cam((0, 1.2, 0.5, 0.55), (1, 1.35, 0.5, 0.52, "smooth")),
+                    [BAND(10, 0.3), sfx("mourners_cry", 0, 0.2, True, 10)], fade_in=1.0),
+                  V("bgL60_wake_coffin_grandma", [day(L("thay_tu/A6_back_pray_incense", 0.5, h=0.56))],
+                    cam((0, 1.25, 0.5, 0.55), (1, 1.45, 0.5, 0.48, "smooth")), [sfx("chant_murmur", 0, 0.3, True, 14), WOOD(14, 0.2)]),
+                  limit=25)
+    beat(P[69],
+         V("bgL13_home_altar_bo", [day(L("props/LC3_mirror_red_cloth", 0.68, 0.55, h=0.4, end=0.55)),
+                                   day(L("props/LH6_mirror_bare", 0.68, 0.55, h=0.4, start=0.55))],
+           cam((0, 1.2, 0.6, 0.45), (1, 1.4, 0.68, 0.4, "smooth")), [sfx("cloth_slide", 0.5, 0.7)]),
+         V("black", [CLOSE("props/LJ2_chopsticks_spare_top_carved", 0.55, 0.75)], cam((0, 1.0, 0.5, 0.5), (1, 1.25, 0.5, 0.5, "in")),
+           [sfx("heartbeat", 0.2, 0.3, True, 8)]), limit=20)
+    beat(P[70], V("black", [CLOSE("props/LJ3_box_closed_rubberband", 0.55, 0.8)], cam((0, 1.0, 0.5, 0.5), (1, 1.2, 0.5, 0.5, "smooth")),
+                  [sfx("reverse_swell", 0.5, 0.3)], fade_out=1.0))
+    a_peace = beat(P[71], V("bg6d_kitchen_day", [day(L("co_ut/A3_cook_humming", 0.3))], cam((0, 1.2, 0.35, 0.6), (1, 1.35, 0.3, 0.58)),
+                            [sfx("rice_ladle_scoop", 0.4, 0.3)], fade_in=1.0))
+    beat(P[72],
+         V("bgL22_backyard_morning", [], cam((0, 1.15, 0.5, 0.55), (1, 1.3, 0.55, 0.55, "smooth")), [sfx("chickens_cluck", 0, 0.3, True, 6)]),
+         V("bgL10b_altar_four_portraits", FOUR(3), cam((0, 1.15, 0.45, 0.55), (1, 1.3, 0.45, 0.55, "smooth")), [CLOCK(12, 0.2)]),
+         limit=25)
+    beat(P[73],
+         V("bgL23_house_roof_dusk", [], cam((0, 1.15, 0.5, 0.45), (1, 1.4, 0.52, 0.3, "smooth")), [INSECTS(8, 0.2)]),
+         V("bgL61_khoa_porch_cat_lap", [], cam((0, 1.15, 0.5, 0.58), (1, 1.35, 0.45, 0.6, "smooth")),
+           [sfx("cat_purr", 0.2, 0.4, True, 10)]), limit=15)
+    beat(P[74],
+         V("bgL1_porch_day", [day(walk("boy_hoodie", [0.25, 0.85], fps=5, h=0.42))],
+           cam((0, 1.2, 0.4, 0.6), (1, 1.2, 0.6, 0.6, "smooth"))),
+         V("bgL10b_altar_four_portraits", FOUR(3) + [L("boy_hoodie/M1_kneel_incense", 0.17, 0.97, h=0.45)],
+           cam((0, 1.15, 0.4, 0.55), (1, 1.3, 0.38, 0.58, "smooth")), [sfx("ritual_bell", 0.5, 0.25)]), limit=15)
+    beat(P[75],
+         V("bgL62_dinner_co_ut_khoa", [], cam((0, 1.15, 0.5, 0.56), (1, 1.35, 0.45, 0.52, "smooth")), [sfx("fan_hum", 0, 0.2, True, 12)]),
+         V("bgL1_porch_day", [day(L("ong_noi/A1_sit_stool_carve", **PORCH_STOOL))],
+           cam((0, 1.2, 0.35, 0.6), (1, 1.35, 0.32, 0.62, "smooth")), [sfx("bamboo_whittle", 0, 0.3, True, 12)]), limit=30)
+    beat(P[76], V("bgL62_dinner_co_ut_khoa", [], cam((0, 1.3, 0.55, 0.52), (1, 1.5, 0.6, 0.5, "smooth")), [sfx("fan_hum", 0, 0.2, True, 12)]))
+    beat(P[77], V("bgL63_khoa_porch_sweater_dusk", [], cam((0, 1.15, 0.45, 0.58), (1, 1.3, 0.5, 0.55, "smooth")), [INSECTS(12, 0.3)]))
+    silent("bgL63_khoa_porch_sweater_dusk", 5.0, [], cam((0, 1.3, 0.5, 0.55), (1, 1.15, 0.55, 0.5, "smooth")),
+           [INSECTS(5, 0.35), WIND(5, 0.12)], fade_out=1.5)
+    a_peace_end = len(S)
+
+    # ---- bốn mươi ngày sau: bát thứ tư
+    a_twist = beat(P[78], V("bgL15b_khoa_bed_awake_plain", [], cam((0, 1.2, 0.6, 0.55), (1, 1.4, 0.6, 0.52, "smooth")),
+                            [CLOCK(10, 0.4), INSECTS(10, 0.2)], fade_in=1.5))
+    beat(P[79], V("bgL12_living_room_day", [day(L("thay_tu/A2_sit_mat_pale", 0.56, h=0.35))],
+                  cam((0, 1.3, 0.56, 0.6), (1, 1.6, 0.56, 0.58, "in")), [CLOCK(10, 0.3)], bg_dim=0.2))
+    beat(P[80], V("bgL10b_altar_four_portraits", FOUR(3), cam((0, 1.8, 0.44, 0.45), (1, 1.8, 0.565, 0.45, "smooth")),
+                  [CLOCK(6, 0.4)], bg_dim=0.15))
+    beat(P[81], V("bgL10b_altar_four_portraits", FOUR(3), cam((0, 1.6, 0.6, 0.45), (1, 2.1, 0.67, 0.42, "in")),
+                  [sfx("reverse_swell", 0.2, 0.5), CLOCK(6, 0.4)], bg_dim=0.15))
+    beat(P[82], V("bgL1_porch_day", [day(L("ong_noi/A6_give_chopsticks_boy", 0.45, h=0.52))],
+                  cam((0, 1.2, 0.45, 0.6), (1, 1.45, 0.45, 0.58, "smooth")), [], bg_dim=0.15))
+    beat(P[83], V("black", [CLOSE("props/LJ2_chopsticks_spare_top_carved", 0.55, 0.75)], cam((0, 1.0, 0.5, 0.5), (1, 1.3, 0.5, 0.5, "in")),
+                  [sfx("heartbeat", 0, 0.5, True, 6)]))
+    a_box = silent("bg1_bedroom", 4.0, [L("boy_hoodie/R1_floor_box_spare_chopsticks", 0.58, 0.86, h=0.34, jitter=1)],
+                   cam((0, 1.3, 0.6, 0.62), (1, 1.6, 0.6, 0.66, "in")), [sfx("heartbeat", 0, 0.6, True, 4), INSECTS(4, 0.2)])
+    beat(P[84],
+         V("black", [CLOSE("props/LJ3_box_closed_rubberband", 0.55, 0.8, jitter=1)], STILL, [sfx("heartbeat", 0, 0.6, True, 4)]),
+         V("black", [CLOSE("props/LJ5_box_open_red_soil", 0.55, 0.8)], STILL, [sfx("reverse_swell", 0, 0.4)]), limit=8)
+    silent("black", 3.0, [CLOSE("props/LJ5_box_open_red_soil", 0.55, 0.8)], cam((0, 1.3, 0.5, 0.5), (1, 1.9, 0.5, 0.5, "in")), [])
+    silent("black", 3.0, [CLOSE("props/LC4_wall_clock_three", 0.7, 0.9)], STILL, [CLOCK(3, 0.6)])
+    silent("bgL10b_altar_four_portraits", 3.0, FOUR(3), cam((0, 1.3, 0.5, 0.55), (1, 1.45, 0.5, 0.55)),
+           [sfx("chopsticks_tap_2", 0.6, 1.0)], bg_dim=0.5)
+    silent("bg1_bedroom", 3.0, [L("boy_hoodie/L5_peek_from_blanket", 0.7, h=0.42, jitter=2)],
+           cam((0, 1.4, 0.7, 0.6), (1, 1.6, 0.7, 0.6)), [sfx("breath_close", 0, 0.6, False, 3, 0, 2.0)], bg_dim=0.4, fade_out=1.5)
+    a_end = beat(P[85], V("black", [CLOSE("props/LL5_boy_hands_few_grains", 0.8, 0.95)], STILL,
+                          [sfx("rooster_crow", 0, 0.2)], fade_in=1.0))
+    silent(A3D, 4.0, SHELF_3 + [day(walk("boy_hoodie", [0.6, 0.45], fps=3, cyc="back_walk"))],
+           cam((0, 1.2, 0.5, 0.6), (1, 1.35, 0.42, 0.55, "smooth")), [sfx("footsteps_slow", 0, 0.4, False, 4), WIND(4, 0.15)])
+    beat(P[86], V("bgL10b_altar_four_portraits", FOUR(4), cam((0, 1.15, 0.5, 0.55), (1, 1.3, 0.55, 0.6, "smooth")),
+                  [sfx("reverse_swell", 0.3, 0.5)]))
+    silent("black", 4.0, [CLOSE("props/LL10_bowl_spare_chopsticks", 0.75, 0.92)], cam((0, 1.15, 0.5, 0.5), (1, 1.35, 0.5, 0.4, "in")), [])
+    beat(P[87], V("black", [CLOSE("props/LH3_calendar_circled", 0.8, 0.92)], STILL, [CLOCK(8, 0.4)]))
+    beat(P[88], V("black", [], None, [CLOCK(4, 0.5)]))
+    silent("bgL1_porch_day", 3.0, [day(L("cat_tabby/A2_arch_hiss", 0.72, h=0.13, face="left", end=0.6)),
+                                   day(walk("cat_tabby", [0.72, 1.1], fps=8, cyc="run", start=0.6))],
+           cam((0, 1.3, 0.65, 0.62), (1, 1.4, 0.7, 0.62)), [sfx("cat_hiss", 0.25, 1.0)])
+    silent("bgL23_house_roof_dusk", 5.0, [L("props/LD2_crow_caw", 0.525, 0.08, h=0.06)],
+           cam((0, 1.2, 0.5, 0.4), (1, 1.8, 0.52, 0.2, "in")), [sfx("crow_caw", 0.4, 1.0)], fade_out=0.05)
+    silent("black", 3.5, title_text="Hết", fade_in=1.0, fade_out=1.0)
+
+    return dict(
+        title="Lá bùa dưới gối ông — Phần 3: Người thứ ba",
+        requests=ASSET_REQUESTS_P3,
+        output="build/la_bua_duoi_goi_ong_p3.mp4",
+        logline=("Bát cơm thứ ba trên bàn thờ là của Khoa. Bà kể bí mật của ông, rồi lặng lẽ đổi mạng mình lấy mạng cháu — "
+                 "nhưng bà chỉ chôn được một đôi đũa."),
+        music=[
+            {"sound": "drone_low", "from": 1, "to": a_open_end, "volume": 0.5, "fade_in": 2.5, "fade_out": 2},
+            {"sound": "drone_low", "from": a_watch, "to": a_me_end - 1, "volume": 0.6, "fade_in": 2, "fade_out": 0.05},
+            {"sound": "drone_low", "from": a_gma, "to": a_gma_end, "volume": 0.4, "fade_in": 2, "fade_out": 2},
+            {"sound": "memory_piano", "from": a_tell, "to": a_tell_end, "volume": 0.35, "fade_in": 2.5, "fade_out": 2.5},
+            {"sound": "memory_piano", "from": a_day, "to": a_sweater_end, "volume": 0.35, "fade_in": 2.5, "fade_out": 2},
+            {"sound": "drone_low", "from": a_night, "to": a_ghost, "volume": 0.5, "fade_in": 2, "fade_out": 1},
+            {"sound": "memory_piano", "from": a_ghost + 2, "to": a_night_end, "volume": 0.4, "fade_in": 3, "fade_out": 2.5},
+            {"sound": "drone_low", "from": a_found, "to": a_found_end - 2, "volume": 0.35, "fade_in": 3, "fade_out": 2},
+            {"sound": "memory_piano", "from": a_peace, "to": a_peace_end, "volume": 0.4, "fade_in": 2.5, "fade_out": 2.5},
+            {"sound": "drone_low", "from": a_twist, "to": a_box - 1, "volume": 0.55, "fade_in": 2, "fade_out": 0.05},
+            {"sound": "drone_low", "from": a_end, "to": len(S) - 1, "volume": 0.65, "fade_in": 1, "fade_out": 0.05},
+        ],
+    )
+
+
 # ============================================================ GHI FILE
-PARTS = {1: part1, 2: part2}
+PARTS = {1: part1, 2: part2, 3: part3}
 PART = int(sys.argv[1]) if len(sys.argv) > 1 else 1
 meta = PARTS[PART]()
 story = json.loads((ROOT / "templates/kich_ban_mau.json").read_text(encoding="utf-8"))

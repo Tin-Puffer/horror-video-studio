@@ -72,15 +72,49 @@ Toạ độ là tỉ lệ khung hình 16:9 (x 0 trái→1 phải, y 0 trên→1 
 | `bgL2n_wake_candles_out` | Gian thờ (cùng bố cục bgL2) nến đã tắt, tối om, chỉ còn ba đầu nhang đỏ lập loè | 0.95 | 0.42 | `coffin_head` [0.36, 0.53] |
 | `bgL30_khoa_dig_grave_night` | Vẽ sẵn: Khoa (áo khoác đen) quỳ bới lỗ nhỏ ở đầu mộ ông, đèn pin nằm cạnh | 0.95 | 0.42 |  |
 | `bgL31_mirror_opposite_room` | Nhìn qua khung cửa sang phòng đối diện: tấm vải đỏ đang tuột khỏi chiếc gương lớn | 0.95 | 0.46 | `mirror` [0.73, 0.5] |
+| `bgL32_khoa_rice_sack_bed` | Vẽ sẵn chiều: Khoa quỳ đẩy bao gạo buộc chặt miệng vào gầm giường, mặt quyết tâm | 0.95 | 0.46 |  |
+| `bgL32b_rice_sack_pulled_out` | Rạng sáng: bao gạo bị lôi ra giữa sàn, sợi dây cởi ra đặt ngay ngắn bên cạnh, gạo vương | 0.95 | 0.46 |  |
+| `bgL33_khoa_lock_cupboard` | Vẽ sẵn chiều: Khoa vặn chìa khoá đồng khoá tủ gỗ, nồi cơm nhôm ở trong | 0.95 | 0.46 |  |
+| `bgL33b_cupboard_open_empty` | Rạng sáng: tủ bếp mở toang, ngăn trống trơn, chìa khoá còn cắm ổ | 0.95 | 0.46 |  |
+| `bgL34_kitchen_stove_warm_dawn` | Góc bếp rạng sáng: bếp củi đất, nồi cơm nhôm còn ấm, tro còn vài đốm đỏ, khói mỏng; nửa phải trống | 0.95 | 0.46 |  |
+| `bgL35_khoa_watch_mat_altar` | Vẽ sẵn đêm: Khoa ngồi bó gối trên chiếu trước bàn thờ, chăn mỏng khoác vai, tay nắm đèn pin, mắt mở trừng | 0.95 | 0.46 |  |
+| `bgL35c_khoa_mat_dawn_key` | Vẽ sẵn rạng sáng: Khoa ngồi trên chiếu, chăn tuột, tay cầm chìa khoá tủ ngơ ngác; trên kệ ba bát cơm | 0.95 | 0.46 |  |
+| `bgL36_grandma_doorway_stare` | Vẽ sẵn sáng xám: bà đứng ở cửa buồng, tay vịn khung cửa, nhìn trân trân về phía bàn thờ | 0.95 | 0.5 |  |
+| `bgL37_khoa_kneel_confess` | Vẽ sẵn: Khoa quỳ khóc giơ lá bùa nhàu trước mặt bà đang đứng nhìn xuống | 0.95 | 0.5 |  |
+| `bgL37b_khoa_bow_floor` | Vẽ sẵn: Khoa cúi rạp trán xuống nền gạch, lá bùa dưới đất; bà đứng, tay hơi đưa ra | 0.95 | 0.5 |  |
+| `bgL38_grandma_sit_talisman_khoa` | Vẽ sẵn: bà ngồi bệt cạnh Khoa, cầm lá bùa nhàu trong lòng, kể chuyện; Khoa nép vào bà ngước nhìn | 0.95 | 0.5 |  |
+| `bgL39_pagoda_boy_sepia` | Hồi ức sepia: bà cụ dắt cậu bé đầu cạo trọc tới cổng chùa, sư đứng đợi, cậu bé ngoái lại | 0.95 | 0.4 |  |
 | `bgL3a_coffin_top_hands_chest` | Cận từ trên xuống trong quan tài: ông nằm, áo the, hai tay đặt trên ngực, góc lá bùa vàng ló dưới gối | 0.95 | 0.4 |  |
 | `bgL3c_coffin_face_smile` | Cận mặt ông trong quan tài (ảo giác): mắt hé mở nhìn thẳng, miệng cười toác rợn người, ánh que diêm | 0.95 | 0.4 | `face` [0.5, 0.45] |
 | `bgL3d_coffin_top_full` | Nhìn thẳng từ trên xuống: quan tài nằm ngang (đầu trái, chân phải), thấy trọn cả người ông (đủ chân, đúng tỉ lệ), tay đặt ngực; lá bùa khuất dưới gối nên không thấy | 0.95 | 0.4 | `face` [0.245, 0.38]; `hands` [0.44, 0.45]; `pillow` [0.245, 0.37]; `feet` [0.8, 0.45] |
 | `bgL3e_coffin_top_full_dropped` | Cùng khung bgL3d: tay phải buông thõng cạnh gối, chỉ còn ánh que diêm, khoé miệng hơi nhếch | 0.95 | 0.4 | `face` [0.245, 0.43]; `dropped_hand` [0.59, 0.66]; `match` [0.5, 0.93] |
 | `bgL3f_coffin_hand_talisman` | Cùng khung bgL3d: một bàn tay áo nâu (thầy Tư) thò vào từ mép trên, nhét mảnh giấy vàng gấp tư xuống dưới gối ông | 0.95 | 0.4 | `pillow` [0.24, 0.37]; `talisman` [0.3, 0.37] |
 | `bgL3m_coffin_mom_hand_talisman` | Cận từ trên: mẹ (áo xô) nằm trong quan tài, chỉ đỏ ở cổ tay, tay thầy Tư nhét bùa dưới gối | 0.95 | 0.4 |  |
+| `bgL40_young_couple_sepia` | Hồi ức sepia: ông bà thời trẻ ngồi cạnh nhau trên hiên nhà gỗ, bà cười e thẹn, ông nhìn bà thương mà lo | 0.95 | 0.46 |  |
+| `bgL41_grandma_gate_night` | Vẽ sẵn đêm: bà đứng ở cổng sắt hé mở, ôm hai đôi đũa trước ngực, nhìn ra con đường tối om, sợ hãi | 0.95 | 0.46 |  |
+| `bgL42_grandma_hug_khoa_dawn` | Vẽ sẵn: nắng sớm tràn vào, hai bà cháu ngồi ôm nhau khóc trước bàn thờ có ba bát cơm | 0.95 | 0.5 |  |
+| `bgL44_grandma_teach_incense` | Vẽ sẵn: bà đứng sau Khoa, tay bà đỡ tay cháu cắm ba nén nhang thẳng hàng vào bát hương | 0.95 | 0.5 |  |
+| `bgL46_grandma_knit_window` | Vẽ sẵn chiều nắng: bà ngồi bên cửa sổ đan nốt cổ áo len đỏ, bên cạnh máy khâu phủ khăn | 0.93 | 0.5 |  |
+| `bgL47_grandma_sweater_on_khoa` | Vẽ sẵn: Khoa mặc áo len đỏ đã có cổ, bà chỉnh cổ áo rồi ngắm, cười; Khoa ngơ ngác | 0.93 | 0.5 |  |
+| `bgL48_dinner_grandma_watch` | Vẽ sẵn tối: Khoa (áo len đỏ) ăn cơm có miếng cá; bà (áo bà ba tím mận, trâm bạc) ngồi nhìn, bát đũa của bà để nguyên | 0.95 | 0.46 |  |
+| `bgL49_alley_night_two` | Vẽ sẵn đêm không trăng: hai bà cháu (nhìn từ sau) nắm tay đi trong hẻm tối, vệt đèn pin nhỏ | 0.95 | 0.3 |  |
 | `bgL4_procession_field` | Đoàn đưa tang nhỏ xa đi trên bờ ruộng gặt trơ gốc, trời âm u, giấy tiền bay | 0.95 | 0.3 |  |
+| `bgL50_field_two_walk_night` | Vẽ sẵn đêm (góc rộng): hai bà cháu nắm tay đi trên bờ ruộng gốc rạ, đom đóm, đèn pin nhỏ | 0.9 | 0.2 |  |
+| `bgL51_two_graves_night_hole` | Đêm: hai mộ cạnh nhau (mộ ông có lỗ nhỏ ở đầu, mộ mẹ đất mới), cây gạo khô, sương mỏng | 0.95 | 0.42 |  |
+| `bgL52_grandma_hand_mom_grave` | Vẽ sẵn đêm: bà quỳ đặt bàn tay lên nấm đất mới của mộ mẹ thì thầm; Khoa (áo len) đứng sau soi đèn | 0.95 | 0.42 |  |
+| `bgL53_grandma_dig_bury` | Vẽ sẵn đêm: bà quỳ bới lỗ ở đầu mộ ông bằng tay, lá bùa và đũa KHOA cạnh lỗ; Khoa soi đèn | 0.95 | 0.42 |  |
+| `bgL53b_grandma_pat_earth` | Vẽ sẵn đêm: hố đã lấp, bà quỳ vỗ nhẹ nấm đất, đôi đũa của bà nằm ngay ngắn trên đó; Khoa đứng soi đèn | 0.95 | 0.42 |  |
+| `bgL54_chopsticks_on_mound` | Cận đêm: bàn tay bà (tay áo lụa tím) đặt đôi đũa khắc tên lên nấm đất đỏ vừa lấp, ánh đèn pin | 0.95 | 0.4 |  |
+| `bgL55_ghost_behind_headstone` | Vẽ sẵn đêm: bóng ông đứng sau bia mộ trong sương; bà quỳ không quay lại, nắm chặt tay Khoa | 0.95 | 0.42 |  |
+| `bgL56_khoa_walk_away_field` | Vẽ sẵn đêm (góc rộng): Khoa (áo len) đi một mình về phía người xem, cúi đầu khóc, xa sau lưng là nghĩa địa | 0.9 | 0.3 |  |
+| `bgL58_grandma_dead_grave_morning` | Vẽ sẵn rạng sáng: bà ngồi tựa mộ ông, đầu nghiêng như ngủ, trâm bạc, một tay đặt trên nấm đất trống | 0.95 | 0.42 |  |
+| `bgL59_khoa_cry_altar` | Vẽ sẵn sáng xám: Khoa (áo len) ngồi sụp trước bàn thờ ba bát cơm, ôm chặt mình, khóc nấc | 0.95 | 0.46 |  |
 | `bgL5_cemetery_burial_day` | Nghĩa địa ngoài đồng ban ngày âm u: huyệt mới đào có quan tài, đống đất đỏ, xẻng; cây gạo khô trụi lá bên phải | 0.95 | 0.42 |  |
 | `bgL5b_burial_shoveling` | Cùng nghĩa địa bgL5: bốn người áo xô xúc đất đỏ lấp huyệt, vài người cúi đầu đứng nhìn | 0.95 | 0.42 | `grave` [0.44, 0.62] |
+| `bgL60_wake_coffin_grandma` | Gian thờ đám tang bà (cùng bố cục bgL2c) ban ngày: quan tài đã đóng, di ảnh bà | 0.95 | 0.42 |  |
+| `bgL61_khoa_porch_cat_lap` | Vẽ sẵn chiều nắng: Khoa ngồi bậc hiên, mèo mướp cuộn tròn ngủ trong lòng, Khoa mỉm cười | 0.93 | 0.46 |  |
+| `bgL62_dinner_co_ut_khoa` | Vẽ sẵn tối: cô Út ngồi mâm cơm cầm ống đũa tò mò ngắm tên khắc, Khoa ngồi đối diện kể chuyện | 0.95 | 0.46 |  |
+| `bgL63_khoa_porch_sweater_dusk` | Vẽ sẵn chạng vạng: Khoa (áo len) ngồi một mình bậc hiên nhìn cây bưởi | 0.93 | 0.46 |  |
 | `bgL6_old_village_altar_sepia` | Hồi ức (tông nâu sepia): nhà gỗ làng cũ, bàn thờ dài nhiều di ảnh, hàng bốn bát cơm, trẻ con ló nhìn qua cửa | 0.95 | 0.46 |  |
 | `bgL7_mom_room_day` | Phòng của mẹ ban ngày: cửa sổ nắng, kệ vải, cuộn chỉ, ma-nơ-canh; chừa trống chỗ đặt máy may (sprite) | 0.93 | 0.5 | `machine_spot` [0.4, 0.8] |
 | `bgL7n_mom_room_night` | Phòng mẹ ban đêm (cùng bố cục bgL7), chừa chỗ máy may + nửa phải trống đặt giường (sprite) | 0.93 | 0.5 | `machine_spot` [0.3, 0.88]; `bed_spot` [0.6, 0.95] |
@@ -88,4 +122,5 @@ Toạ độ là tỉ lệ khung hình 16:9 (x 0 trái→1 phải, y 0 trên→1 
 | `bgL9_main_room_altar_ong` | Gian chính (cùng bố cục bg4) đêm: bàn thờ có ảnh ông (giữa) + ảnh bố; bàn ăn để trống | 0.95 | 0.46 | `altar_shelf` [0.31, 0.33]; `dining_table` [0.73, 0.62] |
 | `bgL9d_main_room_altar_ong_day` | Gian chính có bàn thờ ông (cùng bố cục bgL9) buổi sáng xám | 0.95 | 0.46 | `altar_shelf` [0.31, 0.33]; `dining_table` [0.73, 0.62] |
 | `bgL9m_main_room_altar_three` | Gian chính đêm: kệ thờ có ảnh ông, bố, mẹ và hai bát cơm | 0.95 | 0.46 | `altar_shelf` [0.3, 0.33] |
+| `bgL9md_main_room_altar_three_day` | Gian chính ban ngày xám: kệ thờ ba di ảnh (ông, bố, mẹ), mặt kệ trống đặt bát; sàn trái trống | 0.95 | 0.46 |  |
 | `bgL9s_grandma_asleep_table` | Vẽ sẵn: bà gục đầu ngủ trên bàn ăn trong gian thờ ban đêm; bàn thờ có một bát cơm trước ảnh ông | 0.95 | 0.46 | `grandma` [0.8, 0.7] |

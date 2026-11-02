@@ -113,3 +113,5 @@
 | `U5_run_jacket_5` | right | Áo khoác đen: chạy hoảng loạn, khung 5/6 | chạy, chu kỳ, áo khoác |  |
 | `U6_run_jacket_6` | right | Áo khoác đen: chạy hoảng loạn, khung 6/6 | chạy, chu kỳ, áo khoác |  |
 | `V1_sneak_peek_scared` | left | Áo hoodie: rón rén khom người nhìn trộm (quay trái), tay siết ngực áo, mắt mở to sợ | nhìn trộm, rón rén, sợ |  |
+| `W1_smell_fingers_horror` | right | Áo hoodie: đứng đưa ngón tay lên mũi ngửi, trân trối nhìn bàn tay mình, kinh hãi | ngửi tay, sợ |  |
+| `W2_sit_step_listen` | left | Áo hoodie: ngồi bậc thềm (có bậc) ôm gối, ngoái đầu lắng nghe, buồn | ngồi hiên, nghe lén |  |

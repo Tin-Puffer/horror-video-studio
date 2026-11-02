@@ -418,6 +418,62 @@
     "tang"
    ],
    "facing": "left"
+  },
+  "O1_lean_wall_panting": {
+   "desc": "Còng người vịn tay vào tường (không vẽ tường), tay kia ôm ngực, há miệng thở dốc",
+   "tags": [
+    "ho",
+    "vịn tường"
+   ],
+   "facing": "right"
+  },
+  "O2_wipe_chopsticks_hem": {
+   "desc": "Đứng cúi đầu lấy vạt áo lau đôi đũa tre, bình thản, mắt rất buồn",
+   "tags": [
+    "lau đũa"
+   ],
+   "facing": "left"
+  },
+  "O3_tuck_chopsticks_pocket": {
+   "desc": "Đứng nhẹ nhàng cất đôi đũa vào túi áo bà ba như cất vật quý",
+   "tags": [
+    "cất đũa",
+    "túi áo"
+   ],
+   "facing": "front"
+  },
+  "O4_closeup_face_firm_tears": {
+   "desc": "Cận mặt: nhìn thẳng, miệng nghiêm, mắt ngấn nước (nghiêm mà thương)",
+   "tags": [
+    "cận mặt",
+    "nghiêm"
+   ],
+   "facing": "front"
+  },
+  "O5_count_calendar": {
+   "desc": "Đứng nghiêng (quay phải) ngước nhìn tờ lịch trên tường, bấm đốt ngón tay đếm, lẩm nhẩm",
+   "tags": [
+    "lịch",
+    "đếm ngày"
+   ],
+   "facing": "right"
+  },
+  "P1_closeup_face_smile_night": {
+   "desc": "Đêm, cận mặt áo bà ba tím mận + trâm bạc: ngẩng lên mỉm cười rất hiền, ánh đèn pin hắt từ dưới",
+   "tags": [
+    "cận mặt",
+    "nụ cười",
+    "đêm"
+   ],
+   "facing": "front"
+  },
+  "P2_closeup_bun_hairpin": {
+   "desc": "Cận sau gáy: búi tóc bạc gọn có cây trâm bạc, cổ áo lụa tím mận",
+   "tags": [
+    "trâm bạc",
+    "búi tóc"
+   ],
+   "facing": "away"
   }
  }
 }

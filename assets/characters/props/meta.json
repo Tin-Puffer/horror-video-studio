@@ -465,6 +465,87 @@
     "lửa"
    ],
    "facing": "front"
+  },
+  "LL1_oil_lamp_lit": {
+   "desc": "Đèn dầu nhỏ bằng thuỷ tinh, ngọn lửa vàng leo lét",
+   "tags": [
+    "đèn dầu",
+    "bàn thờ"
+   ],
+   "facing": "front"
+  },
+  "LL2_bowl_khoa_chopsticks": {
+   "desc": "Bát cơm nén chặt, đôi đũa khắc chữ KHOA to rõ cắm thẳng giữa bát",
+   "tags": [
+    "bát thứ ba",
+    "đũa Khoa"
+   ],
+   "facing": "front"
+  },
+  "LL3_boy_hands_rice_full": {
+   "desc": "Cận hai bàn tay Khoa (cổ tay áo hoodie xanh), hạt cơm nguội dính dưới cả mười móng",
+   "tags": [
+    "hạt cơm",
+    "móng tay"
+   ],
+   "facing": "front"
+  },
+  "LL4_boy_hands_clean_sweater": {
+   "desc": "Cận hai bàn tay Khoa (cổ tay áo len đỏ), móng tay sạch trơn",
+   "tags": [
+    "móng tay",
+    "sạch"
+   ],
+   "facing": "front"
+  },
+  "LL5_boy_hands_few_grains": {
+   "desc": "Cận hai bàn tay Khoa (áo hoodie), vài hạt cơm nguội dưới mấy móng tay",
+   "tags": [
+    "hạt cơm",
+    "móng tay"
+   ],
+   "facing": "front"
+  },
+  "LL6_hands_clasp_grandma_boy": {
+   "desc": "Cận đêm: bàn tay già (tay áo lụa tím) nắm chặt bàn tay nhỏ của Khoa (tay áo len đỏ), run run",
+   "tags": [
+    "nắm tay",
+    "bà cháu"
+   ],
+   "facing": "front"
+  },
+  "LL7_grandma_pry_fingers": {
+   "desc": "Cận đêm: bàn tay bà nhẹ nhàng gỡ từng ngón tay Khoa khỏi tay mình",
+   "tags": [
+    "gỡ tay",
+    "chia tay"
+   ],
+   "facing": "front"
+  },
+  "LL8_savings_book_papers": {
+   "desc": "Cuốn sổ tiết kiệm xanh cũ đặt trên xấp giấy tờ nhà buộc dây chun",
+   "tags": [
+    "sổ tiết kiệm",
+    "giấy tờ"
+   ],
+   "facing": "front"
+  },
+  "LL9_bowl_grandma_chopsticks_soil": {
+   "desc": "Bát cơm, đôi đũa khắc tên bà cắm thẳng, hai đầu đũa dính đất đỏ của mộ",
+   "tags": [
+    "bát thứ ba",
+    "đũa bà",
+    "đất đỏ"
+   ],
+   "facing": "front"
+  },
+  "LL10_bowl_spare_chopsticks": {
+   "desc": "Bát cơm thứ tư: đôi đũa dư (chữ KHOA khắc run kín bốn mặt ở đầu trên) cắm thẳng giữa bát",
+   "tags": [
+    "bát thứ tư",
+    "đũa dư"
+   ],
+   "facing": "front"
   }
  },
  "cycles": {

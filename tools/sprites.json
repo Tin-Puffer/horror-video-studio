@@ -1904,6 +1904,65 @@
    ],
    "same_height": true,
    "align_head": true
+  },
+  {
+   "source": "assets/source/grandma_sheet_O.png",
+   "out_dir": "assets/characters/grandma",
+   "grid": [
+    1,
+    5
+   ],
+   "names": [
+    "O1_lean_wall_panting",
+    "O2_wipe_chopsticks_hem",
+    "O3_tuck_chopsticks_pocket",
+    "O4_closeup_face_firm_tears",
+    "O5_count_calendar"
+   ]
+  },
+  {
+   "source": "assets/source/grandma_sheet_P.png",
+   "out_dir": "assets/characters/grandma",
+   "grid": [
+    1,
+    2
+   ],
+   "names": [
+    "P1_closeup_face_smile_night",
+    "P2_closeup_bun_hairpin"
+   ]
+  },
+  {
+   "source": "assets/source/boy_hoodie_sheet_W.png",
+   "out_dir": "assets/characters/boy_hoodie",
+   "grid": [
+    1,
+    2
+   ],
+   "names": [
+    "W1_smell_fingers_horror",
+    "W2_sit_step_listen"
+   ]
+  },
+  {
+   "source": "assets/source/props_sheet_LL.png",
+   "out_dir": "assets/characters/props",
+   "grid": [
+    2,
+    5
+   ],
+   "names": [
+    "LL1_oil_lamp_lit",
+    "LL2_bowl_khoa_chopsticks",
+    "LL3_boy_hands_rice_full",
+    "LL4_boy_hands_clean_sweater",
+    "LL5_boy_hands_few_grains",
+    "LL6_hands_clasp_grandma_boy",
+    "LL7_grandma_pry_fingers",
+    "LL8_savings_book_papers",
+    "LL9_bowl_grandma_chopsticks_soil",
+    "LL10_bowl_spare_chopsticks"
+   ]
   }
  ]
 }

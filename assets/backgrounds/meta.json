@@ -1611,6 +1611,391 @@
      0.42
     ]
    }
+  },
+  "bgL9md_main_room_altar_three_day": {
+   "desc": "Gian chính ban ngày xám: kệ thờ ba di ảnh (ông, bố, mẹ), mặt kệ trống đặt bát; sàn trái trống",
+   "tags": [
+    "gian thờ",
+    "ba di ảnh",
+    "ngày"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL62_dinner_co_ut_khoa": {
+   "desc": "Vẽ sẵn tối: cô Út ngồi mâm cơm cầm ống đũa tò mò ngắm tên khắc, Khoa ngồi đối diện kể chuyện",
+   "tags": [
+    "cô Út",
+    "ống đũa",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL60_wake_coffin_grandma": {
+   "desc": "Gian thờ đám tang bà (cùng bố cục bgL2c) ban ngày: quan tài đã đóng, di ảnh bà",
+   "tags": [
+    "đám tang",
+    "bà"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {}
+  },
+  "bgL46_grandma_knit_window": {
+   "desc": "Vẽ sẵn chiều nắng: bà ngồi bên cửa sổ đan nốt cổ áo len đỏ, bên cạnh máy khâu phủ khăn",
+   "tags": [
+    "đan len",
+    "áo len",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL44_grandma_teach_incense": {
+   "desc": "Vẽ sẵn: bà đứng sau Khoa, tay bà đỡ tay cháu cắm ba nén nhang thẳng hàng vào bát hương",
+   "tags": [
+    "thắp nhang",
+    "bà cháu",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL41_grandma_gate_night": {
+   "desc": "Vẽ sẵn đêm: bà đứng ở cổng sắt hé mở, ôm hai đôi đũa trước ngực, nhìn ra con đường tối om, sợ hãi",
+   "tags": [
+    "cổng",
+    "bà",
+    "hồi ức",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL40_young_couple_sepia": {
+   "desc": "Hồi ức sepia: ông bà thời trẻ ngồi cạnh nhau trên hiên nhà gỗ, bà cười e thẹn, ông nhìn bà thương mà lo",
+   "tags": [
+    "hồi ức",
+    "ông bà trẻ",
+    "sepia"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL39_pagoda_boy_sepia": {
+   "desc": "Hồi ức sepia: bà cụ dắt cậu bé đầu cạo trọc tới cổng chùa, sư đứng đợi, cậu bé ngoái lại",
+   "tags": [
+    "hồi ức",
+    "chùa",
+    "sepia"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {}
+  },
+  "bgL35_khoa_watch_mat_altar": {
+   "desc": "Vẽ sẵn đêm: Khoa ngồi bó gối trên chiếu trước bàn thờ, chăn mỏng khoác vai, tay nắm đèn pin, mắt mở trừng",
+   "tags": [
+    "canh đêm",
+    "chiếu",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL33_khoa_lock_cupboard": {
+   "desc": "Vẽ sẵn chiều: Khoa vặn chìa khoá đồng khoá tủ gỗ, nồi cơm nhôm ở trong",
+   "tags": [
+    "tủ bếp",
+    "khoá",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL32_khoa_rice_sack_bed": {
+   "desc": "Vẽ sẵn chiều: Khoa quỳ đẩy bao gạo buộc chặt miệng vào gầm giường, mặt quyết tâm",
+   "tags": [
+    "bao gạo",
+    "gầm giường",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL37_khoa_kneel_confess": {
+   "desc": "Vẽ sẵn: Khoa quỳ khóc giơ lá bùa nhàu trước mặt bà đang đứng nhìn xuống",
+   "tags": [
+    "thú nhận",
+    "lá bùa",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL36_grandma_doorway_stare": {
+   "desc": "Vẽ sẵn sáng xám: bà đứng ở cửa buồng, tay vịn khung cửa, nhìn trân trân về phía bàn thờ",
+   "tags": [
+    "cửa buồng",
+    "bà",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL35c_khoa_mat_dawn_key": {
+   "desc": "Vẽ sẵn rạng sáng: Khoa ngồi trên chiếu, chăn tuột, tay cầm chìa khoá tủ ngơ ngác; trên kệ ba bát cơm",
+   "tags": [
+    "rạng sáng",
+    "chìa khoá",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL34_kitchen_stove_warm_dawn": {
+   "desc": "Góc bếp rạng sáng: bếp củi đất, nồi cơm nhôm còn ấm, tro còn vài đốm đỏ, khói mỏng; nửa phải trống",
+   "tags": [
+    "bếp củi",
+    "nồi cơm",
+    "rạng sáng"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL33b_cupboard_open_empty": {
+   "desc": "Rạng sáng: tủ bếp mở toang, ngăn trống trơn, chìa khoá còn cắm ổ",
+   "tags": [
+    "tủ bếp",
+    "rạng sáng"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL32b_rice_sack_pulled_out": {
+   "desc": "Rạng sáng: bao gạo bị lôi ra giữa sàn, sợi dây cởi ra đặt ngay ngắn bên cạnh, gạo vương",
+   "tags": [
+    "bao gạo",
+    "rạng sáng"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL61_khoa_porch_cat_lap": {
+   "desc": "Vẽ sẵn chiều nắng: Khoa ngồi bậc hiên, mèo mướp cuộn tròn ngủ trong lòng, Khoa mỉm cười",
+   "tags": [
+    "mèo mướp",
+    "bình yên",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL51_two_graves_night_hole": {
+   "desc": "Đêm: hai mộ cạnh nhau (mộ ông có lỗ nhỏ ở đầu, mộ mẹ đất mới), cây gạo khô, sương mỏng",
+   "tags": [
+    "nghĩa địa",
+    "hai mộ",
+    "đêm"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {}
+  },
+  "bgL47_grandma_sweater_on_khoa": {
+   "desc": "Vẽ sẵn: Khoa mặc áo len đỏ đã có cổ, bà chỉnh cổ áo rồi ngắm, cười; Khoa ngơ ngác",
+   "tags": [
+    "áo len",
+    "bà cháu",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL48_dinner_grandma_watch": {
+   "desc": "Vẽ sẵn tối: Khoa (áo len đỏ) ăn cơm có miếng cá; bà (áo bà ba tím mận, trâm bạc) ngồi nhìn, bát đũa của bà để nguyên",
+   "tags": [
+    "bữa tối",
+    "trâm bạc",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL38_grandma_sit_talisman_khoa": {
+   "desc": "Vẽ sẵn: bà ngồi bệt cạnh Khoa, cầm lá bùa nhàu trong lòng, kể chuyện; Khoa nép vào bà ngước nhìn",
+   "tags": [
+    "bà kể",
+    "lá bùa",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL37b_khoa_bow_floor": {
+   "desc": "Vẽ sẵn: Khoa cúi rạp trán xuống nền gạch, lá bùa dưới đất; bà đứng, tay hơi đưa ra",
+   "tags": [
+    "thú nhận",
+    "cúi đầu",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL59_khoa_cry_altar": {
+   "desc": "Vẽ sẵn sáng xám: Khoa (áo len) ngồi sụp trước bàn thờ ba bát cơm, ôm chặt mình, khóc nấc",
+   "tags": [
+    "khóc",
+    "áo len",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL56_khoa_walk_away_field": {
+   "desc": "Vẽ sẵn đêm (góc rộng): Khoa (áo len) đi một mình về phía người xem, cúi đầu khóc, xa sau lưng là nghĩa địa",
+   "tags": [
+    "cánh đồng",
+    "không ngoảnh lại",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.9,
+   "char_h": 0.3,
+   "hotspots": {}
+  },
+  "bgL63_khoa_porch_sweater_dusk": {
+   "desc": "Vẽ sẵn chạng vạng: Khoa (áo len) ngồi một mình bậc hiên nhìn cây bưởi",
+   "tags": [
+    "hiên",
+    "cây bưởi",
+    "áo len",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL58_grandma_dead_grave_morning": {
+   "desc": "Vẽ sẵn rạng sáng: bà ngồi tựa mộ ông, đầu nghiêng như ngủ, trâm bạc, một tay đặt trên nấm đất trống",
+   "tags": [
+    "bà mất",
+    "nghĩa địa",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {}
+  },
+  "bgL53_grandma_dig_bury": {
+   "desc": "Vẽ sẵn đêm: bà quỳ bới lỗ ở đầu mộ ông bằng tay, lá bùa và đũa KHOA cạnh lỗ; Khoa soi đèn",
+   "tags": [
+    "đổi đũa",
+    "bới đất",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {}
+  },
+  "bgL50_field_two_walk_night": {
+   "desc": "Vẽ sẵn đêm (góc rộng): hai bà cháu nắm tay đi trên bờ ruộng gốc rạ, đom đóm, đèn pin nhỏ",
+   "tags": [
+    "cánh đồng",
+    "đom đóm",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.9,
+   "char_h": 0.2,
+   "hotspots": {}
+  },
+  "bgL49_alley_night_two": {
+   "desc": "Vẽ sẵn đêm không trăng: hai bà cháu (nhìn từ sau) nắm tay đi trong hẻm tối, vệt đèn pin nhỏ",
+   "tags": [
+    "hẻm",
+    "đêm",
+    "bà cháu",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.3,
+   "hotspots": {}
+  },
+  "bgL42_grandma_hug_khoa_dawn": {
+   "desc": "Vẽ sẵn: nắng sớm tràn vào, hai bà cháu ngồi ôm nhau khóc trước bàn thờ có ba bát cơm",
+   "tags": [
+    "bà cháu",
+    "ôm",
+    "nắng sớm",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL52_grandma_hand_mom_grave": {
+   "desc": "Vẽ sẵn đêm: bà quỳ đặt bàn tay lên nấm đất mới của mộ mẹ thì thầm; Khoa (áo len) đứng sau soi đèn",
+   "tags": [
+    "mộ mẹ",
+    "xin lỗi",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {}
+  },
+  "bgL53b_grandma_pat_earth": {
+   "desc": "Vẽ sẵn đêm: hố đã lấp, bà quỳ vỗ nhẹ nấm đất, đôi đũa của bà nằm ngay ngắn trên đó; Khoa đứng soi đèn",
+   "tags": [
+    "đổi đũa",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {}
+  },
+  "bgL54_chopsticks_on_mound": {
+   "desc": "Cận đêm: bàn tay bà (tay áo lụa tím) đặt đôi đũa khắc tên lên nấm đất đỏ vừa lấp, ánh đèn pin",
+   "tags": [
+    "đũa bà",
+    "cận",
+    "đổi đũa"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {}
+  },
+  "bgL55_ghost_behind_headstone": {
+   "desc": "Vẽ sẵn đêm: bóng ông đứng sau bia mộ trong sương; bà quỳ không quay lại, nắm chặt tay Khoa",
+   "tags": [
+    "bóng ông",
+    "nghĩa địa",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.42,
+   "hotspots": {}
   }
  }
 }

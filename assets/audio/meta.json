@@ -620,6 +620,55 @@
    ],
    "volume": 0.6,
    "kind": "sfx"
+  },
+  "fan_hum": {
+   "desc": "Quạt máy cũ quay vù vù đều, lặp được",
+   "tags": [
+    "quạt máy"
+   ],
+   "volume": 0.4,
+   "kind": "sfx"
+  },
+  "cat_purr": {
+   "desc": "Mèo kêu rừ rừ đều, lặp được",
+   "tags": [
+    "mèo"
+   ],
+   "volume": 0.6,
+   "kind": "sfx"
+  },
+  "laugh_soft_far": {
+   "desc": "Tiếng cười nhẹ tênh, trong trẻo như cô gái trẻ, vọng xa",
+   "tags": [
+    "tiếng cười"
+   ],
+   "volume": 0.5,
+   "kind": "sfx"
+  },
+  "murmur_far": {
+   "desc": "Giọng một bà cụ nói khẽ rất xa, không rõ lời",
+   "tags": [
+    "giọng xa"
+   ],
+   "volume": 0.4,
+   "kind": "sfx"
+  },
+  "boy_sob_soft": {
+   "desc": "Cậu bé nấc khẽ, nén tiếng khóc",
+   "tags": [
+    "khóc",
+    "nấc"
+   ],
+   "volume": 0.6,
+   "kind": "sfx"
+  },
+  "rice_pour_sack": {
+   "desc": "Đổ gạo vào bao, hạt gạo chảy rào rào",
+   "tags": [
+    "gạo"
+   ],
+   "volume": 0.7,
+   "kind": "sfx"
   }
  }
 }
