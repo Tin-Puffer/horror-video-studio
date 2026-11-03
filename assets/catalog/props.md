@@ -73,6 +73,10 @@
 | `LL7_grandma_pry_fingers` | front | Cận đêm: bàn tay bà nhẹ nhàng gỡ từng ngón tay Khoa khỏi tay mình | gỡ tay, chia tay |  |
 | `LL8_savings_book_papers` | front | Cuốn sổ tiết kiệm xanh cũ đặt trên xấp giấy tờ nhà buộc dây chun | sổ tiết kiệm, giấy tờ |  |
 | `LL9_bowl_grandma_chopsticks_soil` | front | Bát cơm, đôi đũa khắc tên bà cắm thẳng, hai đầu đũa dính đất đỏ của mộ | bát thứ ba, đũa bà, đất đỏ |  |
+| `LM1_wall_clock_twelve` | front | Đồng hồ quả lắc chỉ đúng 12 giờ | đồng hồ, 12 giờ |  |
+| `LM2_wall_clock_one` | front | Đồng hồ quả lắc chỉ đúng 1 giờ | đồng hồ, 1 giờ |  |
+| `LM3_wall_clock_two` | front | Đồng hồ quả lắc chỉ đúng 2 giờ | đồng hồ, 2 giờ |  |
+| `LN1_bowl_rice_no_chopsticks` | front | Bát cơm xới đầy nén chặt, không cắm đũa (bát thứ ba sau khi bà rút đũa) | bát thứ ba, không đũa |  |
 | `VM1_fire_bucket_1` | front | Xô sắt gỉ đốt vàng mã, lửa cháy, khung 1/3 (chu kỳ fire, xô đứng yên) | vàng mã, lửa, cúng |  |
 | `VM2_fire_bucket_2` | front | Xô sắt gỉ đốt vàng mã, lửa cháy, khung 2/3 (chu kỳ fire, xô đứng yên) | vàng mã, lửa, cúng |  |
 | `VM3_fire_bucket_3` | front | Xô sắt gỉ đốt vàng mã, lửa cháy, khung 3/3 (chu kỳ fire, xô đứng yên) | vàng mã, lửa, cúng |  |

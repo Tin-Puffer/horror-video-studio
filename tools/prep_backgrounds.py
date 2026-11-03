@@ -65,6 +65,8 @@ FIXES = {
     # ảnh nửa cỡ, logo nằm lệch chỗ thường
     "bgL25_mom_bed_sick_night": [lambda im: remove_watermark(im, (1220, 605, 1305, 692))],
     "bg1d_corner_dawn": [dawn_light],
+    # Gemini để 2 logo (một cái lệch lên trên)
+    "bgL55n_ghost_headstone_plain": [lambda im: remove_watermark(im, (2459, 1242, 2574, 1357))],
 }
 
 

@@ -19,7 +19,7 @@
 | `hungry_ghost` | Cô hồn đói | 7 | 0.6 |  |
 | `mother_alive` | Mẹ lúc còn sống (cùng người với ma "Mẹ") | 31 | 0.62 | `walk`(6) |
 | `ong_noi` | Ông nội | 17 | 0.58 |  |
-| `props` | Đạo cụ (bát cơm cúng, nhang, dấu tay, dép) | 67 | 0.2 | `fire`(3), `crow_fly`(4) |
+| `props` | Đạo cụ (bát cơm cúng, nhang, dấu tay, dép) | 71 | 0.2 | `fire`(3), `crow_fly`(4) |
 | `thay_tu` | Thầy Tư (thầy cúng) | 10 | 0.58 |  |
 
 ## Phông nền
@@ -50,7 +50,10 @@
 | `bg9c_door_gap_face` | POV qua khe dưới cửa: một cô hồn áp mặt xuống sàn sát cửa, hốc mắt đen nhìn thẳng vào khe, miệng dính cơm (cú hù). Vẽ sẵn. | slit_center, ghost_face |
 | `bgL10_altar_four_portraits` | Bàn thờ đêm có 4 di ảnh: ông, mẹ, bà và khung thứ tư phủ kín vải đen; mặt trước trống để đặt bát cơm | offering_spot |
 | `bgL10b_altar_four_portraits` | Bàn thờ 4 di ảnh (ông, mẹ, bà, khung phủ vải đen), lư hương nhỏ ở giữa mép trước, chỗ trống trước từng di ảnh để đặt bát | offering_spot, incense |
+| `bgL10u_altar_carved_four` | Cận tủ thờ chạm khắc ban đêm, bốn di ảnh (mẹ, bà, ông ở giữa, bố), hai nến đỏ, mặt tủ trống để đặt bát |  |
 | `bgL11_ong_bed_corner_night` | Góc nhà cạnh gian thờ ban đêm: bàn thờ treo nhỏ (ảnh bố), đồng hồ quả lắc trên tường, cửa sổ trăng; sàn trống đặt giường tre (sprite) | bed_spot, clock |
+| `bgL11t_ong_bed_corner_cabinet` | Góc nhà đêm thời ông còn sống: tủ thờ chỉ có ảnh bố, đồng hồ quả lắc trên tường; giữa sàn trống đặt giường |  |
+| `bgL11u_ong_corner_carved` | Góc nhà ban đêm thời ông còn sống: tủ thờ chạm khắc chỉ ảnh bố, đồng hồ quả lắc; giữa sàn trống đặt giường |  |
 | `bgL12_living_room_day` | Phòng khách buổi sáng xám: chiếu cói giữa nhà, tủ thấp, khay trà, bàn thờ trên cao; sàn trống | mat_center |
 | `bgL13_home_altar_bo` | Cận bàn thờ cũ trong nhà (ảnh bố), nửa phải là tường trống để treo gương phủ vải đỏ | portrait, mirror_spot |
 | `bgL14_grandma_comb_coffin` | Vẽ sẵn: bà ngồi ghế thấp bên quan tài, chải tóc bạc cho ông (thấy đầu ông trên mép quan tài), thì thầm | grandma, ong_head |
@@ -67,9 +70,14 @@
 | `bgL19b_mirror_khoa_alone` | Vẽ sẵn: cùng gương, chỉ còn Khoa đứng một mình giữa gian thờ tối, sau lưng hai bát cơm | mirror |
 | `bgL19c_mirror_ong_whisper` | Vẽ sẵn: trong gương, mẹ bưng bát cơm, ông áo the đứng sau đặt tay lên tay mẹ, ghé tai thì thầm | mirror |
 | `bgL1_porch_day` | Hiên nhà ống chiều nắng vàng: cửa gỗ bên trái, nền gạch, cây bưởi già sai quả bên phải, tường rào thấp |  |
+| `bgL1k_khoa_porch_listen` | Vẽ sẵn trưa: Khoa ngồi bậc hiên ôm gối, ngoái đầu về phía cửa lắng nghe, buồn |  |
 | `bgL1n_porch_night` | Hiên nhà (cùng bố cục bgL1) ban đêm, ánh trăng qua lá bưởi, đèn vàng hắt ra từ cửa |  |
 | `bgL20b_wake_coffin_mom_open` | Gian thờ đám tang mẹ (cùng bố cục bgL2): quan tài mở nắp, di ảnh mẹ |  |
 | `bgL21b_altar_three` | Cận bàn thờ: ảnh ông (giữa), ảnh bố, ảnh mẹ mới; nhang khói, nến; mặt bàn trống đặt bát | offering_ong, offering_me |
+| `bgL21d_altar_three_dawn` | Cận tủ thờ rạng sáng: nến tàn, chút nắng sớm vàng nhạt hắt chéo từ trái; mặt tủ trống để đặt bát |  |
+| `bgL21n_altar_night_sidelight` | Cận tủ thờ đêm tối: không đèn, không cơm, một vệt trăng xanh lạnh hắt ngang từ trái rọi lên di ảnh |  |
+| `bgL21p_altar_carved_night` | Cận tủ thờ chạm khắc ban đêm, vệt trăng xanh hắt ngang, mặt tủ không bát |  |
+| `bgL21q_altar_carved_dawn` | Cận tủ thờ chạm khắc buổi sáng, nắng sớm hắt chéo, mặt tủ không bát |  |
 | `bgL22_backyard_morning` | Sân sau bếp buổi sáng xám: cửa bếp bên trái, giếng gạch, chum nước, dây phơi, bụi chuối; nền đất trống | open_ground |
 | `bgL23_house_roof_dusk` | Sân trước lúc chạng vạng nhìn lên nóc nhà mái rêu (chỗ quạ đậu) và cây bưởi bên phải | roof_ridge, pomelo_branch |
 | `bgL24_altar_ong_bo_cold` | Cận bàn thờ nguội: ảnh ông + ảnh bố nhỏ bên cạnh, nến tắt; mặt bàn trống đặt bát | offering_left, offering_right |
@@ -94,15 +102,29 @@
 | `bgL31_mirror_opposite_room` | Nhìn qua khung cửa sang phòng đối diện: tấm vải đỏ đang tuột khỏi chiếc gương lớn | mirror |
 | `bgL32_khoa_rice_sack_bed` | Vẽ sẵn chiều: Khoa quỳ đẩy bao gạo buộc chặt miệng vào gầm giường, mặt quyết tâm |  |
 | `bgL32b_rice_sack_pulled_out` | Rạng sáng: bao gạo bị lôi ra giữa sàn, sợi dây cởi ra đặt ngay ngắn bên cạnh, gạo vương |  |
+| `bgL32c_rice_sack_open_spilled` | Rạng sáng: bao gạo mở miệng, sợi dây đã cởi nằm riêng, gạo đổ loang ra sàn quanh bao |  |
 | `bgL33_khoa_lock_cupboard` | Vẽ sẵn chiều: Khoa vặn chìa khoá đồng khoá tủ gỗ, nồi cơm nhôm ở trong |  |
 | `bgL33b_cupboard_open_empty` | Rạng sáng: tủ bếp mở toang, ngăn trống trơn, chìa khoá còn cắm ổ |  |
 | `bgL34_kitchen_stove_warm_dawn` | Góc bếp rạng sáng: bếp củi đất, nồi cơm nhôm còn ấm, tro còn vài đốm đỏ, khói mỏng; nửa phải trống |  |
+| `bgL34c_kitchen_cooker_check` | Vẽ sẵn rạng sáng: tủ bếp mở toang; Khoa mở hé nắp nồi cơm điện (đèn ủ sáng, hơi nóng), tay áp thành nồi |  |
+| `bgL34d_kitchen_smell_fingers` | Vẽ sẵn rạng sáng: Khoa lùi khỏi kệ bếp, đưa ngón tay lên mũi ngửi, trân trối nhìn tay mình |  |
 | `bgL35_khoa_watch_mat_altar` | Vẽ sẵn đêm: Khoa ngồi bó gối trên chiếu trước bàn thờ, chăn mỏng khoác vai, tay nắm đèn pin, mắt mở trừng |  |
 | `bgL35c_khoa_mat_dawn_key` | Vẽ sẵn rạng sáng: Khoa ngồi trên chiếu, chăn tuột, tay cầm chìa khoá tủ ngơ ngác; trên kệ ba bát cơm |  |
+| `bgL35ct_khoa_mat_dawn_cabinet` | Vẽ sẵn rạng sáng: Khoa ngồi chiếu cầm chìa khoá ngơ ngác; trên tủ thờ ba bát cơm |  |
+| `bgL35cu_khoa_mat_dawn_carved` | Vẽ sẵn rạng sáng: Khoa ngồi chiếu cầm chìa khoá; tủ thờ chạm khắc, ba bát cơm cắm đũa |  |
+| `bgL35t_khoa_watch_mat_cabinet` | Vẽ sẵn đêm: Khoa bó gối trên chiếu trước tủ thờ (hai bát cơm), ánh trăng hắt ngang, không đèn dầu |  |
 | `bgL36_grandma_doorway_stare` | Vẽ sẵn sáng xám: bà đứng ở cửa buồng, tay vịn khung cửa, nhìn trân trân về phía bàn thờ |  |
+| `bgL36t_grandma_doorway_cabinet` | Vẽ sẵn sáng xám: bà đứng cửa buồng vịn khung cửa nhìn về tủ thờ có ba bát cơm |  |
+| `bgL36u_grandma_doorway_carved` | Vẽ sẵn sáng xám: bà đứng cửa buồng nhìn tủ thờ chạm khắc có ba bát cơm cắm đũa |  |
 | `bgL37_khoa_kneel_confess` | Vẽ sẵn: Khoa quỳ khóc giơ lá bùa nhàu trước mặt bà đang đứng nhìn xuống |  |
 | `bgL37b_khoa_bow_floor` | Vẽ sẵn: Khoa cúi rạp trán xuống nền gạch, lá bùa dưới đất; bà đứng, tay hơi đưa ra |  |
+| `bgL37bt_khoa_bow_cabinet` | Vẽ sẵn: Khoa cúi rạp trán xuống nền gạch, bà đứng; phía sau tủ thờ |  |
+| `bgL37bu_khoa_bow_carved` | Vẽ sẵn: Khoa cúi rạp, bà đứng; tủ thờ chạm khắc, ba bát (bát thứ ba không đũa) |  |
+| `bgL37t_khoa_kneel_cabinet` | Vẽ sẵn: Khoa quỳ khóc giơ lá bùa trước bà; phía sau tủ thờ ba bát cơm |  |
+| `bgL37u_khoa_kneel_carved` | Vẽ sẵn: Khoa quỳ giơ lá bùa trước bà; tủ thờ chạm khắc, ba bát (bát thứ ba không đũa) |  |
 | `bgL38_grandma_sit_talisman_khoa` | Vẽ sẵn: bà ngồi bệt cạnh Khoa, cầm lá bùa nhàu trong lòng, kể chuyện; Khoa nép vào bà ngước nhìn |  |
+| `bgL38t_grandma_sit_cabinet` | Vẽ sẵn: bà ngồi bệt cạnh Khoa cầm lá bùa kể chuyện; phía sau tủ thờ |  |
+| `bgL38u_grandma_sit_carved` | Vẽ sẵn: bà ngồi bệt cầm lá bùa nhàu trong lòng kể chuyện, Khoa nép bên ngước nhìn; tủ thờ chạm khắc, ba bát |  |
 | `bgL39_pagoda_boy_sepia` | Hồi ức sepia: bà cụ dắt cậu bé đầu cạo trọc tới cổng chùa, sư đứng đợi, cậu bé ngoái lại |  |
 | `bgL3a_coffin_top_hands_chest` | Cận từ trên xuống trong quan tài: ông nằm, áo the, hai tay đặt trên ngực, góc lá bùa vàng ló dưới gối |  |
 | `bgL3c_coffin_face_smile` | Cận mặt ông trong quan tài (ảo giác): mắt hé mở nhìn thẳng, miệng cười toác rợn người, ánh que diêm | face |
@@ -112,11 +134,15 @@
 | `bgL3m_coffin_mom_hand_talisman` | Cận từ trên: mẹ (áo xô) nằm trong quan tài, chỉ đỏ ở cổ tay, tay thầy Tư nhét bùa dưới gối |  |
 | `bgL40_young_couple_sepia` | Hồi ức sepia: ông bà thời trẻ ngồi cạnh nhau trên hiên nhà gỗ, bà cười e thẹn, ông nhìn bà thương mà lo |  |
 | `bgL41_grandma_gate_night` | Vẽ sẵn đêm: bà đứng ở cổng sắt hé mở, ôm hai đôi đũa trước ngực, nhìn ra con đường tối om, sợ hãi |  |
+| `bgL41f_grandma_field_night` | Vẽ sẵn đêm (hồi ức): bà đứng giữa đồng, ôm hai đôi đũa trước ngực, nhìn con đường tối om dẫn ra nghĩa địa xa |  |
 | `bgL42_grandma_hug_khoa_dawn` | Vẽ sẵn: nắng sớm tràn vào, hai bà cháu ngồi ôm nhau khóc trước bàn thờ có ba bát cơm |  |
+| `bgL42u_hug_carved` | Vẽ sẵn: nắng sớm tràn vào, hai bà cháu ôm nhau khóc trước tủ thờ chạm khắc có ba bát |  |
 | `bgL44_grandma_teach_incense` | Vẽ sẵn: bà đứng sau Khoa, tay bà đỡ tay cháu cắm ba nén nhang thẳng hàng vào bát hương |  |
+| `bgL44u_teach_incense_carved` | Vẽ sẵn ngày: bà đứng sau Khoa dạy thắp nhang trước tủ thờ chạm khắc, ba bát (bát thứ ba không đũa) |  |
 | `bgL46_grandma_knit_window` | Vẽ sẵn chiều nắng: bà ngồi bên cửa sổ đan nốt cổ áo len đỏ, bên cạnh máy khâu phủ khăn |  |
 | `bgL47_grandma_sweater_on_khoa` | Vẽ sẵn: Khoa mặc áo len đỏ đã có cổ, bà chỉnh cổ áo rồi ngắm, cười; Khoa ngơ ngác |  |
 | `bgL48_dinner_grandma_watch` | Vẽ sẵn tối: Khoa (áo len đỏ) ăn cơm có miếng cá; bà (áo bà ba tím mận, trâm bạc) ngồi nhìn, bát đũa của bà để nguyên |  |
+| `bgL48u_dinner_watch_carved` | Vẽ sẵn tối: bà ngồi nhìn Khoa ăn bên đèn bàn; phía sau tủ thờ chạm khắc, ba di ảnh, ba bát |  |
 | `bgL49_alley_night_two` | Vẽ sẵn đêm không trăng: hai bà cháu (nhìn từ sau) nắm tay đi trong hẻm tối, vệt đèn pin nhỏ |  |
 | `bgL4_procession_field` | Đoàn đưa tang nhỏ xa đi trên bờ ruộng gặt trơ gốc, trời âm u, giấy tiền bay |  |
 | `bgL50_field_two_walk_night` | Vẽ sẵn đêm (góc rộng): hai bà cháu nắm tay đi trên bờ ruộng gốc rạ, đom đóm, đèn pin nhỏ |  |
@@ -124,17 +150,28 @@
 | `bgL52_grandma_hand_mom_grave` | Vẽ sẵn đêm: bà quỳ đặt bàn tay lên nấm đất mới của mộ mẹ thì thầm; Khoa (áo len) đứng sau soi đèn |  |
 | `bgL53_grandma_dig_bury` | Vẽ sẵn đêm: bà quỳ bới lỗ ở đầu mộ ông bằng tay, lá bùa và đũa KHOA cạnh lỗ; Khoa soi đèn |  |
 | `bgL53b_grandma_pat_earth` | Vẽ sẵn đêm: hố đã lấp, bà quỳ vỗ nhẹ nấm đất, đôi đũa của bà nằm ngay ngắn trên đó; Khoa đứng soi đèn |  |
+| `bgL53c_grandma_pat_earth_plain` | Đêm: bà vỗ nhẹ lên đất vừa lấp ở đầu mộ ông (không có đũa); Khoa soi đèn pin |  |
+| `bgL53d_pat_at_ong_grave` | Đêm: bà quỳ vỗ nhẹ lên chỗ đất vừa lấp ở đầu mộ ông, mỉm cười; Khoa soi đèn; mộ mẹ bên phải |  |
+| `bgL53n_grandma_bury_talisman` | Đêm: bà quỳ bới đất ở đầu mộ ông, lá bùa vàng bên cạnh (không có đũa); Khoa soi đèn pin |  |
+| `bgL53o_bury_at_ong_grave` | Đêm: bà quỳ bới lỗ ở đầu mộ ông (trái, cạnh bia), lá bùa bên cạnh; Khoa soi đèn; mộ mẹ bên phải nguyên vẹn |  |
 | `bgL54_chopsticks_on_mound` | Cận đêm: bàn tay bà (tay áo lụa tím) đặt đôi đũa khắc tên lên nấm đất đỏ vừa lấp, ánh đèn pin |  |
+| `bgL54b_hand_chopsticks_low_mound` | Cận đêm: bàn tay bà (tay áo lụa tím) nhẹ nhàng đặt đôi đũa lên chỗ đất thấp vừa lấp ở đầu mộ ông |  |
 | `bgL55_ghost_behind_headstone` | Vẽ sẵn đêm: bóng ông đứng sau bia mộ trong sương; bà quỳ không quay lại, nắm chặt tay Khoa |  |
+| `bgL55n_ghost_headstone_plain` | Đêm: bóng ông mờ đứng sau bia mộ, bà quỳ bên nấm đất (không có đũa), Khoa cầm đèn pin |  |
+| `bgL55o_ghost_at_ong_grave` | Đêm: bóng ông mờ đứng sau bia mộ ông (trái), sương thấp; bà quỳ không quay lại, Khoa sững người; mộ mẹ bên phải |  |
 | `bgL56_khoa_walk_away_field` | Vẽ sẵn đêm (góc rộng): Khoa (áo len) đi một mình về phía người xem, cúi đầu khóc, xa sau lưng là nghĩa địa |  |
 | `bgL58_grandma_dead_grave_morning` | Vẽ sẵn rạng sáng: bà ngồi tựa mộ ông, đầu nghiêng như ngủ, trâm bạc, một tay đặt trên nấm đất trống |  |
 | `bgL59_khoa_cry_altar` | Vẽ sẵn sáng xám: Khoa (áo len) ngồi sụp trước bàn thờ ba bát cơm, ôm chặt mình, khóc nấc |  |
+| `bgL59u_khoa_cry_carved` | Vẽ sẵn sáng: Khoa ngồi bó gối khóc trước tủ thờ chạm khắc, ba bát cơm cắm đũa |  |
 | `bgL5_cemetery_burial_day` | Nghĩa địa ngoài đồng ban ngày âm u: huyệt mới đào có quan tài, đống đất đỏ, xẻng; cây gạo khô trụi lá bên phải |  |
 | `bgL5b_burial_shoveling` | Cùng nghĩa địa bgL5: bốn người áo xô xúc đất đỏ lấp huyệt, vài người cúi đầu đứng nhìn | grave |
 | `bgL60_wake_coffin_grandma` | Gian thờ đám tang bà (cùng bố cục bgL2c) ban ngày: quan tài đã đóng, di ảnh bà |  |
 | `bgL61_khoa_porch_cat_lap` | Vẽ sẵn chiều nắng: Khoa ngồi bậc hiên, mèo mướp cuộn tròn ngủ trong lòng, Khoa mỉm cười |  |
 | `bgL62_dinner_co_ut_khoa` | Vẽ sẵn tối: cô Út ngồi mâm cơm cầm ống đũa tò mò ngắm tên khắc, Khoa ngồi đối diện kể chuyện |  |
+| `bgL62u_dinner_co_ut_carved` | Vẽ sẵn tối: cô Út và Khoa ăn cơm bên đèn bàn; phía sau tủ thờ chạm, bốn di ảnh, ba bát cơm |  |
 | `bgL63_khoa_porch_sweater_dusk` | Vẽ sẵn chạng vạng: Khoa (áo len) ngồi một mình bậc hiên nhìn cây bưởi |  |
+| `bgL64_khoa_back_four_bowls` | Vẽ sẵn rạng sáng: Khoa đứng quay lưng giữa gian thờ nhìn tủ thờ chạm có bốn di ảnh và bốn bát cơm |  |
+| `bgL65_thay_tu_unveil_mirror` | Vẽ sẵn ngày: thầy Tư kéo tấm vải đỏ khỏi gương treo tường, tay kia cầm gương bát quái vừa gỡ |  |
 | `bgL6_old_village_altar_sepia` | Hồi ức (tông nâu sepia): nhà gỗ làng cũ, bàn thờ dài nhiều di ảnh, hàng bốn bát cơm, trẻ con ló nhìn qua cửa |  |
 | `bgL7_mom_room_day` | Phòng của mẹ ban ngày: cửa sổ nắng, kệ vải, cuộn chỉ, ma-nơ-canh; chừa trống chỗ đặt máy may (sprite) | machine_spot |
 | `bgL7n_mom_room_night` | Phòng mẹ ban đêm (cùng bố cục bgL7), chừa chỗ máy may + nửa phải trống đặt giường (sprite) | machine_spot, bed_spot |
@@ -143,7 +180,11 @@
 | `bgL9d_main_room_altar_ong_day` | Gian chính có bàn thờ ông (cùng bố cục bgL9) buổi sáng xám | altar_shelf, dining_table |
 | `bgL9m_main_room_altar_three` | Gian chính đêm: kệ thờ có ảnh ông, bố, mẹ và hai bát cơm | altar_shelf |
 | `bgL9md_main_room_altar_three_day` | Gian chính ban ngày xám: kệ thờ ba di ảnh (ông, bố, mẹ), mặt kệ trống đặt bát; sàn trái trống |  |
+| `bgL9mt_main_room_cabinet_day` | Gian chính ban ngày xám: tủ thờ đặt dưới sàn, ba di ảnh, mặt tủ trống để đặt bát; không người |  |
+| `bgL9mu_main_room_carved_day` | Gian chính ban ngày: tủ thờ chạm khắc (như cảnh Khoa canh đêm), ba di ảnh, mặt tủ không bát; không người |  |
 | `bgL9s_grandma_asleep_table` | Vẽ sẵn: bà gục đầu ngủ trên bàn ăn trong gian thờ ban đêm; bàn thờ có một bát cơm trước ảnh ông | grandma |
+| `bgL9st_grandma_asleep_cabinet` | Vẽ sẵn đêm: bà gục ngủ bên bàn; tủ thờ hai di ảnh (ông, bố), hai bát cơm |  |
+| `bgL9su_grandma_asleep_carved` | Vẽ sẵn đêm: bà gục ngủ bên bàn; tủ thờ chạm khắc hai di ảnh (ông, bố), hai bát cơm |  |
 
 ## Âm thanh
 

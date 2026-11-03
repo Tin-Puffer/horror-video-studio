@@ -390,9 +390,9 @@ Con quạ đen lại bay về đậu trên nóc nhà. Lần này nó không kêu
 
 Tôi không dám bước ra gian thờ đêm ấy. Tôi nằm co ro dưới chăn, bịt chặt hai tai, cho đến khi tiếng muôi xới cơm im hẳn và trời bắt đầu hửng sáng.
 
-Sáng ra, trên bàn thờ chỉ có hai bát cơm của ông và mẹ mà bà đã xới từ chiều hôm trước, không có bát nào thêm. Tôi thở phào, rồi lại thấy sợ hơn, vì tôi biết rõ mình đã nghe thấy gì.
+Sáng ra, trên bàn thờ chỉ có hai bát cơm của ông và mẹ mà bà đã xới từ chiều hôm trước, không có bát nào thêm. Tôi thở phào, nhưng rồi lại càng sợ hơn, vì tôi biết rõ đêm qua mình đã nghe thấy tiếng gì.
 
-Bà ho mỗi ngày một nặng. Bà gầy rộc đi, lưng còng xuống thấp hơn, đi được vài bước lại phải vịn tay vào tường mà thở. Con quạ trên nóc nhà vẫn đứng đó, không rời đi lấy một ngày.
+Bà ho mỗi ngày một nặng. Bà gầy rộc đi, lưng còng xuống thấp hơn, đi được vài bước lại phải vịn tay vào tường mà thở. Con quạ đen vẫn đậu trên nóc nhà, không rời đi lấy một ngày.
 
 Cô Út gọi điện lên, nghe tiếng bà ho trong máy thì hốt hoảng, bảo phải đưa bà đi viện ngay. Bà gạt đi, bảo bà già rồi, ho mấy hôm lại khỏi, cô cứ lo việc nhà dưới quê.
 
@@ -400,21 +400,21 @@ Tôi nhìn bà, nhìn con quạ, và tôi chắc chắn người tiếp theo s�
 
 ---
 
-Lần này tôi không để mình bỏ chạy nữa. Chiều hôm ấy, tôi đổ hết gạo trong nhà vào một cái bao, buộc chặt miệng, giấu xuống gầm giường, rồi đem cả nồi cơm cất vào trong tủ, khóa lại.
+Lần này tôi không để mình bỏ chạy nữa. Chiều hôm ấy, tôi đổ hết gạo trong nhà vào một cái bao, buộc chặt miệng, giấu xuống gầm giường, rồi đem cả nồi cơm điện cất vào trong tủ, khóa lại, nghĩ rằng không có gạo, không có nồi thì chẳng ai xới được bát cơm nào nữa.
 
 Tối đến, tôi trải một chiếc chiếu ngay trước bàn thờ, ôm theo cái chăn mỏng và chiếc đèn pin, quyết thức trắng đêm ấy để canh cho bà.
 
-Gian thờ chỉ còn ánh đèn dầu leo lét trước hai tấm di ảnh. Ông và mẹ nhìn xuống tôi từ trong khung ảnh, và tôi có cảm giác hai ánh mắt ấy cứ dõi theo từng cử động của mình.
+Gian thờ tối om, chỉ có chút ánh trăng hắt qua ô cửa sổ, rọi lên mấy tấm di ảnh. Ông và mẹ nhìn xuống tôi từ trong khung ảnh, và tôi có cảm giác hai ánh mắt ấy cứ dõi theo từng cử động của mình.
 
 Tôi ngồi bó gối, mắt mở trừng trừng, nghe tiếng bà ho ở phòng trong, nghe tiếng gió lùa qua khe cửa, nghe từng tiếng tích tắc của chiếc đồng hồ treo tường.
 
 Mười hai giờ. Một giờ. Hai giờ. Tôi cắn chặt môi để không ngủ gật, tay siết lấy chiếc đèn pin đến tê dại.
 
-*[Không lời ~4s: Khoa ngồi canh trên chiếu trước bàn thờ, ánh đèn dầu | âm: tích tắc, tiếng bà ho xa, gió lùa khe cửa]*
+*[Không lời ~4s: Khoa ngồi canh trên chiếu trước tủ thờ, ánh trăng hắt ngang | âm: tích tắc, tiếng bà ho xa, gió lùa khe cửa]*
 
 Rồi đồng hồ gõ ba tiếng. Chiếc đèn pin trong tay tôi bỗng chớp tắt, một lần, hai lần, rồi tắt hẳn.
 
-Khi nó sáng lên lại, trời đã hửng sáng từ bao giờ. Tôi vẫn ngồi trên chiếu, chiếc chăn đã tuột khỏi vai, trong tay tôi không còn là chiếc đèn pin mà là chiếc chìa khóa tủ, và trên bàn thờ, có ba bát cơm.
+Khi đèn sáng lên lại, trời đã hửng sáng từ bao giờ. Tôi vẫn ngồi trên chiếu, chiếc chăn đã tuột khỏi vai, trong tay tôi không còn là chiếc đèn pin mà là chiếc chìa khóa tủ, và trên bàn thờ, có ba bát cơm.
 
 ---
 
@@ -424,9 +424,9 @@ Tôi bò lại gần, hai đầu gối run lẩy bẩy. Bát cơm thứ ba đư�
 
 Tôi nhìn xuống đôi tay mình. Dưới mười đầu móng tay tôi, dính đầy những hạt cơm nguội.
 
-Tôi lao vào trong nhà. Cánh tủ đã mở toang, chiếc nồi không còn ở trong đó. Bao gạo dưới gầm giường đã bị lôi ra, nút dây tôi buộc chặt đã được cởi ra gọn gàng. Dưới bếp, chiếc nồi cơm còn ấm, tro trong bếp vẫn chưa nguội hẳn.
+Tôi chạy vào phòng, bao gạo dưới gầm giường đã bị lôi ra, nút dây tôi buộc chặt đã bị cởi tung, gạo vương khắp sàn. Tôi lao xuống bếp, cánh tủ đã mở toang, ngăn tủ trống trơn. Chiếc nồi cơm điện đã nằm lại trên kệ, đèn ủ vẫn sáng, lòng nồi vẫn còn ấm.
 
-Tôi đưa tay lên mũi, mùi khói bếp còn vương trên những ngón tay. Tôi không biết mình đã đứng dậy, đã mở khóa tủ, đã nấu cơm, đã xới cơm từ lúc nào. Tôi không nhớ gì cả.
+Tôi đưa tay lên mũi, mùi cơm mới nấu còn vương trên những ngón tay. Tôi không biết mình đã đứng dậy, đã mở khóa tủ, đã nấu cơm, đã xới cơm từ lúc nào. Tôi không nhớ gì cả.
 
 Tôi chỉ hiểu một điều. Người bị gọi tên lần này không phải bà. Là tôi.
 
@@ -454,17 +454,17 @@ Bà bảo cái nhà bị trùng tang ở làng cũ mà ông kể với tôi năm
 
 Ông bắt bà hứa không bao giờ kể chuyện ấy cho con cháu, vì ông không muốn ai trong nhà phải sống trong nỗi sợ như ông.
 
-Bà kể cả đời ông tin rằng cái tên khắc lên đũa là để giữ lấy người, đôi đũa mang tên ai thì buộc người ấy với nhà mình, dù đôi đũa có nằm ở đâu, ma quỷ bên ngoài cũng không cướp đi được. Nên ông khắc cho từng người, giữ từng đôi đũa như giữ từng người, khắc thêm đôi nào là buộc người ấy chặt thêm một lần.
+Bà kể năm ông còn ở chùa, sư thầy trụ trì đã dạy ông rằng khắc tên người thân lên đũa là giữ được người ấy, đôi đũa mang tên ai thì buộc người ấy với nhà mình, ma quỷ bên ngoài không cướp đi được. Nên cả đời ông khắc cho từng người, giữ từng đôi đũa như giữ từng người, khắc thêm đôi nào là buộc người ấy chặt thêm một lần.
 
-Bà nói ông không ngờ, thứ đến bắt người lại đi ra từ chính trong nhà, và những đôi đũa ông khắc để giữ người lại, rốt cuộc lại thành cái dấu để nó tìm đến.
+Nhưng ông không biết, từ ngày thoát nạn, trùng chưa bao giờ rời khỏi ông. Nó chẳng ở đâu bên ngoài cả, nó theo ông về làng, theo ông vào nhà, lặng lẽ chờ đến ngày ông yếu đi để quay lại đòi món nợ năm xưa còn dang dở, đòi luôn cả lãi. Và điều ông không bao giờ ngờ tới, là chính tay ông đã khắc những đôi đũa ấy, và cũng chính tay ông đã chỉ đường cho trùng tìm đến từng người trong nhà.
 
-Bà kể đêm ông mất, bà đã tin lá bùa của thầy Tư sẽ giữ được ông. Đến sáng thấy bát cơm thứ hai, bà biết ngay chuyện chẳng lành, nhưng vì lời hứa với ông, bà chỉ biết lặng lẽ cất bát, thức canh, không dám nói với ai.
+Bà kể đêm ông mất, bà đã tin lá bùa của thầy Tư sẽ bảo vệ được gia đình này. Đến sáng thấy bát cơm thứ hai, bà biết ngay trùng đã thoát ra, nhưng vì lời hứa với ông, bà không dám kể với ai rằng chuyện ấy đã từng xảy ra với nhà ông, chỉ biết lặng lẽ cất bát, đêm đêm thức canh cho mẹ.
 
-Rồi bà kể điều mà bà xấu hổ nhất. Sau hôm nghe thầy Tư giảng chuyện đổi đũa, đã có một đêm bà lén rút đôi đũa của mẹ trong ống đũa, cầm theo đôi đũa của mình, đi ra đến tận cổng.
+Rồi bà kể điều mà bà xấu hổ nhất. Sau hôm nghe thầy Tư giảng chuyện đổi đũa, đã có một đêm bà lén rút đôi đũa của mẹ trong ống đũa, cầm theo đôi đũa của mình, lẻn ra khỏi cổng, đi một mạch ra tận đầu đồng.
 
-Nhưng đứng trước con đường tối om dẫn ra nghĩa địa, nghĩ đến lúc phải tự tay đặt đôi đũa của mình xuống mộ ông, bà đã sợ. Bà quay vào, cắm hai đôi đũa lại vào ống, và nằm khóc đến sáng. Bà bảo bà đã hèn một lần, và lần này bà không cho phép mình hèn thêm nữa.
+Nhưng đứng giữa cánh đồng, trước con đường tối om dẫn ra nghĩa địa, nghĩ đến lúc phải tự tay đặt đôi đũa của mình xuống mộ ông, bà đã sợ. Bà quay vào, cắm hai đôi đũa lại vào ống, và nằm khóc đến sáng. Bà bảo bà đã hèn một lần, và lần này bà không cho phép mình hèn thêm nữa.
 
-Bà không bảo tôi vô can. Bà nhìn thẳng vào mắt tôi, nói rằng lỗi là của cả hai bà cháu: cháu đã giấu lá bùa, đêm ấy cháu đã bỏ chạy, còn bà đã biết mà im lặng.
+Bà không nói dối để tôi nhẹ lòng. Bà nhìn thẳng vào mắt tôi, bảo rằng lỗi là của cả hai bà cháu: cháu đã giấu lá bùa, đêm ấy cháu đã bỏ chạy, còn bà thì biết mà vẫn im lặng.
 
 Rồi bà ôm lấy tôi, và hai bà cháu ngồi giữa gian thờ, trước ba bát cơm, khóc cho đến khi nắng lên đầy sân.
 
@@ -472,9 +472,9 @@ Rồi bà ôm lấy tôi, và hai bà cháu ngồi giữa gian thờ, trước b
 
 Lau nước mắt xong, bà bảo đêm nay hai bà cháu sẽ ra mộ ông, trả lá bùa lại cho ông, thế là mọi chuyện sẽ xong.
 
-Tôi hỏi bà có phải đổi đũa như lời thầy Tư nói không. Bà chỉ cười, xoa đầu tôi, bảo cháu đừng nghĩ nhiều, cứ đi theo bà là được.
+Tôi nhớ lời thầy Tư, hỏi bà chỉ trả lá bùa thôi thì đã đủ chưa. Bà chỉ cười, xoa đầu tôi, bảo cháu đừng nghĩ nhiều, cứ đi theo bà là được.
 
-Tôi đòi chạy sang mời thầy Tư, bà giữ tay tôi lại, lắc đầu bảo thầy đã nói rồi, việc ấy thầy không làm, mà có làm cũng không kịp. Bà nhìn tờ lịch treo tường, lẩm nhẩm đếm, rồi bảo phải làm ngay đêm nay, không đợi được nữa.
+Tôi đòi chạy sang mời thầy Tư, bà giữ tay tôi lại, lắc đầu bảo thầy đã nói rồi, chuyện này thầy không giúp được nhà mình đâu. Bà nhìn tờ lịch treo tường, lẩm nhẩm đếm từng ngày từ hôm mẹ mất, rồi bảo phải làm ngay đêm nay, không đợi được nữa.
 
 Trưa hôm ấy, bà gọi điện cho cô Út. Tôi ngồi ở hiên, nghe bà dặn cô thu xếp lên ở với tôi ít lâu, dặn cô nhớ thắp nhang cho ông với mẹ mỗi tối, dặn đi dặn lại như sợ cô quên. Cô hỏi gì đó, bà chỉ cười, bảo bà già rồi, cứ lo xa thế thôi.
 
@@ -508,19 +508,19 @@ Mộ ông và mộ mẹ nằm cạnh nhau, một nấm đất đỏ đã se mặ
 
 Bà đứng trước mộ mẹ trước. Bà đặt tay lên nấm đất còn mới, thì thầm xin lỗi con dâu, xin lỗi vì bà đã im lặng, vì bà đã không giữ được mẹ ở lại với thằng bé, rồi bà hứa với mẹ rằng lần này bà sẽ giữ được nó.
 
-Cái lỗ ấy nằm đúng phía đầu quan tài, ngay trên chỗ gối ông, như lời thầy Tư dặn. Bà quỳ xuống, dùng tay không bới rộng cái lỗ ấy ra. Rồi bà đặt lá bùa xuống, đặt đôi đũa khắc tên tôi vào bên cạnh, và lấp đất lại, vỗ nhẹ lên mặt đất như vỗ về một đứa trẻ.
+Cái lỗ ấy nằm đúng phía đầu quan tài, ngay trên chỗ gối ông, như lời thầy Tư dặn. Bà quỳ xuống, dùng tay không bới rộng cái lỗ ấy ra, đặt lá bùa xuống, rồi lấp đất lại, vỗ nhẹ lên mặt đất như vỗ về một đứa trẻ.
 
-Sau đó bà lấy trong túi áo ra một đôi đũa khác, đôi đũa khắc tên bà, đặt ngay ngắn lên trên nấm đất vừa lấp.
+Tôi thở phào, hỏi bà vậy là xong rồi phải không. Bà gật đầu, bảo xong rồi, ông sẽ được yên, cháu cũng sẽ không sao nữa.
 
-*[Không lời ~5s: bà quỳ trước mộ ông, tay đặt lên nấm đất, đôi đũa của bà nằm trên mộ | âm: gió đồng, ếch nhái]*
+*[Không lời ~5s: bà quỳ trước mộ ông, tay đặt lên nấm đất vừa lấp | âm: gió đồng, ếch nhái]*
 
-Tôi hỏi bà sao lại để đôi đũa của bà ở đó. Bà không trả lời, chỉ ngẩng lên nhìn tôi và mỉm cười, một nụ cười rất hiền, rất dịu dàng.
+Rồi bà ngẩng lên nhìn tôi và mỉm cười, một nụ cười rất hiền, rất dịu dàng.
 
 ---
 
 Đúng lúc ấy, đèn pin trong tay tôi chớp tắt. Khi nó sáng lên lại, phía sau tấm bia mộ ông có một bóng người gầy gò đang đứng, lưng hơi còng, hai tay buông thõng, đúng cái dáng lưng còng của ông những chiều đứng ngoài hiên nhìn ra cây bưởi.
 
-Bà không quay lại nhìn. Bà nắm chặt lấy tay tôi, dặn tôi đi về nhà một mạch, gà chưa gáy thì dù sau lưng có nghe thấy gì, cũng tuyệt đối không được ngoảnh lại.
+Bà không quay lại nhìn. Bà nắm chặt lấy tay tôi, bảo tôi về trước, bà còn có mấy chuyện muốn nói với ông. Bà dặn tôi đi về nhà một mạch, gà chưa gáy thì dù sau lưng có nghe thấy gì, cũng tuyệt đối không được ngoảnh lại.
 
 Tôi lắc đầu, bám chặt lấy tay bà, nhưng bà gỡ từng ngón tay tôi ra, đẩy nhẹ tôi về phía con đường, bảo cháu ngoan, nghe lời bà lần này thôi.
 
@@ -528,7 +528,7 @@ Tôi bước đi, nước mắt chảy ròng ròng, chiếc áo len mẹ đan v�
 
 *[Không lời ~5s: Khoa đi một mình qua cánh đồng tối, vệt đèn pin nhỏ, phía sau xa xa là nghĩa địa | âm: gió đồng, ếch nhái, tiếng bà nói khẽ rất xa]*
 
-Sau lưng tôi, tiếng bà vang lên rất khẽ, dịu dàng như những buổi tối hai ông bà ngồi nói chuyện ngoài hiên, kể chuyện giá gạo, chuyện cây bưởi năm nay sai quả.
+Sau lưng tôi, tiếng bà vang lên rất khẽ, dịu dàng như những buổi chiều hai ông bà ngồi nói chuyện ngoài hiên, kể chuyện giá gạo, chuyện cây bưởi năm nay sai quả.
 
 Rồi bà bật cười, tiếng cười nhẹ tênh như tiếng cười của một cô gái trẻ.
 
@@ -538,15 +538,15 @@ Lần này, tôi đã không bỏ chạy, cũng không ngoảnh lại. Tôi cứ
 
 Sáng hôm sau, người ta tìm thấy bà ngồi tựa vào mộ ông, đầu hơi nghiêng như đang ngủ, cây trâm bạc vẫn cài trên búi tóc, một bàn tay đặt trên nấm đất bà đã lấp đêm qua.
 
-Đôi đũa khắc tên bà đặt trên mộ đêm qua đã không còn ở đó nữa.
+Ngay trên chỗ bà chôn lá bùa, đất đã bị bới lên rồi lấp lại, vẫn còn hằn dấu những ngón tay gầy guộc của bà.
 
 Tôi chạy một mạch về nhà, lao vào gian thờ. Bát cơm thứ ba vẫn nằm trên bàn thờ, nhưng đôi đũa cắm giữa bát không còn là của tôi nữa, mà là đôi đũa khắc tên bà, hai đầu đũa còn dính đất đỏ của mộ ông.
 
 Tôi nhìn xuống đôi tay mình. Dưới móng tay tôi, sạch trơn.
 
-Đến lúc ấy tôi mới nhớ lại từng lời thầy Tư nói về chuyện đổi đũa, nhớ lại nụ cười của bà bên mộ ông, chiếc áo len bà đan nốt cổ, cây trâm bạc, bữa cơm bà ngồi nhìn tôi ăn mà không động đũa.
+Đến lúc ấy tôi mới nhớ lại từng lời thầy Tư nói về chuyện đổi đũa, nhớ lại đôi đũa của tôi bà cất trong túi áo, lúc bà bảo tôi về trước vì còn chuyện muốn nói với ông, nụ cười của bà bên mộ ông, chiếc áo len bà đan nốt cổ, cây trâm bạc, bữa cơm bà ngồi nhìn tôi ăn mà không động đũa.
 
-Bà đã biết. Bà đã biết ngay từ lúc nhìn thấy bát cơm của tôi, và bà đã đổi mạng của bà lấy mạng của tôi.
+Thầy Tư đã nói, đưa lá bùa về chỉ ngăn được trùng gọi thêm người mới, còn người đã bị gọi thì chỉ có đổi đũa mới thoát. Trả lá bùa chưa bao giờ là đủ. Bà biết điều đó, và bà đã nói dối tôi. Đêm ấy, khi tôi đã đi khuất, bà đã chôn đôi đũa của tôi cạnh lá bùa, rồi đặt đôi đũa của bà lên trên. Bà đã biết ngay từ lúc nhìn thấy bát cơm của tôi, và bà đã đổi mạng của bà lấy mạng của tôi.
 
 Tôi ngồi sụp xuống trước bàn thờ, ôm chặt lấy chiếc áo len trên người, và khóc như chưa bao giờ được khóc.
 
@@ -554,7 +554,7 @@ Tôi ngồi sụp xuống trước bàn thờ, ôm chặt lấy chiếc áo len 
 
 ---
 
-Thầy Tư đến lo tang cho bà. Thầy thắp nhang, đứng lặng trước bàn thờ rất lâu, rồi bảo trùng đã nhận bà, lá bùa đã về với ông, trùng đã bị nhốt lại dưới đất, từ nay nhà tôi yên rồi, không còn ai phải đi nữa.
+Thầy Tư đến lo tang cho bà. Thầy thắp nhang, đứng lặng trước bàn thờ rất lâu, rồi bảo trùng đã nhận bà, lá bùa đã về với ông, trùng đã bị nhốt lại dưới đất, từ nay nhà tôi yên rồi, không còn ai phải đi nữa. Thầy nói đúng, lá bùa đã về, trùng không còn gọi được ai mới nữa. Nhưng chính thầy cũng từng dặn, nó sẽ lần theo những cái dấu cũ, và nó chưa bao giờ bỏ cuộc.
 
 Thầy tự tay tháo những tấm vải đỏ phủ trên gương, gỡ chiếc gương bát quái trên cửa xuống. Thầy không hề biết ông đã lén khắc cho tôi đôi đũa thứ hai.
 
@@ -588,7 +588,7 @@ Mẹ. Rồi đến bà.
 
 Mới chỉ có hai.
 
-Tôi nhớ đến đôi đũa ông lén dúi cho tôi vào buổi chiều chỉ có hai ông cháu, lỡ đôi cũ có gãy thì còn đôi mà dùng.
+Lá bùa đã về, nó không gọi được ai mới. Nó chỉ còn cách đi tìm những cái dấu cũ. Và tôi nhớ đến đôi đũa ông lén dúi cho tôi vào buổi chiều chỉ có hai ông cháu, lỡ đôi cũ có gãy thì còn đôi mà dùng.
 
 Bà chỉ chôn được một đôi.
 

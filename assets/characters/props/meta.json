@@ -546,6 +546,38 @@
     "đũa dư"
    ],
    "facing": "front"
+  },
+  "LM1_wall_clock_twelve": {
+   "desc": "Đồng hồ quả lắc chỉ đúng 12 giờ",
+   "tags": [
+    "đồng hồ",
+    "12 giờ"
+   ],
+   "facing": "front"
+  },
+  "LM2_wall_clock_one": {
+   "desc": "Đồng hồ quả lắc chỉ đúng 1 giờ",
+   "tags": [
+    "đồng hồ",
+    "1 giờ"
+   ],
+   "facing": "front"
+  },
+  "LM3_wall_clock_two": {
+   "desc": "Đồng hồ quả lắc chỉ đúng 2 giờ",
+   "tags": [
+    "đồng hồ",
+    "2 giờ"
+   ],
+   "facing": "front"
+  },
+  "LN1_bowl_rice_no_chopsticks": {
+   "desc": "Bát cơm xới đầy nén chặt, không cắm đũa (bát thứ ba sau khi bà rút đũa)",
+   "tags": [
+    "bát thứ ba",
+    "không đũa"
+   ],
+   "facing": "front"
   }
  },
  "cycles": {

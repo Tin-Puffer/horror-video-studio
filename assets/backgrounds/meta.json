@@ -1996,6 +1996,471 @@
    "floor_y": 0.95,
    "char_h": 0.42,
    "hotspots": {}
+  },
+  "bgL21d_altar_three_dawn": {
+   "desc": "Cận tủ thờ rạng sáng: nến tàn, chút nắng sớm vàng nhạt hắt chéo từ trái; mặt tủ trống để đặt bát",
+   "tags": [
+    "tủ thờ",
+    "rạng sáng"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL34c_kitchen_cooker_check": {
+   "desc": "Vẽ sẵn rạng sáng: tủ bếp mở toang; Khoa mở hé nắp nồi cơm điện (đèn ủ sáng, hơi nóng), tay áp thành nồi",
+   "tags": [
+    "nồi cơm điện",
+    "bếp",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL34d_kitchen_smell_fingers": {
+   "desc": "Vẽ sẵn rạng sáng: Khoa lùi khỏi kệ bếp, đưa ngón tay lên mũi ngửi, trân trối nhìn tay mình",
+   "tags": [
+    "ngửi tay",
+    "bếp",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL35t_khoa_watch_mat_cabinet": {
+   "desc": "Vẽ sẵn đêm: Khoa bó gối trên chiếu trước tủ thờ (hai bát cơm), ánh trăng hắt ngang, không đèn dầu",
+   "tags": [
+    "canh đêm",
+    "chiếu",
+    "tủ thờ",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL11t_ong_bed_corner_cabinet": {
+   "desc": "Góc nhà đêm thời ông còn sống: tủ thờ chỉ có ảnh bố, đồng hồ quả lắc trên tường; giữa sàn trống đặt giường",
+   "tags": [
+    "góc nhà",
+    "tủ thờ",
+    "ảnh bố",
+    "đêm"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL38t_grandma_sit_cabinet": {
+   "desc": "Vẽ sẵn: bà ngồi bệt cạnh Khoa cầm lá bùa kể chuyện; phía sau tủ thờ",
+   "tags": [
+    "bà kể",
+    "tủ thờ",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL21n_altar_night_sidelight": {
+   "desc": "Cận tủ thờ đêm tối: không đèn, không cơm, một vệt trăng xanh lạnh hắt ngang từ trái rọi lên di ảnh",
+   "tags": [
+    "tủ thờ",
+    "đêm",
+    "ánh trăng"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL41f_grandma_field_night": {
+   "desc": "Vẽ sẵn đêm (hồi ức): bà đứng giữa đồng, ôm hai đôi đũa trước ngực, nhìn con đường tối om dẫn ra nghĩa địa xa",
+   "tags": [
+    "cánh đồng",
+    "bà",
+    "hồi ức",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {}
+  },
+  "bgL32c_rice_sack_open_spilled": {
+   "desc": "Rạng sáng: bao gạo mở miệng, sợi dây đã cởi nằm riêng, gạo đổ loang ra sàn quanh bao",
+   "tags": [
+    "bao gạo",
+    "rạng sáng"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL9mt_main_room_cabinet_day": {
+   "desc": "Gian chính ban ngày xám: tủ thờ đặt dưới sàn, ba di ảnh, mặt tủ trống để đặt bát; không người",
+   "tags": [
+    "gian thờ",
+    "tủ thờ",
+    "ba di ảnh",
+    "ngày"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL1k_khoa_porch_listen": {
+   "desc": "Vẽ sẵn trưa: Khoa ngồi bậc hiên ôm gối, ngoái đầu về phía cửa lắng nghe, buồn",
+   "tags": [
+    "hiên",
+    "nghe lén",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.93,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL36t_grandma_doorway_cabinet": {
+   "desc": "Vẽ sẵn sáng xám: bà đứng cửa buồng vịn khung cửa nhìn về tủ thờ có ba bát cơm",
+   "tags": [
+    "cửa buồng",
+    "bà",
+    "tủ thờ",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL37t_khoa_kneel_cabinet": {
+   "desc": "Vẽ sẵn: Khoa quỳ khóc giơ lá bùa trước bà; phía sau tủ thờ ba bát cơm",
+   "tags": [
+    "thú nhận",
+    "tủ thờ",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL37bt_khoa_bow_cabinet": {
+   "desc": "Vẽ sẵn: Khoa cúi rạp trán xuống nền gạch, bà đứng; phía sau tủ thờ",
+   "tags": [
+    "thú nhận",
+    "tủ thờ",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL35ct_khoa_mat_dawn_cabinet": {
+   "desc": "Vẽ sẵn rạng sáng: Khoa ngồi chiếu cầm chìa khoá ngơ ngác; trên tủ thờ ba bát cơm",
+   "tags": [
+    "rạng sáng",
+    "chìa khoá",
+    "tủ thờ",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL9st_grandma_asleep_cabinet": {
+   "desc": "Vẽ sẵn đêm: bà gục ngủ bên bàn; tủ thờ hai di ảnh (ông, bố), hai bát cơm",
+   "tags": [
+    "bà",
+    "tủ thờ",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL9mu_main_room_carved_day": {
+   "desc": "Gian chính ban ngày: tủ thờ chạm khắc (như cảnh Khoa canh đêm), ba di ảnh, mặt tủ không bát; không người",
+   "tags": [
+    "gian thờ",
+    "tủ thờ chạm",
+    "ngày"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL21p_altar_carved_night": {
+   "desc": "Cận tủ thờ chạm khắc ban đêm, vệt trăng xanh hắt ngang, mặt tủ không bát",
+   "tags": [
+    "tủ thờ chạm",
+    "đêm",
+    "ánh trăng",
+    "cận"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL21q_altar_carved_dawn": {
+   "desc": "Cận tủ thờ chạm khắc buổi sáng, nắng sớm hắt chéo, mặt tủ không bát",
+   "tags": [
+    "tủ thờ chạm",
+    "sáng sớm",
+    "cận"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL35cu_khoa_mat_dawn_carved": {
+   "desc": "Vẽ sẵn rạng sáng: Khoa ngồi chiếu cầm chìa khoá; tủ thờ chạm khắc, ba bát cơm cắm đũa",
+   "tags": [
+    "rạng sáng",
+    "chìa khoá",
+    "tủ thờ chạm",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL36u_grandma_doorway_carved": {
+   "desc": "Vẽ sẵn sáng xám: bà đứng cửa buồng nhìn tủ thờ chạm khắc có ba bát cơm cắm đũa",
+   "tags": [
+    "cửa buồng",
+    "bà",
+    "tủ thờ chạm",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL37u_khoa_kneel_carved": {
+   "desc": "Vẽ sẵn: Khoa quỳ giơ lá bùa trước bà; tủ thờ chạm khắc, ba bát (bát thứ ba không đũa)",
+   "tags": [
+    "thú nhận",
+    "tủ thờ chạm",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL37bu_khoa_bow_carved": {
+   "desc": "Vẽ sẵn: Khoa cúi rạp, bà đứng; tủ thờ chạm khắc, ba bát (bát thứ ba không đũa)",
+   "tags": [
+    "thú nhận",
+    "tủ thờ chạm",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL38u_grandma_sit_carved": {
+   "desc": "Vẽ sẵn: bà ngồi bệt cầm lá bùa nhàu trong lòng kể chuyện, Khoa nép bên ngước nhìn; tủ thờ chạm khắc, ba bát",
+   "tags": [
+    "bà kể",
+    "lá bùa",
+    "tủ thờ chạm",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL42u_hug_carved": {
+   "desc": "Vẽ sẵn: nắng sớm tràn vào, hai bà cháu ôm nhau khóc trước tủ thờ chạm khắc có ba bát",
+   "tags": [
+    "bà cháu",
+    "ôm",
+    "nắng sớm",
+    "tủ thờ chạm",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL9su_grandma_asleep_carved": {
+   "desc": "Vẽ sẵn đêm: bà gục ngủ bên bàn; tủ thờ chạm khắc hai di ảnh (ông, bố), hai bát cơm",
+   "tags": [
+    "bà",
+    "tủ thờ chạm",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL11u_ong_corner_carved": {
+   "desc": "Góc nhà ban đêm thời ông còn sống: tủ thờ chạm khắc chỉ ảnh bố, đồng hồ quả lắc; giữa sàn trống đặt giường",
+   "tags": [
+    "góc nhà",
+    "tủ thờ chạm",
+    "ảnh bố",
+    "đêm"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL53n_grandma_bury_talisman": {
+   "desc": "Đêm: bà quỳ bới đất ở đầu mộ ông, lá bùa vàng bên cạnh (không có đũa); Khoa soi đèn pin",
+   "tags": [
+    "mộ",
+    "chôn bùa",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {}
+  },
+  "bgL53c_grandma_pat_earth_plain": {
+   "desc": "Đêm: bà vỗ nhẹ lên đất vừa lấp ở đầu mộ ông (không có đũa); Khoa soi đèn pin",
+   "tags": [
+    "mộ",
+    "vỗ đất",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {}
+  },
+  "bgL55n_ghost_headstone_plain": {
+   "desc": "Đêm: bóng ông mờ đứng sau bia mộ, bà quỳ bên nấm đất (không có đũa), Khoa cầm đèn pin",
+   "tags": [
+    "mộ",
+    "bóng ông",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {}
+  },
+  "bgL65_thay_tu_unveil_mirror": {
+   "desc": "Vẽ sẵn ngày: thầy Tư kéo tấm vải đỏ khỏi gương treo tường, tay kia cầm gương bát quái vừa gỡ",
+   "tags": [
+    "gương",
+    "vải đỏ",
+    "thầy Tư",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL44u_teach_incense_carved": {
+   "desc": "Vẽ sẵn ngày: bà đứng sau Khoa dạy thắp nhang trước tủ thờ chạm khắc, ba bát (bát thứ ba không đũa)",
+   "tags": [
+    "thắp nhang",
+    "tủ thờ chạm",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.5,
+   "hotspots": {}
+  },
+  "bgL59u_khoa_cry_carved": {
+   "desc": "Vẽ sẵn sáng: Khoa ngồi bó gối khóc trước tủ thờ chạm khắc, ba bát cơm cắm đũa",
+   "tags": [
+    "khóc",
+    "tủ thờ chạm",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL10u_altar_carved_four": {
+   "desc": "Cận tủ thờ chạm khắc ban đêm, bốn di ảnh (mẹ, bà, ông ở giữa, bố), hai nến đỏ, mặt tủ trống để đặt bát",
+   "tags": [
+    "tủ thờ chạm",
+    "bốn di ảnh",
+    "đêm",
+    "cận"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL48u_dinner_watch_carved": {
+   "desc": "Vẽ sẵn tối: bà ngồi nhìn Khoa ăn bên đèn bàn; phía sau tủ thờ chạm khắc, ba di ảnh, ba bát",
+   "tags": [
+    "bữa tối",
+    "tủ thờ chạm",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL53o_bury_at_ong_grave": {
+   "desc": "Đêm: bà quỳ bới lỗ ở đầu mộ ông (trái, cạnh bia), lá bùa bên cạnh; Khoa soi đèn; mộ mẹ bên phải nguyên vẹn",
+   "tags": [
+    "mộ ông",
+    "chôn bùa",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {}
+  },
+  "bgL64_khoa_back_four_bowls": {
+   "desc": "Vẽ sẵn rạng sáng: Khoa đứng quay lưng giữa gian thờ nhìn tủ thờ chạm có bốn di ảnh và bốn bát cơm",
+   "tags": [
+    "bát thứ tư",
+    "tủ thờ chạm",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL62u_dinner_co_ut_carved": {
+   "desc": "Vẽ sẵn tối: cô Út và Khoa ăn cơm bên đèn bàn; phía sau tủ thờ chạm, bốn di ảnh, ba bát cơm",
+   "tags": [
+    "bữa tối",
+    "cô Út",
+    "tủ thờ chạm",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.46,
+   "hotspots": {}
+  },
+  "bgL53d_pat_at_ong_grave": {
+   "desc": "Đêm: bà quỳ vỗ nhẹ lên chỗ đất vừa lấp ở đầu mộ ông, mỉm cười; Khoa soi đèn; mộ mẹ bên phải",
+   "tags": [
+    "mộ ông",
+    "vỗ đất",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {}
+  },
+  "bgL54b_hand_chopsticks_low_mound": {
+   "desc": "Cận đêm: bàn tay bà (tay áo lụa tím) nhẹ nhàng đặt đôi đũa lên chỗ đất thấp vừa lấp ở đầu mộ ông",
+   "tags": [
+    "đổi đũa",
+    "mộ ông",
+    "cận"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {}
+  },
+  "bgL55o_ghost_at_ong_grave": {
+   "desc": "Đêm: bóng ông mờ đứng sau bia mộ ông (trái), sương thấp; bà quỳ không quay lại, Khoa sững người; mộ mẹ bên phải",
+   "tags": [
+    "mộ ông",
+    "bóng ông",
+    "vẽ sẵn"
+   ],
+   "floor_y": 0.95,
+   "char_h": 0.4,
+   "hotspots": {}
   }
  }
 }

@@ -215,6 +215,13 @@ def main():
                 continue
             if name in sheet.get("holes", {}):
                 sprite = clear_holes(sprite, sheet["holes"][name])
+            if name in sheet.get("erase", {}):  # leftover scenery (counter, burner): clear rects given as fractions of the sprite
+                px = sprite.load()
+                for fx0, fy0, fx1, fy1 in sheet["erase"][name]:
+                    for y in range(int(fy0 * sprite.height), int(fy1 * sprite.height)):
+                        for x in range(int(fx0 * sprite.width), int(fx1 * sprite.width)):
+                            px[x, y] = (0, 0, 0, 0)
+                sprite = crop_to_content(sprite)
             if name in sheet.get("rotate", {}):  # Gemini drew it the wrong way round (e.g. footprints)
                 sprite = sprite.rotate(sheet["rotate"][name], expand=True)
             sprites[name] = sprite

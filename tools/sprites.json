@@ -1412,7 +1412,17 @@
    ],
    "clear_white": [
     "A1_hug_boy"
-   ]
+   ],
+   "erase": {
+    "A3_cook_humming": [
+     [
+      0.485,
+      0.605,
+      1.0,
+      1.0
+     ]
+    ]
+   }
   },
   {
    "source": "assets/source/props_sheet_LC.png",
@@ -1962,6 +1972,30 @@
     "LL8_savings_book_papers",
     "LL9_bowl_grandma_chopsticks_soil",
     "LL10_bowl_spare_chopsticks"
+   ]
+  },
+  {
+   "source": "assets/source/props_sheet_LM.png",
+   "out_dir": "assets/characters/props",
+   "grid": [
+    1,
+    3
+   ],
+   "names": [
+    "LM1_wall_clock_twelve",
+    "LM2_wall_clock_one",
+    "LM3_wall_clock_two"
+   ]
+  },
+  {
+   "source": "assets/source/props_sheet_LN.png",
+   "out_dir": "assets/characters/props",
+   "grid": [
+    1,
+    1
+   ],
+   "names": [
+    "LN1_bowl_rice_no_chopsticks"
    ]
   }
  ]
