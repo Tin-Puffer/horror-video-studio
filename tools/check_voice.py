@@ -114,12 +114,13 @@ def bad_pauses(text: str, heard: dict, path: Path) -> list:
 
 
 def transcribe(paths: list) -> dict:
-    py = render.CFG["voice"].get("vieneu_python", "python3")
+    # "asr_python": a Python with torch + transformers when the VieNeu one has none
+    py = render.CFG["voice"].get("asr_python") or render.CFG["voice"].get("vieneu_python", "python3")
     with tempfile.TemporaryDirectory() as tmp:
         src, dst = Path(tmp) / "in.json", Path(tmp) / "out.json"
         src.write_text(json.dumps([str(p) for p in paths]))
         subprocess.run([py, str(ROOT / "tools/asr_worker.py"), MODEL, str(src), str(dst)], check=True)
-        return json.loads(dst.read_text())
+        return json.loads(dst.read_text(encoding="utf-8"))
 
 
 def pitch(path: Path) -> float:

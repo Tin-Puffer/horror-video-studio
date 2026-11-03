@@ -67,11 +67,14 @@ DEFAULTS = {
     "voice": {
         "piper": "piper",            # piper-tts executable (PATH), or set in config.local.json
         "models_dir": "voices",      # folder with <model>.onnx + .onnx.json (relative to the project)
-        "engine": "piper",           # "piper" or "vieneu" (VieNeu-TTS: preset voices + voice cloning)
+        "engine": "piper",           # "piper", "vieneu" (VieNeu-TTS: preset voices + voice cloning) or "zerotts"
         "vieneu_voice": "preset:Hải Đăng",  # VieNeu: "preset:<name>" or "clone:<id>" (tools/clone_voice.py)
         "vieneu_temperature": None, "vieneu_top_k": None,  # VieNeu sampling (None = SDK default 0.4 / 50);
         # lower temperature = fewer stray pauses and repeated words, flatter delivery
         "vieneu_python": "python3", "dubber_root": "",  # where vieneu + the Dubber package live
+        # ZeroTTS (tools/zerotts_worker.py): a pack in assets/voices/zerotts/<name>/ or a built-in voice;
+        # cfg_scale > 1 sticks closer to the voice at 2x the time (None = 1.0)
+        "zerotts_voice": "huuduc", "zerotts_cfg_scale": None, "zerotts_python": "python3",
         "model": "ngochuyennew", "length_scale": 1.0, "sentence_silence": 0.3,
         # phrasing (see tts): pauses shorter than this are read as a comma, not a cut;
         # soften_endings "none" | "final" | "all" (full stops read as commas);
@@ -87,7 +90,8 @@ DEFAULTS = {
         # lowpass/highpass Hz, volume dB; piper: noise_scale (expressiveness), noise_w (rhythm variation)
         "sample_rate": 44100,        # narration rate; every engine/preset is resampled to it
     },
-    "timing": {"lead": 0.4, "tail": 0.7, "min_duration": 2.5, "fade_in": 0.15, "fade_out": 0.0},
+    "timing": {"lead": 0.4, "tail": 0.7, "min_duration": 2.5, "fade_in": 0.15, "fade_out": 0.0,
+               "comma_tail": 0.05},  # tail of a scene whose narration ends with "," (the sentence goes on next scene)
     "audio": {"sample_rate": 44100, "narration_volume": 1.0, "sfx_volume": 1.0, "music_volume": 0.5,
               "duck": 0.35,            # music gain while narration speaks
               "placeholder_beep": True,  # audible stand-in for sounds not in the library yet
@@ -106,7 +110,8 @@ DEFAULTS = {
     },
     "subtitles": {"enabled": True, "size": 0.042, "line_height": 0.055, "bottom": 0.06,
                   "wrap": 48, "color": [240, 240, 240], "stroke": [0, 0, 0],
-                  "split": "sentence",   # "sentence": one sentence at a time, timed with the voice; "none": whole text
+                  "split": "sentence",   # "sentence": short parts timed with each spoken line; "none": whole text
+                  "max_chars": 0,        # longest part shown at once; 0 = "wrap" (one line)
                   "min_chars": 18},      # shorter sentences are shown together with the next
     "title": {"size": 0.06, "color": [225, 225, 230]},
     "phone": {"clock": "03:00", "call_label": "Cuộc gọi đến…", "call_sub": "Di động",
@@ -225,6 +230,21 @@ def voice_filters(v: dict, sr: int) -> str:
 
 
 _VIENEU = None
+_ZEROTTS = None
+
+
+def zerotts(req: dict, v: dict) -> dict:
+    """Send one request to the ZeroTTS worker (started on first use, model loaded once)."""
+    global _ZEROTTS
+    if _ZEROTTS is None or _ZEROTTS.poll() is not None:
+        _ZEROTTS = subprocess.Popen([v["zerotts_python"], "-X", "utf8", str(ROOT / "tools/zerotts_worker.py"), str(ROOT)],
+                                    stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True, encoding="utf-8")
+    _ZEROTTS.stdin.write(json.dumps(req, ensure_ascii=False) + "\n")
+    _ZEROTTS.stdin.flush()
+    reply = json.loads(_ZEROTTS.stdout.readline())
+    if not reply.get("ok"):
+        raise RuntimeError(f"ZeroTTS: {reply.get('error')}")
+    return reply
 
 
 def vieneu(req: dict, v: dict) -> dict:
@@ -243,8 +263,8 @@ def vieneu(req: dict, v: dict) -> dict:
 
 # settings that change what a chunk sounds like, per engine (others don't invalidate the cache)
 _ENGINE_KEYS = {"piper": ("model", "length_scale", "sentence_silence", "noise_scale", "noise_w"),
-                "vieneu": ("vieneu_voice",)}
-_SAMPLING_KEYS = ("vieneu_temperature", "vieneu_top_k")  # part of the cache key only when set
+                "vieneu": ("vieneu_voice",), "zerotts": ("zerotts_voice",)}
+_SAMPLING_KEYS = ("vieneu_temperature", "vieneu_top_k", "zerotts_cfg_scale")  # part of the cache key only when set
 _COLOUR_KEYS = ("pitch", "tempo", "highpass", "lowpass", "reverb", "volume", "sample_rate")
 
 
@@ -269,6 +289,9 @@ def tts_chunk(text: str, v: dict) -> np.ndarray:
         if engine == "vieneu":
             vieneu({"cmd": "say", "text": text, "voice": v["vieneu_voice"], "out": str(raw),
                     "temperature": v.get("vieneu_temperature"), "top_k": v.get("vieneu_top_k")}, v)
+        elif engine == "zerotts":
+            zerotts({"cmd": "say", "text": text, "voice": v["zerotts_voice"], "out": str(raw),
+                     "cfg_scale": v.get("zerotts_cfg_scale")}, v)
         else:
             models = Path(v["models_dir"]).expanduser()
             model = (models if models.is_absolute() else ROOT / models) / f"{v['model']}.onnx"
@@ -450,15 +473,18 @@ def level_chunk(x: np.ndarray, sr: int, target_db: float) -> np.ndarray:
     return x * gain
 
 
-def tts(text, voice: dict) -> np.ndarray:
-    """Narration for a scene's text as int16 at voice["sample_rate"] (pauses and per-line voices applied)."""
+def tts(text, voice: dict, spans: list | None = None) -> np.ndarray:
+    """Narration for a scene's text as int16 at voice["sample_rate"] (pauses and per-line voices applied).
+    spans: if given, filled with (start_s, end_s, text) of every spoken line, for subtitles timed with the voice."""
     sr = voice["sample_rate"]
     parts = []
+    at = 0
     # every chunk at the scene's rate, whatever engine/preset made it;
     # a line with its own preset is that voice, not the narrator plus changes
     for item in tts_lines(text, voice):
         if item[0] == "pause":
             parts.append(np.zeros(round(item[1] * sr), np.float32))
+            at += len(parts[-1])
         else:
             v = item[2]
             chunk = speak_checked(item[1], v, sr)
@@ -467,9 +493,13 @@ def tts(text, voice: dict) -> np.ndarray:
             chunk = trim_silence(chunk, sr) if v.get("trim_chunks") else chunk
             if v.get("level_db") is not None:
                 chunk = level_chunk(chunk, sr, v["level_db"])
+            if spans is not None:
+                spans.append((at / sr, (at + len(chunk)) / sr, item[1]))
             parts.append(chunk)
+            at += len(chunk)
             if v.get("trim_chunks"):
                 parts.append(np.zeros(int(sr * v.get("chunk_gap", 0.12)), np.float32))
+                at += len(parts[-1])
     out = np.concatenate(parts) if parts else np.zeros(0, np.float32)
     return (np.clip(out, -1, 1) * 32767).astype(np.int16)
 
@@ -914,21 +944,39 @@ def draw_layer(canvas: Image.Image, layer: dict, p: float, t: float, rng: random
         canvas.paste(im, (round(x), round(y)), im)
 
 
+SUB_BREAK_BEFORE = {"và", "mà", "nhưng", "rồi", "thì", "là", "khi", "cho", "để", "vì", "nên", "như", "với",
+                    "lại", "đã", "cũng", "trong", "từ", "ở", "trên", "dưới", "sau", "trước", "không", "chỉ"}
+
+
 def subtitle_parts(text: str, min_chars: int, max_chars: int = 96) -> list[str]:
-    """Sentences, long ones cut at commas so each part fits two subtitle lines."""
+    """Sentences cut into parts of at most max_chars (at commas, else between words, balanced),
+    short parts joined to a neighbour when the two still fit."""
+    def words_cut(piece: str) -> list[str]:
+        if len(piece) <= max_chars:
+            return [piece]
+        words = piece.split()
+        best, best_cost = 1, None
+        for k in range(1, len(words)):
+            left, right = " ".join(words[:k]), " ".join(words[k:])
+            cost = abs(len(left) - len(right)) / len(piece) + (len(left) > max_chars) + (len(right) > max_chars)
+            if words[k].lower() in SUB_BREAK_BEFORE:
+                cost -= 0.25  # a line starting at "và", "rồi", "cho"... reads naturally
+            if best_cost is None or cost < best_cost:
+                best, best_cost = k, cost
+        return words_cut(" ".join(words[:best])) + words_cut(" ".join(words[best:]))
     parts = []
     for sent in (p for p in re.split(r"(?<=[.!?…:])\s+", text) if p.strip()):
         cur = ""
-        for piece in re.split(r"(?<=,)\s+", sent):
+        for piece in re.split(r"(?<=[,;])\s+", sent):
             if cur and len(cur) + 1 + len(piece) > max_chars:
-                parts.append(cur)
+                parts += words_cut(cur)
                 cur = piece
             else:
                 cur = f"{cur} {piece}".strip()
-        parts.append(cur)
+        parts += words_cut(cur)
     merged = []
     for p in parts:
-        if merged and len(merged[-1]) < min_chars:
+        if merged and (len(merged[-1]) < min_chars or len(p) < min_chars) and len(merged[-1]) + 1 + len(p) <= max_chars:
             merged[-1] += " " + p
         else:
             merged.append(p)
@@ -936,21 +984,42 @@ def subtitle_parts(text: str, min_chars: int, max_chars: int = 96) -> list[str]:
     return [re.sub(r"\s*[,;]$", "", p) for p in merged]
 
 
-def subtitle_at(scene: dict, t: float) -> str:
-    """The subtitle shown at time t: with split "sentence", each sentence stays up for
-    its share (by length) of the time the narration speaks."""
-    text = spoken_text(scene["text"])
-    sub = CFG["subtitles"]
-    if sub.get("split", "none") != "sentence" or "_speech" not in scene:
-        return text
-    parts = subtitle_parts(text, sub.get("min_chars", 18), sub["wrap"] * 2)
-    start, length = scene["_speech"]
-    q = min(max((t - start) / max(length, 1e-6), 0), 0.9999) * sum(len(p) for p in parts)
+def share_at(parts: list[str], q: float) -> str:
+    """The part at fraction q (0..1) of the time, each part getting its share by length."""
+    q = min(max(q, 0), 0.9999) * sum(len(p) for p in parts)
     for p in parts:
         if q < len(p):
             return p
         q -= len(p)
     return parts[-1]
+
+
+def scene_tail(scene: dict, timing: dict) -> float:
+    """Silence after the narration: short when the sentence carries on into the next scene."""
+    said = spoken_text(scene["text"]).rstrip() if scene.get("text") else ""
+    return timing.get("comma_tail", timing["tail"]) if said[-1:] in ",;" else timing["tail"]
+
+
+def subtitle_at(scene: dict, t: float) -> str:
+    """The subtitle shown at time t: with split "sentence", parts of at most subtitles.max_chars
+    (one line by default), each spoken line's parts shown while the voice speaks that line
+    (scene["_lines"] = real start/end of every TTS line); without it, by share of the whole narration."""
+    text = spoken_text(scene["text"])
+    sub = CFG["subtitles"]
+    if sub.get("split", "none") != "sentence" or "_speech" not in scene:
+        return text
+    limit = sub.get("max_chars") or sub["wrap"]
+    lead, length = scene["_speech"]
+    lines = [ln for ln in scene.get("_lines", []) if ln[2].strip()]
+    if not lines:
+        return share_at(subtitle_parts(text, sub.get("min_chars", 18), limit), (t - lead) / max(length, 1e-6))
+    rel = t - lead
+    k = 0
+    while k + 1 < len(lines) and rel >= lines[k + 1][0]:
+        k += 1
+    a, b, said = lines[k]
+    parts = subtitle_parts(spoken_text(said), sub.get("min_chars", 18), limit)
+    return share_at(parts, (rel - a) / max(b - a, 1e-6))
 
 
 def subtitle(canvas: Image.Image, text: str, over: dict | None = None):
@@ -1100,10 +1169,12 @@ def main():
     narr_spans = []  # (start, end) seconds where narration speaks, for music ducking
     for s in scenes:
         sv = narration_voice(s.get("voice"))
-        speech = tts(s["text"], sv) if s.get("text") else np.zeros(0, np.int16)
+        lines = []
+        speech = tts(s["text"], sv, lines) if s.get("text") else np.zeros(0, np.int16)
+        s["_lines"] = lines
         speech_len = len(speech) / voice["sample_rate"]
         dur = s.get("duration") or max(s.get("min_duration", timing["min_duration"]),
-                                       timing["lead"] + speech_len + timing["tail"])
+                                       timing["lead"] + speech_len + scene_tail(s, timing))
         plan.append((s, dur, speech))
         s["_speech"] = (timing["lead"], speech_len)  # for sentence-by-sentence subtitles
         starts[s["id"]] = t0

@@ -121,6 +121,27 @@
    "sample_rate": 44100,
    "tempo": 1.15,
    "soften_endings": "all"
+  },
+  "zerotts_duytu": {
+   "desc": "ZeroTTS — giọng duytu (pack từ zeroweight.ai, assets/voices/zerotts/duytu)",
+   "engine": "zerotts",
+   "zerotts_voice": "duytu",
+   "sample_rate": 44100,
+   "soften_endings": "none"
+  },
+  "zerotts_maichi_clone": {
+   "desc": "ZeroTTS — Mai Chi (clone, pack zeroweight.ai)",
+   "engine": "zerotts",
+   "zerotts_voice": "maichi_clone",
+   "sample_rate": 44100,
+   "soften_endings": "none"
+  },
+  "zerotts_nguyentins": {
+   "desc": "ZeroTTS — NguyenTins (nam, pack zeroweight.ai)",
+   "engine": "zerotts",
+   "zerotts_voice": "nguyentins",
+   "sample_rate": 44100,
+   "soften_endings": "none"
   }
  }
 }

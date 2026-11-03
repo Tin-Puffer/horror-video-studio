@@ -31,7 +31,7 @@ def main():
         out[p] = {"text": r["text"].strip(),
                   "words": [[c["text"].strip(), c["timestamp"][0], c["timestamp"][1]] for c in r.get("chunks", [])]}
         print(f"  asr {i + 1}/{len(paths)}", file=sys.stderr, flush=True)
-    json.dump(out, open(dst, "w"), ensure_ascii=False, indent=1)
+    json.dump(out, open(dst, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
 
 if __name__ == "__main__":
